@@ -1,5 +1,15 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  output: 'server',
+  vite: {
+    ssr: {
+      noExternal: ['@iconify/react']
+    },
+    // Ajoutez ceci pour que Vite charge les variables d'environnement
+    envPrefix: 'PUBLIC_',
+    
+    // Chargez explicitement le fichier .env
+    envDir: '.',
+  }
+});

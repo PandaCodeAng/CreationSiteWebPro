@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTAButton from '../components/CTAButton.astro';
+import Icon from '../components/Icon.astro';
+
+const pageTitle = "Nos Services de Création Web et d'Applications";
+const pageDescription = "Découvrez nos services de création de sites web, d'applications web et d'optimisation SEO pour booster votre présence en ligne.";
+
+const services = [
+  {
+    icon: 'web',
+    title: 'Sites Web Vitrines',
+    description: 'Création de sites élégants et performants pour présenter votre activité.',
+    features: [
+      'Design responsive adapté à tous les appareils',
+      'Optimisation SEO pour un meilleur référencement',
+      'Intégration de contenu personnalisé',
+      'Formulaires de contact et d\'appel à l\'action',
+      'Compatibilité avec tous les navigateurs modernes'
+    ]
+  },
+  {
+    icon: 'shopping',
+    title: 'E-commerce',
+    description: 'Solutions de vente en ligne puissantes et sécurisées pour développer votre business.',
+    features: [
+      'Gestion de catalogue produits',
+      'Panier d\'achat et process de commande optimisés',
+      'Intégration de paiements sécurisés',
+      'Gestion des stocks en temps réel',
+      'Tableau de bord administrateur intuitif'
+    ]
+  },
+  {
+    icon: 'cellphone',
+    title: 'Applications Web',
+    description: 'Développement d\'applications web complexes et sur mesure pour optimiser vos processus.',
+    features: [
+      'Interface utilisateur intuitive et moderne',
+      'Fonctionnalités personnalisées selon vos besoins',
+      'Intégration avec vos systèmes existants',
+      'Gestion avancée des utilisateurs et des rôles',
+      'Analyses et rapports détaillés'
+    ]
+  },
+  {
+    icon: 'magnify',
+    title: 'SEO & Performance',
+    description: 'Optimisation pour les moteurs de recherche et amélioration des performances de votre site.',
+    features: [
+      'Audit SEO complet de votre site',
+      'Optimisation on-page et technique',
+      'Stratégie de contenu et de mots-clés',
+      'Amélioration de la vitesse de chargement',
+      'Suivi et rapports de performance'
+    ]
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main class="services-page">
+    <h1>{pageTitle}</h1>
+    <p class="intro">{pageDescription}</p>
+
+    {services.map((service) => (
+      <section class="service-section" id={service.title.toLowerCase().replace(/ /g, '-')}>
+        <div class="service-header">
+          <Icon name={service.icon} />
+          <h2>{service.title}</h2>
+        </div>
+        <p>{service.description}</p>
+        <h3>Caractéristiques principales :</h3>
+        <ul>
+          {service.features.map((feature) => (
+            <li>{feature}</li>
+          ))}
+        </ul>
+        <CTAButton text={`En savoir plus sur ${service.title}`} href={`#contact`} />
+      </section>
+    ))}
+
+    <section id="contact" class="contact-section">
+      <h2>Prêt à démarrer votre projet ?</h2>
+      <p>Contactez-nous dès aujourd'hui pour discuter de vos besoins et obtenir un devis personnalisé.</p>
+      <CTAButton text="Demander un devis" href="/contact" />
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .services-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  h1 {
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+  }
+
+  .service-section {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+  }
+
+  .service-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .service-header h2 {
+    margin-left: 1rem;
+    color: var(--color-secondary);
+  }
+
+  h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+  }
+
+  .contact-section {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 3rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .contact-section h2 {
+    color: white;
+  }
+</style>

@@ -1,0 +1,288 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const pageTitle = "Contactez CreationSiteWebPro | Transformez Votre Vision en Réalité Digitale";
+const pageDescription = "Prêt à booster votre présence en ligne ? Contactez notre équipe d'experts en création de sites web et d'applications. Obtenez un devis gratuit et personnalisé aujourd'hui !";
+
+const contactMethods = [
+  {
+    icon: 'mdi:phone',
+    title: 'Appelez-nous',
+    content: '+212 6 79 78 29 06',
+    action: 'tel:+212679782906'
+  },
+  {
+    icon: 'mdi:email',
+    title: 'Envoyez-nous un email',
+    content: 'contact@creationsitewebpro.com',
+    action: 'mailto:mouhcinetalbi@gmail.com'
+  },
+  {
+    icon: 'mdi:map-marker',
+    title: 'Visitez-nous',
+    content: '123 Rue du Web, 20000 Casablanca, Maroc',
+    action: 'https://goo.gl/maps/votreLienGoogleMaps'
+  }
+];
+
+const faqs = [
+  {
+    question: "Combien coûte la création d'un site web ?",
+    answer: "Le coût varie en fonction de vos besoins spécifiques. Nous offrons des solutions sur mesure pour tous les budgets. Contactez-nous pour un devis gratuit et personnalisé."
+  },
+  {
+    question: "Combien de temps faut-il pour créer un site web ?",
+    answer: "La durée dépend de la complexité du projet. En général, un site vitrine prend 2-4 semaines, tandis qu'un e-commerce peut prendre 4-8 semaines. Nous établissons un calendrier précis au début de chaque projet."
+  },
+  {
+    question: "Proposez-vous des services de maintenance après le lancement du site ?",
+    answer: "Absolument ! Nous offrons des forfaits de maintenance pour garder votre site à jour, sécurisé et performant. Votre tranquillité d'esprit est notre priorité."
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main class="contact-page">
+    <h1>{pageTitle}</h1>
+    <p class="intro">{pageDescription}</p>
+
+    <section class="contact-methods">
+      {contactMethods.map((method) => (
+        <div class="contact-card">
+          <Icon name={method.icon} />
+          <h2>{method.title}</h2>
+          <p>{method.content}</p>
+          <a href={method.action} class="contact-action">Contacter</a>
+        </div>
+      ))}
+    </section>
+
+    <section class="contact-form">
+      <h2>Demandez un Devis Gratuit</h2>
+      <p>Remplissez ce formulaire et nous vous contacterons dans les 24 heures avec une proposition personnalisée.</p>
+      <form id="contact-form" method="POST">
+        <div class="form-group">
+          <label for="name">Nom complet</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Téléphone</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        <div class="form-group">
+          <label for="project-type">Type de projet</label>
+          <select id="project-type" name="project-type">
+            <option value="">Choisissez une option</option>
+            <option value="site-vitrine">Site Vitrine</option>
+            <option value="e-commerce">E-commerce</option>
+            <option value="application-web">Application Web</option>
+            <option value="refonte-site">Refonte de Site</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Décrivez votre projet</label>
+          <textarea id="message" name="message" rows="5"></textarea>
+        </div>
+        <button type="submit" class="cta-button">Envoyer ma demande</button>
+      </form>
+    </section>
+
+    <section class="faq">
+      <h2>Questions Fréquentes</h2>
+      {faqs.map((item) => (
+        <details>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="trust-signals">
+      <h2>Ils Nous Font Confiance</h2>
+      <div class="logo-grid">
+        <!-- Ajoutez ici les logos de vos clients ou partenaires -->
+      </div>
+      <p>Rejoignez plus de 1000 entreprises satisfaites qui ont choisi CreationSiteWebPro pour leur présence en ligne.</p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .contact-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  h1 {
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+  }
+
+  .contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .contact-card {
+    background-color: #f5f5f5;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-5px);
+  }
+
+  [astro-icon] {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    color: var(--color-secondary);
+  }
+
+  .contact-action {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-secondary);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .contact-action:hover {
+    background-color: var(--color-primary);
+  }
+
+  .contact-form {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .cta-button {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: var(--color-secondary);
+  }
+
+  .faq {
+    margin-bottom: 3rem;
+  }
+
+  details {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+  }
+
+  summary {
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .trust-signals {
+    text-align: center;
+  }
+
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form') as HTMLFormElement | null;
+    if (!form) {
+      console.error("Le formulaire n'a pas été trouvé sur la page.");
+      return;
+    }
+
+    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    if (!submitButton) {
+      console.error("Le bouton de soumission n'a pas été trouvé dans le formulaire.");
+      return;
+    }
+
+    form.addEventListener('submit', async (e: Event) => {
+      e.preventDefault();
+      submitButton.disabled = true;
+      submitButton.textContent = 'Envoi en cours...';
+
+      try {
+        const response = await fetch('/api/submit-form', {
+          method: 'POST',
+          body: new FormData(form)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          form.reset();
+          alert(result.message);
+        } else {
+          throw new Error(result.error || 'Une erreur est survenue');
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        if (error instanceof Error) {
+          alert(error.message);
+        } else {
+          alert('Une erreur inconnue est survenue');
+        }
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Envoyer ma demande';
+      }
+    });
+  });
+</script>

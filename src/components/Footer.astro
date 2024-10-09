@@ -1,0 +1,73 @@
+<!-- Fichier: \CreationSiteWebPro\src\components\Footer.astro -->
+---
+const currentYear = new Date().getFullYear();
+---
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>CreationSiteWebPro</h3>
+      <p>Votre partenaire pour des solutions web sur mesure.</p>
+    </div>
+    <div class="footer-section">
+      <h3>Liens rapides</h3>
+      <ul>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+        <li><a href="/about">À propos</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Contact</h3>
+      <p>Email: creationsitewebpromo@gmail.com</p>
+      <p>Tél: +212 6 79 78 29 06</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; {currentYear} CreationSiteWebPro. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background-color: #0047AB;
+    color: white;
+    padding: 2rem 0 1rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  .footer-section {
+    flex: 1;
+    margin-right: 2rem;
+  }
+  .footer-section h3 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1rem;
+  }
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  .footer-section ul li {
+    margin-bottom: 0.5rem;
+  }
+  .footer-section a {
+    color: white;
+    text-decoration: none;
+  }
+  .footer-section a:hover {
+    text-decoration: underline;
+  }
+  .footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+</style>

@@ -1,0 +1,266 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTAButton from '../components/CTAButton.astro';
+
+const pageTitle = "Notre Portfolio | Réalisations Web Impressionnantes";
+const pageDescription = "Découvrez nos projets de sites web et d'applications sur mesure. Des solutions innovantes qui ont propulsé nos clients vers le succès.";
+
+const projects = [
+  {
+    title: "E-commerce Luxe pour Maison de Parfum",
+    description: "Refonte complète d'une boutique en ligne, résultant en une augmentation de 200% des ventes en 6 mois.",
+    image: "/images/parfum-ecommerce.jpg",
+    tags: ["E-commerce", "UI/UX", "SEO"],
+    results: ["200% d'augmentation des ventes", "Taux de conversion amélioré de 15%", "Temps de chargement réduit de 50%"]
+  },
+  {
+    title: "Application Web pour Gestion de Projet",
+    description: "Développement d'une application SaaS de gestion de projet utilisée par plus de 10 000 professionnels.",
+    image: "/images/project-management-app.jpg",
+    tags: ["Application Web", "SaaS", "UI/UX"],
+    results: ["10 000+ utilisateurs actifs", "97% de taux de satisfaction client", "Intégration avec 20+ outils populaires"]
+  },
+  {
+    title: "Site Vitrine pour Cabinet d'Architectes",
+    description: "Création d'un site vitrine élégant et performant, mettant en valeur les réalisations du cabinet.",
+    image: "/images/architect-website.jpg",
+    tags: ["Site Vitrine", "Design Responsive", "SEO"],
+    results: ["Trafic organique augmenté de 150%", "Temps passé sur le site amélioré de 75%", "30% d'augmentation des demandes de devis"]
+  }
+];
+
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main class="portfolio-page">
+    <h1>{pageTitle}</h1>
+    <p class="intro">{pageDescription}</p>
+
+    <section class="projects">
+      {projects.map((project, index) => (
+        <div class="project-card">
+          <img src={project.image} alt={project.title} class="project-image" />
+          <div class="project-details">
+            <h2>{project.title}</h2>
+            <p>{project.description}</p>
+            <div class="tags">
+              {project.tags.map(tag => <span class="tag">{tag}</span>)}
+            </div>
+            <h3>Résultats Clés :</h3>
+            <ul class="results">
+              {project.results.map(result => <li>{result}</li>)}
+            </ul>
+            <CTAButton text="Voir le projet" href={`#project-modal-${index}`} />
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <section class="social-proof">
+      <h2>Ce que disent nos clients</h2>
+      <div class="testimonials">
+        <blockquote>
+          "L'équipe de CreationSiteWebPro a transformé notre présence en ligne. Leur expertise en SEO nous a permis d'atteindre de nouveaux sommets!"
+          - Marie Dupont, PDG de TechInnovate
+        </blockquote>
+        <blockquote>
+          "Un travail exceptionnel! Notre e-commerce a vu ses ventes exploser grâce à leur refonte intelligente et orientée conversion."
+          - Jean Martin, Fondateur de LuxeParfums
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>Prêt à propulser votre projet?</h2>
+      <p>Rejoignez nos clients satisfaits et transformez votre vision en réalité digitale.</p>
+      <CTAButton text="Demandez votre devis gratuit" href="/contact" />
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .portfolio-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  h1 {
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #555;
+  }
+
+  .project-card {
+    display: flex;
+    margin-bottom: 4rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .project-image {
+    width: 40%;
+    object-fit: cover;
+  }
+
+  .project-details {
+    padding: 2rem;
+    width: 60%;
+  }
+
+  .tags {
+    margin: 1rem 0;
+  }
+
+  .tag {
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+  }
+
+  .results {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .results li::before {
+    content: "✓";
+    color: var(--color-secondary);
+    margin-right: 0.5rem;
+  }
+
+  .social-proof {
+    background-color: #f0f0f0;
+    padding: 3rem;
+    border-radius: 8px;
+    margin-top: 4rem;
+  }
+
+  .testimonials {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  blockquote {
+    width: 48%;
+    font-style: italic;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  blockquote::before {
+    content: """;
+    font-size: 4rem;
+    position: absolute;
+    left: -1rem;
+    top: -1rem;
+    color: var(--color-secondary);
+  }
+
+  cite {
+    display: block;
+    margin-top: 1rem;
+    font-style: normal;
+    font-weight: bold;
+  }
+
+  .cta-section {
+    background-color: var(--color-primary);
+    color: white;
+    text-align: center;
+    padding: 3rem;
+    border-radius: 8px;
+    margin-top: 4rem;
+  }
+
+  .cta-section h2 {
+    color: white;
+  }
+  #modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+  }
+
+  .project-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+    z-index: 1001;
+  }
+
+  .modal-content {
+    position: relative;
+  }
+
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .modal-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .project-modal h2 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .project-modal h3 {
+    color: var(--color-secondary);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-modal .tags {
+    margin: 1rem 0;
+  }
+
+  .project-modal ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .project-modal li::before {
+    content: "✓";
+    color: var(--color-secondary);
+    margin-right: 0.5rem;
+  }
+</style>
+

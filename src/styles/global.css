@@ -1,0 +1,34 @@
+/* src/styles/global.css */
+:root {
+    --color-primary: #0047AB;
+    --color-secondary: #FF6600;
+    --color-background: #FFFFFF;
+    --color-text: #333333;
+    --font-main: 'Arial', sans-serif;
+    --max-width: 1200px;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
