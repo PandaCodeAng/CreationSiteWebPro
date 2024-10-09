@@ -11,5 +11,6 @@ export default defineConfig({
     
     // Chargez explicitement le fichier .env
     envDir: '.',
+    adapter: netlify(),
   }
 });
