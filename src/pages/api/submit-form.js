@@ -1,18 +1,21 @@
-import { sendEmail } from '../../services/emailService';
+const { sendEmail } = require('../../services/emailService');
 
-export async function POST({ request }) {
-  const data = await request.formData();
-  const name = data.get('name');
-  const email = data.get('email');
-  const phone = data.get('phone');
-  const projectType = data.get('project-type');
-  const message = data.get('message');
+exports.handler = async (event, context) => {
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ error: 'Method Not Allowed' })
+    };
+  }
+
+  const data = JSON.parse(event.body);
+  const { name, email, phone, projectType, message } = data;
 
   if (!name || !email || !message) {
-    return new Response(JSON.stringify({ error: 'Tous les champs obligatoires ne sont pas remplis.' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: 'Tous les champs obligatoires ne sont pas remplis.' })
+    };
   }
 
   const htmlContent = `
@@ -27,22 +30,22 @@ export async function POST({ request }) {
 
   try {
     // Envoyer l'email de manière asynchrone
-    sendEmail({
+    await sendEmail({
       to: 'creationsitewebpromo@gmail.com',
       subject: `Nouvelle demande de devis de ${name}`,
       html: htmlContent,
-    }).catch(error => console.error('Erreur d\'envoi d\'email:', error));
+    });
 
     // Répondre immédiatement à l'utilisateur
-    return new Response(JSON.stringify({ message: 'Votre demande a été reçue et est en cours de traitement.' }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: 'Votre demande a été reçue et est en cours de traitement.' })
+    };
   } catch (error) {
     console.error('Erreur lors du traitement de la demande:', error);
-    return new Response(JSON.stringify({ error: "Une erreur s'est produite lors du traitement de votre demande." }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Une erreur s'est produite lors du traitement de votre demande." })
+    };
   }
-}
+};
