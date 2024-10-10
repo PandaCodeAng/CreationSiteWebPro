@@ -7,13 +7,13 @@ export const sendEmail = async ({ to, subject, html }) => {
     port: 587,
     secure: false, // Use TLS
     auth: {
-      user: import.meta.env.EMAIL_USER,
-      pass: import.meta.env.EMAIL_PASS
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     },
   });
 
   const mailOptions = {
-    from: import.meta.env.EMAIL_USER,
+    from: process.env.EMAIL_USER,
     to,
     subject,
     html,
