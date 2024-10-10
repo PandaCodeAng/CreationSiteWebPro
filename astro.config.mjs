@@ -8,7 +8,10 @@ export default defineConfig({
     ssr: {
       noExternal: ['@iconify/react']
     },
-    envPrefix: 'PUBLIC_',
+    define: {
+      'process.env.EMAIL_USER': JSON.stringify(process.env.EMAIL_USER),
+      'process.env.EMAIL_PASS': JSON.stringify(process.env.EMAIL_PASS),
+    },
     envDir: '.',
   }
 });
