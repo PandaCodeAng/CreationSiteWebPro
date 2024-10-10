@@ -258,10 +258,16 @@ const faqs = [
       submitButton.disabled = true;
       submitButton.textContent = 'Envoi en cours...';
 
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
       try {
-        const response = await fetch('/api/submit-form', {
+        const response = await fetch('/.netlify/functions/submit-form', {
           method: 'POST',
-          body: new FormData(form)
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json',
+          },
         });
 
         const result = await response.json();
