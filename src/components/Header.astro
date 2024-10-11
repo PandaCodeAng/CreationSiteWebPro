@@ -1,105 +1,217 @@
 ---
 // Header.astro
 ---
-<header>
+<header class="header">
   <div class="container">
-    <nav>
-      <a href="/" class="logo">CreationSiteWebPro</a>
-      <ul class="nav-links">
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/services">Services</a></li>
-        <li><a href="/portfolio">Portfolio</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/about">À propos de nous</a></li>
+    <div class="logo-and-contact">
+      <div class="logo">
+        <a href="/">
+          <img src="/images/logo.png" alt="CreationSiteWebPro Logo" width="300" height="100">
+        </a>
+      </div>
+      <div class="contact-info">
+        <a href="tel:+212679782906" class="contact-link">📞 +212 6 79 78 29 06</a>
+        <a href="mailto:creationsitewebpromo@gmail.com" class="contact-link">✉️ creationsitewebpromo@gmail.com</a>
+      </div>
+    </div>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <nav class="nav">
+      <ul class="nav-list">
+        <li><a href="/" class="nav-link">Accueil</a></li>
+        <li><a href="/services" class="nav-link">Nos Services</a></li>
+        <li><a href="/portfolio" class="nav-link">Réalisations</a></li>
+        <li><a href="/about" class="nav-link">À Propos</a></li>
+        <li><a href="/contact" class="nav-link cta-button">Demandez un Devis</a></li>
       </ul>
-      <button class="mobile-menu-toggle" aria-label="Menu">☰</button>
     </nav>
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+    </label>
   </div>
 </header>
 
 <style>
-  header {
+  .header {
     background-color: var(--color-primary);
-    padding: 1rem 0;
+    padding: 1rem;
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000;
+    left: 0;
+    z-index: 999;
   }
+
   .container {
-    max-width: var(--max-width);
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
-  }
-  nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
   }
-  .logo {
+
+  .logo-and-contact {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .logo img {
+    max-height: 50px;
+    width: auto;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+  }
+
+  .contact-link {
     color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
     text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
   }
-  .nav-links {
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-toggle-label {
+    display: none;
+    cursor: pointer;
+  }
+
+  .nav-list {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  .nav-links li {
-    margin-left: 1rem;
-  }
-  .nav-links a {
+
+  .nav-link {
     color: white;
     text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  .nav-links a:hover {
-    color: var(--color-secondary);
-  }
-  .mobile-menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
+    padding: 0.5rem 1rem;
+    display: block;
+    transition: background-color 0.3s;
   }
 
-  @media (max-width: 768px) {
-    .nav-links {
-      display: none;
+  .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .cta-button {
+    background-color: var(--color-secondary);
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .cta-button:hover {
+    background-color: #ff8533;
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
       flex-direction: column;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background-color: var(--color-primary);
+      align-items: flex-start;
+    }
+
+    .logo-and-contact {
+      width: 100%;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info {
+      text-align: right;
+    }
+
+    .nav-toggle-label {
+      display: block;
       padding: 1rem;
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
     }
-    .nav-links.show {
-      display: flex;
+
+    .nav-toggle-label span,
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+      display: block;
+      background: white;
+      height: 2px;
+      width: 2rem;
+      position: relative;
     }
-    .nav-links li {
-      margin: 0.5rem 0;
+
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+      content: '';
+      position: absolute;
     }
-    .mobile-menu-toggle {
+
+    .nav-toggle-label span::before {
+      bottom: 7px;
+    }
+
+    .nav-toggle-label span::after {
+      top: 7px;
+    }
+
+    .nav {
+      display: none;
+      width: 100%;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .nav-link {
+      padding: 1rem 0;
+      text-align: center;
+    }
+
+    .nav-toggle:checked ~ .nav {
       display: block;
     }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle') as HTMLButtonElement | null;
-    const navLinks = document.querySelector('.nav-links') as HTMLUListElement | null;
+  document.addEventListener('astro:page-load', () => {
+    const header = document.querySelector('.header');
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-    if (mobileMenuToggle && navLinks) {
-      mobileMenuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
+    if (header && navToggle) {
+      // Fermer le menu lorsqu'un lien est cliqué
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navToggle.checked = false;
+        });
+      });
+
+      // Ajouter une classe lorsque la page défile
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
       });
     }
+
+    // Ajuster le padding-top du body pour éviter que le contenu soit caché par le header
+    function adjustBodyPadding() {
+      document.body.style.paddingTop = `${header.offsetHeight}px`;
+    }
+
+    // Ajuster le padding initial et lors du redimensionnement de la fenêtre
+    adjustBodyPadding();
+    window.addEventListener('resize', adjustBodyPadding);
   });
 </script>

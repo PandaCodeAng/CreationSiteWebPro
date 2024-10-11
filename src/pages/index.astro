@@ -5,14 +5,14 @@ import Header from '../components/Header.astro';
 ---
 
 <Layout title="CreationSiteWebPro | Création de Sites Web Professionnels" description="Expertise en création de sites web et d'applications sur mesure. Boostez votre présence en ligne avec nos solutions performantes et personnalisées.">
-  <Header />
   
   <main>
     <section class="hero">
       <div class="container">
-        <h1>Création de Sites Web et Applications Sur Mesure</h1>
-        <p>Transformez votre vision en réalité digitale avec nos solutions web performantes et personnalisées.</p>
-        <a href="/contact" class="cta-button">Demandez un devis gratuit</a>
+        <h1>Transformez Votre Vision en Réalité Digitale</h1>
+        <p>Des solutions web sur mesure pour propulser votre entreprise vers de nouveaux sommets.</p>
+        <a href="/contact" class="cta-button">Obtenez votre devis gratuit <span class="urgency">Offre limitée!</span></a>
+        <p class="social-proof">Déjà plus de 1000 entreprises satisfaites</p>
       </div>
     </section>
 
@@ -24,16 +24,43 @@ import Header from '../components/Header.astro';
             <img src="/icons/web-design.svg" alt="Web Design" width="64" height="64" loading="lazy">
             <h3>Web Design</h3>
             <p>Des designs modernes et intuitifs pour une expérience utilisateur optimale.</p>
+            <span class="scarcity">Places limitées ce mois-ci!</span>
           </div>
           <div class="service-card">
             <img src="/icons/development.svg" alt="Développement Web" width="64" height="64" loading="lazy">
             <h3>Développement Web</h3>
             <p>Des sites web robustes et évolutifs, adaptés à vos besoins spécifiques.</p>
+            <span class="scarcity">3 places restantes!</span>
           </div>
           <div class="service-card">
             <img src="/icons/seo.svg" alt="SEO" width="64" height="64" loading="lazy">
             <h3>Optimisation SEO</h3>
             <p>Améliorez votre visibilité en ligne et attirez plus de clients qualifiés.</p>
+            <span class="scarcity">Dernière chance!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="container">
+        <h2>Ce que disent nos clients</h2>
+        <div class="testimonial-slider">
+          <div class="testimonial">
+            <p>"CreationSiteWebPro a transformé notre présence en ligne. Notre trafic a augmenté de 200% en seulement 3 mois!"</p>
+            - Marie Dupont, PDG de TechInnovate
+          </div>
+          <div class="testimonial">
+            <p>"Grâce à leur expertise en SEO, notre site est maintenant en première page de Google. Les résultats sont incroyables!"</p>
+            - Jean Martin, Fondateur de EcoSolutions
+          </div>
+          <div class="testimonial">
+            <p>"L'équipe de CreationSiteWebPro a créé un e-commerce qui a dépassé toutes nos attentes. Nos ventes en ligne ont explosé!"</p>
+            - Sophie Lefebvre, Directrice Marketing chez ModeFrance
+          </div>
+          <div class="testimonial">
+            <p>"Leur approche personnalisée et leur attention aux détails ont fait toute la différence. Notre nouveau site web est magnifique et performant!"</p>
+            - Thomas Dubois, Propriétaire de RestauChic
           </div>
         </div>
       </div>
@@ -42,17 +69,12 @@ import Header from '../components/Header.astro';
     <section class="cta">
       <div class="container">
         <h2>Prêt à Booster Votre Présence En Ligne ?</h2>
-        <p>Contactez-nous dès aujourd'hui pour un devis personnalisé et gratuit.</p>
-        <a href="/contact" class="cta-button">Contactez-nous</a>
+        <p>Ne laissez pas vos concurrents vous devancer. Agissez maintenant!</p>
+        <a href="/contact" class="cta-button">Contactez-nous <span class="urgency">Offre spéciale 24h!</span></a>
+        <p class="guarantee">Satisfaction garantie ou remboursé</p>
       </div>
     </section>
   </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2024 CreationSiteWebPro. Tous droits réservés.</p>
-    </div>
-  </footer>
 </Layout>
 
 <style>
@@ -60,15 +82,16 @@ import Header from '../components/Header.astro';
   .hero {
     background-color: var(--color-primary);
     color: white;
-    padding: 8rem 0 4rem;
+    padding: 5rem 0;
     text-align: center;
+    margin-top: 0;
   }
   .hero h1 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     margin-bottom: 1rem;
   }
   .hero p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
     margin-bottom: 2rem;
   }
   .cta-button {
@@ -78,10 +101,12 @@ import Header from '../components/Header.astro';
     padding: 0.75rem 1.5rem;
     text-decoration: none;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: clamp(1rem, 2vw, 1.1rem);
   }
   .cta-button:hover {
-    background-color: darken(var(--color-secondary), 10%);
+    background-color: #ff8533;
+    transform: translateY(-3px);
   }
   .services {
     padding: 4rem 0;
@@ -104,43 +129,106 @@ import Header from '../components/Header.astro';
   .service-card:hover {
     transform: translateY(-5px);
   }
+  .testimonials {
+    padding: 4rem 0;
+    background-color: #e6f2ff;
+  }
+  .testimonial-slider {
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .testimonial {
+    text-align: center;
+    display: none;
+  }
+  .testimonial.active {
+    display: block;
+  }
+  .testimonial p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .testimonial cite {
+    font-weight: bold;
+  }
   .cta {
     background-color: var(--color-secondary);
     color: white;
     padding: 4rem 0;
     text-align: center;
   }
-  footer {
-    background-color: #333;
+  .cta h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+  .cta p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin-bottom: 2rem;
+  }
+
+  .urgency {
+    display: inline-block;
+    background-color: #ff4500;
     color: white;
-    padding: 2rem 0;
-    text-align: center;
+    font-size: 0.8em;
+    padding: 0.2em 0.5em;
+    border-radius: 3px;
+    margin-left: 0.5em;
+  }
+
+  .social-proof {
+    margin-top: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: bold;
+  }
+
+  .scarcity {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.9em;
+    color: #ff4500;
+    font-weight: bold;
+  }
+
+  .guarantee {
+    margin-top: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: bold;
   }
 
   @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 2rem;
-    }
-    .hero p {
-      font-size: 1rem;
-    }
     .service-grid {
       grid-template-columns: 1fr;
     }
   }
 </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "CreationSiteWebPro",
-  "url": "https://www.creationsitewebpro.com",
-  "description": "Création de sites web professionnels et d'applications sur mesure",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.creationsitewebpro.com/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-}
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const testimonials = document.querySelectorAll('.testimonial');
+    let currentTestimonial = 0;
+
+    function showTestimonial(index: number) {
+      testimonials.forEach((testimonial, i) => {
+        if (i === index) {
+          testimonial.classList.add('active');
+        } else {
+          testimonial.classList.remove('active');
+        }
+      });
+    }
+
+    function nextTestimonial() {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    }
+
+    // Initialiser le premier témoignage
+    showTestimonial(currentTestimonial);
+
+    // Changer de témoignage toutes les 5 secondes
+    setInterval(nextTestimonial, 5000);
+  });
 </script>
