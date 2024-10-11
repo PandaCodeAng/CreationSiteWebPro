@@ -1,11 +1,12 @@
 ---
 // src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
 ---
 
-<Layout title="CreationSiteWebPro | Création de Sites Web Professionnels" description="Expertise en création de sites web et d'applications sur mesure. Boostez votre présence en ligne avec nos solutions performantes et personnalisées.">
-  
+<Layout 
+  title="Création de Sites Web Professionnels à Casablanca Maroc | CreationSiteWebPro"
+  description="Experts en création de sites web sur mesure à Casablanca Maroc. Boostez votre présence en ligne avec nos solutions web innovantes et performantes. Devis gratuit !">
+    
   <main>
     <section class="hero">
       <div class="container">
@@ -206,6 +207,30 @@ import Header from '../components/Header.astro';
     background-color: var(--color-primary);
     color: white;
     padding: 8rem 0;
+    text-align: center;
+    margin-top: 0;
+  }
+  }
+  @media (max-width: 500px) {
+    .service-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 10rem 0;
+    text-align: center;
+    margin-top: 0;
+  }
+  }
+  @media (max-width: 347px) {
+    .service-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 11rem 0;
     text-align: center;
     margin-top: 0;
   }

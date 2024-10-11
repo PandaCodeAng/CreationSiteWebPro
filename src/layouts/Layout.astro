@@ -29,6 +29,62 @@ const { title, description } = Astro.props;
 		<meta property="og:image" content="/images/og-image.jpg" />
 		<link rel="canonical" href={Astro.url} />
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+		
+		<!-- Ajout du balisage schema.org -->
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "WebSite",
+		  "name": "CreationSiteWebPro",
+		  "url": "https://www.creationsitewebpro.com",
+		  "description": "Création de sites web et d'applications sur mesure à Casablanca",
+		  "potentialAction": {
+		    "@type": "SearchAction",
+		    "target": "https://www.creationsitewebpro.com/search?q={search_term_string}",
+		    "query-input": "required name=search_term_string"
+		  }
+		}
+		</script>
+
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "LocalBusiness",
+		  "name": "CreationSiteWebPro",
+		  "image": "https://www.creationsitewebpro.com/images/logo.png",
+		  "url": "https://www.creationsitewebpro.com",
+		  "telephone": "+212679782906",
+		  "address": {
+		    "@type": "PostalAddress",
+		    "streetAddress": "123 Rue du Web",
+		    "addressLocality": "Casablanca",
+		    "postalCode": "20000",
+		    "addressCountry": "MA"
+		  },
+		  "geo": {
+		    "@type": "GeoCoordinates",
+		    "latitude": 33.5731104,
+		    "longitude": -7.5898434
+		  },
+		  "openingHoursSpecification": {
+		    "@type": "OpeningHoursSpecification",
+		    "dayOfWeek": [
+		      "Monday",
+		      "Tuesday",
+		      "Wednesday",
+		      "Thursday",
+		      "Friday"
+		    ],
+		    "opens": "09:00",
+		    "closes": "22:00"
+		  },
+		  "sameAs": [
+		    "https://www.facebook.com/creationsitewebpro",
+		    "https://www.linkedin.com/company/creationsitewebpro",
+		    "https://www.instagram.com/creationsitewebpro"
+		  ]
+		}
+		</script>
 	</head>
 	<body>
 		<Header />

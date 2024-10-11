@@ -3,57 +3,61 @@ import Layout from '../layouts/Layout.astro';
 import CTAButton from '../components/CTAButton.astro';
 import Icon from '../components/Icon.astro';
 
-const pageTitle = "Nos Services de Création Web et d'Applications";
-const pageDescription = "Découvrez nos services de création de sites web, d'applications web et d'optimisation SEO pour booster votre présence en ligne.";
+const pageTitle = "Services de Création Web & Applications | CreationSiteWebPro Casablanca Maroc";
+const pageDescription = "Des services web complets : sites vitrines, e-commerce, applications web et SEO. Solutions personnalisées pour propulser votre entreprise en ligne.";
 
 const services = [
   {
     icon: 'web',
     title: 'Sites Web Vitrines',
-    description: 'Création de sites élégants et performants pour présenter votre activité.',
+    description: 'Créez une première impression inoubliable avec un site vitrine élégant et performant.',
     features: [
-      'Design responsive adapté à tous les appareils',
-      'Optimisation SEO pour un meilleur référencement',
-      'Intégration de contenu personnalisé',
-      'Formulaires de contact et d\'appel à l\'action',
-      'Compatibilité avec tous les navigateurs modernes'
-    ]
+      'Design responsive',
+      'Optimisation SEO',
+      'Contenu personnalisé',
+      'Formulaires de contact',
+      'Multi-navigateurs'
+    ],
+    cta: 'Créer mon site vitrine'
   },
   {
     icon: 'shopping',
     title: 'E-commerce',
-    description: 'Solutions de vente en ligne puissantes et sécurisées pour développer votre business.',
+    description: 'Transformez vos visiteurs en clients avec une boutique en ligne puissante.',
     features: [
-      'Gestion de catalogue produits',
-      'Panier d\'achat et process de commande optimisés',
-      'Intégration de paiements sécurisés',
-      'Gestion des stocks en temps réel',
-      'Tableau de bord administrateur intuitif'
-    ]
+      'Gestion de produits',
+      'Paiements sécurisés',
+      'Gestion des stocks',
+      'Expérience d\'achat optimisée',
+      'Tableau de bord admin'
+    ],
+    cta: 'Lancer ma boutique en ligne'
   },
   {
     icon: 'cellphone',
     title: 'Applications Web',
-    description: 'Développement d\'applications web complexes et sur mesure pour optimiser vos processus.',
+    description: 'Optimisez vos processus avec des applications web sur mesure.',
     features: [
-      'Interface utilisateur intuitive et moderne',
-      'Fonctionnalités personnalisées selon vos besoins',
-      'Intégration avec vos systèmes existants',
-      'Gestion avancée des utilisateurs et des rôles',
-      'Analyses et rapports détaillés'
-    ]
+      'Interface intuitive',
+      'Fonctionnalités personnalisées',
+      'Intégration systèmes',
+      'Gestion des utilisateurs',
+      'Analyses et rapports'
+    ],
+    cta: 'Développer mon application'
   },
   {
     icon: 'magnify',
     title: 'SEO & Performance',
-    description: 'Optimisation pour les moteurs de recherche et amélioration des performances de votre site.',
+    description: 'Maximisez votre visibilité en ligne et attirez plus de clients qualifiés.',
     features: [
-      'Audit SEO complet de votre site',
-      'Optimisation on-page et technique',
-      'Stratégie de contenu et de mots-clés',
-      'Amélioration de la vitesse de chargement',
-      'Suivi et rapports de performance'
-    ]
+      'Audit SEO complet',
+      'Optimisation on-page',
+      'Stratégie de contenu',
+      'Amélioration de vitesse',
+      'Rapports mensuels'
+    ],
+    cta: 'Booster mon référencement'
   }
 ];
 ---
@@ -63,54 +67,99 @@ const services = [
     <h1>{pageTitle}</h1>
     <p class="intro">{pageDescription}</p>
 
-    {services.map((service) => (
-      <section class="service-section" id={service.title.toLowerCase().replace(/ /g, '-')}>
-        <div class="service-header">
-          <Icon name={service.icon} />
-          <h2>{service.title}</h2>
+    <section class="services-grid">
+      {services.map((service) => (
+        <div class="service-card">
+          <div class="service-header">
+            <Icon name={service.icon} />
+            <h2>{service.title}</h2>
+          </div>
+          <p class="service-description">{service.description}</p>
+          <details>
+            <summary>Caractéristiques</summary>
+            <ul class="features-list">
+              {service.features.map((feature) => (
+                <li><Icon name="check" /> {feature}</li>
+              ))}
+            </ul>
+          </details>
+          <CTAButton text={service.cta} href={`/contact?service=${encodeURIComponent(service.title)}`} />
         </div>
-        <p>{service.description}</p>
-        <h3>Caractéristiques principales :</h3>
-        <ul>
-          {service.features.map((feature) => (
-            <li>{feature}</li>
-          ))}
-        </ul>
-        <CTAButton text={`En savoir plus sur ${service.title}`} href={`#contact`} />
-      </section>
-    ))}
+      ))}
+    </section>
 
-    <section id="contact" class="contact-section">
-      <h2>Prêt à démarrer votre projet ?</h2>
-      <p>Contactez-nous dès aujourd'hui pour discuter de vos besoins et obtenir un devis personnalisé.</p>
-      <CTAButton text="Demander un devis" href="/contact" />
+    <section class="why-choose-us">
+      <h2>Pourquoi Nous Choisir ?</h2>
+      <div class="benefits-grid">
+        <div class="benefit">
+          <Icon name="trophy" />
+          <h3>Expertise</h3>
+          <p>10+ ans d'expérience</p>
+        </div>
+        <div class="benefit">
+          <Icon name="rocket" />
+          <h3>Sur Mesure</h3>
+          <p>Solutions adaptées à vous</p>
+        </div>
+        <div class="benefit">
+          <Icon name="headphones" />
+          <h3>Support</h3>
+          <p>Équipe dédiée à vos côtés</p>
+        </div>
+        <div class="benefit">
+          <Icon name="tools" />
+          <h3>Technologie</h3>
+          <p>Outils de pointe</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="cta-section">
+      <h2>Prêt à Démarrer ?</h2>
+      <p>Obtenez un devis gratuit pour votre projet digital.</p>
+      <CTAButton text="Demander un Devis" href="/contact" />
     </section>
   </main>
 </Layout>
 
 <style>
+  /* Base styles (mobile-first) */
   .services-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin-top: 10rem;
   }
 
   h1 {
+    font-size: 2rem;
     color: var(--color-primary);
-    font-size: 2.5rem;
+    text-align: center;
     margin-bottom: 1rem;
   }
 
   .intro {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .services-grid {
+    display: grid;
+    gap: 1.5rem;
     margin-bottom: 3rem;
   }
 
-  .service-section {
-    margin-bottom: 4rem;
-    padding: 2rem;
+  .service-card {
     background-color: #f5f5f5;
     border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .service-card:active {
+    transform: scale(0.98);
   }
 
   .service-header {
@@ -119,43 +168,278 @@ const services = [
     margin-bottom: 1rem;
   }
 
-  .service-header h2 {
-    margin-left: 1rem;
+  .service-header svg {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
     color: var(--color-secondary);
   }
 
-  h3 {
-    margin-top: 1.5rem;
+  .service-card h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--color-primary);
+  }
+
+  .service-description {
+    font-size: 0.9rem;
     margin-bottom: 1rem;
   }
 
-  ul {
+  details {
+    margin-bottom: 1rem;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .features-list {
     list-style-type: none;
     padding-left: 0;
   }
 
-  li {
+  .features-list li {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
     margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    position: relative;
   }
 
-  li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
+  .features-list svg {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
     color: var(--color-secondary);
   }
 
-  .contact-section {
+  .why-choose-us {
+    background-color: #e6f2ff;
+    padding: 2rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+  }
+
+  .why-choose-us h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .benefits-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .benefit {
+    text-align: center;
+  }
+
+  .benefit svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .benefit p {
+    font-size: 0.9rem;
+  }
+
+  .cta-section {
     background-color: var(--color-primary);
     color: white;
-    padding: 3rem;
+    padding: 2rem 1rem;
     border-radius: 8px;
     text-align: center;
   }
 
-  .contact-section h2 {
-    color: white;
+  .cta-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Tablet styles */
+  @media (min-width: 768px) {
+    .services-page {
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .intro {
+      font-size: 1.1rem;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Desktop styles */
+  @media (min-width: 1024px) {
+    .services-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      margin-top: 5rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    .intro {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .benefits-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* Adjustments for very small screens */
+  @media (max-width: 459px) {
+    .services-page {
+      padding: 0.5rem;
+      margin-top: 11rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    .intro {
+      font-size: 0.9rem;
+    }
+
+    .service-card {
+      padding: 1rem;
+    }
+
+    .service-card h2 {
+      font-size: 1.1rem;
+    }
+
+    .service-description, .features-list li {
+      font-size: 0.8rem;
+    }
+
+    .why-choose-us {
+      padding: 1.5rem 0.5rem;
+    }
+
+    .why-choose-us h2 {
+      font-size: 1.3rem;
+    }
+
+    .benefit h3 {
+      font-size: 0.9rem;
+    }
+
+    .benefit p {
+      font-size: 0.8rem;
+    }
+
+    .cta-section h2 {
+      font-size: 1.3rem;
+    }
+
+    .cta-section p {
+      font-size: 0.9rem;
+    }
   }
 </style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    serviceCards.forEach(card => {
+      if (card instanceof HTMLElement) {
+        let touchStartTime: number;
+        let touchEndTime: number;
+        
+        card.addEventListener('touchstart', (e: TouchEvent) => {
+          e.preventDefault(); // Empêche le comportement par défaut du navigateur
+          touchStartTime = new Date().getTime();
+          card.style.transform = 'scale(0.98)';
+          card.style.transition = 'transform 0.1s ease-in-out';
+        });
+
+        card.addEventListener('touchend', () => {
+          touchEndTime = new Date().getTime();
+          const touchDuration = touchEndTime - touchStartTime;
+
+          card.style.transform = 'scale(1)';
+
+          // Si le toucher a duré moins de 300ms, considérez-le comme un tap
+          if (touchDuration < 300) {
+            // Simuler un clic pour activer les liens ou autres interactions
+            card.click();
+          }
+        });
+
+        // Gestion du hover pour les appareils non tactiles
+        card.addEventListener('mouseenter', () => {
+          if (window.matchMedia('(hover: hover)').matches) {
+            card.style.transform = 'translateY(-5px)';
+            card.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+          }
+        });
+
+        card.addEventListener('mouseleave', () => {
+          if (window.matchMedia('(hover: hover)').matches) {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+          }
+        });
+      }
+    });
+
+    // Gestion de l'ouverture/fermeture des détails
+    const detailsElements = document.querySelectorAll('details');
+    detailsElements.forEach(details => {
+      details.addEventListener('toggle', () => {
+        if (details.open) {
+          // Faire défiler doucement jusqu'aux détails ouverts
+          setTimeout(() => {
+            details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 300);
+        }
+      });
+    });
+  });
+</script>

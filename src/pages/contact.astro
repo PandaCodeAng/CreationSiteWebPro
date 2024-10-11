@@ -2,8 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 
-const pageTitle = "Contactez CreationSiteWebPro | Transformez Votre Vision en Réalité Digitale";
-const pageDescription = "Prêt à booster votre présence en ligne ? Contactez notre équipe d'experts en création de sites web et d'applications. Obtenez un devis gratuit et personnalisé aujourd'hui !";
+const pageTitle = "Contactez CreationSiteWebPro | Expert Web à Casablanca Leader au Maroc";
+const pageDescription = "Prêt à lancer votre projet web ? Contactez notre équipe d'experts à Casablanca. Devis gratuit pour la création de votre site ou application sur mesure.";
 
 const contactMethods = [
   {
@@ -117,30 +117,32 @@ const faqs = [
   .contact-page {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
+    margin-top: 5rem;
   }
 
   h1 {
     color: var(--color-primary);
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     margin-bottom: 1rem;
+    text-align: center;
   }
 
   .intro {
-    font-size: 1.2rem;
-    margin-bottom: 3rem;
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    text-align: center;
+    margin-bottom: 2rem;
   }
 
   .contact-methods {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
 
   .contact-card {
     background-color: #f5f5f5;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 8px;
     text-align: center;
     transition: transform 0.3s ease;
@@ -150,21 +152,25 @@ const faqs = [
     transform: translateY(-5px);
   }
 
-  [astro-icon] {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 1rem;
+  .contact-card h2 {
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
     color: var(--color-secondary);
+    margin: 0.5rem 0;
+  }
+
+  .contact-card p {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+    margin-bottom: 1rem;
   }
 
   .contact-action {
     display: inline-block;
-    margin-top: 1rem;
     padding: 0.5rem 1rem;
     background-color: var(--color-secondary);
     color: white;
     text-decoration: none;
     border-radius: 4px;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
     transition: background-color 0.3s ease;
   }
 
@@ -174,19 +180,26 @@ const faqs = [
 
   .contact-form {
     background-color: #f9f9f9;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 8px;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-form h2 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    color: var(--color-primary);
+    margin-bottom: 1rem;
   }
 
   .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: bold;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
   }
 
   input, select, textarea {
@@ -194,14 +207,15 @@ const faqs = [
     padding: 0.5rem;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
   }
 
   .cta-button {
     background-color: var(--color-primary);
     color: white;
     border: none;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -212,7 +226,13 @@ const faqs = [
   }
 
   .faq {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .faq h2 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    color: var(--color-primary);
+    margin-bottom: 1rem;
   }
 
   details {
@@ -225,22 +245,139 @@ const faqs = [
   summary {
     font-weight: bold;
     cursor: pointer;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+  }
+
+  details p {
+    margin-top: 1rem;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
   }
 
   .trust-signals {
     text-align: center;
   }
 
+  .trust-signals h2 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
   .logo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .trust-signals p {
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+  }
+  @media (max-width: 1067px) {
+    .contact-page {
+      padding: 0.5rem;
+      margin-top: 7rem;
+    }
+  }
+  @media (max-width: 768px) {
+    .contact-page {
+      padding: 0.5rem;
+      margin-top: 7rem;
+    }
+  }
+  @media (max-width: 459px) {
+    .contact-page {
+      padding: 0.5rem;
+      margin-top: 11rem;
+    }
+  }
+  @media (min-width: 768px) {
+    .contact-methods {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .contact-form {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .contact-page {
+      padding: 0.5rem;
+      margin-top: 11rem;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+    }
+
+    .intro {
+      font-size: 0.8rem;
+    }
+
+    .contact-card {
+      padding: 0.75rem;
+    }
+
+    .contact-card h2 {
+      font-size: 1rem;
+    }
+
+    .contact-card p {
+      font-size: 0.75rem;
+    }
+
+    .contact-action {
+      font-size: 0.75rem;
+      padding: 0.4rem 0.8rem;
+    }
+
+    .contact-form {
+      padding: 1rem;
+    }
+
+    .contact-form h2 {
+      font-size: 1.1rem;
+    }
+
+    label {
+      font-size: 0.75rem;
+    }
+
+    input, select, textarea {
+      font-size: 0.75rem;
+      padding: 0.4rem;
+    }
+
+    .cta-button {
+      font-size: 0.8rem;
+      padding: 0.6rem 1.2rem;
+    }
+
+    .faq h2 {
+      font-size: 1.1rem;
+    }
+
+    summary {
+      font-size: 0.8rem;
+    }
+
+    details p {
+      font-size: 0.75rem;
+    }
+
+    .trust-signals h2 {
+      font-size: 1.1rem;
+    }
+
+    .trust-signals p {
+      font-size: 0.75rem;
+    }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('astro:page-load', () => {
     const form = document.querySelector('form') as HTMLFormElement | null;
     if (!form) {
       console.error("Le formulaire n'a pas été trouvé sur la page.");

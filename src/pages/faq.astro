@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pageTitle = "Foire Aux Questions | CreationSiteWebPro";
+const pageDescription = "Trouvez des réponses à vos questions sur la création de sites web, le développement d'applications et l'optimisation SEO à Casablanca.";
+
+const faqs = [
+  {
+    question: "Combien coûte la création d'un site web à Casablanca ?",
+    answer: "Le coût de création d'un site web à Casablanca varie en fonction de vos besoins spécifiques. Un site vitrine simple peut coûter entre 5000 et 15000 MAD, tandis qu'un e-commerce ou une application web complexe peut aller de 20000 à 100000 MAD ou plus. Nous offrons des devis personnalisés gratuits pour chaque projet."
+  },
+  {
+    question: "Combien de temps faut-il pour créer un site web ?",
+    answer: "La durée de création d'un site web dépend de sa complexité. En général, un site vitrine peut être réalisé en 2 à 4 semaines, un e-commerce en 4 à 8 semaines, et une application web sur mesure peut prendre de 8 à 12 semaines ou plus. Nous établissons un calendrier précis au début de chaque projet."
+  },
+  {
+    question: "Proposez-vous des services de maintenance après le lancement du site ?",
+    answer: "Absolument ! Nous offrons des forfaits de maintenance pour garder votre site à jour, sécurisé et performant. Nos services incluent les mises à jour régulières, la surveillance de la sécurité, les sauvegardes, et l'assistance technique. Votre tranquillité d'esprit est notre priorité."
+  },
+  {
+    question: "Puis-je mettre à jour moi-même le contenu de mon site ?",
+    answer: "Oui, nous développons la plupart de nos sites avec des systèmes de gestion de contenu (CMS) conviviaux qui vous permettent de mettre à jour facilement votre contenu. Nous fournissons également une formation pour vous assurer que vous êtes à l'aise avec la gestion de votre site."
+  },
+  {
+    question: "Votre entreprise s'occupe-t-elle du référencement (SEO) ?",
+    answer: "Oui, nous offrons des services complets d'optimisation pour les moteurs de recherche (SEO). Cela inclut l'optimisation on-page, la création de contenu optimisé, l'amélioration de la structure technique du site, et des stratégies de création de liens. Notre objectif est d'améliorer votre visibilité en ligne et d'attirer plus de trafic qualifié vers votre site."
+  },
+  {
+    question: "Créez-vous des sites web adaptés aux mobiles ?",
+    answer: "Absolument. Tous nos sites web sont conçus avec une approche 'mobile-first' et sont entièrement responsives. Cela signifie qu'ils s'adaptent parfaitement à tous les appareils, qu'il s'agisse de smartphones, tablettes ou ordinateurs de bureau, offrant ainsi une expérience utilisateur optimale sur tous les écrans."
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main class="faq-page">
+    <h1>{pageTitle}</h1>
+    <p class="intro">{pageDescription}</p>
+
+    <div class="faq-container" itemscope itemtype="https://schema.org/FAQPage">
+      {faqs.map((faq) => (
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h2 itemprop="name">{faq.question}</h2>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p>{faq.answer}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <section class="cta-section">
+      <h2>Vous avez d'autres questions ?</h2>
+      <p>N'hésitez pas à nous contacter pour obtenir des réponses personnalisées à vos questions.</p>
+      <a href="/contact" class="cta-button">Contactez-nous</a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .faq-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    margin-top: 5rem;
+  }
+
+  h1 {
+    color: var(--color-primary);
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .intro {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: clamp(1rem, 3vw, 1.1rem);
+  }
+
+  .faq-container {
+    margin-bottom: 3rem;
+  }
+
+  .faq-item {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+  }
+
+  .faq-item h2 {
+    color: var(--color-secondary);
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .faq-item p {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    background-color: #f0f0f0;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    color: var(--color-primary);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 1rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .faq-page {
+      padding: 1rem;
+      margin-top: 11rem;
+    }
+  }
+</style>
