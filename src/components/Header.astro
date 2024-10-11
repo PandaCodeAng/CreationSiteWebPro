@@ -183,15 +183,17 @@
 
 <script>
   document.addEventListener('astro:page-load', () => {
-    const header = document.querySelector('.header');
-    const navToggle = document.getElementById('nav-toggle');
+    const header = document.querySelector('.header') as HTMLElement;
+    const navToggle = document.getElementById('nav-toggle') as HTMLInputElement | null;
     const navLinks = document.querySelectorAll('.nav-link');
 
     if (header && navToggle) {
       // Fermer le menu lorsqu'un lien est cliqué
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
-          navToggle.checked = false;
+          if (navToggle) {
+            navToggle.checked = false;
+          }
         });
       });
 
@@ -207,7 +209,9 @@
 
     // Ajuster le padding-top du body pour éviter que le contenu soit caché par le header
     function adjustBodyPadding() {
-      document.body.style.paddingTop = `${header.offsetHeight}px`;
+      if (header) {
+        document.body.style.paddingTop = `${header.offsetHeight}px`;
+      }
     }
 
     // Ajuster le padding initial et lors du redimensionnement de la fenêtre
