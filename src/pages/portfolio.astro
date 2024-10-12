@@ -80,12 +80,41 @@ const projects = [
     <section class="cta-section">
       <h2>Prêt à propulser votre projet?</h2>
       <p>Rejoignez nos clients satisfaits et transformez votre vision en réalité digitale.</p>
-      <CTAButton text="Demandez votre devis gratuit" href="/contact" />
+      <a href="/contact" class="cta-button">Obtenez votre devis gratuit <span class="urgency">Offre limitée!</span></a>
+      <p class="social-proof2">Déjà plus de 1000 entreprises satisfaites</p>
     </section>
   </main>
 </Layout>
 
 <style>
+  .cta-button {
+    display: inline-block;
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+  }
+  .social-proof2 {
+    margin-top: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: bold;
+  }
+  .cta-button:hover {
+    background-color: #ff8533;
+    transform: translateY(-3px);
+  }
+  .urgency {
+    display: inline-block;
+    background-color: #ff4500;
+    color: white;
+    font-size: 0.8em;
+    padding: 0.2em 0.5em;
+    border-radius: 3px;
+    margin-left: 0.5em;
+  }
   .portfolio-page {
     max-width: 1200px;
     margin: 0 auto;

@@ -1,0 +1,225 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+import OptimizedImage from '../../components/OptimizedImage.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import Icon from '../../components/Icon.astro';
+
+const pageTitle = "Services de Référencement SEO à Casablanca | Boostez Votre Visibilité en Ligne";
+const pageDescription = "Optimisez votre présence en ligne avec nos services SEO experts à Casablanca. Améliorez votre classement sur Google et attirez plus de clients qualifiés.";
+
+const services = [
+  {
+    title: "Audit SEO Complet",
+    description: "Analyse approfondie de votre site et de sa performance SEO actuelle.",
+    icon: "magnifying-glass"
+  },
+  {
+    title: "Optimisation On-Page",
+    description: "Optimisation du contenu, de la structure et des balises de votre site.",
+    icon: "code"
+  },
+  {
+    title: "Création de Contenu SEO",
+    description: "Rédaction de contenu optimisé pour les moteurs de recherche et vos utilisateurs.",
+    icon: "pencil"
+  },
+  {
+    title: "Référencement Local",
+    description: "Stratégies pour dominer les recherches locales à Casablanca et ses environs.",
+    icon: "map-pin"
+  }
+];
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": pageTitle,
+  "description": pageDescription,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "CreationSiteWebPro",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Casablanca",
+      "addressCountry": "MA"
+    }
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Casablanca"
+  },
+  "serviceType": "SEO Services"
+};
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <JsonLd data={schemaData} />
+  
+  <main class="seo-casablanca">
+    <h1>{pageTitle}</h1>
+    <p class="intro">{pageDescription}</p>
+
+    <section class="hero">
+      <OptimizedImage 
+        src="/images/seo-casablanca-hero.jpg" 
+        alt="Services de référencement SEO à Casablanca" 
+        width={600} 
+        height={300} 
+      />
+    </section>
+
+    <section class="services">
+      <h2>Nos Services SEO à Casablanca</h2>
+      <div class="service-grid">
+        {services.map((service) => (
+          <div class="service-card">
+            <Icon name={service.icon}/>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="why-choose-us">
+      <h2>Pourquoi Choisir Nos Services SEO à Casablanca?</h2>
+      <ul>
+        <li>Expertise du marché digital casablancais et marocain</li>
+        <li>Stratégies SEO personnalisées pour votre secteur d'activité</li>
+        <li>Utilisation des dernières techniques de référencement conformes aux guidelines de Google</li>
+        <li>Rapports détaillés et suivi transparent de vos performances</li>
+        <li>Équipe bilingue (arabe/français) pour une meilleure communication</li>
+      </ul>
+    </section>
+
+    <section class="process">
+      <h2>Notre Approche SEO</h2>
+      <ol>
+        <li>Audit initial et analyse de la concurrence</li>
+        <li>Définition d'une stratégie SEO sur mesure</li>
+        <li>Optimisation technique et on-page de votre site</li>
+        <li>Création de contenu de qualité et optimisé</li>
+        <li>Construction de liens de qualité</li>
+        <li>Suivi des performances et ajustements continus</li>
+      </ol>
+    </section>
+
+    <section class="case-study">
+      <h2>Cas Concret : Succès SEO à Casablanca</h2>
+      <p>Découvrez comment nous avons aidé [Nom de l'entreprise], une entreprise locale de Casablanca, à augmenter son trafic organique de 200% en 6 mois grâce à notre stratégie SEO sur mesure.</p>
+      <CTAButton text="Lire l'Étude de Cas" href="/case-studies/seo-success-casablanca" />
+    </section>
+
+    <section class="cta">
+      <h2>Prêt à Booster Votre Visibilité en Ligne à Casablanca?</h2>
+      <p>Contactez-nous dès aujourd'hui pour un audit SEO gratuit et découvrez comment nous pouvons améliorer votre classement sur Google!</p>
+      <CTAButton text="Demander un Audit SEO Gratuit" href="/contact" />
+    </section>
+
+    <section class="faq">
+      <h2>Questions Fréquentes sur le SEO à Casablanca</h2>
+      <dl>
+        <dt>Combien de temps faut-il pour voir des résultats SEO?</dt>
+        <dd>Les premiers résultats sont généralement visibles après 3 à 6 mois, mais le SEO est un processus continu pour des résultats durables.</dd>
+        
+        <dt>Le SEO fonctionne-t-il pour tous les types d'entreprises à Casablanca?</dt>
+        <dd>Oui, le SEO peut bénéficier à presque tous les types d'entreprises, mais la stratégie doit être adaptée à votre secteur et à votre audience cible.</dd>
+        
+        <dt>Pouvez-vous garantir la première place sur Google?</dt>
+        <dd>Aucune agence sérieuse ne peut garantir la première place sur Google. Nous nous engageons à améliorer significativement votre visibilité en ligne grâce à des pratiques éthiques et durables.</dd>
+      </dl>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .seo-casablanca {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    margin-top: 7rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .hero {
+    margin-bottom: 3rem;
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .service-card {
+    background-color: #f5f5f5;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .why-choose-us ul, .process ol {
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .case-study {
+    background-color: #e6f2ff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 3rem 0;
+  }
+
+  .cta {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 3rem;
+    border-radius: 8px;
+    text-align: center;
+    margin: 3rem 0;
+  }
+
+  .faq dt {
+    font-weight: bold;
+    margin-top: 1.5rem;
+  }
+
+  .faq dd {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .seo-casablanca {
+      padding: 1rem;
+      margin-top: 11rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .service-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -18,6 +18,11 @@ const fullTitle = `${title} | CreationSiteWebPro - Expert en Création de Sites 
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
+		<meta property="og:title" content={title}>
+		<meta property="og:description" content={description}>
+		<meta property="og:image" content="https://creationsitewebpro.com/og-image.jpg">
+		<meta property="og:url" content={Astro.url}>
+		<meta property="og:type" content="website">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<SEO

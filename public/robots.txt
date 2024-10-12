@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://creationsitewebpro.com/sitemap.xml
+
+Disallow: /admin/
+Disallow: /private/

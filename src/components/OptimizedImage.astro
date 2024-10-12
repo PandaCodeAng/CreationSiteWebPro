@@ -12,11 +12,14 @@ const { src, alt, className, width, height, isCircular = false } = Astro.props;
 
 // Remplacer le chemin de l'image par la version optimisée
 const optimizedSrc = src.replace('/images/', '/images/optimized/').replace(/\.[^.]+$/, '.webp');
+
+// Optimisation de l'attribut alt
+const optimizedAlt = alt.trim() ? alt : 'Image descriptive pour CreationSiteWebPro';
 ---
 
 <img
   src={optimizedSrc}
-  alt={alt}
+  alt={optimizedAlt}
   class:list={[className, { circular: isCircular }]}
   width={width}
   height={height}

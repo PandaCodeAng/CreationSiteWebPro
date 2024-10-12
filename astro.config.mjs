@@ -1,9 +1,26 @@
 import { defineConfig } from 'astro/config';
-import netlify from '@astrojs/netlify/functions'; // Import de l'adaptateur Netlify
+import netlify from '@astrojs/netlify/functions';
+import sitemap from '@astrojs/sitemap';
+import compress from 'astro-compress';
 
 export default defineConfig({
+  site: 'https://creationsitewebpro.com',
   output: 'server',
-  adapter: netlify(), // Configurer l'adaptateur Netlify ici
+  adapter: netlify(),
+  integrations: [
+    sitemap(),
+    compress({
+      css: true,
+      html: true,
+      js: true,
+      img: false,
+      svg: false,
+    }),
+  ],  
+  trailingSlash: 'never',
+  build: {
+    format: 'directory'
+  },
   vite: {
     ssr: {
       noExternal: ['@iconify/react']

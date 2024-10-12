@@ -1,0 +1,205 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTAButton from '../../components/CTAButton.astro';
+import OptimizedImage from '../../components/OptimizedImage.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import Icon from '../../components/Icon.astro';
+
+const pageTitle = "Création de Site E-commerce à Casablanca | Solutions de Vente en Ligne";
+const pageDescription = "Propulsez votre entreprise avec une boutique en ligne performante. Experts en création de sites e-commerce à Casablanca pour booster vos ventes en ligne.";
+
+const features = [
+  {
+    title: "Design Responsive",
+    description: "Boutiques adaptées à tous les appareils pour une expérience d'achat optimale.",
+    icon: "mobile"
+  },
+  {
+    title: "Paiement Sécurisé",
+    description: "Intégration des méthodes de paiement locales et internationales sécurisées.",
+    icon: "lock"
+  },
+  {
+    title: "Gestion de Stock",
+    description: "Outils puissants pour gérer votre inventaire en temps réel.",
+    icon: "box"
+  },
+  {
+    title: "SEO E-commerce",
+    description: "Optimisation pour les moteurs de recherche pour attirer plus de clients.",
+    icon: "search"
+  }
+];
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": pageTitle,
+  "description": pageDescription,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "CreationSiteWebPro",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Casablanca",
+      "addressCountry": "MA"
+    }
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Casablanca"
+  },
+  "serviceType": "E-commerce Website Creation"
+};
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <JsonLd data={schemaData} />
+  
+  <main class="e-commerce-casablanca">
+    <h1>{pageTitle}</h1>
+    <p class="intro">{pageDescription}</p>
+
+    <section class="hero">
+      <OptimizedImage 
+        src="/images/e-commerce-casablanca-hero.jpg" 
+        alt="Création de site e-commerce à Casablanca" 
+        width={600} 
+        height={300} 
+      />
+    </section>
+
+    <section class="features">
+      <h2>Fonctionnalités Clés de Nos Sites E-commerce</h2>
+      <div class="feature-grid">
+        {features.map((feature) => (
+          <div class="feature-card">
+            <Icon name={feature.icon} />
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="why-choose-us">
+      <h2>Pourquoi Choisir CreationSiteWebPro pour Votre E-commerce à Casablanca?</h2>
+      <ul>
+        <li>Expertise locale du marché casablancais et marocain</li>
+        <li>Solutions sur mesure adaptées à votre secteur d'activité</li>
+        <li>Intégration des modes de paiement populaires au Maroc</li>
+        <li>Support technique en arabe et en français</li>
+        <li>Optimisation pour le référencement local à Casablanca</li>
+      </ul>
+    </section>
+
+    <section class="process">
+      <h2>Notre Processus de Création E-commerce</h2>
+      <ol>
+        <li>Analyse de vos besoins et de votre marché cible à Casablanca</li>
+        <li>Conception d'une interface utilisateur intuitive et attrayante</li>
+        <li>Développement de fonctionnalités e-commerce avancées</li>
+        <li>Tests approfondis et optimisation des performances</li>
+        <li>Formation à l'utilisation de votre nouvelle boutique en ligne</li>
+        <li>Lancement et support continu</li>
+      </ol>
+    </section>
+
+    <section class="cta">
+      <h2>Prêt à Lancer Votre E-commerce à Casablanca?</h2>
+      <p>Contactez-nous dès aujourd'hui pour un devis personnalisé et propulsez votre entreprise dans l'ère du commerce en ligne!</p>
+      <CTAButton text="Demander un Devis Gratuit" href="/contact" />
+    </section>
+
+    <section class="faq">
+      <h2>Questions Fréquentes sur la Création d'E-commerce à Casablanca</h2>
+      <dl>
+        <dt>Combien coûte la création d'un site e-commerce à Casablanca?</dt>
+        <dd>Le coût varie en fonction de vos besoins spécifiques, mais nos solutions commencent à partir de X MAD. Contactez-nous pour un devis précis.</dd>
+        
+        <dt>Combien de temps faut-il pour créer un site e-commerce?</dt>
+        <dd>En général, un site e-commerce basique peut être réalisé en 4 à 6 semaines. Des projets plus complexes peuvent prendre 8 à 12 semaines.</dd>
+        
+        <dt>Pouvez-vous m'aider avec le marketing digital pour mon e-commerce?</dt>
+        <dd>Absolument! Nous offrons des services de marketing digital complets pour promouvoir votre boutique en ligne, incluant le SEO, les réseaux sociaux et le marketing par e-mail.</dd>
+      </dl>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .e-commerce-casablanca {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    margin-top: 7rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .hero {
+    margin-bottom: 3rem;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .feature-card {
+    background-color: #f5f5f5;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .why-choose-us ul, .process ol {
+    padding-left: 1.5rem;
+  }
+
+  .cta {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 3rem;
+    border-radius: 8px;
+    text-align: center;
+    margin: 3rem 0;
+  }
+
+  .faq dt {
+    font-weight: bold;
+    margin-top: 1.5rem;
+  }
+
+  .faq dd {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .e-commerce-casablanca {
+      padding: 11rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .feature-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
