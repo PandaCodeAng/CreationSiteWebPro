@@ -2,13 +2,16 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { SEO } from "astro-seo";
 
 export interface Props {
 	title: string;
 	description: string;
+	canonical?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, canonical } = Astro.props;
+const fullTitle = `${title} | CreationSiteWebPro - Expert en Création de Sites Web à Casablanca`;
 ---
 
 <!DOCTYPE html>
@@ -17,74 +20,30 @@ const { title, description } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title} | CreationSiteWebPro</title>
-		<meta name="description" content={description} />
-		<meta name="robots" content="index, follow" />
-		<meta name="author" content="CreationSiteWebPro" />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url} />
-		<meta property="og:image" content="/images/og-image.jpg" />
-		<link rel="canonical" href={Astro.url} />
+		<SEO
+			title={fullTitle}
+			description={description}
+			canonical={canonical || Astro.url.href}
+			openGraph={{
+				basic: {
+					title: fullTitle,
+					type: "website",
+					image: "/images/og-image.jpg",
+				}
+			}}
+			twitter={{
+				creator: "@CreationSiteWebPro"
+			}}
+			extend={{
+				link: [{ rel: "icon", href: "/favicon.svg" }],
+				meta: [
+					{ name: "twitter:title", content: fullTitle },
+					{ name: "twitter:description", content: description },
+					{ name: "twitter:image", content: "/images/og-image.jpg" },
+				],
+			}}
+		/>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
-		
-		<!-- Ajout du balisage schema.org -->
-		<script type="application/ld+json">
-		{
-		  "@context": "https://schema.org",
-		  "@type": "WebSite",
-		  "name": "CreationSiteWebPro",
-		  "url": "https://www.creationsitewebpro.com",
-		  "description": "Création de sites web et d'applications sur mesure à Casablanca",
-		  "potentialAction": {
-		    "@type": "SearchAction",
-		    "target": "https://www.creationsitewebpro.com/search?q={search_term_string}",
-		    "query-input": "required name=search_term_string"
-		  }
-		}
-		</script>
-
-		<script type="application/ld+json">
-		{
-		  "@context": "https://schema.org",
-		  "@type": "LocalBusiness",
-		  "name": "CreationSiteWebPro",
-		  "image": "https://www.creationsitewebpro.com/images/logo.png",
-		  "url": "https://www.creationsitewebpro.com",
-		  "telephone": "+212679782906",
-		  "address": {
-		    "@type": "PostalAddress",
-		    "streetAddress": "123 Rue du Web",
-		    "addressLocality": "Casablanca",
-		    "postalCode": "20000",
-		    "addressCountry": "MA"
-		  },
-		  "geo": {
-		    "@type": "GeoCoordinates",
-		    "latitude": 33.5731104,
-		    "longitude": -7.5898434
-		  },
-		  "openingHoursSpecification": {
-		    "@type": "OpeningHoursSpecification",
-		    "dayOfWeek": [
-		      "Monday",
-		      "Tuesday",
-		      "Wednesday",
-		      "Thursday",
-		      "Friday"
-		    ],
-		    "opens": "09:00",
-		    "closes": "22:00"
-		  },
-		  "sameAs": [
-		    "https://www.facebook.com/creationsitewebpro",
-		    "https://www.linkedin.com/company/creationsitewebpro",
-		    "https://www.instagram.com/creationsitewebpro"
-		  ]
-		}
-		</script>
 	</head>
 	<body>
 		<Header />
@@ -94,33 +53,3 @@ const { title, description } = Astro.props;
 		<Footer />
 	</body>
 </html>
-
-<style is:global>
-  :root {
-    --color-primary: #0047AB;
-    --color-secondary: #FF6600;
-    --color-text: #333333;
-    --color-background: #FFFFFF;
-  }
-  
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    font-family: 'Open Sans', sans-serif;
-    color: var(--color-text);
-    background-color: var(--color-background);
-    line-height: 1.6;
-  }
-
-  main {
-    width: 100%;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-  }
-</style>

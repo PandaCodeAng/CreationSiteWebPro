@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CTAButton from '../components/CTAButton.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
 
 const pageTitle = "Portfolio | Réalisations Web Impressionnantes par CreationSiteWebPro";
 const pageDescription = "Explorez nos projets de sites web et d'applications réussis. Des solutions innovantes qui ont propulsé nos clients vers le succès digital.";
@@ -39,8 +40,14 @@ const projects = [
     <section class="projects">
       {projects.map((project, index) => (
         <div class="project-card">
-          <img src={project.image} alt={project.title} class="project-image" loading="lazy" />
-          <div class="project-details">
+        <OptimizedImage 
+            src={project.image} 
+            alt={project.title} 
+            className="project-image"
+            width={400} 
+            height={300} 
+          />      
+         <div class="project-details">
             <h2>{project.title}</h2>
             <p>{project.description}</p>
             <div class="tags">

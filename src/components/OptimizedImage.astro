@@ -1,0 +1,36 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  className?: string;
+  width?: number;
+  height?: number;
+  isCircular?: boolean;
+}
+
+const { src, alt, className, width, height, isCircular = false } = Astro.props;
+
+// Remplacer le chemin de l'image par la version optimisée
+const optimizedSrc = src.replace('/images/', '/images/optimized/').replace(/\.[^.]+$/, '.webp');
+---
+
+<img
+  src={optimizedSrc}
+  alt={alt}
+  class:list={[className, { circular: isCircular }]}
+  width={width}
+  height={height}
+  loading="lazy"
+  decoding="async"
+/>
+
+<style>
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .circular {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+</style>

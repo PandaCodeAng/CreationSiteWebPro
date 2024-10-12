@@ -1,4 +1,6 @@
 ---
+import OptimizedImage from "./OptimizedImage.astro";
+
 // Header.astro
 ---
 <header class="header">
@@ -6,7 +8,7 @@
     <div class="logo-and-contact">
       <div class="logo">
         <a href="/">
-          <img src="/images/logo.png" alt="CreationSiteWebPro Logo" width="300" height="100">
+          <OptimizedImage src="/images/logo.png" alt="CreationSiteWebPro Logo" width={110} height={50} />
         </a>
       </div>
       <div class="contact-info">
