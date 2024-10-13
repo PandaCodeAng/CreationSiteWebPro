@@ -61,7 +61,8 @@ const faqs = [
     <section class="contact-form">
       <h2>Demandez un Devis Gratuit</h2>
       <p>Remplissez ce formulaire et nous vous contacterons dans les 24 heures avec une proposition personnalisée.</p>
-      <form id="contact-form" method="POST">
+      <form id="netlify-email-form" method="POST" data-netlify="true" name="contact">
+        <input type="hidden" name="form-name" value="contact" />
         <div class="form-group">
           <label for="name">Nom complet</label>
           <input type="text" id="name" name="name" required>
@@ -87,7 +88,7 @@ const faqs = [
         </div>
         <div class="form-group">
           <label for="message">Décrivez votre projet</label>
-          <textarea id="message" name="message" rows="5"></textarea>
+          <textarea id="message" name="message" rows="5" required></textarea>
         </div>
         <button type="submit" class="cta-button">Envoyer ma demande</button>
       </form>
@@ -113,59 +114,41 @@ const faqs = [
   </main>
   <script>
     document.addEventListener('astro:page-load', () => {
-      console.log('Script de formulaire chargé');
-      const form = document.querySelector('form') as HTMLFormElement | null;
-      if (!form) {
-        console.error("Le formulaire n'a pas été trouvé sur la page.");
-        return;
-      }
-  
-      const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
-      if (!submitButton) {
-        console.error("Le bouton de soumission n'a pas été trouvé dans le formulaire.");
-        return;
-      }
-  
-      form.addEventListener('submit', async (e: Event) => {
-        e.preventDefault();
-        submitButton.disabled = true;
-        submitButton.textContent = 'Envoi en cours...';
-  
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-  
-        try {
-          console.log("netlify functions submit-for");
-          const response = await fetch('/.netlify/functions/submit-form', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-  
-          const result = await response.json();
-  
-          if (response.ok) {
-            form.reset();
-            alert(result.message);
-          } else {
-            throw new Error(result.error || 'Une erreur est survenue');
+      const form = document.getElementById('netlify-email-form') as HTMLFormElement;
+      
+      if (form) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          
+          const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+          submitButton.disabled = true;
+          submitButton.textContent = 'Envoi en cours...';
+    
+          try {
+            const formData = new FormData(form);
+            const response = await fetch('/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams(formData as any).toString()
+            });
+    
+            if (response.ok) {
+              form.reset();
+              alert('Votre message a été envoyé avec succès. Nous vous contacterons bientôt!');
+            } else {
+              throw new Error('Erreur lors de l\'envoi du formulaire');
+            }
+          } catch (error) {
+            console.error('Erreur:', error);
+            alert('Une erreur est survenue lors de l\'envoi du formulaire. Veuillez réessayer.');
+          } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Envoyer ma demande';
           }
-        } catch (error) {
-          console.error('Erreur:', error);
-          if (error instanceof Error) {
-            alert(error.message);
-          } else {
-            alert('Une erreur inconnue est survenue');
-          }
-        } finally {
-          submitButton.disabled = false;
-          submitButton.textContent = 'Envoyer ma demande';
-        }
-      });
+        });
+      }
     });
-  </script>
+    </script>
 </Layout>
 
 <style>
