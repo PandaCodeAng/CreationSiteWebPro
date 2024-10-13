@@ -1,66 +1,162 @@
 ---
-// src/pages/blog/index.astro
 import Layout from '../../layouts/Layout.astro';
+import { generateTimeTag } from '../../utils/dates';
 
-const pageTitle = "Blog | Insights sur le Développement Web et le SEO à Casablanca";
-const pageDescription = "Découvrez nos derniers articles sur la création de sites web, le développement d'applications, et les stratégies SEO pour booster votre présence en ligne à Casablanca et au Maroc.";
+const pageTitle = "Blog: Experts en Création de Site Web à Casablanca et au Maroc | CreationSiteWebPro";
+const pageDescription = "Découvrez les dernières tendances et conseils d'experts en création de site web à Casablanca et au Maroc. Optimisez votre présence en ligne avec nos guides SEO et astuces de développement web.";
 
 const blogPosts = [
-  {
-    title: "Comment Créer un Site Web au Maroc Performant pour votre Entreprise à Casablanca en 2024",
-    slug: "creer-site-web-performant-casablanca",
-    excerpt: "Découvrez les étapes essentielles pour créer un site web au maroc performant et optimisé pour votre entreprise à Casablanca. Des conseils d'experts pour booster votre présence en ligne et attirer plus de clients.",
-    date: "2024-03-15",
-    author: "Mouhcine Talbi"
+{
+    title: "Guide Complet 2024 : Comment Digitaliser Votre Entreprise Marocaine pour Survivre et Prospérer dans l'Ère Post-COVID",
+    slug: "guide-digitalisation-entreprise-marocaine-2024",
+    excerpt: "Découvrez les stratégies essentielles pour digitaliser votre entreprise au Maroc. De la création de site web à l'e-commerce, apprenez à prospérer dans l'ère numérique post-COVID.",
+    date: "2024-10-15",
+    author: "Mouhcine Talbi",
+    category: "Transformation Digitale"
   },
   {
-    title: "10 Tendances Web Design à Surveiller en 2024",
-    slug: "tendances-web-design-2024",
-    excerpt: "Découvrez les tendances émergentes en web design qui vont façonner l'expérience utilisateur cette année.",
-    date: "2024-01-15",
-    author: "Mouhcine Talbi"
+    title: "Guide Ultime : Création de Site Web Professionnel à Casablanca en 2024",
+    slug: "guide-creation-site-web-casablanca-2024",
+    excerpt: "Explorez notre guide complet sur la création de sites web performants à Casablanca. Découvrez les meilleures pratiques, outils et stratégies pour lancer votre présence en ligne avec succès.",
+    date: "2024-10-12",
+    author: "Mouhcine Talbi",
+    category: "Création Web Casablanca"
   },
   {
-    title: "Comment Optimiser votre Site web au maroc pour la Recherche Vocale",
-    slug: "optimisation-recherche-vocale",
-    excerpt: "Avec la popularité croissante des assistants vocaux, il est crucial d'adapter votre stratégie SEO. Voici comment.",
-    date: "2024-02-01",
-    author: "Zakaria Boussnini"
+    title: "10 Tendances Incontournables du Web Design au Maroc pour 2024",
+    slug: "tendances-web-design-maroc-2024",
+    excerpt: "Plongez dans les dernières tendances du web design qui façonnent l'expérience utilisateur au Maroc. Restez à la pointe de l'innovation pour votre site web.",
+    date: "2024-10-10",
+    author: "Mouhcine Talbi",
+    category: "Web Design Maroc"
   },
   {
-    title: "Les Meilleures Pratiques pour un E-commerce au maroc Performant",
-    slug: "meilleures-pratiques-ecommerce",
-    excerpt: "Augmentez vos conversions et améliorez l'expérience utilisateur de votre boutique en ligne avec ces conseils d'experts.",
-    date: "2024-02-15",
-    author: "Safae Abed"
+    title: "Stratégies SEO Avancées pour les Sites Web Marocains en 2024",
+    slug: "strategies-seo-sites-web-marocains-2024",
+    excerpt: "Maîtrisez les techniques SEO les plus efficaces pour propulser votre site web dans les premiers résultats de recherche au Maroc. Des conseils d'experts pour une visibilité maximale.",
+    date: "2024-10-11",
+    author: "Zakaria Boussnini",
+    category: "SEO Maroc"
+  },
+  {
+    title: "E-commerce au Maroc : Guide Complet pour un Site Web Performant",
+    slug: "guide-ecommerce-maroc-site-web-performant",
+    excerpt: "Lancez votre e-commerce au Maroc avec notre guide expert. Découvrez comment créer un site web e-commerce optimisé pour le marché marocain et booster vos ventes en ligne.",
+    date: "2024-10-13",
+    author: "Safae Abed",
+    category: "E-commerce Maroc"
   }
 ];
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "headline": pageTitle,
+  "description": pageDescription,
+  "url": "https://creationsitewebpro.com/blog/",
+  "author": {
+    "@type": "Organization",
+    "name": "CreationSiteWebPro",
+    "url": "https://creationsitewebpro.com"
+  },
+  "blogPost": blogPosts.map(post => ({
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "url": `https://creationsitewebpro.com/blog/${post.slug}`,
+    "datePublished": post.date,
+    "author": {
+      "@type": "Person",
+      "name": post.author
+    },
+    "description": post.excerpt
+  }))
+});
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  canonical={new URL('/blog', Astro.site).toString()}
+>
   <main class="blog-index">
-    <h1>{pageTitle}</h1>
-    <p class="intro">{pageDescription}</p>
+    <h1>Expertise en Création de Site Web à Casablanca et au Maroc</h1>
+    <p class="intro">Bienvenue sur le blog de CreationSiteWebPro, votre source d'informations expertes sur la création de sites web au Maroc. Découvrez nos articles, guides et conseils pour réussir votre présence en ligne à Casablanca et dans tout le Maroc.</p>
 
-    <div class="blog-posts">
-      {blogPosts.map((post) => (
-        <article class="blog-post-preview" itemscope itemtype="http://schema.org/BlogPosting">
-          <h2 itemprop="headline">
+    <section class="featured-posts">
+      <h2>Articles Vedettes sur la Création de Site Web à Casablanca</h2>
+      {blogPosts.slice(0, 2).map((post) => (
+        <article class="blog-post-preview featured" itemscope itemtype="http://schema.org/BlogPosting">
+          <h3 itemprop="headline">
             <a href={`/blog/${post.slug}`} itemprop="url">{post.title}</a>
-          </h2>
+          </h3>
           <p class="post-meta">
-            <time datetime={post.date} itemprop="datePublished">{new Date(post.date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-            par <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <Fragment set:html={generateTimeTag(post.date)} />
+            | Par <span itemprop="author" itemscope itemtype="http://schema.org/Person">
               <span itemprop="name">{post.author}</span>
             </span>
+            | Catégorie : <span itemprop="articleSection">{post.category}</span>
           </p>
           <p itemprop="description">{post.excerpt}</p>
-          <a href={`/blog/${post.slug}`} class="read-more">Lire la suite</a>
+          <a href={`/blog/${post.slug}`} class="read-more">Lire la suite sur la création de site web à {post.category.includes("Casablanca") ? "Casablanca" : "au Maroc"}</a>
         </article>
       ))}
-    </div>
+    </section>
+
+    <section class="categories">
+      <h2>Explorez nos Catégories</h2>
+      <ul>
+        <li><a href="#creation-web-casablanca">Création Web Casablanca</a></li>
+        <li><a href="#creation-web-maroc">Création Web Maroc</a></li>
+        <li><a href="#seo-maroc">SEO au Maroc</a></li>
+        <li><a href="#e-commerce-maroc">E-commerce au Maroc</a></li>
+      </ul>
+    </section>
+
+    <section id="creation-web-casablanca" class="category-section">
+      <h2>Création de Site Web à Casablanca</h2>
+      <p>Découvrez nos articles dédiés à la création de sites web professionnels à Casablanca. Des conseils d'experts locaux pour réussir votre projet web dans la capitale économique du Maroc.</p>
+      {blogPosts.filter(post => post.category.includes("Casablanca")).map((post) => (
+        <article class="blog-post-preview" itemscope itemtype="http://schema.org/BlogPosting">
+          <h3 itemprop="headline">
+            <a href={`/blog/${post.slug}`} itemprop="url">{post.title}</a>
+          </h3>
+          <p class="post-meta">
+            <Fragment set:html={generateTimeTag(post.date)} />
+            | Par <span itemprop="author">{post.author}</span>
+          </p>
+          <p itemprop="description">{post.excerpt}</p>
+          <a href={`/blog/${post.slug}`} class="read-more">Lire la suite sur la création de site web à Casablanca</a>
+        </article>
+      ))}
+    </section>
+
+    <section id="creation-web-maroc" class="category-section">
+      <h2>Création de Site Web au Maroc</h2>
+      <p>Explorez nos ressources sur la création de sites web adaptés au marché marocain. Des stratégies efficaces pour développer votre présence en ligne dans tout le Royaume.</p>
+      {blogPosts.filter(post => post.category.includes("Maroc")).map((post) => (
+        <article class="blog-post-preview" itemscope itemtype="http://schema.org/BlogPosting">
+          <h3 itemprop="headline">
+            <a href={`/blog/${post.slug}`} itemprop="url">{post.title}</a>
+          </h3>
+          <p class="post-meta">
+            <Fragment set:html={generateTimeTag(post.date)} />
+            | Par <span itemprop="author">{post.author}</span>
+          </p>
+          <p itemprop="description">{post.excerpt}</p>
+          <a href={`/blog/${post.slug}`} class="read-more">Lire la suite sur la création de site web au Maroc</a>
+        </article>
+      ))}
+    </section>
+
+    <section class="cta">
+      <h2>Prêt à Lancer votre Projet Web ?</h2>
+      <p>Que vous soyez à Casablanca ou ailleurs au Maroc, notre équipe d'experts est là pour vous aider à créer un site web professionnel et performant.</p>
+      <a href="/contact-expert-web-casablanca" class="cta-button">Demandez un Devis Gratuit</a>
+    </section>
   </main>
 </Layout>
+
+<script type="application/ld+json" set:html={schema} />
 
 <style>
   .blog-index {
@@ -69,11 +165,20 @@ const blogPosts = [
     padding: 2rem 1rem;
   }
 
-  h1 {
+  h1, h2, h3 {
     color: var(--color-primary);
+  }
+
+  h1 {
     font-size: clamp(2rem, 5vw, 2.5rem);
     margin-bottom: 1rem;
     text-align: center;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
 
   .intro {
@@ -88,13 +193,12 @@ const blogPosts = [
     padding-bottom: 1rem;
   }
 
-  .blog-post-preview h2 {
-    color: var(--color-secondary);
+  .blog-post-preview h3 {
     font-size: clamp(1.2rem, 4vw, 1.5rem);
     margin-bottom: 0.5rem;
   }
 
-  .blog-post-preview h2 a {
+  .blog-post-preview a {
     text-decoration: none;
     color: inherit;
   }
@@ -113,16 +217,50 @@ const blogPosts = [
     font-weight: bold;
   }
 
-  .blog-navigation {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
+  .featured-posts {
+    margin-bottom: 3rem;
   }
 
-  .blog-navigation a {
-    color: var(--color-primary);
+  .featured {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+
+  .categories ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .categories li a {
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
     text-decoration: none;
+  }
+
+  .cta {
+    background-color: #f0f0f0;
+    padding: 2rem;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
     font-weight: bold;
+    margin-top: 1rem;
   }
 
   @media (max-width: 768px) {
