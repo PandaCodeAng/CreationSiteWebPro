@@ -61,8 +61,13 @@ const faqs = [
     <section class="contact-form">
       <h2>Demandez un Devis Gratuit</h2>
       <p>Remplissez ce formulaire et nous vous contacterons dans les 24 heures avec une proposition personnalisée.</p>
-      <form id="netlify-email-form" method="POST" data-netlify="true" name="contact">
+      <form id="netlify-email-form" method="POST" data-netlify="true" name="contact" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden">
+          <label>
+            Ne remplissez pas ce champ si vous êtes humain : <input name="bot-field" />
+          </label>
+        </p>
         <div class="form-group">
           <label for="name">Nom complet</label>
           <input type="text" id="name" name="name" required>
@@ -113,42 +118,34 @@ const faqs = [
     </section>
   </main>
   <script>
-    document.addEventListener('astro:page-load', () => {
+    document.addEventListener('DOMContentLoaded', (event) => {
       const form = document.getElementById('netlify-email-form') as HTMLFormElement;
       
       if (form) {
-        form.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', (e) => {
           e.preventDefault();
           
-          const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-          submitButton.disabled = true;
-          submitButton.textContent = 'Envoi en cours...';
-    
-          try {
-            const formData = new FormData(form);
-            const response = await fetch('/', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-              body: new URLSearchParams(formData as any).toString()
-            });
-    
-            if (response.ok) {
-              form.reset();
-              alert('Votre message a été envoyé avec succès. Nous vous contacterons bientôt!');
-            } else {
-              throw new Error('Erreur lors de l\'envoi du formulaire');
-            }
-          } catch (error) {
+          const formData = new FormData(form);
+          
+          fetch('/', {
+            method: 'POST',
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData as any).toString()
+          })
+          .then(() => {
+            alert('Merci pour votre message. Nous vous contacterons bientôt !');
+            form.reset();
+          })
+          .catch((error) => {
             console.error('Erreur:', error);
-            alert('Une erreur est survenue lors de l\'envoi du formulaire. Veuillez réessayer.');
-          } finally {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Envoyer ma demande';
-          }
+            alert('Oops! Il y a eu un problème avec votre soumission. Veuillez réessayer.');
+          });
         });
+      } else {
+        console.error("Le formulaire n'a pas été trouvé dans le DOM");
       }
     });
-    </script>
+  </script>
 </Layout>
 
 <style>
@@ -311,6 +308,9 @@ const faqs = [
   .trust-signals p {
     font-size: clamp(0.8rem, 2.5vw, 1rem);
   }
+  .hidden {
+    display: none;
+  }
   @media (max-width: 1067px) {
     .contact-page {
       padding: 0.5rem;
@@ -411,6 +411,7 @@ const faqs = [
     .trust-signals p {
       font-size: 0.75rem;
     }
+    
   }
 </style>
 
