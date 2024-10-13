@@ -1,4 +1,4 @@
-const { sendEmail } = require('../../src/services/emailService');
+const { sendEmail } = require('../services/emailService');
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
@@ -26,11 +26,13 @@ exports.handler = async (event, context) => {
   `;
 
   try {
+    console.log('Tentative d\'envoi d\'email...');
     await sendEmail({
       to: process.env.EMAIL_TO,
       subject: `Nouvelle demande de devis de ${name}`,
       html: htmlContent,
     });
+    console.log('Email envoyé avec succès');
 
     return {
       statusCode: 200,
