@@ -59,7 +59,3 @@
 
 [build.processing.images]
   compress = true
-
-# Ajout de la configuration pour Netlify Forms
-[build.processing.html]
-  pretty_urls = true
