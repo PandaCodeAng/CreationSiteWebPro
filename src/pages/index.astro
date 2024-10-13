@@ -42,31 +42,29 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
     </section>
-
-    <section class="testimonials">
+    <section class="why-choose-us">
       <div class="container">
-        <h2>Ce que disent nos clients</h2>
-        <div class="testimonial-slider">
-          <div class="testimonial">
-            <p>"CreationSiteWebPro a transformé notre présence en ligne. Notre trafic a augmenté de 200% en seulement 3 mois!"</p>
-            - Marie Dupont, PDG de TechInnovate
-          </div>
-          <div class="testimonial">
-            <p>"Grâce à leur expertise en SEO, notre site est maintenant en première page de Google. Les résultats sont incroyables!"</p>
-            - Jean Martin, Fondateur de EcoSolutions
-          </div>
-          <div class="testimonial">
-            <p>"L'équipe de CreationSiteWebPro a créé un e-commerce qui a dépassé toutes nos attentes. Nos ventes en ligne ont explosé!"</p>
-            - Sophie Lefebvre, Directrice Marketing chez ModeFrance
-          </div>
-          <div class="testimonial">
-            <p>"Leur approche personnalisée et leur attention aux détails ont fait toute la différence. Notre nouveau site web est magnifique et performant!"</p>
-            - Thomas Dubois, Propriétaire de RestauChic
-          </div>
-        </div>
+        <h2>Pourquoi choisir CreationSiteWebPro à Casablanca ?</h2>
+        <ul>
+          <li>
+            <h3>Expertise locale</h3>
+            <p>Notre équipe basée à Casablanca comprend les besoins spécifiques du marché marocain.</p>
+          </li>
+          <li>
+            <h3>Solutions sur mesure</h3>
+            <p>Chaque site web est conçu pour répondre aux objectifs uniques de votre entreprise à Casablanca.</p>
+          </li>
+          <li>
+            <h3>SEO optimisé pour Casablanca</h3>
+            <p>Nous utilisons des techniques de référencement local pour vous positionner en tête des recherches à Casablanca.</p>
+          </li>
+          <li>
+            <h3>Support en arabe et en français</h3>
+            <p>Communication fluide et support technique dans les langues de votre choix.</p>
+          </li>
+        </ul>
       </div>
     </section>
-
     <section class="cta">
       <div class="container">
         <h2>Prêt à Booster Votre Présence En Ligne ?</h2>
@@ -75,6 +73,7 @@ import Layout from '../layouts/Layout.astro';
         <p class="guarantee">Satisfaction garantie ou remboursé</p>
       </div>
     </section>
+
   </main>
 </Layout>
 
@@ -130,30 +129,7 @@ import Layout from '../layouts/Layout.astro';
   .service-card:hover {
     transform: translateY(-5px);
   }
-  .testimonials {
-    padding: 4rem 0;
-    background-color: #e6f2ff;
-  }
-  .testimonial-slider {
-    max-width: 800px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  .testimonial {
-    text-align: center;
-    display: none;
-  }
-  .testimonial.active {
-    display: block;
-  }
-  .testimonial p {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    font-style: italic;
-    margin-bottom: 1rem;
-  }
-  .testimonial cite {
-    font-weight: bold;
-  }
+
   .cta {
     background-color: var(--color-secondary);
     color: white;
@@ -198,7 +174,62 @@ import Layout from '../layouts/Layout.astro';
     font-size: clamp(0.9rem, 2vw, 1rem);
     font-weight: bold;
   }
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
 
+  .testimonial {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .testimonial p {
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial cite {
+    font-weight: bold;
+    display: block;
+  }
+
+  .why-choose-us {
+    padding: 4rem 0;
+    background-color: #f0f8ff;
+  }
+
+  .why-choose-us ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .why-choose-us li {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .why-choose-us h3 {
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .testimonial-grid,
+    .why-choose-us ul {
+      grid-template-columns: 1fr;
+    }
+  }
   @media (max-width: 768px) {
     .service-grid {
       grid-template-columns: 1fr;
