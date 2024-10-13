@@ -1,14 +1,20 @@
 const { sendEmail } = require('../../src/services/emailService');
 
 exports.handler = async (event, context) => {
+  console.log('Fonction Netlify appelée');
+
   if (event.httpMethod !== 'POST') {
+    console.log('Méthode non autorisée');
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
+
+  console.log('Corps de la requête:', event.body);
 
   const data = JSON.parse(event.body);
   const { name, email, phone, projectType, message } = data;
 
   if (!name || !email || !message) {
+    console.log('Champs manquants');
     return {
       statusCode: 400,
       body: JSON.stringify({ error: 'Tous les champs obligatoires ne sont pas remplis.' })
@@ -26,7 +32,7 @@ exports.handler = async (event, context) => {
   `;
 
   try {
-    console.log('Tentative d\'envoi d\'email...');
+    console.log('Tentative d\'envoi d\'email');
     await sendEmail({
       to: process.env.EMAIL_TO,
       subject: `Nouvelle demande de devis de ${name}`,
