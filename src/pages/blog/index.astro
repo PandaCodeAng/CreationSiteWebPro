@@ -7,10 +7,18 @@ const pageDescription = "Découvrez les dernières tendances et conseils d'exper
 
 const blogPosts = [
 {
+    title: "Webpages Modernes : L'Art de la Création de Site Web en 2024",
+    slug: "webpages-modernes-creation-site-web-2024",
+    excerpt: "Découvrez les dernières tendances en création de site web et comment concevoir des webpages performantes pour votre entreprise à Casablanca et au Maroc.",
+    date: "2024-10-14",
+    author: "Ikram Talbi",
+    category: "Création Web Maroc"
+  },
+{
     title: "Guide Complet 2024 : Comment Digitaliser Votre Entreprise Marocaine pour Survivre et Prospérer dans l'Ère Post-COVID",
     slug: "guide-digitalisation-entreprise-marocaine-2024",
     excerpt: "Découvrez les stratégies essentielles pour digitaliser votre entreprise au Maroc. De la création de site web à l'e-commerce, apprenez à prospérer dans l'ère numérique post-COVID.",
-    date: "2024-10-15",
+    date: "2024-10-14",
     author: "Mouhcine Talbi",
     category: "Transformation Digitale"
   },
@@ -109,6 +117,7 @@ const schema = JSON.stringify({
         <li><a href="#creation-web-maroc">Création Web Maroc</a></li>
         <li><a href="#seo-maroc">SEO au Maroc</a></li>
         <li><a href="#e-commerce-maroc">E-commerce au Maroc</a></li>
+        <li><a href="#webpages-modernes">Webpages Modernes</a></li>
       </ul>
     </section>
 
@@ -129,7 +138,23 @@ const schema = JSON.stringify({
         </article>
       ))}
     </section>
-
+    <section id="webpages-modernes" class="category-section">
+      <h2>Webpages Modernes</h2>
+      <p>Explorez les dernières tendances et techniques pour créer des webpages modernes et performantes. Des conseils d'experts pour optimiser votre présence en ligne au Maroc.</p>
+      {blogPosts.filter(post => post.category.includes("Création Web") || post.title.includes("Webpages")).map((post) => (
+        <article class="blog-post-preview" itemscope itemtype="http://schema.org/BlogPosting">
+          <h3 itemprop="headline">
+            <a href={`/blog/${post.slug}`} itemprop="url">{post.title}</a>
+          </h3>
+          <p class="post-meta">
+            <Fragment set:html={generateTimeTag(post.date)} />
+            | Par <span itemprop="author">{post.author}</span>
+          </p>
+          <p itemprop="description">{post.excerpt}</p>
+          <a href={`/blog/${post.slug}`} class="read-more">Lire la suite sur les webpages modernes et la création de site web</a>
+        </article>
+      ))}
+    </section>
     <section id="creation-web-maroc" class="category-section">
       <h2>Création de Site Web au Maroc</h2>
       <p>Explorez nos ressources sur la création de sites web adaptés au marché marocain. Des stratégies efficaces pour développer votre présence en ligne dans tout le Royaume.</p>
