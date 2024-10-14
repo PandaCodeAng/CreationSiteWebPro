@@ -113,42 +113,37 @@ const faqs = [
   <script>
     const form = document.getElementById('contact-form') as HTMLFormElement;
     
-    if (form) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const formData = new FormData(form) ;
-        const data = Object.fromEntries(formData);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
   
-        console.log('Données du formulaire:', data);
+      // Déterminez l'URL en fonction de l'environnement
+      const apiUrl = import.meta.env.DEV 
+        ? '/api/send-email' 
+        : '/.netlify/functions/send-email';
   
-        try {
-          console.log('Tentative d\'envoi à /api/send-email');
-          const response = await fetch('/api/send-email', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-          });
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
   
-          console.log('Réponse reçue:', response);
-  
-          if (response.ok) {
-            const result = await response.json();
-            console.log('Résultat:', result);
-            alert(result.message);
-            form.reset();
-          } else {
-            throw new Error('Erreur lors de l\'envoi du message');
-          }
-        } catch (error) {
-          console.error('Erreur:', error);
-          alert('Une erreur est survenue. Veuillez réessayer.');
+        if (response.ok) {
+          const result = await response.json();
+          alert(result.message);
+          form.reset();
+        } else {
+          throw new Error('Erreur lors de l\'envoi du message');
         }
-      });
-    } else {
-      console.error('Le formulaire n\'a pas été trouvé');
-    }
+      } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue. Veuillez réessayer.');
+      }
+    });
   </script>
 </Layout>
 
