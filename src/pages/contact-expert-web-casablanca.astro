@@ -115,37 +115,7 @@ const faqs = [
       <p>Rejoignez plus de 1000 entreprises satisfaites qui ont choisi CreationSiteWebPro pour leur présence en ligne.</p>
     </section>
   </main>
-  <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-      const form = document.getElementById('netlify-email-form') as HTMLFormElement;
-      
-      if (form) {
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          
-          fetch('/', {
-            method: 'POST',
-            body: new FormData(form)
-          })
-          .then(response => {
-            console.log('Réponse du serveur:', response);
-            return response.text();
-          })
-          .then(data => {
-            console.log('Données reçues:', data);
-            alert('Merci pour votre message. Nous vous contacterons bientôt !');
-            form.reset();
-          })
-          .catch((error) => {
-            console.error('Erreur:', error);
-            alert('Oops! Il y a eu un problème avec votre soumission. Veuillez réessayer.');
-          });
-        });
-      } else {
-        console.error("Le formulaire n'a pas été trouvé dans le DOM");
-      }
-    });
-  </script>
+
 </Layout>
 
 <style>
