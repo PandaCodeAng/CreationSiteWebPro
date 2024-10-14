@@ -17,6 +17,7 @@
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
 
 [[headers]]
   for = "/*"
@@ -59,3 +60,9 @@
 
 [build.processing.images]
   compress = true
+
+# Ajout de la configuration spécifique pour Netlify Forms
+[forms]
+  [forms.contact]
+    name = "Contact Form"
+    success_redirect = "/thank-you/"

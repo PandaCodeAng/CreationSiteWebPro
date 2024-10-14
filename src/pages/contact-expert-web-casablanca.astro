@@ -61,12 +61,10 @@ const faqs = [
     <section class="contact-form">
       <h2>Demandez un Devis Gratuit</h2>
       <p>Remplissez ce formulaire et nous vous contacterons dans les 24 heures avec une proposition personnalisée.</p>
-      <form id="netlify-email-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <form id="netlify-email-form" name="contact" method="POST" data-netlify="true" data-netlify-debug="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact" />
-        <p class="hidden">
-          <label>
-            Ne remplissez pas ce champ si vous êtes humain : <input name="bot-field" />
-          </label>
+        <p style="display: none;">
+          <label>Ne pas remplir si vous êtes humain : <input name="bot-field" /></label>
         </p>
         <div class="form-group">
           <label for="name">Nom complet</label>
@@ -118,33 +116,44 @@ const faqs = [
     </section>
   </main>
   <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-      const form = document.getElementById('netlify-email-form') as HTMLFormElement;
-      
+    function initForm() {
+      const form = document.getElementById("netlify-email-form") as HTMLFormElement;
       if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener("submit", (e: Event) => {
           e.preventDefault();
-          
           const formData = new FormData(form);
-          
-          fetch('/', {
-            method: 'POST',
+          fetch("/", {
+            method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams(formData as any).toString()
           })
-          .then(() => {
-            alert('Merci pour votre message. Nous vous contacterons bientôt !');
+          .then(response => {
+            console.log("Réponse du serveur:", response);
+            if (response.ok) {
+              return response.text();
+            }
+            throw new Error('Erreur serveur: ' + response.status);
+          })
+          .then(data => {
+            console.log("Données reçues:", data);
+            alert("Merci pour votre message. Nous vous contacterons bientôt !");
             form.reset();
           })
           .catch((error) => {
-            console.error('Erreur:', error);
-            alert('Oops! Il y a eu un problème avec votre soumission. Veuillez réessayer.');
+            console.error("Erreur détaillée:", error);
+            alert("Oops! Il y a eu un problème avec votre soumission. Veuillez réessayer.");
           });
         });
       } else {
         console.error("Le formulaire n'a pas été trouvé dans le DOM");
       }
-    });
+    }
+  
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initForm);
+    } else {
+      initForm();
+    }
   </script>
 </Layout>
 
