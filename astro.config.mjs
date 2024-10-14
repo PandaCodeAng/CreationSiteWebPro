@@ -25,11 +25,12 @@ export default defineConfig({
     ssr: {
       noExternal: ['@iconify/react']
     },
-    // Nous n'avons plus besoin de ces variables d'environnement pour l'envoi d'e-mails
-    // define: {
-    //   'process.env.EMAIL_USER': JSON.stringify(process.env.EMAIL_USER),
-    //   'process.env.EMAIL_PASS': JSON.stringify(process.env.EMAIL_PASS),
-    // },
+     define: {
+       'process.env.EMAIL_USER': JSON.stringify(process.env.EMAIL_USER),
+       'process.env.EMAIL_PASS': JSON.stringify(process.env.EMAIL_PASS),
+       'process.env.EMAIL_PORT': JSON.stringify(process.env.EMAIL_PORT),
+       'process.env.EMAIL_HOST': JSON.stringify(process.env.EMAIL_HOST),
+     },
     envDir: '.',
   }
 });

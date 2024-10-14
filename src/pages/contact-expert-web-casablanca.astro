@@ -61,13 +61,7 @@ const faqs = [
     <section class="contact-form">
       <h2>Demandez un Devis Gratuit</h2>
       <p>Remplissez ce formulaire et nous vous contacterons dans les 24 heures avec une proposition personnalisée.</p>
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="contact" />
-        <p class="hidden">
-          <label>
-            Ne remplissez pas ce champ si vous êtes humain : <input name="bot-field" />
-          </label>
-        </p>
+      <form id="contact-form">
         <div>
           <label for="name">Nom</label>
           <input type="text" id="name" name="name" required />
@@ -117,32 +111,43 @@ const faqs = [
     </section>
   </main>
   <script>
-    const form = document.querySelector('form[name="contact"]') as HTMLFormElement | null;
+    const form = document.getElementById('contact-form') as HTMLFormElement;
     
     if (form) {
-      form.addEventListener('submit', (e: SubmitEvent) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const formData = new FormData(form);
-        fetch('/', {
-          method: 'POST',
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData as any).toString()
-        })
-        .then((response) => {
+        const formData = new FormData(form) ;
+        const data = Object.fromEntries(formData);
+  
+        console.log('Données du formulaire:', data);
+  
+        try {
+          console.log('Tentative d\'envoi à /api/send-email');
+          const response = await fetch('/api/send-email', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          });
+  
+          console.log('Réponse reçue:', response);
+  
           if (response.ok) {
-            alert('Formulaire soumis avec succès!');
+            const result = await response.json();
+            console.log('Résultat:', result);
+            alert(result.message);
             form.reset();
           } else {
-            throw new Error('Erreur serveur: ' + response.status);
+            throw new Error('Erreur lors de l\'envoi du message');
           }
-        })
-        .catch((error) => {
-          alert('Une erreur est survenue. Veuillez réessayer.');
+        } catch (error) {
           console.error('Erreur:', error);
-        });
+          alert('Une erreur est survenue. Veuillez réessayer.');
+        }
       });
     } else {
-      console.error("Le formulaire n'a pas été trouvé dans le DOM");
+      console.error('Le formulaire n\'a pas été trouvé');
     }
   </script>
 </Layout>
