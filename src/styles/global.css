@@ -1,9 +1,13 @@
 /* src/styles/global.css */
 :root {
-    --color-primary: #0047AB;
+    --color-primary: #0040A8;           /* Légèrement plus foncé pour un meilleur contraste */
     --color-secondary: #FF6600;
     --color-background: #FFFFFF;
     --color-text: #333333;
+    --color-cta: #FF4500; 
+    --color-cta-text: #FFFFFF;  
+    --color-urgency: #D32F2F; 
+    --color-scarcity: #1976D2;  
     --font-main: 'Arial', sans-serif;
     --max-width: 1200px;
   }
@@ -20,7 +24,50 @@
     line-height: 1.6;
     font-size: 16px;
   }
+  .cta-button {
+    background: linear-gradient(145deg, var(--color-cta), #E63900);
+    color: var(--color-cta-text);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
   
+.service-card {
+  background-color: #F8F8F8;
+  border: 1px solid #E0E0E0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.urgency {
+  color: var(--color-urgency);
+  font-weight: bold;
+}
+
+.scarcity {
+  color: var(--color-scarcity);
+  font-weight: bold;
+}
+
+h2, h3 {
+  color: var(--color-primary);
+}
+
+.cta {
+  background: linear-gradient(145deg, var(--color-primary), #003080);
+  color: var(--color-cta-text);
+  padding: 40px 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.cta h2 {
+  color: var(--color-cta-text);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
   .container {
     width: 100%;
     max-width: var(--max-width);
