@@ -3,9 +3,35 @@ import { testimonials } from '../data/testimonials';
 
 // Calculer la moyenne des notes
 const averageRating = testimonials.reduce((acc, curr) => acc + curr.rating, 0) / testimonials.length;
+
+const businessInfo = {
+  "@type": "LocalBusiness",
+  "@id": "https://creationsitewebpro.com/#business",
+  "name": "CreationSiteWebPro",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Casablanca",
+    "addressCountry": "MA"
+  }
+};
 ---
 
 <section class="social-proof">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      ...{businessInfo},
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": ${averageRating.toFixed(1)},
+        "reviewCount": ${testimonials.length},
+        "bestRating": 5,
+        "worstRating": 1
+      }
+    }
+  </script>
+
   <div class="metrics-container">
     <div class="metrics">
       <div class="metric">
@@ -28,20 +54,33 @@ const averageRating = testimonials.reduce((acc, curr) => acc + curr.rating, 0) /
     <div class="testimonials">
       {testimonials.map((testimonial) => (
         <div class="testimonial" itemscope itemtype="https://schema.org/Review">
-          <div class="rating">
+          <meta itemprop="itemReviewed" itemscope itemtype="https://schema.org/LocalBusiness" content="CreationSiteWebPro" />
+          
+          <div class="rating" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+            <meta itemprop="worstRating" content="1" />
+            <meta itemprop="bestRating" content="5" />
+            <meta itemprop="ratingValue" content={testimonial.rating.toString()} />
             {Array.from({ length: testimonial.rating }, (_, i) => (
               <span class="star">★</span>
             ))}
           </div>
+
           <blockquote itemprop="reviewBody">
             {testimonial.text}
           </blockquote>
+
           <footer>
             <div class="testimonial-author">
-              <strong itemprop="author">{testimonial.name}</strong>
-              <span itemprop="jobTitle">{testimonial.position}</span>
-              <span itemprop="organization">{testimonial.company}</span>
+              <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+                <strong itemprop="name">{testimonial.name}</strong>
+                <span itemprop="jobTitle">{testimonial.position}</span>
+                <span itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
+                  <meta itemprop="name" content={testimonial.company} />
+                </span>
+              </div>
               <meta itemprop="datePublished" content={testimonial.date} />
+              <span class="company">{testimonial.company}</span>
+              <small class="location">{testimonial.location}</small>
             </div>
           </footer>
         </div>
@@ -151,6 +190,16 @@ const averageRating = testimonials.reduce((acc, curr) => acc + curr.rating, 0) /
   .testimonial-author span {
     color: #666;
     font-size: 0.9rem;
+  }
+
+  .testimonial-author .company {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .testimonial-author .location {
+    color: #999;
+    font-size: 0.8rem;
   }
 
   @media (max-width: 768px) {
