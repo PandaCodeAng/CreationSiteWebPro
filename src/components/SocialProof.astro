@@ -4,33 +4,65 @@ import { testimonials } from '../data/testimonials';
 // Calculer la moyenne des notes
 const averageRating = testimonials.reduce((acc, curr) => acc + curr.rating, 0) / testimonials.length;
 
-const businessInfo = {
+// Définir l'objet complet des données structurées
+const structuredData = {
+  "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://creationsitewebpro.com/#business",
   "name": "CreationSiteWebPro",
+  "image": "https://creationsitewebpro.com/images/logo.png",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Ain Sebaa",
     "addressLocality": "Casablanca",
+    "postalCode": "20000",
     "addressCountry": "MA"
-  }
+  },
+  "telephone": "+212679782906",
+  "priceRange": "€€€",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": averageRating.toFixed(1),
+    "reviewCount": testimonials.length,
+    "bestRating": 5,
+    "worstRating": 1
+  },
+  "review": testimonials.map(testimonial => ({
+    "@type": "Review",
+    "itemReviewed": {
+      "@type": "LocalBusiness",
+      "name": "CreationSiteWebPro",
+      "image": "https://creationsitewebpro.com/images/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ain Sebaa",
+        "addressLocality": "Casablanca",
+        "postalCode": "20000",
+        "addressCountry": "MA"
+      }
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": testimonial.rating,
+      "bestRating": 5,
+      "worstRating": 1
+    },
+    "author": {
+      "@type": "Person",
+      "name": testimonial.name,
+      "jobTitle": testimonial.position,
+      "worksFor": {
+        "@type": "Organization",
+        "name": testimonial.company
+      }
+    },
+    "reviewBody": testimonial.text,
+    "datePublished": testimonial.date
+  }))
 };
 ---
 
 <section class="social-proof">
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      ...{businessInfo},
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": ${averageRating.toFixed(1)},
-        "reviewCount": ${testimonials.length},
-        "bestRating": 5,
-        "worstRating": 1
-      }
-    }
-  </script>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData, null, 2)} />
 
   <div class="metrics-container">
     <div class="metrics">
@@ -53,8 +85,17 @@ const businessInfo = {
     <h2>Ils Nous Font Confiance à Casablanca</h2>
     <div class="testimonials">
       {testimonials.map((testimonial) => (
-        <div class="testimonial" itemscope itemtype="https://schema.org/Review">
-          <meta itemprop="itemReviewed" itemscope itemtype="https://schema.org/LocalBusiness" content="CreationSiteWebPro" />
+        <article class="testimonial" itemscope itemtype="https://schema.org/Review">
+          <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/LocalBusiness">
+            <meta itemprop="name" content="CreationSiteWebPro" />
+            <meta itemprop="image" content="https://creationsitewebpro.com/images/logo.png" />
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <meta itemprop="streetAddress" content="Ain Sebaa" />
+              <meta itemprop="addressLocality" content="Casablanca" />
+              <meta itemprop="postalCode" content="20000" />
+              <meta itemprop="addressCountry" content="MA" />
+            </div>
+          </div>
           
           <div class="rating" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
             <meta itemprop="worstRating" content="1" />
@@ -69,21 +110,22 @@ const businessInfo = {
             {testimonial.text}
           </blockquote>
 
-          <footer>
-            <div class="testimonial-author">
-              <div itemprop="author" itemscope itemtype="https://schema.org/Person">
-                <strong itemprop="name">{testimonial.name}</strong>
-                <span itemprop="jobTitle">{testimonial.position}</span>
-                <span itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
-                  <meta itemprop="name" content={testimonial.company} />
-                </span>
+          <footer class="testimonial-footer">
+            <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+              <strong itemprop="name">{testimonial.name}</strong>
+              <span itemprop="jobTitle">{testimonial.position}</span>
+              <div itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
+                <span itemprop="name">{testimonial.company}</span>
               </div>
-              <meta itemprop="datePublished" content={testimonial.date} />
-              <span class="company">{testimonial.company}</span>
               <small class="location">{testimonial.location}</small>
             </div>
+            
+            <div class="testimonial-metadata">
+              <meta itemprop="datePublished" content={testimonial.date} />
+              {testimonial.sector && <meta itemprop="about" content={testimonial.sector} />}
+            </div>
           </footer>
-        </div>
+        </article>
       ))}
     </div>
   </div>
@@ -192,12 +234,15 @@ const businessInfo = {
     font-size: 0.9rem;
   }
 
-  .testimonial-author .company {
-    color: #666;
-    font-size: 0.9rem;
+  .testimonial-footer {
+    margin-top: 1rem;
   }
 
-  .testimonial-author .location {
+  .testimonial-metadata {
+    display: none;
+  }
+
+  .location {
     color: #999;
     font-size: 0.8rem;
   }
