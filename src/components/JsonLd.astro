@@ -1,4 +1,69 @@
 ---
-const { data } = Astro.props;
+// Types
+interface BreadcrumbItem {
+  name: string;
+  item: string;
+}
+
+interface Props {
+  data: Record<string, any>;
+  breadcrumbs?: BreadcrumbItem[];
+}
+
+const { data, breadcrumbs } = Astro.props;
+
+// Construction du schéma enrichi
+const enrichSchema = (baseData: Record<string, any>) => {
+  const schema = { ...baseData };
+
+  // Ajout des breadcrumbs si fournis
+  if (breadcrumbs) {
+    schema.breadcrumb = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbs.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": item.name,
+        "item": new URL(item.item, Astro.site).toString()
+      }))
+    };
+  }
+
+  // Enrichissement automatique selon le type
+  if (schema["@type"] === "Organization" || schema["@type"] === "LocalBusiness") {
+    schema.sameAs = [
+      "https://www.facebook.com/creationsitewebpro",
+      "https://www.linkedin.com/company/creationsitewebpro",
+      "https://www.instagram.com/creationsitewebpro"
+    ];
+    schema.areaServed = {
+      "@type": "City",
+      "name": "Casablanca",
+      "containedIn": {
+        "@type": "Country",
+        "name": "Maroc"
+      }
+    };
+    schema.foundingDate = "2013";
+    schema.award = "Meilleure agence web de Casablanca 2023";
+    schema.hasCredential = [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "Certification",
+        "name": "Google Partner",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Google"
+        }
+      }
+    ];
+  }
+
+  return schema;
+};
+
+const enrichedData = enrichSchema(data);
 ---
-<script type="application/ld+json" set:html={JSON.stringify(data)} />
+
+<script type="application/ld+json" set:html={JSON.stringify(enrichedData, null, 2)} />

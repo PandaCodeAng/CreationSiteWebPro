@@ -4,7 +4,12 @@ import CTAButton from '../../components/CTAButton.astro';
 import OptimizedImage from '../../components/OptimizedImage.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import Icon from '../../components/Icon.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 
+const breadcrumbItems = [
+  { name: 'Accueil', url: '/' },
+  { name: 'E-commerce' }
+];
 const pageTitle = "Création de Site E-commerce à Casablanca";
 const pageDescription = "Propulsez votre entreprise avec une boutique en ligne performante. Experts en création de sites e-commerce à Casablanca pour booster vos ventes en ligne.";
 
@@ -57,6 +62,7 @@ const schemaData = {
   <JsonLd data={schemaData} />
   
   <main class="e-commerce-casablanca">
+    <Breadcrumbs items={breadcrumbItems} />
     <h1>{pageTitle}</h1>
     <p class="intro">{pageDescription}</p>
 

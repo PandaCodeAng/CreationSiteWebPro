@@ -1,6 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+const breadcrumbItems = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Faq' }
+];
 const pageTitle = "Foire Aux Questions | CreationSiteWebPro";
 const pageDescription = "Trouvez des réponses à vos questions sur la création de sites web, le développement d'applications et l'optimisation SEO à Casablanca.";
 
@@ -34,6 +38,8 @@ const faqs = [
 
 <Layout title={pageTitle} description={pageDescription}>
   <main class="faq-page">
+    <Breadcrumbs items={breadcrumbItems} />
+
     <h1>{pageTitle}</h1>
     <p class="intro">{pageDescription}</p>
 

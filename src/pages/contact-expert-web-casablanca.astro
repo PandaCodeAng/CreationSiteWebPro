@@ -1,6 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
+import JsonLd from '../components/JsonLd.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Contact' }
+];
 
 const pageTitle = "Contact | Expert Web à Casablanca Leader au Maroc";
 const pageDescription = "Prêt à lancer votre projet web ? Contactez notre équipe d'experts à Casablanca. Devis gratuit pour la création de votre site ou application sur mesure.";
@@ -40,11 +47,36 @@ const faqs = [
     answer: "Absolument ! Nous offrons des forfaits de maintenance pour garder votre site à jour, sécurisé et performant. Votre tranquillité d'esprit est notre priorité."
   }
 ];
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": pageTitle,
+  "description": pageDescription,
+  "mainEntity": {
+    "@type": "LocalBusiness",
+    "name": "CreationSiteWebPro",
+    "telephone": "+212 6 79 78 29 06",
+    "email": "contact@creationsitewebpro.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ain Sebaa",
+      "addressLocality": "Casablanca",
+      "postalCode": "20000",
+      "addressCountry": "Maroc"
+    }
+  }
+};
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
+  <JsonLd data={pageSchema} />
+
   <main class="contact-page">
+    <Breadcrumbs items={breadcrumbItems} />
+
     <h1>{pageTitle}</h1>
+    
     <p class="intro">{pageDescription}</p>
 
     <section class="contact-methods">

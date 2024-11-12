@@ -1,16 +1,103 @@
 ---
 // src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
+import JsonLd from '../components/JsonLd.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SocialProof from '../components/SocialProof.astro';
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Création Site Web Casablanca",
+  "description": "Experts en création de sites web sur mesure à Casablanca Maroc. Boostez votre présence en ligne avec nos solutions web innovantes et performantes.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "CreationSiteWebPro"
+  }
+};
+const breadcrumbItems = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Contact' }
+];
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "CreationSiteWebPro",
+  "image": [
+    "https://creationsitewebpro.com/images/logo.png",
+    "https://creationsitewebpro.com/images/agence-web-casablanca.jpg",
+    "https://creationsitewebpro.com/images/creation-site-web-casablanca.jpg"
+  ],
+  "description": "Agence experte en création de sites web professionnels à Casablanca. Plus de 1000 projets réalisés avec succès depuis 2013.",
+  "@id": "https://creationsitewebpro.com",
+  "url": "https://creationsitewebpro.com",
+  "telephone": "+212679782906",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Ain Sebaa",
+    "addressLocality": "Casablanca",
+    "postalCode": "20000",
+    "addressCountry": "MA"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 33.5731,
+    "longitude": -7.6190
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/creationsitewebpro",
+    "https://www.linkedin.com/company/creationsitewebpro",
+    "https://www.instagram.com/creationsitewebpro"
+  ],
+  "priceRange": "€€€",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "147"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Mohammed Alami"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      },
+      "datePublished": "2024-01-15",
+      "reviewBody": "Excellent service de création de site web. L'équipe est professionnelle et réactive."
+    }
+  ]
+};
 ---
 
 <Layout 
-  title="Création Site Web Casablanca "
-  description="Experts en création de sites web sur mesure à Casablanca Maroc. Boostez votre présence en ligne avec nos solutions web innovantes et performantes. Devis gratuit !">
-    
+  title="Création Site Web Casablanca - Agence Web N°1 au Maroc"
+  description="Expert en création site web à Casablanca ⭐ 10 ans d'expérience ✓ +1000 sites web livrés ✓ Devis gratuit sous 24h ✓ Solutions web professionnelles sur mesure">
+  <JsonLd data={homeSchema} />
   <main>
+    <Breadcrumbs items={breadcrumbItems} />
+
     <section class="hero">
       <div class="container">
-        <h1>Transformez Votre Vision en Réalité Digitale</h1>
+        <h1>Création Site Web Casablanca - Votre Expert en Solutions Web</h1>
+        <h2>Services de Création Site Web Professionnel à Casablanca</h2>
         <p>Des solutions web sur mesure pour propulser votre entreprise vers de nouveaux sommets.</p>
         <a href="/contact-expert-web-casablanca" class="cta-button">Obtenez votre devis gratuit <span class="urgency">Offre limitée!</span></a>
       </div>
@@ -43,7 +130,7 @@ import Layout from '../layouts/Layout.astro';
     </section>
     <section class="why-choose-us">
       <div class="container">
-        <h2>Pourquoi choisir CreationSiteWebPro à Casablanca ?</h2>
+        <h2>Pourquoi Choisir Notre Agence Web à Casablanca ?</h2>
         <ul>
           <li>
             <h3>Expertise locale</h3>
@@ -72,11 +159,38 @@ import Layout from '../layouts/Layout.astro';
         <p class="guarantee">Satisfaction garantie ou remboursé</p>
       </div>
     </section>
-
+    <section class="why-choose-us" aria-labelledby="faq-title">
+      <h2 id="faq-title">Questions Fréquentes sur la Création de Site Web à Casablanca</h2>
+      <div itemscope itemtype="https://schema.org/FAQPage">
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name">Quel est le coût de création d'un site web à Casablanca ?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p>Les tarifs de création de site web à Casablanca varient selon vos besoins. Un site vitrine professionnel démarre à partir de 5000 MAD, tandis qu'un e-commerce peut aller de 15000 à 50000 MAD. Nous proposons des solutions sur mesure adaptées à tous les budgets.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Ajoutez d'autres questions pertinentes -->
+      </div>
+    </section>
+    <section class="why-choose-us">
+      <h2>Expert en Création Site Web à Casablanca depuis 2013</h2>
+      <div class="service-card">
+        <p>Basée au cœur de Casablanca, notre agence web comprend les spécificités du marché local et les besoins des entreprises marocaines. Nous proposons :</p>
+        <ul>
+          <li>Sites web optimisés pour le marché casablancais</li>
+          <li>Support technique local en arabe et français</li>
+          <li>Expertise du marché digital marocain</li>
+          <li>Présence physique à Casablanca pour un suivi personnalisé</li>
+        </ul>
+      </div>
+    </section>
+    <SocialProof />
   </main>
 </Layout>
 
 <style>
+
   /* Styles spécifiques à la page d'accueil */
   .hero {
     background-color: var(--color-primary);

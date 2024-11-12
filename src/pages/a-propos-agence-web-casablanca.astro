@@ -1,10 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import OptimizedImage from '../components/OptimizedImage.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 const pageTitle = "À Propos | Votre Partenaire Digital à Casablanca Maroc";
 const pageDescription = "Découvrez l'équipe passionnée derrière CreationSiteWebPro. 10+ ans d'expérience en création de sites web et applications sur mesure à Casablanca.";
-
+const breadcrumbItems = [
+  { name: 'Accueil', url: '/' },
+  { name: 'À Propos' }
+];
 const teamMembers = [
   {
     name: "Mouhcine Talbi",
@@ -62,6 +66,7 @@ const milestones = [
 
 <Layout title={pageTitle} description={pageDescription}>
   <main class="about-page">
+    <Breadcrumbs items={breadcrumbItems} />
     <section class="hero">
       <h1>{pageTitle}</h1>
       <p>{pageDescription}</p>

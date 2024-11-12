@@ -1,0 +1,188 @@
+---
+import { testimonials } from '../data/testimonials';
+
+// Calculer la moyenne des notes
+const averageRating = testimonials.reduce((acc, curr) => acc + curr.rating, 0) / testimonials.length;
+---
+
+<section class="social-proof">
+  <div class="metrics-container">
+    <div class="metrics">
+      <div class="metric">
+        <strong>98%</strong>
+        <span>Satisfaction Client</span>
+      </div>
+      <div class="metric">
+        <strong>+1000</strong>
+        <span>Sites Livrés</span>
+      </div>
+      <div class="metric">
+        <strong>10+</strong>
+        <span>Ans d'Expertise</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonials-container">
+    <h2>Ils Nous Font Confiance à Casablanca</h2>
+    <div class="testimonials">
+      {testimonials.map((testimonial) => (
+        <div class="testimonial" itemscope itemtype="https://schema.org/Review">
+          <div class="rating">
+            {Array.from({ length: testimonial.rating }, (_, i) => (
+              <span class="star">★</span>
+            ))}
+          </div>
+          <blockquote itemprop="reviewBody">
+            {testimonial.text}
+          </blockquote>
+          <footer>
+            <div class="testimonial-author">
+              <strong itemprop="author">{testimonial.name}</strong>
+              <span itemprop="jobTitle">{testimonial.position}</span>
+              <span itemprop="organization">{testimonial.company}</span>
+              <meta itemprop="datePublished" content={testimonial.date} />
+            </div>
+          </footer>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .social-proof {
+    padding: 4rem 1rem;
+    background-color: #f8f9fa;
+  }
+
+  .metrics-container {
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .metric {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .metric:hover {
+    transform: translateY(-5px);
+  }
+
+  .metric strong {
+    display: block;
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .metric span {
+    font-size: 1.1rem;
+    color: #666;
+  }
+
+  .testimonials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    text-align: center;
+    color: var(--color-primary);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .testimonial {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .testimonial:hover {
+    transform: translateY(-5px);
+  }
+
+  .rating {
+    margin-bottom: 1rem;
+  }
+
+  .star {
+    color: #ffd700;
+    font-size: 1.2rem;
+  }
+
+  blockquote {
+    font-style: italic;
+    margin: 0 0 1.5rem 0;
+    color: #444;
+    line-height: 1.6;
+  }
+
+  .testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .testimonial-author strong {
+    color: var(--color-primary);
+  }
+
+  .testimonial-author span {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .social-proof {
+      padding: 2rem 1rem;
+    }
+
+    .metrics {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .metric strong {
+      font-size: 2rem;
+    }
+
+    .testimonials {
+      grid-template-columns: 1fr;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .metric {
+      padding: 1rem;
+    }
+
+    .testimonial {
+      padding: 1.5rem;
+    }
+  }
+</style>

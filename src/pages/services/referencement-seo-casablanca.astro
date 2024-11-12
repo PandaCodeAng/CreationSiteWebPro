@@ -4,7 +4,11 @@ import CTAButton from '../../components/CTAButton.astro';
 import OptimizedImage from '../../components/OptimizedImage.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import Icon from '../../components/Icon.astro';
-
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+const breadcrumbItems = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Referencement' }
+];
 const pageTitle = "Services de Référencement SEO à Casablanca | Boostez Votre Visibilité en Ligne";
 const pageDescription = "Optimisez votre présence en ligne avec nos services SEO experts à Casablanca. Améliorez votre classement sur Google et attirez plus de clients qualifiés.";
 
@@ -55,8 +59,9 @@ const schemaData = {
 
 <Layout title={pageTitle} description={pageDescription}>
   <JsonLd data={schemaData} />
-  
+
   <main class="seo-casablanca">
+    <Breadcrumbs items={breadcrumbItems} />
     <h1>{pageTitle}</h1>
     <p class="intro">{pageDescription}</p>
 

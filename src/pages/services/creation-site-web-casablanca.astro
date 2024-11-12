@@ -3,10 +3,28 @@ import Layout from '../../layouts/Layout.astro';
 import CTAButton from '../../components/CTAButton.astro';
 import Icon from '../../components/Icon.astro';
 import JsonLd from '../../components/JsonLd.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 
+const breadcrumbItems = [
+  { name: 'Accueil', url: '/' },
+  { name: 'creation site web casablanca' }
+];
 const pageTitle = "Services de Création Site Web à Casablanca";
 const pageDescription = "Experts en création de sites web sur mesure à Casablanca. Boostez votre présence en ligne avec nos solutions web innovantes et performantes. Devis gratuit !";
-
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": pageTitle,
+  "description": pageDescription,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "CreationSiteWebPro"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Casablanca"
+  }
+};
 const services = [
   {
     icon: 'web',
@@ -89,8 +107,10 @@ const schemaData = {
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <JsonLd data={schemaData} />
+  <JsonLd data={pageSchema} />
   <main class="creation-site-web-casablanca">
+    <Breadcrumbs items={breadcrumbItems} />
+
     <h1>Création de Site Web Professionnel à Casablanca</h1>
     <p class="intro">Chez CreationSiteWebPro, nous sommes les experts de la création de sites web à Casablanca. Nous concevons des solutions web innovantes et sur mesure pour propulser votre entreprise vers le succès digital dans la capitale économique du Maroc.</p>
 
