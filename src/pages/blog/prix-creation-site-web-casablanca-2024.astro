@@ -1,0 +1,398 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { generateTimeTag } from '../../utils/dates';
+
+const title = "Création Site Web Casablanca : Les Vrais Prix 2024 [Guide Complet]";
+const description = "Découvrez les vrais prix de création site web à Casablanca, basés sur 500+ projets réalisés. Guide complet des tarifs 2024, astuces pour économiser et conseils d'experts locaux. Devis gratuit personnalisé !";
+const publishDate = "2024-11-14";
+const author = "Mouhcine TALBI";
+const readingTime = "8 minutes";
+const category = "Création Web Casablanca";
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Person",
+    "name": author,
+    "jobTitle": "Expert Création Site Web",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "CreationSiteWebPro",
+      "url": "https://creationsitewebpro.com"
+    }
+  },
+  "datePublished": publishDate,
+  "dateModified": publishDate,
+  "image": "https://creationsitewebpro.com/images/prix-creation-site-web-casablanca.jpg",
+  "keywords": "création site web Casablanca, prix site web Casablanca, tarifs création site web Maroc, agence web Casablanca prix, coût site internet Casablanca, devis site web Casablanca",
+  "publisher": {
+    "@type": "Organization",
+    "name": "CreationSiteWebPro",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://creationsitewebpro.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://creationsitewebpro.com/blog/prix-creation-site-web-casablanca-2024"
+  }
+});
+---
+
+<Layout 
+  title={title}
+  description={description}
+  canonical={new URL('/blog/prix-creation-site-web-casablanca-2024', Astro.site).toString()}
+>
+  <article itemscope itemtype="http://schema.org/BlogPosting" class="blog-post">
+    <header class="article-header">
+      <h1 itemprop="headline">{title}</h1>
+      <div class="post-meta">
+        <div class="author-info">
+          <div class="author-details">
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <span itemprop="name">{author}</span>
+            </span>
+            <span class="author-title">Expert Création Site Web Casablanca</span>
+          </div>
+          <div class="post-details">
+            <time datetime={publishDate}>
+              <Fragment set:html={generateTimeTag(publishDate)} />
+            </time>
+            <span class="reading-time">⏱️ {readingTime}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="table-of-contents">
+      <h2>Dans cet article :</h2>
+      <ul>
+        <li><a href="#intro">Prix création site web Casablanca 2024</a></li>
+        <li><a href="#tarifs">Grille tarifaire détaillée</a></li>
+        <li><a href="#facteurs">Ce qui influence les prix</a></li>
+        <li><a href="#conseils">Conseils pour économiser</a></li>
+        <li><a href="#pieges">Pièges à éviter</a></li>
+        <li><a href="#devis">Obtenir un devis gratuit</a></li>
+      </ul>
+    </nav>
+
+    <div itemprop="articleBody" class="article-content">
+      <section id="intro">
+        <p class="lead-paragraph">
+          Salam ! Mouhcine de CreationSiteWebPro ici. Avec plus de 500 sites créés à Casa, je connais une question qui revient souvent : "C'est combien un site web professionnel ?" Aujourd'hui, je vais tout vous dire sur les prix 2024, sans baratin commercial. Et croyez-moi, il y a des choses à savoir avant de vous lancer !
+        </p>
+      </section>
+
+      <section id="tarifs" class="pricing-section">
+        <h2>Les Vrais Prix 2024 de Création Site Web à Casablanca</h2>
+        
+        <div class="price-card">
+          <h3>💼 Site Vitrine Pro</h3>
+          <div class="price-range">4 000 - 8 000 DH</div>
+          <ul>
+            <li> 5-7 pages optimisées SEO</li>
+            <li> Design responsive (mobile-first)</li>
+            <li> Formulaire de contact intelligent</li>
+            <li> Intégration réseaux sociaux</li>
+            <li> Optimisation vitesse</li>
+          </ul>
+          <div class="price-note">Idéal pour : TPE, professions libérales, artisans</div>
+        </div>
+
+        <div class="price-card featured">
+          <h3>🚀 Pack Business Pro</h3>
+          <div class="price-range">8 000 - 15 000 DH</div>
+          <ul>
+            <li> 10-15 pages personnalisées</li>
+            <li> Design unique sur mesure</li>
+            <li> Blog professionnel intégré</li>
+            <li> SEO avancé local</li>
+            <li> Formation backoffice incluse</li>
+          </ul>
+          <div class="price-note">Parfait pour : PME, commerces, restaurants</div>
+        </div>
+
+        <div class="price-card">
+          <h3>🛍️ E-commerce Complet</h3>
+          <div class="price-range">15 000 - 30 000 DH</div>
+          <ul>
+            <li> Jusqu'à 500 produits</li>
+            <li> Paiement en ligne CMI</li>
+            <li> Gestion stocks et commandes</li>
+            <li> Dashboard analytics</li>
+            <li> Formation équipe incluse</li>
+          </ul>
+          <div class="price-note">Pour : Boutiques en ligne, marketplaces</div>
+        </div>
+      </section>
+
+      <section id="facteurs" class="content-section">
+        <h2>🤔 Pourquoi ces Prix ? La Vérité sur la Création Site Web à Casa</h2>
+        
+        <p>À Derb Ghallef, vous trouverez des "sites web" à 1 500 DH. Dans les tours de Marina, certaines agences vous demanderont 50 000 DH. Pourquoi une telle différence ? Voici la vérité :</p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>🔧 Technologie</h3>
+            <p>WordPress simple : 4 000 - 8 000 DH<br>
+            Site sur mesure : 15 000 - 30 000 DH<br>
+            E-commerce avancé : 20 000 - 40 000 DH</p>
+          </div>
+
+          <div class="info-card">
+            <h3>🎨 Design</h3>
+            <p>Template modifié : 2 000 - 4 000 DH<br>
+            Design personnalisé : 5 000 - 10 000 DH<br>
+            Design premium : 10 000 - 20 000 DH</p>
+          </div>
+
+          <div class="info-card">
+            <h3>📱 Fonctionnalités</h3>
+            <p>Chaque fonction ajoute au prix :<br>
+            - Réservation en ligne : +3 000 DH<br>
+            - Paiement CMI : +4 000 DH<br>
+            - Chat en direct : +2 000 DH</p>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h3>⚠️ Attention aux Prix Trop Bas !</h3>
+          <p>Si quelqu'un vous propose un site "professionnel" à 2 000 DH, méfiez-vous ! C'est souvent un template basique sans optimisation, qui pourrait vous coûter plus cher à long terme.</p>
+        </div>
+      </section>
+
+      <section id="conseils" class="content-section">
+        <h2>💡 Conseils d'Expert pour Réduire vos Coûts</h2>
+        
+        <div class="tips-container">
+          <div class="tip">
+            <h3>1. Commencez Simple</h3>
+            <p>Démarrez avec un site vitrine bien fait, puis évoluez progressivement. C'est comme construire une maison : commencez par les fondations solides !</p>
+          </div>
+
+          <div class="tip">
+            <h3>2. Préparez Votre Contenu</h3>
+            <p>Fournissez des textes et photos de qualité. Ça peut réduire le coût de 2 000 à 3 000 DH sur le budget total.</p>
+          </div>
+
+          <div class="tip">
+            <h3>3. Planifiez vos Besoins</h3>
+            <p>Listez toutes les fonctionnalités essentielles dès le début. Les ajouts après coup coûtent toujours plus cher !</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="pieges" class="content-section">
+        <h2>🚫 Les Pièges à Éviter Absolument</h2>
+        
+        <div class="pitfalls-list">
+          <div class="pitfall">
+            <h3>❌ Les Fausses Promesses SEO</h3>
+            <p>"Première page Google garantie en 1 mois" - C'est impossible ! Un bon référencement naturel prend 3 à 6 mois minimum.</p>
+          </div>
+
+          <div class="pitfall">
+            <h3>❌ Les Coûts Cachés</h3>
+            <p>Certaines agences ne mentionnent pas les frais d'hébergement, de maintenance ou de mises à jour. Demandez TOUT dès le début !</p>
+          </div>
+
+          <div class="pitfall">
+            <h3>❌ Les Freelances Volatils</h3>
+            <p>Attention aux développeurs qui disparaissent après l'acompte. Vérifiez toujours les références et les avis Google.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="devis" class="cta-section">
+        <div class="cta-content">
+          <h2>🤝 Besoin d'un Devis Personnalisé ?</h2>
+          <p>Parlons de votre projet autour d'un café ! Consultation gratuite dans nos bureaux au centre de Casa.</p>
+          <div class="cta-buttons">
+            <a href="/contact-expert-web-casablanca" class="btn-primary">Demander un Devis Gratuit</a>
+            <a href="tel:+212661040104" class="btn-secondary">📞 Appeler Maintenant</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .article-header {
+    margin-bottom: 2rem;
+    text-align: left;
+    margin-top: 19%;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin: 2.5rem 0 1.5rem;
+    color: var(--color-secondary);
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    margin: 1.5rem 0 1rem;
+    color: #2c3e50;
+  }
+
+  .post-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .author-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .author-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lead-paragraph {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  .price-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .price-card.featured {
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .price-range {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin: 1rem 0;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .warning-box {
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+
+  .tips-container, .pitfalls-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cta-section {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 3rem 0;
+    text-align: center;
+  }
+
+  .btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .btn-secondary {
+    background: white;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .article-header {
+    margin-bottom: 2rem;
+    text-align: left;
+    margin-top: 50%;
+  }
+    .blog-post {
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .price-card {
+      margin: 1rem 0;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+  }
+</style>
+
+<script type="application/ld+json" set:html={schema} />
