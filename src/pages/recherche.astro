@@ -1,0 +1,410 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+interface SearchResultData {
+  title: string;
+  description?: string;
+  excerpt?: string;
+  category?: string;
+  publishDate?: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
+  tags?: string[];
+  lastModified?: string;
+  seo?: {
+    keywords?: string[];
+  };
+}
+
+interface SearchResult {
+  slug: string;
+  data: SearchResultData;
+}
+
+const query = Astro.url.searchParams.get('q') || '';
+const startTime = performance.now();
+
+async function searchContent(searchQuery: string): Promise<SearchResult[]> {
+  if (!searchQuery) return [];
+  
+  const normalizedQuery = searchQuery.toLowerCase();
+  
+  try {
+    const blogPosts = await getCollection('blog', (post: CollectionEntry<'blog'>) => !post.data.draft);
+    const pages = await getCollection('pages');
+    
+    type ScoredResult = SearchResult & { score: number };
+    const scoredResults: ScoredResult[] = [];
+
+    function calculateScore(content: string, title: string): number {
+      let score = 0;
+      const searchTerms = normalizedQuery.split(' ');
+
+      if (title.toLowerCase().includes(normalizedQuery)) {
+        score += 10;
+      }
+
+      searchTerms.forEach(term => {
+        if (title.toLowerCase().includes(term)) {
+          score += 5;
+        }
+        if (content.toLowerCase().includes(term)) {
+          score += 2;
+        }
+        if (content.toLowerCase().startsWith(term)) {
+          score += 3;
+        }
+      });
+
+      return score;
+    }
+
+    blogPosts.forEach((post: CollectionEntry<'blog'>) => {
+      const content = `
+        ${post.data.title}
+        ${post.data.description || ''}
+        ${post.data.excerpt || ''}
+        ${post.data.tags?.join(' ') || ''}
+      `.toLowerCase();
+
+      const score = calculateScore(content, post.data.title);
+
+      if (score > 0) {
+        scoredResults.push({
+          slug: `/blog/${post.slug}`,
+          data: {
+            title: post.data.title,
+            description: post.data.description,
+            excerpt: post.data.excerpt,
+            category: post.data.category,
+            publishDate: post.data.publishDate,
+            image: post.data.image,
+            tags: post.data.tags
+          },
+          score
+        });
+      }
+    });
+
+    pages.forEach((page: CollectionEntry<'pages'>) => {
+      const content = `
+        ${page.data.title}
+        ${page.data.description || ''}
+        ${page.data.seo?.keywords?.join(' ') || ''}
+      `.toLowerCase();
+
+      const score = calculateScore(content, page.data.title);
+
+      if (score > 0) {
+        scoredResults.push({
+          slug: `/${page.slug}`,
+          data: {
+            title: page.data.title,
+            description: page.data.description,
+            category: 'Pages',
+            lastModified: page.data.lastModified,
+            tags: page.data.seo?.keywords
+          },
+          score
+        });
+      }
+    });
+
+    return scoredResults
+      .sort((a, b) => b.score - a.score)
+      .map(({ score, ...result }) => result);
+
+  } catch (error) {
+    console.error('Erreur lors de la recherche:', error);
+    
+    const demoResults: SearchResult[] = [
+      {
+        slug: '/services/creation-site-web-casablanca',
+        data: {
+          title: 'Création Site Web Professionnel à Casablanca',
+          description: 'Experts en création de sites web professionnels à Casablanca. Design moderne, responsive et optimisé SEO.',
+          category: 'Services',
+          tags: ['création site web', 'Casablanca', 'web design']
+        }
+      },
+      {
+        slug: '/portfolio-realisations-web-casablanca-maroc',
+        data: {
+          title: 'Nos Réalisations Web à Casablanca',
+          description: 'Découvrez nos dernières réalisations en création de sites web pour les entreprises de Casablanca.',
+          category: 'Portfolio',
+          tags: ['portfolio', 'réalisations', 'Casablanca']
+        }
+      }
+    ];
+
+    return demoResults.filter(result => {
+      const searchContent = `
+        ${result.data.title}
+        ${result.data.description || ''}
+        ${result.data.tags?.join(' ') || ''}
+      `.toLowerCase();
+      return searchContent.includes(normalizedQuery);
+    });
+  }
+}
+
+const results = await searchContent(query);
+const searchTime = Math.round(performance.now() - startTime);
+
+const title = `Résultats de recherche pour "${query}" | CreationSiteWebPro`;
+const description = `Découvrez les résultats de recherche pour "${query}" sur CreationSiteWebPro, expert en création de sites web à Casablanca.`;
+---
+
+<Layout title={title} description={description}>
+  {query && (
+    <script define:vars={{ query, resultsCount: results.length, searchTime }}>
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'site_search', {
+          search_term: query,
+          search_results_count: resultsCount,
+          search_time_ms: searchTime,
+          page_location: window.location.href,
+          page_title: document.title
+        });
+      }
+    </script>
+  )}
+
+  <div class="search-results-page">
+    <header class="search-header">
+      <h1>Résultats de recherche</h1>
+      <p class="search-query">Pour : "<span>{query}</span>"</p>
+      <p class="results-count">{results.length} résultat{results.length > 1 ? 's' : ''} trouvé{results.length > 1 ? 's' : ''} en {searchTime}ms</p>
+    </header>
+
+    <section class="results-container">
+      {results.length > 0 ? (
+        <div class="results-grid">
+          {results.map((result) => (
+            <article class="result-card">
+              {result.data.image && (
+                <div class="result-image">
+                  <img src={result.data.image.src} alt={result.data.image.alt} loading="lazy" />
+                </div>
+              )}
+              <div class="result-content">
+                <h2>
+                  <a href={result.slug}>{result.data.title}</a>
+                </h2>
+                <p class="result-description">{result.data.excerpt || result.data.description}</p>
+                <div class="result-meta">
+                  {result.data.category && (
+                    <span class="category">{result.data.category}</span>
+                  )}
+                  {result.data.publishDate && (
+                    <time datetime={result.data.publishDate}>
+                      {new Date(result.data.publishDate).toLocaleDateString('fr-FR', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </time>
+                  )}
+                </div>
+                {result.data.tags && result.data.tags.length > 0 && (
+                  <div class="result-tags">
+                    {result.data.tags.map(tag => (
+                      <span class="tag">{tag}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="no-results">
+          <p>Aucun résultat trouvé pour votre recherche.</p>
+          <div class="suggestions">
+            <h3>Suggestions :</h3>
+            <ul>
+              <li>Vérifiez l'orthographe des mots-clés</li>
+              <li>Essayez des mots-clés différents</li>
+              <li>Utilisez des termes plus généraux</li>
+            </ul>
+          </div>
+        </div>
+      )}
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .search-results-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    margin-top: 5rem;
+  }
+
+  .search-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    color: var(--color-primary);
+  }
+
+  .search-query {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    color: #666;
+    margin: 1rem 0;
+  }
+
+  .search-query span {
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .result-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+  }
+
+  .result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .result-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .result-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .result-content {
+    padding: 1.5rem;
+  }
+
+  .result-card h2 {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    margin-bottom: 1rem;
+  }
+
+  .result-card a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .result-description {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .result-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .category {
+    background: var(--color-secondary);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  .result-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: #f0f0f0;
+    color: #666;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .suggestions {
+    margin-top: 2rem;
+  }
+
+  .suggestions h3 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .suggestions ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .suggestions li {
+    margin: 0.5rem 0;
+    color: #666;
+  }
+
+  @media (max-width: 768px) {
+    .search-results-page {
+      padding: 1rem;
+    }
+
+    .results-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .result-image {
+      height: 150px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .search-results-page {
+      padding: 0.5rem;
+      margin-top: 4rem;
+    }
+
+    .result-content {
+      padding: 1rem;
+    }
+
+    .result-meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+</style>

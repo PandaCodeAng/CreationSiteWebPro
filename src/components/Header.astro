@@ -1,5 +1,6 @@
 ---
 import OptimizedImage from "./OptimizedImage.astro";
+import SearchBar from "./SearchBar.astro";
 
 // Header.astro
 ---
@@ -11,6 +12,7 @@ import OptimizedImage from "./OptimizedImage.astro";
           <OptimizedImage src="/images/logo.png" alt="CreationSiteWebPro Logo" width={110} height={50} />
         </a>
       </div>
+      
       <div class="contact-info">
         <a href="tel:+212679782906" class="contact-link">📞 +212 6 79 78 29 06</a>
         <a href="mailto:contact@creationsitewebpro.com" class="contact-link">✉️ contact@creationsitewebpro.com</a>
@@ -23,12 +25,13 @@ import OptimizedImage from "./OptimizedImage.astro";
         <li><a href="/services/creation-site-web-casablanca" class="nav-link">Nos Services</a></li>
         <li><a href="/portfolio-realisations-web-casablanca-maroc" class="nav-link">Réalisations</a></li>
         <li><a href="/a-propos-agence-web-casablanca" class="nav-link">À Propos</a></li>
-        <li><a href="/contact-expert-web-casablanca" class="nav-link cta-button">Demandez un Devis</a></li>
+        <li><a href="/creation-site-web-casablanca" class="nav-link cta-button">Demandez un Devis</a></li>
       </ul>
     </nav>
     <label for="nav-toggle" class="nav-toggle-label">
       <span></span>
     </label>
+    <SearchBar />
   </div>
 </header>
 

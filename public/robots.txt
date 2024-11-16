@@ -1,7 +1,12 @@
+# robots.txt
 User-agent: *
 Allow: /
-
-Sitemap: https://creationsitewebpro.com/sitemap.xml
+Allow: /recherche
 
 Disallow: /admin/
 Disallow: /private/
+
+# Empêcher l'indexation des pages de recherche avec paramètres
+Disallow: /recherche?*
+
+Sitemap: https://creationsitewebpro.com/sitemap.xml

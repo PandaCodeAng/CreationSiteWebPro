@@ -1,0 +1,196 @@
+---
+const placeholder = "Rechercher sur CreationSiteWebPro...";
+---
+
+<div class="search-container">
+  <button id="searchToggle" class="search-toggle" aria-label="Ouvrir la recherche">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+  </button>
+
+  <div id="searchOverlay" class="search-overlay">
+    <div class="search-modal">
+      <form action="/recherche" class="search-form" role="search" method="GET">
+        <div class="search-input-wrapper">
+          <input 
+            type="search" 
+            name="q" 
+            id="searchInput"
+            placeholder={placeholder}
+            aria-label={placeholder}
+            autocomplete="off"
+            minlength="2"
+            required
+          />
+          <button type="submit" class="search-submit" aria-label="Rechercher">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+        <button type="button" class="search-close" id="searchClose" aria-label="Fermer">×</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  .search-container {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+  }
+
+  .search-toggle {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.3s;
+  }
+
+  .search-toggle:hover {
+    opacity: 0.8;
+  }
+
+  .search-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    padding: 1rem;
+  }
+
+  .search-overlay.active {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .search-modal {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 5rem;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .search-form {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .search-input-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 1rem;
+  }
+
+  .search-form input {
+    flex: 1;
+    padding: 0.8rem;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+  }
+
+  .search-submit {
+    background: var(--color-primary);
+    border: none;
+    padding: 0.8rem;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-close {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  @media (max-width: 768px) {
+    .search-modal {
+      margin-top: 2rem;
+    }
+    
+    .search-form {
+      padding: 0.5rem;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .search-modal {
+      margin-top: 1rem;
+    }
+    
+    .search-input-wrapper {
+      margin-right: 0.5rem;
+    }
+  }
+</style>
+
+<script>
+  const searchToggle = document.getElementById('searchToggle');
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchClose = document.getElementById('searchClose');
+  const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+  const searchForm = document.querySelector('.search-form') as HTMLFormElement;
+
+  searchToggle?.addEventListener('click', () => {
+    searchOverlay?.classList.add('active');
+    searchInput?.focus();
+    document.body.style.overflow = 'hidden';
+  });
+
+  searchClose?.addEventListener('click', () => {
+    searchOverlay?.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  searchOverlay?.addEventListener('click', (e: MouseEvent) => {
+    if (e.target === searchOverlay) {
+      searchOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Escape' && searchOverlay?.classList.contains('active')) {
+      searchOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Validation du formulaire
+  searchForm?.addEventListener('submit', (e: Event) => {
+    e.preventDefault();
+    if (searchInput && searchInput.value.trim().length >= 2) {
+      searchForm.submit();
+    } else {
+      searchInput?.focus();
+    }
+  });
+</script>
