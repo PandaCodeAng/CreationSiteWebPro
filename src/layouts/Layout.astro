@@ -5,6 +5,23 @@ import Footer from '../components/Footer.astro';
 import { SEO } from "astro-seo";
 import JsonLd from '../components/JsonLd.astro';
 
+// Déclarer napInfo avant de l'utiliser
+export const napInfo = {
+  name: "CreationSiteWebPro",
+  address: {
+    street: "Ain Sebaa",
+    city: "Casablanca",
+    postalCode: "20000",
+    country: "Maroc"
+  },
+  phone: "+212 6 79 78 29 06",
+  email: "contact@creationsitewebpro.com",
+  coordinates: {
+    latitude: 33.5731,
+    longitude: -7.6190
+  }
+};
+
 const baseSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -34,22 +51,6 @@ export interface Props {
 	description: string;
 	canonical?: string;
 }
-
-export const napInfo = {
-  name: "CreationSiteWebPro",
-  address: {
-    street: "Ain Sebaa",
-    city: "Casablanca",
-    postalCode: "20000",
-    country: "Maroc"
-  },
-  phone: "+212 6 79 78 29 06",
-  email: "contact@creationsitewebpro.com",
-  coordinates: {
-    latitude: 33.5731,
-    longitude: -7.6190
-  }
-};
 
 const { title, description, canonical } = Astro.props;
 const fullTitle = `${title} - Expert en création site web Maroc`;
