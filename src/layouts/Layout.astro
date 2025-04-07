@@ -8,16 +8,21 @@ import JsonLd from '../components/JsonLd.astro';
 const baseSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "CreationSiteWebPro",
+  "name": napInfo.name,
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Ain Sebaa",
-    "addressLocality": "Casablanca",
-    "postalCode": "20000",
+    "streetAddress": napInfo.address.street,
+    "addressLocality": napInfo.address.city,
+    "postalCode": napInfo.address.postalCode,
     "addressCountry": "MA"
   },
-  "telephone": "+212679782906",
-  "email": "contact@creationsitewebpro.com",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": napInfo.coordinates.latitude,
+    "longitude": napInfo.coordinates.longitude
+  },
+  "telephone": napInfo.phone.replace(/\s+/g, ''),
+  "email": napInfo.email,
   "url": "https://www.creationsitewebpro.com",
   "image": "/images/logo.png",
   "priceRange": "€€"
@@ -30,6 +35,22 @@ export interface Props {
 	canonical?: string;
 }
 
+export const napInfo = {
+  name: "CreationSiteWebPro",
+  address: {
+    street: "Ain Sebaa",
+    city: "Casablanca",
+    postalCode: "20000",
+    country: "Maroc"
+  },
+  phone: "+212 6 79 78 29 06",
+  email: "contact@creationsitewebpro.com",
+  coordinates: {
+    latitude: 33.5731,
+    longitude: -7.6190
+  }
+};
+
 const { title, description, canonical } = Astro.props;
 const fullTitle = `${title} - Expert en création site web Maroc`;
 ---
@@ -39,6 +60,14 @@ const fullTitle = `${title} - Expert en création site web Maroc`;
 	<head>
 		<link rel="canonical" href={canonical || "https://www.creationsitewebpro.com"} />
 		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+		<meta name="geo.position" content="33.5731;-7.6190">
+		<meta name="geo.placename" content="Casablanca">
+		<meta name="geo.region" content="MA-CAS">
+		<meta name="ICBM" content="33.5731, -7.6190">
+		<meta name="locality" content="Casablanca">
+		<meta name="country" content="Maroc">
+		<meta name="language" content="fr">
+		<meta name="target" content="Morocco">
 		<link rel="alternate" hreflang="fr" href="https://creationsitewebpro.com">
 		<meta name="google-adsense-account" content="ca-pub-9201463900934910">
 		  <!-- Axeptio script -->
