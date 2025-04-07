@@ -11,6 +11,7 @@ interface Props {
 }
 
 const { data, breadcrumbs } = Astro.props;
+import { napInfo } from '../layouts/Layout.astro';
 
 // Construction du schéma enrichi
 const enrichSchema = (baseData: Record<string, any>) => {
@@ -32,6 +33,17 @@ const enrichSchema = (baseData: Record<string, any>) => {
 
   // Enrichissement automatique selon le type
   if (schema["@type"] === "Organization" || schema["@type"] === "LocalBusiness") {
+    schema.name = napInfo.name;
+    schema.address = {
+      "@type": "PostalAddress",
+      "streetAddress": napInfo.address.street,
+      "addressLocality": napInfo.address.city,
+      "postalCode": napInfo.address.postalCode,
+      "addressCountry": "MA"
+    };
+    schema.telephone = napInfo.phone.replace(/\s+/g, '');
+    schema.email = napInfo.email;
+    
     schema.sameAs = [
       "https://www.facebook.com/creationsitewebpro",
       "https://www.linkedin.com/company/creationsitewebpro",
@@ -47,17 +59,6 @@ const enrichSchema = (baseData: Record<string, any>) => {
     };
     schema.foundingDate = "2013";
     schema.award = "Meilleure agence web de Casablanca 2023";
-    schema.hasCredential = [
-      {
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "Certification",
-        "name": "Google Partner",
-        "recognizedBy": {
-          "@type": "Organization",
-          "name": "Google"
-        }
-      }
-    ];
   }
 
   return schema;
