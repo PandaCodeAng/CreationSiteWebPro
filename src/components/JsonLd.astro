@@ -68,4 +68,4 @@ const enrichSchema = (baseData: Record<string, any>) => {
 const enrichedData = enrichSchema(data);
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(enrichedData, null, 2)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(enrichedData, null, 2)} />
