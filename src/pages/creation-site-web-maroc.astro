@@ -1,9 +1,10 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import CTAButton from '../../components/CTAButton.astro';
-import Icon from '../../components/Icon.astro';
-import JsonLd from '../../components/JsonLd.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Layout from '../layouts/Layout.astro';
+import CTAButton from '../components/CTAButton.astro';
+import Icon from '../components/Icon.astro';
+import JsonLd from '../components/JsonLd.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { napInfo } from '../layouts/Layout.astro';
 
 const pageTitle = "Création Site Web Maroc | Agence Web Professionnelle 2025";
 const pageDescription = "Agence experte en création de sites web sur mesure partout au Maroc. Sites vitrines, e-commerce et applications web adaptés au marché marocain. Devis gratuit !";
@@ -19,12 +20,23 @@ const pageSchema = {
   "description": pageDescription,
   "provider": {
     "@type": "LocalBusiness",
-    "name": "CreationSiteWebPro"
+    "name": napInfo.name,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": napInfo.address.city,
+      "addressCountry": "MA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": napInfo.coordinates.latitude,
+      "longitude": napInfo.coordinates.longitude
+    }
   },
   "areaServed": {
-    "@type": "City",
-    "name": "Casablanca"
-  }
+    "@type": "Country",
+    "name": "Maroc"
+  },
+  "serviceType": "Création de site web"
 };
 const services = [
   {
