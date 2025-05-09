@@ -1,12 +1,16 @@
 # robots.txt
 User-agent: *
 Allow: /
-Allow: /recherche
+# Allow: /recherche # Allowing /recherche is fine if it has a canonical or noindex for parameterized versions
 
 Disallow: /admin/
 Disallow: /private/
 
-# Empêcher l'indexation des pages de recherche avec paramètres
+# Empêcher l'indexation des pages de recherche avec paramètres pour éviter contenu dupliqué
+User-agent: Googlebot
 Disallow: /recherche?*
+User-agent: Bingbot
+Disallow: /recherche?*
+# Add other major bots if necessary
 
 Sitemap: https://creationsitewebpro.com/sitemap.xml

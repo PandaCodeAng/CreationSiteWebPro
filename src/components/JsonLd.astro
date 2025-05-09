@@ -17,7 +17,7 @@ const enrichSchema = (baseData: Record<string, any>) => {
   const schema = { ...baseData };
 
   // Ajout des breadcrumbs si fournis
-  if (breadcrumbs) {
+  if (breadcrumbs && Astro.site) {
     schema.breadcrumb = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -25,7 +25,7 @@ const enrichSchema = (baseData: Record<string, any>) => {
         "@type": "ListItem",
         "position": index + 1,
         "name": item.name,
-        "item": new URL(item.item, Astro.site).toString()
+        "item": item.item.startsWith('http') ? item.item : new URL(item.item, Astro.site!).toString()
       }))
     };
   }
@@ -40,13 +40,22 @@ const enrichSchema = (baseData: Record<string, any>) => {
     schema.areaServed = {
       "@type": "City",
       "name": "Casablanca",
-      "containedIn": {
+      "containedInPlace": { 
         "@type": "Country",
         "name": "Maroc"
       }
     };
     schema.foundingDate = "2013";
-    schema.award = "Meilleure agence web de Casablanca 2023";
+    // schema.award = "Meilleure agence web de Casablanca 2023"; // Award should be verifiable
+    schema.hasOfferCatalog = { 
+      "@type": "OfferCatalog",
+      "name": "Services de création de site web",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Création de site web vitrine Casablanca" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Création de site e-commerce Casablanca" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Référencement SEO Casablanca" } }
+      ]
+    };
     schema.hasCredential = [
       {
         "@type": "EducationalOccupationalCredential",
