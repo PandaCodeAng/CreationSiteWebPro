@@ -1,0 +1,251 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTAButton from '../components/CTAButton.astro';
+import Icon from '../components/Icon.astro';
+import JsonLd from '../components/JsonLd.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { napInfo } from '../layouts/Layout.astro';
+
+const breadcrumbItems = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Création Site Web Maroc' }
+];
+
+const pageTitle = "Création Site Web Maroc | Agence Web Professionnelle 2024";
+const pageDescription = "Agence experte en création de sites web sur mesure partout au Maroc. Sites vitrines, e-commerce et applications web adaptés au marché marocain. Devis gratuit !";
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": pageTitle,
+  "description": pageDescription,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": napInfo.name,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": napInfo.address.city,
+      "addressCountry": "MA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": napInfo.coordinates.latitude,
+      "longitude": napInfo.coordinates.longitude
+    }
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Maroc"
+  },
+  "serviceType": "Création de site web"
+};
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <JsonLd data={pageSchema} />
+  <main class="creation-site-web-maroc">
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <h1>Création de Site Web Professionnel au Maroc</h1>
+    <p class="intro">Chez CreationSiteWebPro, nous sommes les experts de la création de sites web au Maroc. Nous concevons des solutions web innovantes et sur mesure pour propulser votre entreprise vers le succès digital dans tout le royaume.</p>
+
+    <!-- Contenu similaire à la page creation-site-web-casablanca.astro mais adapté pour tout le Maroc -->
+    
+    <section class="morocco-expertise">
+      <h2>Notre Expertise en Création de Sites Web au Maroc</h2>
+      <p>Chez CreationSiteWebPro, nous sommes fiers d'accompagner les entreprises de tout le Maroc dans leur transformation digitale. Notre équipe comprend les nuances régionales et les spécificités du marché marocain :</p>
+      <ul>
+        <li>Connaissance approfondie des habitudes digitales des consommateurs marocains</li>
+        <li>Solutions adaptées aux différentes régions du Royaume</li>
+        <li>Optimisation pour les recherches en arabe, français et dialecte marocain</li>
+        <li>Intégration des moyens de paiement préférés des Marocains</li>
+        <li>Support multilingue pour toucher toutes les audiences du Maroc</li>
+      </ul>
+      <p>Que vous soyez une start-up ambitieuse ou une entreprise établie au Maroc, nous avons les compétences pour créer un site web qui vous démarquera de la concurrence.</p>
+    </section>
+    
+    <section class="cta-section">
+      <h2>Prêt à Booster Votre Présence En Ligne au Maroc ?</h2>
+      <p>Obtenez un devis gratuit pour votre projet digital au Maroc.</p>
+      <a href="/contact" class="cta-button">Obtenez votre devis gratuit <span class="urgency">Offre limitée!</span></a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .creation-site-web-maroc {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    margin-top: 5rem;
+  }
+
+  h1 {
+    color: var(--color-primary);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .intro {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .morocco-expertise {
+    background-color: #f5f5f5;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .morocco-expertise h2 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .morocco-expertise ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .morocco-expertise li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .morocco-expertise li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+  }
+
+  .cta-section {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 2rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+  }
+  
+  .cta-button:hover {
+    background-color: #ff8533;
+    transform: translateY(-3px);
+  }
+  
+  .urgency {
+    display: inline-block;
+    background-color: #ff4500;
+    color: white;
+    font-size: 0.8em;
+    padding: 0.2em 0.5em;
+    border-radius: 3px;
+    margin-left: 0.5em;
+  }
+
+  @media (max-width: 768px) {
+    .creation-site-web-maroc {
+      padding: 0.5rem;
+      margin-top: 7rem;
+    }
+    
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 459px) {
+    .creation-site-web-maroc {
+      padding: 0.5rem;
+      margin-top: 11rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    serviceCards.forEach(card => {
+      if (card instanceof HTMLElement) {
+        let touchStartTime: number;
+        let touchEndTime: number;
+        
+        card.addEventListener('touchstart', (e: TouchEvent) => {
+          e.preventDefault(); // Empêche le comportement par défaut du navigateur
+          touchStartTime = new Date().getTime();
+          card.style.transform = 'scale(0.98)';
+          card.style.transition = 'transform 0.1s ease-in-out';
+        });
+
+        card.addEventListener('touchend', () => {
+          touchEndTime = new Date().getTime();
+          const touchDuration = touchEndTime - touchStartTime;
+
+          card.style.transform = 'scale(1)';
+
+          // Si le toucher a duré moins de 300ms, considérez-le comme un tap
+          if (touchDuration < 300) {
+            // Simuler un clic pour activer les liens ou autres interactions
+            card.click();
+          }
+        });
+
+        // Gestion du hover pour les appareils non tactiles
+        card.addEventListener('mouseenter', () => {
+          if (window.matchMedia('(hover: hover)').matches) {
+            card.style.transform = 'translateY(-5px)';
+            card.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+          }
+        });
+
+        card.addEventListener('mouseleave', () => {
+          if (window.matchMedia('(hover: hover)').matches) {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+          }
+        });
+      }
+    });
+
+    // Gestion de l'ouverture/fermeture des détails
+    const detailsElements = document.querySelectorAll('details');
+    detailsElements.forEach(details => {
+      details.addEventListener('toggle', () => {
+        if (details.open) {
+          // Faire défiler doucement jusqu'aux détails ouverts
+          setTimeout(() => {
+            details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 300);
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,633 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTAButton from '../components/CTAButton.astro';
+import Icon from '../components/Icon.astro';
+import JsonLd from '../components/JsonLd.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { napInfo } from '../layouts/Layout.astro';
+
+const pageTitle = "Agence digital Maroc | Agence Web Professionnelle 2025";
+const pageDescription = "Agence experte en création de sites web sur mesure partout au Maroc. Sites vitrines, e-commerce et applications web adaptés au marché marocain. Devis gratuit !";
+
+const breadcrumbItems = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Création Site Web Maroc' }
+];
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": pageTitle,
+  "description": pageDescription,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "CreationSiteWebPro"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Casablanca"
+  }
+};
+const services = [
+  {
+    icon: 'web',
+    title: 'Sites Web Vitrines',
+    description: 'Créez une première impression inoubliable avec un site vitrine élégant et performant, adapté au marché de Casablanca.',
+    features: [
+      'Design responsive adapté aux utilisateurs de Casablanca',
+      'Optimisation SEO locale pour Casablanca',
+      'Contenu personnalisé en arabe et en français',
+      'Formulaires de contact adaptés aux préférences locales',
+      'Compatibilité multi-navigateurs pour tous les appareils utilisés à Casablanca'
+    ],
+    cta: 'Créer mon site vitrine à Casablanca'
+  },
+  {
+    icon: 'shopping',
+    title: 'E-commerce',
+    description: 'Transformez vos visiteurs casablancais en clients fidèles avec une boutique en ligne puissante et localisée.',
+    features: [
+      'Gestion de produits adaptée au marché marocain',
+      'Intégration des modes de paiement populaires à Casablanca',
+      'Gestion des stocks en temps réel',
+      'Expérience d\'achat optimisée pour les consommateurs locaux',
+      'Tableau de bord admin en français et en arabe'
+    ],
+    cta: 'Lancer ma boutique en ligne à Casablanca'
+  },
+  {
+    icon: 'cellphone',
+    title: 'Applications Web',
+    description: 'Optimisez vos processus avec des applications web sur mesure, conçues pour les entreprises de Casablanca.',
+    features: [
+      'Interface intuitive adaptée aux utilisateurs marocains',
+      'Fonctionnalités personnalisées pour le marché de Casablanca',
+      'Intégration avec les systèmes locaux',
+      'Gestion des utilisateurs multilingue',
+      'Analyses et rapports adaptés au marché local'
+    ],
+    cta: 'Développer mon application pour Casablanca'
+  },
+  {
+    icon: 'magnify',
+    title: 'SEO & Performance',
+    description: 'Maximisez votre visibilité en ligne à Casablanca et attirez plus de clients qualifiés locaux.',
+    features: [
+      'Audit SEO complet adapté au marché de Casablanca',
+      'Optimisation on-page pour les recherches locales',
+      'Stratégie de contenu ciblée pour l\'audience casablancaise',
+      'Amélioration de la vitesse pour les connexions locales',
+      'Rapports mensuels personnalisés'
+    ],
+    cta: 'Booster mon référencement à Casablanca'
+  }
+];
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": pageTitle,
+  "description": pageDescription,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "CreationSiteWebPro",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Casablanca",
+      "addressCountry": "MA"
+    }
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Casablanca"
+  },
+  "serviceType": "Création de site web",
+  "offers": {
+    "@type": "Offer",
+    "description": "Services de création de sites web professionnels à Casablanca"
+  }
+};
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <JsonLd data={pageSchema} />
+  <main class="creation-site-web-casablanca">
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <h1>Agence digital au Maroc</h1>
+    <p class="intro">Chez CreationSiteWebPro, nous sommes les experts de la création de sites web à Casablanca. Nous concevons des solutions web innovantes et sur mesure pour propulser votre entreprise vers le succès digital dans la capitale économique du Maroc.</p>
+
+    <section class="services-grid">
+      {services.map((service) => (
+        <div class="service-card">
+          <div class="service-header">
+            <Icon name={service.icon} />
+            <h2>{service.title} à Casablanca</h2>
+          </div>
+          <p class="service-description">{service.description}</p>
+          <details>
+            <summary>Caractéristiques pour Casablanca</summary>
+            <ul class="features-list">
+              {service.features.map((feature) => (
+                <li><Icon name="check" /> {feature}</li>
+              ))}
+            </ul>
+          </details>
+          <CTAButton text={service.cta} href={`/creation-site-web-casablanca?service=${encodeURIComponent(service.title)}`} />
+        </div>
+      ))}
+    </section>
+
+    <section class="casablanca-focus">
+      <h2>Création de Site Web Adapté au Marché de Casablanca</h2>
+      <p>Casablanca, cœur économique du Maroc, nécessite une approche unique en matière de présence en ligne. Chez CreationSiteWebPro, nous comprenons les défis et les opportunités spécifiques au marché casablancais :</p>
+      <ul>
+        <li>Design adapté à la culture et aux attentes des consommateurs locaux</li>
+        <li>Optimisation SEO ciblée pour les recherches locales à Casablanca</li>
+        <li>Intégration des modes de paiement préférés des Casablancais</li>
+        <li>Support technique réactif en arabe, français et anglais</li>
+        <li>Conformité aux réglementations marocaines en matière de commerce électronique</li>
+      </ul>
+    </section>
+    <section class="casablanca-expertise">
+      <h2>Notre Expertise en Création de Sites Web à Casablanca</h2>
+      <p>Chez CreationSiteWebPro, nous sommes fiers d'être le partenaire de choix pour la création de sites web à Casablanca. Notre équipe d'experts comprend les défis uniques et les opportunités du marché casablancais :</p>
+      <ul>
+        <li>Compréhension approfondie du paysage digital de Casablanca</li>
+        <li>Expertise en design adapté aux préférences locales</li>
+        <li>Optimisation pour les moteurs de recherche locaux</li>
+        <li>Intégration des meilleures pratiques de l'e-commerce marocain</li>
+        <li>Support technique en arabe, français et anglais</li>
+      </ul>
+      <p>Que vous soyez une start-up ambitieuse ou une entreprise établie à Casablanca, nous avons les compétences pour créer un site web qui vous démarquera de la concurrence.</p>
+    </section>
+    <section class="related-services">
+      <h2>Nos Autres Services de Création Web</h2>
+      <ul>
+        <li><a href="/services/e-commerce-casablanca">Création de Boutiques en Ligne à Casablanca</a></li>
+        <li><a href="/services/referencement-seo-casablanca">Services SEO pour Entreprises Casablancaises</a></li>
+        <li><a href="/portfolio">Découvrez Notre Portfolio de Projets à Casablanca</a></li>
+      </ul>
+    </section>
+    <section class="why-choose-us">
+      <h2>Pourquoi Choisir CreationSiteWebPro à Casablanca ?</h2>
+      <div class="benefits-grid">
+        <div class="benefit">
+          <Icon name="trophy" />
+          <h3>Expertise Locale</h3>
+          <p>10+ ans d'expérience à Casablanca</p>
+        </div>
+        <div class="benefit">
+          <Icon name="rocket" />
+          <h3>Solutions Sur Mesure</h3>
+          <p>Adaptées au marché de Casablanca</p>
+        </div>
+        <div class="benefit">
+          <Icon name="headphones" />
+          <h3>Support Local</h3>
+          <p>Équipe dédiée basée à Casablanca</p>
+        </div>
+        <div class="benefit">
+          <Icon name="tools" />
+          <h3>Technologie de Pointe</h3>
+          <p>Pour des sites performants à Casablanca</p>
+        </div>
+      </div>
+    </section>
+    <section class="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Questions fréquentes sur la création de sites web à Casablanca</h2>
+      <dl>
+        <dt>Combien coûte la création d'un site web à Casablanca ?</dt>
+        <dd>Le coût varie en fonction de vos besoins spécifiques. Nos tarifs commencent à partir de 4 776 MAD pour un site vitrine de base. Contactez-nous pour un devis personnalisé.</dd>
+        
+        <dt>Combien de temps faut-il pour créer un site web ?</dt>
+        <dd>La durée de création dépend de la complexité du projet. En général, un site vitrine peut être réalisé en 2 à 4 semaines, tandis qu'un e-commerce peut prendre 4 à 8 semaines.</dd>
+        
+        <!-- Ajoutez d'autres questions pertinentes -->
+      </dl>
+    </section>
+    <section id="contact" class="cta-section">
+      <h2>Prêt à Booster Votre Présence En Ligne à Casablanca ?</h2>
+      <p>Obtenez un devis gratuit pour votre projet digital à Casablanca.</p>
+      <a href="/creation-site-web-casablanca" class="cta-button">Obtenez votre devis gratuit <span class="urgency">Offre limitée!</span></a>
+      <p class="social-proof">Déjà plus de 1000 entreprises satisfaites</p>
+  </section>
+  </main>
+</Layout>
+
+<style>
+  /* Base styles (mobile-first) */
+  .creation-site-web-casablanca {
+    padding: 1rem;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin-top: 10rem;
+  }
+  .social-proof {
+    margin-top: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: bold;
+  }
+  .cta-button {
+    display: inline-block;
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+  }
+  .cta-button:hover {
+    background-color: #ff8533;
+    transform: translateY(-3px);
+  }
+  .urgency {
+    display: inline-block;
+    background-color: #ff4500;
+    color: white;
+    font-size: 0.8em;
+    padding: 0.2em 0.5em;
+    border-radius: 3px;
+    margin-left: 0.5em;
+  }
+  h1 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .services-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .service-card {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .service-card:active {
+    transform: scale(0.98);
+  }
+
+  .service-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .service-header svg {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+    color: var(--color-secondary);
+  }
+
+  .service-card h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--color-primary);
+  }
+
+  .service-description {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  details {
+    margin-bottom: 1rem;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .features-list {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .features-list li {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .features-list svg {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    color: var(--color-secondary);
+  }
+
+  .casablanca-focus {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+  }
+
+  .casablanca-focus h2 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .casablanca-focus ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .casablanca-focus li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .casablanca-focus li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+  }
+
+  .why-choose-us {
+    background-color: #e6f2ff;
+    padding: 2rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+  }
+
+  .why-choose-us h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .benefits-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .benefit {
+    text-align: center;
+  }
+
+  .benefit svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .benefit p {
+    font-size: 0.9rem;
+  }
+
+  .cta-section {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 2rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .related-services, .casablanca-expertise {
+    background-color: #f5f5f5;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .related-services h2, .casablanca-expertise h2 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .related-services ul, .casablanca-expertise ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .related-services li, .casablanca-expertise li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .related-services li::before, .casablanca-expertise li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+  }
+
+  .related-services a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .related-services a:hover {
+    color: var(--color-secondary);
+  }
+  /* Tablet styles */
+  @media (min-width: 768px) {
+    .creation-site-web-casablanca {
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .intro {
+      font-size: 1.1rem;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Desktop styles */
+  @media (min-width: 1024px) {
+    .creation-site-web-casablanca {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      margin-top: 5rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    .intro {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .benefits-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* Adjustments for very small screens */
+  @media (max-width: 459px) {
+    .creation-site-web-casablanca {
+      padding: 0.5rem;
+      margin-top: 11rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    .intro {
+      font-size: 0.9rem;
+    }
+
+    .service-card {
+      padding: 1rem;
+    }
+
+    .service-card h2 {
+      font-size: 1.1rem;
+    }
+
+    .service-description, .features-list li {
+      font-size: 0.8rem;
+    }
+
+    .why-choose-us {
+      padding: 1.5rem 0.5rem;
+    }
+
+    .why-choose-us h2 {
+      font-size: 1.3rem;
+    }
+
+    .benefit h3 {
+      font-size: 0.9rem;
+    }
+
+    .benefit p {
+      font-size: 0.8rem;
+    }
+
+    .cta-section h2 {
+      font-size: 1.3rem;
+    }
+
+    .cta-section p {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    serviceCards.forEach(card => {
+      if (card instanceof HTMLElement) {
+        let touchStartTime: number;
+        let touchEndTime: number;
+        
+        card.addEventListener('touchstart', (e: TouchEvent) => {
+          e.preventDefault(); // Empêche le comportement par défaut du navigateur
+          touchStartTime = new Date().getTime();
+          card.style.transform = 'scale(0.98)';
+          card.style.transition = 'transform 0.1s ease-in-out';
+        });
+
+        card.addEventListener('touchend', () => {
+          touchEndTime = new Date().getTime();
+          const touchDuration = touchEndTime - touchStartTime;
+
+          card.style.transform = 'scale(1)';
+
+          // Si le toucher a duré moins de 300ms, considérez-le comme un tap
+          if (touchDuration < 300) {
+            // Simuler un clic pour activer les liens ou autres interactions
+            card.click();
+          }
+        });
+
+        // Gestion du hover pour les appareils non tactiles
+        card.addEventListener('mouseenter', () => {
+          if (window.matchMedia('(hover: hover)').matches) {
+            card.style.transform = 'translateY(-5px)';
+            card.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+          }
+        });
+
+        card.addEventListener('mouseleave', () => {
+          if (window.matchMedia('(hover: hover)').matches) {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+          }
+        });
+      }
+    });
+
+    // Gestion de l'ouverture/fermeture des détails
+    const detailsElements = document.querySelectorAll('details');
+    detailsElements.forEach(details => {
+      details.addEventListener('toggle', () => {
+        if (details.open) {
+          // Faire défiler doucement jusqu'aux détails ouverts
+          setTimeout(() => {
+            details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 300);
+        }
+      });
+    });
+  });
+</script>

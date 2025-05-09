@@ -1,4 +1,5 @@
 ---
+import { napInfo } from '../layouts/Layout.astro';
 const currentYear = new Date().getFullYear();
 ---
 <footer>
@@ -10,35 +11,37 @@ const currentYear = new Date().getFullYear();
     <div class="footer-section">
       <h3>Liens rapides</h3>
       <ul>
-        <li> <a href="/services/creation-site-web-casablanca">Création Site Web Casablanca</a></li>
+        <li><a href="/creation-site-web-casablanca">Création Site Web Casablanca</a></li>
+        <li><a href="/creation-site-web-maroc">Création Site Web Maroc</a></li>
+        <li><a href="/agence-digitale-maroc">Agence Digitale Maroc</a></li>
         <li><a href="/portfolio-realisations-web-casablanca-maroc">Portfolio</a></li>
         <li><a href="/a-propos-agence-web-casablanca">À propos</a></li>
-        <li><a href="/creation-site-web-casablanca">Contact</a></li>
+        <li><a href="/contact">Contact</a></li>
         <li><a href="/blog">Blog</a></li>
         <li><a href="/faq-creation-site-web-maroc">FAQ</a></li>
       </ul>
     </div>
     <div class="footer-section">
       <h3>Contact</h3>
-      <p>Email: 	contact@creationsitewebpro.com</p>
-      <p>Tél: +212 6 79 78 29 06</p>
+      <div class="nap-info" itemscope itemtype="https://schema.org/LocalBusiness">
+        <span itemprop="name">{napInfo.name}</span>
+        <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <span itemprop="streetAddress">{napInfo.address.street}</span>,
+          <span itemprop="addressLocality">{napInfo.address.city}</span>
+          <span itemprop="postalCode">{napInfo.address.postalCode}</span>,
+          <span itemprop="addressCountry">{napInfo.address.country}</span>
+        </div>
+        <div>
+          Téléphone: <a href={`tel:${napInfo.phone.replace(/\s+/g, '')}`} itemprop="telephone">{napInfo.phone}</a>
+        </div>
+        <div>
+          Email: <a href={`mailto:${napInfo.email}`} itemprop="email">{napInfo.email}</a>
+        </div>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
     <p>&copy; {currentYear} CreationSiteWebPro. Tous droits réservés.</p>
-  </div>
-  <div itemscope itemtype="http://schema.org/LocalBusiness">
-    <h3 itemprop="name">CreationSiteWebPro</h3>
-    <meta itemprop="image" content="https://creationsitewebpro.com/images/logo.png" />
-    <meta itemprop="priceRange" content="€€" />
-    <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-      <span itemprop="streetAddress">Ain Sebaa</span>,
-      <span itemprop="addressLocality">Casablanca</span>,
-      <span itemprop="postalCode">20000</span>,
-      <span itemprop="addressCountry">MA</span>
-    </p>
-    <p>Téléphone: <span itemprop="telephone">+212 6 79 78 29 06</span></p>
-    <p>Email: <span itemprop="email">	contact@creationsitewebpro.com</span></p>
   </div>
 </footer>
 

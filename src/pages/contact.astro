@@ -1,0 +1,588 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTAButton from '../components/CTAButton.astro';
+import Icon from '../components/Icon.astro';
+import JsonLd from '../components/JsonLd.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { napInfo } from '../layouts/Layout.astro';
+
+const breadcrumbItems = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Contact' }
+];
+
+const pageTitle = "Contact | Agence Web à Casablanca et au Maroc";
+const pageDescription = "Contactez notre équipe d'experts en création de sites web à Casablanca. Devis gratuit pour la création de votre site ou application sur mesure au Maroc.";
+
+const contactMethods = [
+  {
+    icon: 'phone',
+    title: 'Appelez-nous',
+    content: napInfo.phone,
+    action: `tel:${napInfo.phone.replace(/\s+/g, '')}`
+  },
+  {
+    icon: 'email',
+    title: 'Envoyez-nous un email',
+    content: napInfo.email,
+    action: `mailto:${napInfo.email}`
+  },
+  {
+    icon: 'map-marker',
+    title: 'Visitez-nous',
+    content: `${napInfo.address.street}, ${napInfo.address.postalCode} ${napInfo.address.city}, ${napInfo.address.country}`,
+    action: 'https://maps.app.goo.gl/b9iNw8ijonfNrXWA7'
+  }
+];
+
+const faqs = [
+  {
+    question: "Combien coûte la création d'un site web ?",
+    answer: "Le coût varie en fonction de vos besoins spécifiques. Nous offrons des solutions sur mesure pour tous les budgets. Contactez-nous pour un devis gratuit et personnalisé."
+  },
+  {
+    question: "Combien de temps faut-il pour créer un site web ?",
+    answer: "La durée dépend de la complexité du projet. En général, un site vitrine prend 2-4 semaines, tandis qu'un e-commerce peut prendre 4-8 semaines. Nous établissons un calendrier précis au début de chaque projet."
+  },
+  {
+    question: "Proposez-vous des services de maintenance après le lancement du site ?",
+    answer: "Absolument ! Nous offrons des forfaits de maintenance pour garder votre site à jour, sécurisé et performant. Votre tranquillité d'esprit est notre priorité."
+  }
+];
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": pageTitle,
+  "description": pageDescription,
+  "mainEntity": {
+    "@type": "LocalBusiness",
+    "name": napInfo.name,
+    "telephone": napInfo.phone.replace(/\s+/g, ''),
+    "email": napInfo.email,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": napInfo.address.street,
+      "addressLocality": napInfo.address.city,
+      "postalCode": napInfo.address.postalCode,
+      "addressCountry": "MA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": napInfo.coordinates.latitude,
+      "longitude": napInfo.coordinates.longitude
+    }
+  }
+};
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <JsonLd data={contactSchema} />
+
+  <main class="contact-page">
+    <Breadcrumbs items={breadcrumbItems} />
+    <h1>Contactez Notre Agence Web à Casablanca</h1>
+    
+    <p class="intro">Vous avez un projet de création de site web à Casablanca ou ailleurs au Maroc ? Notre équipe d'experts est à votre disposition pour vous accompagner dans la réalisation de votre projet digital. Contactez-nous dès aujourd'hui pour obtenir un devis gratuit et personnalisé.</p>
+
+    <section class="contact-methods">
+      {contactMethods.map((method) => (
+        <div class="contact-card">
+          <Icon name={method.icon} />
+          <h2>{method.title}</h2>
+          <p>{method.content}</p>
+          <a href={method.action} class="contact-action">Contacter</a>
+        </div>
+      ))}
+    </section>
+
+    <section class="map-section">
+      <h2>Nous trouver à Casablanca</h2>
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106376.72691566402!2d-7.6190!3d33.5731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7cd4778aa113b%3A0xb06c1d84f310fd3!2sAin%20Sebaa%2C%20Casablanca%2C%20Maroc!5e0!3m2!1sfr!2s!4v1617000000000!5m2!1sfr!2s" 
+          width="100%" 
+          height="450" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+
+    <section class="contact-form">
+      <h2>Demandez un Devis Gratuit</h2>
+      <p>Remplissez ce formulaire et nous vous contacterons dans les 24 heures avec une proposition personnalisée.</p>
+      <form id="contact-form">
+        <div>
+          <label for="name">Nom</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div>
+          <label for="phone">Téléphone</label>
+          <input type="tel" id="phone" name="phone" />
+        </div>
+        <div>
+          <label for="projectType">Type de projet</label>
+          <select id="projectType" name="projectType">
+            <option value="site-vitrine">Site Vitrine</option>
+            <option value="e-commerce">E-commerce</option>
+            <option value="application-web">Application Web</option>
+            <option value="refonte-site">Refonte de Site</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="cta-button">Envoyer</button>
+      </form>
+    </section>
+
+    <section class="faq">
+      <h2>Questions Fréquentes</h2>
+      {faqs.map((item) => (
+        <details>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="local-info">
+      <h2>Notre Présence au Maroc</h2>
+      <p>Basée à Casablanca, notre agence web intervient dans tout le Maroc pour accompagner les entreprises dans leur transformation digitale. Nous sommes fiers de servir des clients à :</p>
+      
+      <div class="cities-grid">
+        <div class="city-item">
+          <h3>Casablanca</h3>
+          <p>Notre siège principal, où notre équipe d'experts est à votre disposition pour des rendez-vous en personne.</p>
+        </div>
+        
+        <div class="city-item">
+          <h3>Rabat</h3>
+          <p>Nous intervenons régulièrement dans la capitale administrative pour accompagner nos clients.</p>
+        </div>
+        
+        <div class="city-item">
+          <h3>Marrakech</h3>
+          <p>Notre équipe se déplace à Marrakech pour des projets dans le secteur touristique et commercial.</p>
+        </div>
+        
+        <div class="city-item">
+          <h3>Tanger</h3>
+          <p>Nous accompagnons les entreprises tangéroises dans leur développement digital.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+  
+      // Déterminez l'URL en fonction de l'environnement
+      const apiUrl = import.meta.env.DEV 
+        ? '/api/send-email' 
+        : '/.netlify/functions/send-email';
+  
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+  
+        if (response.ok) {
+          const result = await response.json();
+          alert(result.message);
+          form.reset();
+        } else {
+          throw new Error('Erreur lors de l\'envoi du message');
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue. Veuillez réessayer.');
+      }
+    });
+  </script>
+</Layout>
+
+<style>
+  .contact-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    margin-top: 5rem;
+  }
+
+  h1 {
+    color: var(--color-primary);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .intro {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .contact-methods {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-card {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .contact-card h2 {
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    color: var(--color-secondary);
+    margin: 0.5rem 0;
+  }
+
+  .contact-card p {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+    margin-bottom: 1rem;
+  }
+
+  .contact-action {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-secondary);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    transition: background-color 0.3s ease;
+  }
+
+  .contact-action:hover {
+    background-color: var(--color-primary);
+  }
+  
+  .map-section {
+    margin: 3rem 0;
+  }
+
+  .map-section h2 {
+    color: var(--color-primary);
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .map-container {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .map-container iframe {
+    display: block;
+    width: 100%;
+    height: 450px;
+    border: none;
+  }
+
+  .contact-form {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .contact-form h2 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+  }
+
+  .cta-button {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: var(--color-secondary);
+  }
+
+  .faq {
+    margin-bottom: 2rem;
+  }
+
+  .faq h2 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  details {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+  }
+
+  summary {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+  }
+
+  details p {
+    margin-top: 1rem;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+  }
+  
+  .local-info {
+    background-color: #f0f8ff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .local-info h2 {
+    color: var(--color-primary);
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    margin-bottom: 1rem;
+  }
+
+  .cities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .city-item {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .city-item h3 {
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .map-section {
+      margin: 2rem 0;
+    }
+    
+    .map-container iframe {
+      height: 350px;
+    }
+    
+    .contact-page {
+      padding: 0.5rem;
+      margin-top: 7rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .map-container iframe {
+      height: 250px;
+    }
+    
+    .contact-page {
+      padding: 0.5rem;
+      margin-top: 11rem;
+    }
+  }
+
+  @media (max-width: 459px) {
+    .contact-page {
+      padding: 0.5rem;
+      margin-top: 11rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .contact-methods {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .contact-form {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .contact-page {
+      padding: 0.5rem;
+      margin-top: 11rem;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+    }
+
+    .intro {
+      font-size: 0.8rem;
+    }
+
+    .contact-card {
+      padding: 0.75rem;
+    }
+
+    .contact-card h2 {
+      font-size: 1rem;
+    }
+
+    .contact-card p {
+      font-size: 0.75rem;
+    }
+
+    .contact-action {
+      font-size: 0.75rem;
+      padding: 0.4rem 0.8rem;
+    }
+
+    .contact-form {
+      padding: 1rem;
+    }
+
+    .contact-form h2 {
+      font-size: 1.1rem;
+    }
+
+    label {
+      font-size: 0.75rem;
+    }
+
+    input, select, textarea {
+      font-size: 0.75rem;
+      padding: 0.4rem;
+    }
+
+    .cta-button {
+      font-size: 0.8rem;
+      padding: 0.6rem 1.2rem;
+    }
+
+    .faq h2 {
+      font-size: 1.1rem;
+    }
+
+    summary {
+      font-size: 0.8rem;
+    }
+
+    details p {
+      font-size: 0.75rem;
+    }
+  }
+</style>
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    serviceCards.forEach(card => {
+      if (card instanceof HTMLElement) {
+        let touchStartTime: number;
+        let touchEndTime: number;
+        
+        card.addEventListener('touchstart', (e: TouchEvent) => {
+          e.preventDefault(); // Empêche le comportement par défaut du navigateur
+          touchStartTime = new Date().getTime();
+          card.style.transform = 'scale(0.98)';
+          card.style.transition = 'transform 0.1s ease-in-out';
+        });
+
+        card.addEventListener('touchend', () => {
+          touchEndTime = new Date().getTime();
+          const touchDuration = touchEndTime - touchStartTime;
+
+          card.style.transform = 'scale(1)';
+
+          // Si le toucher a duré moins de 300ms, considérez-le comme un tap
+          if (touchDuration < 300) {
+            // Simuler un clic pour activer les liens ou autres interactions
+            card.click();
+          }
+        });
+
+        // Gestion du hover pour les appareils non tactiles
+        card.addEventListener('mouseenter', () => {
+          if (window.matchMedia('(hover: hover)').matches) {
+            card.style.transform = 'translateY(-5px)';
+            card.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+          }
+        });
+
+        card.addEventListener('mouseleave', () => {
+          if (window.matchMedia('(hover: hover)').matches) {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+          }
+        });
+      }
+    });
+
+    // Gestion de l'ouverture/fermeture des détails
+    const detailsElements = document.querySelectorAll('details');
+    detailsElements.forEach(details => {
+      details.addEventListener('toggle', () => {
+        if (details.open) {
+          // Faire défiler doucement jusqu'aux détails ouverts
+          setTimeout(() => {
+            details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 300);
+        }
+      });
+    });
+  });
+</script>

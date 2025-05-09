@@ -13,7 +13,18 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
+[[redirects]]
+  from = "/services/creation-site-web-casablanca"
+  to = "/creation-site-web-casablanca"
+  status = 301
+  force = true
 
+[[redirects]]
+  from = "/creation-site-web-casablanca.astro.bak"
+  to = "/contact"
+  status = 301
+  force = true
+  
 [[headers]]
   for = "/*"
   [headers.values]
