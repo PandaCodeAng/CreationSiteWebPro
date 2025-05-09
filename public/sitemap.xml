@@ -10,7 +10,7 @@
     <loc>https://creationsitewebpro.com/creation-site-web-casablanca</loc>
     <lastmod>2025-05-09</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.98</priority>
   </url>
   <url>
     <loc>https://creationsitewebpro.com/services</loc>
@@ -49,57 +49,15 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://creationsitewebpro.com/a-propos-agence-web-casablanca</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://creationsitewebpro.com/faq-creation-site-web-maroc</loc>
     <lastmod>2025-05-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://creationsitewebpro.com/blog</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creationsitewebpro.com/blog/prix-creation-site-web-casablanca-2024</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://creationsitewebpro.com/blog/guide-digitalisation-entreprise-marocaine-2024</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://creationsitewebpro.com/blog/guide-creation-site-web-casablanca-2024</loc>
+    <loc>https://creationsitewebpro.com/blog/creation-site-web-casablanca-guide</loc>
     <lastmod>2025-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://creationsitewebpro.com/blog/guide-ecommerce-maroc-site-web-performant</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://creationsitewebpro.com/contact</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://creationsitewebpro.com/mentions-legales</loc>
-    <lastmod>2025-05-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
   </url>
 </urlset>
