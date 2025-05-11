@@ -1,11 +1,11 @@
 import { defineConfig } from 'astro/config';
-import netlify from '@astrojs/netlify/functions';
+import netlify from '@astrojs/netlify';
 import sitemap from '@astrojs/sitemap';
 import compress from 'astro-compress';
 
 export default defineConfig({
   site: 'https://creationsitewebpro.com',
-  output: 'server',
+  output: 'hybrid',
   adapter: netlify(),
   integrations: [
     sitemap(),

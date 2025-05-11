@@ -1,8 +1,13 @@
 ---
 import { testimonials } from '../data/testimonials';
 
-// Calculer la moyenne des notes
-const averageRating = testimonials.reduce((acc, curr) => acc + curr.rating, 0) / testimonials.length;
+// S'assurer que testimonials est un tableau valide
+const validTestimonials = Array.isArray(testimonials) ? testimonials : [];
+
+// Calculer la moyenne des notes (avec vérification)
+const averageRating = validTestimonials.length > 0 
+  ? validTestimonials.reduce((acc, curr) => acc + curr.rating, 0) / validTestimonials.length
+  : 5; // Valeur par défaut si aucun témoignage
 
 // Définir l'objet complet des données structurées
 const structuredData = {
@@ -18,15 +23,14 @@ const structuredData = {
     "addressCountry": "MA"
   },
   "telephone": "+212679782906",
-  "priceRange": "€€",
-  "aggregateRating": {
+  "priceRange": "€€",  "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": averageRating.toFixed(1),
-    "reviewCount": testimonials.length,
+    "reviewCount": validTestimonials.length,
     "bestRating": 5,
     "worstRating": 1
   },
-  "review": testimonials.map(testimonial => ({
+  "review": validTestimonials.map(testimonial => ({
     "@type": "Review",
     "itemReviewed": {
       "@type": "LocalBusiness",
@@ -82,11 +86,10 @@ const structuredData = {
       </div>
     </div>
   </div>
-
   <div class="testimonials-container">
     <h2>Ils Nous Font Confiance à Casablanca</h2>
     <div class="testimonials">
-      {testimonials.map((testimonial) => (
+      {validTestimonials.map((testimonial) => (
         <article class="testimonial" itemscope itemtype="https://schema.org/Review">
           <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/LocalBusiness">
             <meta itemprop="name" content="CreationSiteWebPro" />

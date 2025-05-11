@@ -1,17 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-  <defs>
-    <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0396A6" />
-      <stop offset="100%" stop-color="#05668D" />
-    </linearGradient>
-  </defs>
-  <circle cx="100" cy="100" r="95" fill="white" stroke="#0396A6" stroke-width="2"/>
-  <path d="M30,110 C60,80 70,130 100,110 C130,90 140,140 170,110" stroke="url(#wave-gradient)" stroke-width="8" fill="none" stroke-linecap="round"/>
-  <path d="M30,130 C60,100 70,150 100,130 C130,110 140,160 170,130" stroke="url(#wave-gradient)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.7"/>
-  <path d="M30,150 C60,120 70,170 100,150 C130,130 140,180 170,150" stroke="url(#wave-gradient)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.4"/>
-  <path d="M85,35 L115,35 C118,35 120,37 120,40 L120,60 C120,63 118,65 115,65 L85,65 C82,65 80,63 80,60 L80,40 C80,37 82,35 85,35" fill="#FFA400"/>
-  <rect x="95" y="65" width="10" height="30" fill="#FFA400"/>
-  <text x="100" y="54" font-family="Arial, sans-serif" font-weight="bold" font-size="13" text-anchor="middle" fill="white">SURF</text>
-  <text x="100" y="85" font-family="Arial, sans-serif" font-weight="bold" font-size="14" text-anchor="middle" fill="#05668D">MOROCCO</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><linearGradient id="a" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="#0396A6"/><stop offset="100%" stop-color="#05668D"/></linearGradient></defs><circle cx="100" cy="100" r="95" fill="#fff" stroke="#0396A6" stroke-width="2"/><path fill="none" stroke="url(#a)" stroke-linecap="round" stroke-width="8" d="M30 110c30-30 40 20 70 0s40 30 70 0"/><path fill="none" stroke="url(#a)" stroke-linecap="round" stroke-width="8" d="M30 130c30-30 40 20 70 0s40 30 70 0" opacity=".7"/><path fill="none" stroke="url(#a)" stroke-linecap="round" stroke-width="8" d="M30 150c30-30 40 20 70 0s40 30 70 0" opacity=".4"/><path fill="#FFA400" d="M85 35h30c3 0 5 2 5 5v20c0 3-2 5-5 5H85c-3 0-5-2-5-5V40c0-3 2-5 5-5m10 30h10v30H95z"/><text x="100" y="54" fill="#fff" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle">SURF</text><text x="100" y="85" fill="#05668D" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">MOROCCO</text></svg>

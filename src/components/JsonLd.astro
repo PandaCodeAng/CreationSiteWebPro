@@ -17,9 +17,8 @@ const { data, breadcrumbs } = Astro.props;
 // Construction du schéma enrichi
 const enrichSchema = (baseData: Record<string, any>) => {
   const schema = { ...baseData };
-
   // Ajout des breadcrumbs si fournis
-  if (breadcrumbs && Astro.site) {
+  if (breadcrumbs && Array.isArray(breadcrumbs) && breadcrumbs.length > 0 && Astro.site) {
     schema.breadcrumb = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
