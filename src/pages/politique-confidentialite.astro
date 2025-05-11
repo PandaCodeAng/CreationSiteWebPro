@@ -1,0 +1,203 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { napInfo } from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const pageTitle = "Politique de Confidentialité - CreationSiteWebPro";
+const pageDescription = "Découvrez notre politique de confidentialité et comment nous protégeons vos données personnelles.";
+
+const breadcrumbItems = [
+  { name: "Accueil", url: "/" },
+  { name: "Politique de Confidentialité", url: "/politique-confidentialite" },
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main class="privacy-page">
+    <Breadcrumbs items={breadcrumbItems} />
+    
+    <section class="privacy-header">
+      <div class="container">
+        <h1>Politique de Confidentialité</h1>
+        <p>Comment nous protégeons vos données et respectons votre vie privée</p>
+      </div>
+    </section>
+
+    <section class="privacy-content">
+      <div class="container">
+        <div class="privacy-section">
+          <h2>Introduction</h2>
+          <p>Chez {napInfo.name}, nous accordons une grande importance à la confidentialité de vos données personnelles. Cette politique de confidentialité explique comment nous collectons, utilisons, partageons et protégeons vos informations lorsque vous utilisez notre site web et nos services.</p>
+          <p>En utilisant notre site, vous acceptez les pratiques décrites dans la présente politique de confidentialité.</p>
+        </div>
+
+        <div class="privacy-section">
+          <h2>Collecte des données</h2>
+          <p>Nous pouvons collecter les types d'informations suivants :</p>
+          <ul>
+            <li><strong>Informations personnelles :</strong> Nom, prénom, adresse e-mail, numéro de téléphone, adresse postale, lorsque vous nous contactez ou utilisez nos services.</li>
+            <li><strong>Informations de navigation :</strong> Adresse IP, type de navigateur, pages visitées, durée de la visite, via des cookies et technologies similaires.</li>
+            <li><strong>Informations de paiement :</strong> Coordonnées bancaires ou de carte de crédit lorsque vous effectuez un achat ou souscrivez à un service.</li>
+          </ul>
+        </div>
+
+        <div class="privacy-section">
+          <h2>Utilisation des données</h2>
+          <p>Nous utilisons vos données personnelles pour :</p>
+          <ul>
+            <li>Fournir, exploiter et maintenir nos services</li>
+            <li>Améliorer, personnaliser et développer nos services</li>
+            <li>Comprendre comment vous utilisez notre site</li>
+            <li>Communiquer avec vous concernant nos services</li>
+            <li>Traiter vos paiements et prévenir la fraude</li>
+            <li>Vous envoyer des informations marketing (avec votre consentement)</li>
+            <li>Respecter nos obligations légales</li>
+          </ul>
+        </div>
+
+        <div class="privacy-section">
+          <h2>Partage des données</h2>
+          <p>Nous ne vendons pas vos données personnelles à des tiers. Nous pouvons partager vos informations dans les situations suivantes :</p>
+          <ul>
+            <li>Avec des prestataires de services tiers qui nous aident à exploiter notre site et nos services</li>
+            <li>Pour respecter des obligations légales</li>
+            <li>Pour protéger nos droits, notre vie privée, notre sécurité ou notre propriété</li>
+            <li>Dans le cadre d'une fusion, acquisition ou vente d'actifs</li>
+            <li>Avec votre consentement ou selon vos instructions</li>
+          </ul>
+        </div>
+
+        <div class="privacy-section">
+          <h2>Cookies et technologies similaires</h2>
+          <p>Notre site utilise des cookies et d'autres technologies similaires pour collecter des informations sur votre navigation. Ces technologies nous permettent de personnaliser votre expérience, d'analyser l'utilisation du site et d'optimiser nos services.</p>
+          <p>Vous pouvez configurer votre navigateur pour refuser les cookies ou vous alerter lorsque des cookies sont envoyés. Cependant, certaines parties de notre site peuvent ne pas fonctionner correctement si vous désactivez les cookies.</p>
+        </div>
+
+        <div class="privacy-section">
+          <h2>Sécurité des données</h2>
+          <p>Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles appropriées pour protéger vos données personnelles contre la perte, l'accès non autorisé, la divulgation, l'altération et la destruction.</p>
+        </div>
+
+        <div class="privacy-section">
+          <h2>Conservation des données</h2>
+          <p>Nous conservons vos données personnelles aussi longtemps que nécessaire pour atteindre les objectifs décrits dans cette politique de confidentialité, sauf si une période de conservation plus longue est requise ou permise par la loi.</p>
+        </div>
+
+        <div class="privacy-section">
+          <h2>Vos droits</h2>
+          <p>Conformément à la loi 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel, vous disposez des droits suivants :</p>
+          <ul>
+            <li>Droit d'accès à vos données personnelles</li>
+            <li>Droit de rectification des données inexactes</li>
+            <li>Droit à l'effacement de vos données</li>
+            <li>Droit à la limitation du traitement</li>
+            <li>Droit à la portabilité des données</li>
+            <li>Droit d'opposition au traitement</li>
+            <li>Droit de retirer votre consentement à tout moment</li>
+          </ul>
+          <p>Pour exercer ces droits, veuillez nous contacter à {napInfo.email}</p>
+        </div>
+
+        <div class="privacy-section">
+          <h2>Modifications de la politique de confidentialité</h2>
+          <p>Nous pouvons mettre à jour notre politique de confidentialité de temps à autre. Nous vous informerons de tout changement en publiant la nouvelle politique de confidentialité sur cette page et en mettant à jour la date de "dernière mise à jour".</p>
+        </div>
+
+        <div class="privacy-section">
+          <h2>Nous contacter</h2>
+          <p>Si vous avez des questions concernant cette politique de confidentialité, veuillez nous contacter :</p>
+          <ul>
+            <li>Par email : {napInfo.email}</li>
+            <li>Par téléphone : {napInfo.phone}</li>
+            <li>Par courrier : {napInfo.address.street}, {napInfo.address.city}, {napInfo.address.postalCode}, {napInfo.address.country}</li>
+          </ul>
+        </div>
+
+        <div class="privacy-section">
+          <p class="update-date"><strong>Dernière mise à jour :</strong> 10 mai 2025</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .privacy-page {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+  }
+
+  .privacy-header {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .privacy-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .privacy-content {
+    padding: 3rem 0;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  .privacy-section {
+    margin-bottom: 3rem;
+  }
+
+  .privacy-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .privacy-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-primary);
+  }
+
+  .privacy-section p, .privacy-section ul {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .privacy-section ul {
+    padding-left: 1.5rem;
+  }
+
+  .privacy-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .update-date {
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .privacy-header {
+      padding: 2rem 0;
+    }
+
+    .privacy-header h1 {
+      font-size: 2rem;
+    }
+
+    .privacy-content {
+      padding: 2rem 0;
+    }
+
+    .privacy-section h2 {
+      font-size: 1.3rem;
+    }
+  }
+</style>

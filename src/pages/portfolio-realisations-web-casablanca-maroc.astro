@@ -8,6 +8,30 @@ const pageDescription = "Explorez nos projets de sites web et d'applications ré
 
 const projects = [
   {
+    title: "Executive Travel - Agence de Voyage",
+    description: "Création d'un site premium pour une agence de voyage de luxe, offrant une expérience utilisateur fluide et élégante.",
+    image: "/images/executive-travel.webp",
+    tags: ["Site Vitrine", "Tourisme", "Premium"],
+    results: ["Augmentation des réservations de 45%", "Temps de navigation moyen de 4 minutes", "Taux de rebond réduit à 25%"],
+    url: "https://executivetravel.fr/"
+  },
+  {
+    title: "Essaouira Spirit - Tourisme Marocain",
+    description: "Développement d'une plateforme mettant en valeur les attractions touristiques d'Essaouira avec une interface immersive.",
+    image: "/images/essaouira-spirit.jpg",
+    tags: ["Tourisme", "Culture", "Design Immersif"],
+    results: ["200+ réservations mensuelles", "Visibilité internationale accrue", "Intégration de fonctions multilingues"],
+    url: "https://www.essaouiraspirit.ma/"
+  },
+  {
+    title: "Restaurant Le Cely - Gastronomie",
+    description: "Conception d'un site moderne pour un restaurant gastronomique, facilitant les réservations en ligne et la présentation des menus.",
+    image: "/images/le-cely.webp",
+    tags: ["Restauration", "E-réservation", "Gastronomie"],
+    results: ["Réservations en ligne augmentées de 60%", "Présentation interactive des menus", "Fidélisation client améliorée"],
+    url: "https://restaurantlecely.fr/"
+  },
+  {
     title: "E-commerce Luxe pour Maison de Parfum",
     description: "Refonte complète d'une boutique en ligne, résultant en une augmentation de 200% des ventes en 6 mois.",
     image: "/images/parfum-ecommerce.jpg",
@@ -32,22 +56,24 @@ const projects = [
 
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
-  <main class="portfolio-page">
+<Layout title={pageTitle} description={pageDescription}>  <main class="portfolio-page">
     <h1>{pageTitle}</h1>
     <p class="intro">{pageDescription}</p>
-
-    <section class="projects">
+    
+    <div class="highlight-section">
+      <h2 class="highlight-title">Découvrez nos dernières réalisations</h2>
+      <p class="highlight-text">Nous sommes fiers de vous présenter nos projets les plus récents, démontrant notre expertise dans différents secteurs, du tourisme à la gastronomie.</p>
+    </div><section class="projects">
       {projects.map((project, index) => (
         <div class="project-card">
-        <OptimizedImage 
+          <OptimizedImage 
             src={project.image} 
             alt={project.title} 
             className="project-image"
             width={400} 
             height={300} 
           />      
-         <div class="project-details">
+          <div class="project-details">
             <h2>{project.title}</h2>
             <p>{project.description}</p>
             <div class="tags">
@@ -57,22 +83,34 @@ const projects = [
             <ul class="results">
               {project.results.map(result => <li>{result}</li>)}
             </ul>
-            <CTAButton text="Voir le projet" href={`#project-modal-${index}`} />
+            {project.url ? (
+              <CTAButton text="Visiter le site" href={project.url} targetBlank={true} />
+            ) : (
+              <CTAButton text="Voir le projet" href={`#project-modal-${index}`} />
+            )}
           </div>
         </div>
       ))}
-    </section>
-
-    <section class="social-proof">
+    </section>    <section class="social-proof">
       <h2>Ce que disent nos clients</h2>
       <div class="testimonials">
         <blockquote>
-          "L'équipe de CreationSiteWebPro a transformé notre présence en ligne. Leur expertise en SEO nous a permis d'atteindre de nouveaux sommets!"
-          - Marie Dupont, PDG de TechInnovate
+          <div class="testimonial-content">
+            <div class="testimonial-avatar">MD</div>
+            <div class="testimonial-text">
+              "L'équipe de CreationSiteWebPro a transformé notre présence en ligne. Leur expertise en SEO nous a permis d'atteindre de nouveaux sommets!"
+              <cite>Marie Dupont, PDG de TechInnovate</cite>
+            </div>
+          </div>
         </blockquote>
         <blockquote>
-          "Un travail exceptionnel! Notre e-commerce a vu ses ventes exploser grâce à leur refonte intelligente et orientée conversion."
-          - Jean Martin, Fondateur de LuxeParfums
+          <div class="testimonial-content">
+            <div class="testimonial-avatar">JM</div>
+            <div class="testimonial-text">
+              "Un travail exceptionnel! Notre e-commerce a vu ses ventes exploser grâce à leur refonte intelligente et orientée conversion."
+              <cite>Jean Martin, Fondateur de LuxeParfums</cite>
+            </div>
+          </div>
         </blockquote>
       </div>
     </section>
@@ -142,6 +180,34 @@ const projects = [
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
     transition: transform 0.3s ease;
+    position: relative;
+  }
+
+  /* Styles spécifiques pour les 3 premiers projets (nouveaux) */
+  .project-card:nth-child(1),
+  .project-card:nth-child(2),
+  .project-card:nth-child(3) {
+    border-top: 4px solid var(--color-primary);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    position: relative;
+  }
+  
+  .project-card:nth-child(1)::before,
+  .project-card:nth-child(2)::before,
+  .project-card:nth-child(3)::before {
+    content: "Nouveau";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--color-accent, #ff6b6b);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
 
   .project-card:hover {
@@ -244,6 +310,48 @@ const projects = [
     font-size: clamp(0.9rem, 3vw, 1.1rem);
     margin-bottom: 1.5rem;
   }
+  .testimonial-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    margin-right: 1rem;
+    flex-shrink: 0;
+  }
+
+  .testimonial-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .testimonial-text {
+    flex: 1;
+  }
+
+  .testimonial-text cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  @media (max-width: 640px) {
+    .testimonial-content {
+      flex-direction: column;
+    }
+    
+    .testimonial-avatar {
+      margin-right: 0;
+      margin-bottom: 0.75rem;
+    }
+  }
   @media (max-width: 1067px) {
     .portfolio-page {
       padding: 0.5rem;
@@ -339,6 +447,25 @@ const projects = [
     .cta-section p {
       font-size: 0.8rem;
     }
+  }
+  .highlight-section {
+    background: linear-gradient(135deg, rgba(var(--color-primary-rgb, 0, 102, 204), 0.1), rgba(var(--color-accent-rgb, 255, 107, 107), 0.1));
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .highlight-title {
+    color: var(--color-primary);
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .highlight-text {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    margin-bottom: 0;
+    line-height: 1.6;
   }
 </style>
 

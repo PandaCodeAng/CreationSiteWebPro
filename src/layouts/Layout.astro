@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import Header from '../components/Header.astro';
+import FixedHeader from '../components/FixedHeader3.astro';
 import Footer from '../components/Footer.astro';
 import { SEO } from "astro-seo";
 import JsonLd from '../components/JsonLd.astro';
@@ -21,6 +21,9 @@ export const napInfo = {
     longitude: -7.6190
   }
 };
+
+// Fonts pour le design moderne et minimaliste
+const fontImportUrl = "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap";
 
 const baseSchema = {
   "@context": "https://schema.org",
@@ -70,6 +73,12 @@ const fullTitle = `${title} - Expert en création site web Maroc`;
 		<meta name="language" content="fr">
 		<meta name="target" content="Morocco">
 		<link rel="alternate" hreflang="fr" href="https://creationsitewebpro.com">
+		
+		<!-- Polices modernisées -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href={fontImportUrl} rel="stylesheet">
+		
 		<meta name="google-adsense-account" content="ca-pub-9201463900934910">
 		  <!-- Axeptio script -->
 		  <script is:inline>
@@ -135,16 +144,22 @@ const fullTitle = `${title} - Expert en création site web Maroc`;
 		/>
 	
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+		<link href={fontImportUrl} rel="stylesheet">
 		<meta name="geo.position" content="33.5731;-7.6190">
 		<meta name="geo.placename" content="Casablanca">
 		<meta name="geo.region" content="MA-CAS">
 		<JsonLd data={baseSchema} />
-	</head>
-	<body>
-		<Header />
+	</head>	<body>
+		<FixedHeader />
 		<main>
 			<slot />
 		</main>
-		<Footer />
+		<Footer />		<!-- Floating action buttons -->
+		<a href="https://wa.me/+212679782906?text=Bonjour%2C%20je%20suis%20intéressé%20par%20vos%20services%20de%20création%20de%20site%20web." class="floating-whatsapp-btn" aria-label="Nous contacter sur WhatsApp">
+			<img src="/icons/WhatsApp.svg" alt="WhatsApp" class="floating-whatsapp-icon" />
+		</a>
+		<a href="tel:+212679782906" class="floating-call-btn" aria-label="Nous appeler directement">
+			<img src="/icons/phone-simple.svg" alt="Appeler" class="floating-call-icon" />
+		</a>
 	</body>
 </html>

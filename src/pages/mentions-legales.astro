@@ -1,0 +1,156 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { napInfo } from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const pageTitle = "Mentions Légales - CreationSiteWebPro";
+const pageDescription = "Consultez nos mentions légales concernant l'utilisation du site et les conditions générales.";
+
+const breadcrumbItems = [
+  { name: "Accueil", url: "/" },
+  { name: "Mentions Légales", url: "/mentions-legales" },
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main class="legal-page">
+    <Breadcrumbs items={breadcrumbItems} />
+    
+    <section class="legal-header">
+      <div class="container">
+        <h1>Mentions Légales</h1>
+        <p>Informations légales concernant notre site web et nos services</p>
+      </div>
+    </section>
+
+    <section class="legal-content">
+      <div class="container">
+        <div class="legal-section">
+          <h2>Informations générales</h2>
+          <p>Le présent site web est édité par {napInfo.name}, entreprise de création de sites web et solutions digitales.</p>
+          <ul>
+            <li><strong>Adresse:</strong> {napInfo.address.street}, {napInfo.address.city}, {napInfo.address.postalCode}, {napInfo.address.country}</li>
+            <li><strong>Téléphone:</strong> {napInfo.phone}</li>
+            <li><strong>Email:</strong> {napInfo.email}</li>
+            <li><strong>SIRET:</strong> 00000000000000</li>
+          </ul>
+        </div>
+
+        <div class="legal-section">
+          <h2>Directeur de publication</h2>
+          <p>Le directeur de la publication du site web est Mouhcine TALBI, en qualité de représentant légal.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2>Hébergement</h2>
+          <p>Le site web est hébergé par la société Netlify, Inc.</p>
+          <p>Adresse: 2325 3rd Street, Suite 215, San Francisco, CA 94107, États-Unis</p>
+        </div>
+
+        <div class="legal-section">
+          <h2>Propriété intellectuelle</h2>
+          <p>L'ensemble des éléments constituant ce site (textes, graphismes, logiciels, photographies, images, vidéos, sons, plans, logos, marques, etc.) est la propriété exclusive de {napInfo.name} ou fait l'objet d'une autorisation d'utilisation. Ces éléments sont protégés par le Code de la Propriété Intellectuelle et par le droit d'auteur.</p>
+          <p>Toute reproduction ou représentation, intégrale ou partielle, du site ou de l'un des éléments qui le composent, sur quelque support que ce soit, est strictement interdite sans l'autorisation expresse et préalable de {napInfo.name}.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2>Protection des données personnelles</h2>
+          <p>Conformément à la loi 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel, vous disposez d'un droit d'accès, de rectification et d'opposition aux données personnelles vous concernant.</p>
+          <p>Pour exercer ce droit, veuillez nous adresser votre demande par email à {napInfo.email} ou par courrier à l'adresse indiquée ci-dessus.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2>Cookies</h2>
+          <p>Notre site utilise des cookies pour améliorer l'expérience utilisateur. En naviguant sur notre site, vous acceptez l'utilisation de cookies conformément à notre politique de confidentialité.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2>Limitation de responsabilité</h2>
+          <p>{napInfo.name} ne pourra être tenu responsable des dommages directs ou indirects résultant de l'utilisation du site web ou de l'impossibilité d'y accéder.</p>
+          <p>Les liens hypertextes présents sur le site peuvent renvoyer vers d'autres sites. {napInfo.name} décline toute responsabilité concernant le contenu de ces sites.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2>Droit applicable et juridiction compétente</h2>
+          <p>Les présentes mentions légales sont soumises au droit marocain. En cas de litige, les tribunaux de Casablanca seront seuls compétents.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .legal-page {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+  }
+
+  .legal-header {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .legal-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .legal-content {
+    padding: 3rem 0;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  .legal-section {
+    margin-bottom: 3rem;
+  }
+
+  .legal-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-primary);
+  }
+
+  .legal-section p, .legal-section ul {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .legal-section ul {
+    padding-left: 1.5rem;
+  }
+
+  .legal-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .legal-header {
+      padding: 2rem 0;
+    }
+
+    .legal-header h1 {
+      font-size: 2rem;
+    }
+
+    .legal-content {
+      padding: 2rem 0;
+    }
+
+    .legal-section h2 {
+      font-size: 1.3rem;
+    }
+  }
+</style>

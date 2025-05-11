@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTAButton from '../components/CTAButton.astro';
+
+const pageTitle = "Merci pour votre message | CreationSiteWebPro";
+const pageDescription = "Votre message a bien été reçu. Notre équipe vous contactera très prochainement.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main class="thank-you-page">
+    <div class="container">
+      <div class="success-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="96" height="96" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h1>Message envoyé avec succès !</h1>
+      <p class="message">Merci de nous avoir contacté. Notre équipe d'experts vous répondra dans les plus brefs délais, généralement sous 24 heures ouvrables.</p>
+      <div class="next-steps">
+        <h2>Et maintenant ?</h2>
+        <ul>
+          <li>Nous allons analyser votre demande</li>
+          <li>Un expert vous contactera personnellement</li>
+          <li>Nous vous proposerons des solutions adaptées à vos besoins</li>
+        </ul>
+      </div>
+      <div class="cta-container">
+        <CTAButton href="/" text="Retour à l'accueil" className="primary-btn" />
+        <CTAButton href="/portfolio-realisations-web-casablanca-maroc" text="Voir nos réalisations" className="secondary-btn" />
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .thank-you-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 2rem 1rem;
+    margin-top: 5rem;
+    text-align: center;
+  }
+  
+  .container {
+    max-width: 800px;
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+  
+  .success-icon {
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+  
+  h1 {
+    color: var(--color-primary);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.5s ease-out 0.3s both;
+  }
+  
+  .message {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin-bottom: 2.5rem;
+    color: var(--color-text-primary);
+    animation: fadeInUp 0.5s ease-out 0.5s both;
+  }
+  
+  .next-steps {
+    background: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2.5rem;
+    text-align: left;
+    animation: fadeInUp 0.5s ease-out 0.7s both;
+  }
+  
+  .next-steps h2 {
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+  }
+  
+  .next-steps ul {
+    padding-left: 1.5rem;
+  }
+  
+  .next-steps li {
+    margin-bottom: 0.75rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  }
+  
+  .cta-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    animation: fadeInUp 0.5s ease-out 0.9s both;
+  }
+  
+  .primary-btn {
+    background-color: var(--color-primary);
+    color: white;
+  }
+  
+  .secondary-btn {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .thank-you-page {
+      padding: 1rem;
+      margin-top: 7rem;
+    }
+    
+    .container {
+      padding: 2rem 1rem;
+    }
+    
+    .next-steps {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .thank-you-page {
+      margin-top: 11rem;
+    }
+    
+    .cta-container {
+      flex-direction: column;
+    }
+    
+    .primary-btn, .secondary-btn {
+      width: 100%;
+    }
+  }
+</style>

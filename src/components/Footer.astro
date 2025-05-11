@@ -1,100 +1,409 @@
 ---
 import { napInfo } from '../layouts/Layout.astro';
+import Icon from "./Icon.astro";
 const currentYear = new Date().getFullYear();
 ---
-<footer>
-  <div class="footer-content">
+<footer class="footer">
+  <div class="footer-wave">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="var(--color-primary)" fill-opacity="1" d="M0,128L48,133.3C96,139,192,149,288,154.7C384,160,480,160,576,165.3C672,171,768,181,864,181.3C960,181,1056,171,1152,154.7C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+  </div>
+  <div class="footer-content container">
     <div class="footer-section">
-      <h3>CreationSiteWebPro</h3>
-      <p>Votre partenaire pour des solutions web sur mesure.</p>
+      <div class="footer-logo">
+        <img src="/icons/modern-logo.svg" alt="CreationSiteWebPro Logo" width="180" height="50" />
+      </div>
+      <p>Votre partenaire pour des solutions web professionnelles à Casablanca et dans tout le Maroc.</p>      <div class="social-icons">
+        <a href="https://facebook.com/" aria-label="Facebook" class="social-icon">
+          <Icon name="facebook" className="social-icon-img" />
+        </a>
+        <a href="https://www.instagram.com/creation_sitewebpro?igsh=MW9xMzlxMTNkYjV2Zg==" aria-label="Instagram" class="social-icon" target="_blank" rel="noopener">
+          <Icon name="instagram" className="social-icon-img" />
+        </a>
+        <a href="https://www.linkedin.com/in/mouhcine-talbi/" aria-label="LinkedIn" class="social-icon" target="_blank" rel="noopener">
+          <Icon name="linkedin" className="social-icon-img" />
+        </a>
+      </div>
     </div>
+    
     <div class="footer-section">
-      <h3>Liens rapides</h3>
-      <ul>
+      <h3>Nos Services</h3>
+      <ul class="footer-links">
         <li><a href="/creation-site-web-casablanca">Création Site Web Casablanca</a></li>
         <li><a href="/creation-site-web-maroc">Création Site Web Maroc</a></li>
+        <li><a href="/services/e-commerce-casablanca">E-commerce Casablanca</a></li>
+        <li><a href="/services/referencement-seo-casablanca">SEO Casablanca</a></li>
         <li><a href="/agence-digitale-maroc">Agence Digitale Maroc</a></li>
-        <li><a href="/portfolio-realisations-web-casablanca-maroc">Portfolio</a></li>
-        <li><a href="/a-propos-agence-web-casablanca">À propos</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/faq-creation-site-web-maroc">FAQ</a></li>
       </ul>
     </div>
+    
     <div class="footer-section">
+      <h3>Liens Utiles</h3>
+      <ul class="footer-links">
+        <li><a href="/portfolio-realisations-web-casablanca-maroc">Portfolio</a></li>
+        <li><a href="/a-propos-agence-web-casablanca">À propos</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/faq-creation-site-web-maroc">FAQ</a></li>
+      </ul>
+    </div>    <div class="footer-section">
       <h3>Contact</h3>
-      <div class="nap-info" itemscope itemtype="https://schema.org/LocalBusiness">
-        <span itemprop="name">{napInfo.name}</span>
-        <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-          <span itemprop="streetAddress">{napInfo.address.street}</span>,
-          <span itemprop="addressLocality">{napInfo.address.city}</span>
-          <span itemprop="postalCode">{napInfo.address.postalCode}</span>,
-          <span itemprop="addressCountry">{napInfo.address.country}</span>
-        </div>
-        <div>
-          Téléphone: <a href={`tel:${napInfo.phone.replace(/\s+/g, '')}`} itemprop="telephone">{napInfo.phone}</a>
-        </div>
-        <div>
-          Email: <a href={`mailto:${napInfo.email}`} itemprop="email">{napInfo.email}</a>
+      <div class="contact-info" itemscope itemtype="https://schema.org/LocalBusiness">
+        <p class="address-line">
+          <Icon name="map-pin" className="footer-icon" />
+          <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+            <span itemprop="streetAddress">{napInfo.address.street}</span>,
+            <span itemprop="addressLocality">{napInfo.address.city}</span>
+            <span itemprop="postalCode">{napInfo.address.postalCode}</span>,
+            <span itemprop="addressCountry">{napInfo.address.country}</span>
+          </span>
+        </p>
+        <p class="contact-line">
+          <Icon name="phone" className="footer-icon" />
+          <a href={`tel:${napInfo.phone.replace(/\s+/g, '')}`} itemprop="telephone">{napInfo.phone}</a>
+        </p>
+        <p class="contact-line">
+          <Icon name="email" className="footer-icon" />
+          <a href={`mailto:${napInfo.email}`} itemprop="email">{napInfo.email}</a>
+        </p>
+      </div>
+
+      <div class="newsletter">
+        <h4>Newsletter</h4>
+        <form class="newsletter-form" action="/api/subscribe" method="POST">
+          <input type="email" name="email" placeholder="Votre email" required />
+          <button type="submit" class="btn-primary btn-sm">
+            S'abonner
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-copyright">
+        <p>&copy; {currentYear} <span itemprop="name">{napInfo.name}</span>. Tous droits réservés.</p>
+        <div class="footer-legal-links">
+          <a href="/mentions-legales">Mentions légales</a>
+          <span class="separator"></span>
+          <a href="/politique-confidentialite">Politique de confidentialité</a>
         </div>
       </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; {currentYear} CreationSiteWebPro. Tous droits réservés.</p>
-  </div>
 </footer>
 
-<style>
-  footer {
+<style>  .footer {
     background-color: var(--color-primary);
     color: white;
-    padding: 2rem 0 1rem;
-    font-family: 'Open Sans', sans-serif;
+    padding: 0;
+    margin-top: 6rem;
+    font-family: var(--font-main);
+    position: relative;
+  }
+  
+  .footer-wave {
+    position: absolute;
+    top: -120px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    pointer-events: none;
   }
   .footer-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    max-width: 1200px;
+    max-width: var(--max-width);
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 3rem var(--space-lg) 2rem;
+    gap: 2rem;
   }
+
   .footer-section {
     flex: 1 1 250px;
     margin-bottom: 2rem;
   }
+
   .footer-section h3 {
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 1rem;
-  }
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  .footer-section ul li {
-    margin-bottom: 0.5rem;
-  }
-  .footer-section a {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
     color: white;
-    text-decoration: none;
-  }
-  .footer-section a:hover {
-    text-decoration: underline;
-  }
-  .footer-bottom {
-    text-align: center;
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    padding-bottom: 0.5rem;
   }
 
-  @media (max-width: 768px) {
+  .footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--color-accent);
+  }
+
+  .footer-logo {
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-logo img {
+    height: 40px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .footer-section p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .social-icon-img {
+    width: 18px;
+    height: 18px;
+    fill: white;
+  }
+
+  .social-icon:hover {
+    background-color: var(--color-accent);
+    transform: translateY(-3px);
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    opacity: 0.9;
+    transition: all 0.2s ease;
+    display: inline-block;
+  }
+
+  .footer-links a:hover {
+    opacity: 1;
+    color: var(--color-accent);
+    transform: translateX(3px);
+  }
+
+  .address-line, 
+  .contact-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .footer-icon {
+    width: 18px;
+    height: 18px;
+    fill: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .contact-info a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    opacity: 0.9;
+  }
+
+  .contact-info a:hover {
+    color: var(--color-accent);
+    opacity: 1;
+  }
+
+  .newsletter {
+    margin-top: 1.5rem;
+  }
+
+  .newsletter h4 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 100%;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius-sm);
+    padding: 0.6rem 1rem;
+    color: white;
+    font-size: 0.9rem;
+  }
+
+  .newsletter-form input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .newsletter-form input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+  }
+
+  .btn-sm {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .footer-bottom {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1.25rem 0;
+    font-size: 0.9rem;
+  }
+
+  .footer-copyright {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer-copyright p {
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .footer-legal-links {
+    display: flex;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  .footer-legal-links a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+
+  .footer-legal-links a:hover {
+    opacity: 1;
+  }
+
+  .separator {
+    position: relative;
+    width: 4px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 0.75rem;
+    top: -3px;
+  }
+  /* Responsive styles */
+  @media (max-width: 991px) {
+    .footer-section {
+      flex: 1 1 calc(50% - 2rem);
+    }
+  }
+  @media (max-width: 767px) {
+    .footer-wave {
+      top: -60px;
+    }
+    
     .footer-content {
       flex-direction: column;
+      gap: 2rem;
+      padding-top: 2rem;
     }
+
     .footer-section {
-      margin-bottom: 1.5rem;
+      margin-bottom: 0;
+      flex-basis: 100%;
+    }
+
+    .footer-copyright {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer-legal-links {
+      justify-content: center;
+      margin-top: 0.75rem;
+    }
+  }
+  
+  /* Adjustments for very small screens (320px) */
+  @media screen and (max-width: 359px) {
+    .footer-content {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+    
+    .footer-logo img {
+      height: 35px;
+    }
+    
+    .social-icons {
+      gap: 0.5rem;
+    }
+    
+    .social-icon {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-links a {
+      font-size: 0.85rem;
+    }
+    
+    .newsletter-form {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+    }
+    
+    .newsletter-form button {
+      width: 100%;
     }
   }
 </style>

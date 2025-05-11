@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180" height="50" viewBox="0 0 180 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Shape -->
+  <rect width="50" height="50" rx="8" fill="#2563EB"/>
+  
+  <!-- Web Element Icons -->
+  <path d="M15 22L25 15L35 22V35H15V22Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22 35V25H28V35" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Text Part -->
+  <text x="60" y="22" font-family="'Poppins', sans-serif" font-weight="600" font-size="16" fill="#1F2937">Creation</text>
+  <text x="60" y="38" font-family="'Poppins', sans-serif" font-weight="700" font-size="18" fill="#2563EB">SiteWebPro</text>
+  
+  <!-- Accent Line -->
+  <path d="M57 26H135" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

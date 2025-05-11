@@ -1,0 +1,706 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<header class="header">
+  <div class="container header__container">
+    <!-- Logo -->
+    <div class="header__logo">
+      <a href="/" aria-label="CreationSiteWebPro - Accueil">
+        <img src="/icons/modern-logo.svg" alt="CreationSiteWebPro Logo" width="180" height="50" />
+      </a>
+    </div>
+    
+    <!-- Mobile Menu Toggle -->
+    <button class="header__menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="main-navigation" type="button">
+      <span class="header__menu-icon"></span>
+    </button>
+
+    <!-- Navigation -->
+    <div class="header__nav-container" id="main-navigation">
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-item"><a href="/" class="header__nav-link">Accueil</a></li>
+          <li class="header__nav-item header__has-dropdown">
+            <a href="/services/creation-site-web-casablanca" class="header__nav-link">
+              Services <span class="header__dropdown-icon">▾</span>
+            </a>
+            <ul class="header__dropdown">
+              <li><a href="/creation-site-web-casablanca">Création Site Web Casablanca</a></li>
+              <li><a href="/creation-site-web-maroc">Création Site Web Maroc</a></li>
+              <li><a href="/agence-digitale-maroc">Agence Digitale Maroc</a></li>
+            </ul>
+          </li>
+          <li class="header__nav-item"><a href="/portfolio-realisations-web-casablanca-maroc" class="header__nav-link">Portfolio</a></li>
+          <li class="header__nav-item"><a href="/blog" class="header__nav-link">Blog</a></li>
+          <li class="header__nav-item"><a href="/a-propos-agence-web-casablanca" class="header__nav-link">À Propos</a></li>
+        </ul>
+      </nav>
+      
+      <!-- Contact Info & CTA -->
+      <div class="header__actions">
+        <div class="header__contact-info">
+          <a href="tel:+212679782906" class="header__contact-link">
+            <Icon name="phone" className="header__contact-icon" /> +212 6 79 78 29 06
+          </a>
+          <a href="mailto:contact@creationsitewebpro.com" class="header__contact-link">
+            <Icon name="email" className="header__contact-icon" /> contact@creationsitewebpro.com
+          </a>
+        </div>
+        <a href="/contact" class="btn btn-primary header__cta btn-icon">
+          <span>Demandez un Devis</span>
+          <Icon name="arrow-right" className="header__cta-icon" />
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  // Fonction qui sera exécutée à chaque chargement de page
+  function initHeader() {
+    console.log("Initialisation du header moderne");
+    
+    // Éléments DOM
+    const menuToggle = document.querySelector('.header__menu-toggle');
+    const navContainer = document.querySelector('.header__nav-container');
+    const header = document.querySelector('.header');
+    const dropdowns = document.querySelectorAll('.header__has-dropdown');
+    
+    // Fonction pour le toggle du menu mobile
+    function toggleMobileMenu(event) {
+      event.preventDefault();
+      console.log("Bouton menu cliqué");
+      
+      if (menuToggle && navContainer) {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', (!isExpanded).toString());
+        
+        menuToggle.classList.toggle('header__menu-toggle--active');
+        navContainer.classList.toggle('header__nav-container--active');
+        document.body.classList.toggle('no-scroll');
+      }
+    }
+    
+    // Nouvelle fonction: Fermer le menu quand on clique en dehors
+    function setupClickOutsideHandler() {
+      document.addEventListener('click', function(e) {
+        // Si le menu est ouvert et que le clic est en dehors du menu et du bouton
+        if (
+          navContainer.classList.contains('header__nav-container--active') &&
+          !navContainer.contains(e.target) && 
+          !menuToggle.contains(e.target)
+        ) {
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.classList.remove('header__menu-toggle--active');
+          navContainer.classList.remove('header__nav-container--active');
+          document.body.classList.remove('no-scroll');
+        }
+      });
+    }
+    
+    // Gestion des sous-menus dropdown
+    function setupDropdowns() {
+      dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('.header__nav-link');
+        const submenu = dropdown.querySelector('.header__dropdown');
+        
+        // Gestion du hover sur desktop
+        function handleDropdownMouseEnter() {
+          if (window.innerWidth > 991 && submenu) {
+            submenu.classList.add('header__dropdown--active');
+          }
+        }
+        
+        function handleDropdownMouseLeave() {
+          if (window.innerWidth > 991 && submenu) {
+            submenu.classList.remove('header__dropdown--active');
+          }
+        }
+        
+        // Gestion du clic sur mobile
+        function handleDropdownClick(e) {
+          if (window.innerWidth <= 991) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Fermer tous les autres menus déroulants d'abord
+            dropdowns.forEach(otherDropdown => {
+              if (otherDropdown !== dropdown) {
+                const otherSubmenu = otherDropdown.querySelector('.header__dropdown');
+                if (otherSubmenu && otherSubmenu.classList.contains('header__dropdown--active')) {
+                  otherSubmenu.classList.remove('header__dropdown--active');
+                  otherDropdown.classList.remove('header__has-dropdown--active');
+                }
+              }
+            });
+            
+            // Ouvrir/fermer ce menu déroulant
+            if (submenu) {
+              submenu.classList.toggle('header__dropdown--active');
+              dropdown.classList.toggle('header__has-dropdown--active');
+            }
+          }
+        }
+        
+        // Supprimer les anciens écouteurs pour éviter les doublons
+        dropdown.removeEventListener('mouseenter', handleDropdownMouseEnter);
+        dropdown.removeEventListener('mouseleave', handleDropdownMouseLeave);
+        if (link) link.removeEventListener('click', handleDropdownClick);
+        
+        // Ajouter les nouveaux écouteurs
+        dropdown.addEventListener('mouseenter', handleDropdownMouseEnter);
+        dropdown.addEventListener('mouseleave', handleDropdownMouseLeave);
+        
+        // Toggle dropdown on click for mobile
+        if (link) {
+          link.addEventListener('click', handleDropdownClick);
+          link.addEventListener('touchend', function(e) {
+            // Empêcher le double déclenchement sur les appareils tactiles
+            e.preventDefault();
+            handleDropdownClick(e);
+          });
+        }
+      });
+    }
+    
+    // Effet de défilement pour le header
+    function setupScrollEffect() {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          header.classList.add('header--scrolled');
+        } else {
+          header.classList.remove('header--scrolled');
+        }
+      });
+    }
+    
+    // Ajustement du padding-top du body
+    function adjustBodyPadding() {
+      if (header) {
+        const headerHeight = header.getBoundingClientRect().height;
+        document.body.style.paddingTop = headerHeight + 'px';
+      }
+    }
+    
+    // Marquer le lien actif
+    function markActiveLink() {
+      const navLinks = document.querySelectorAll('.header__nav-link');
+      const currentPath = window.location.pathname;
+      
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        
+        if (href === '/' && (currentPath === '/' || currentPath === '')) {
+          link.classList.add('header__nav-link--active');
+        } else if (href !== '/' && currentPath.startsWith(href)) {
+          link.classList.add('header__nav-link--active');
+        }
+      });
+    }
+    
+    // Initialisation des fonctionnalités
+    if (menuToggle && navContainer) {
+      // Supprimer les anciens écouteurs pour éviter les doublons
+      menuToggle.removeEventListener('click', toggleMobileMenu);
+      menuToggle.removeEventListener('touchend', toggleMobileMenu);
+      
+      // Ajouter les nouveaux écouteurs d'événements pour clic et toucher
+      menuToggle.addEventListener('click', toggleMobileMenu);
+      menuToggle.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        toggleMobileMenu(e);
+      });
+      
+      console.log("Écouteurs d'événements ajoutés au bouton de menu");
+      
+      // Augmenter la zone de clic pour mobile
+      menuToggle.style.padding = "10px";
+    } else {
+      console.warn("Éléments du menu non trouvés");
+    }
+    
+    // Exécuter toutes les fonctions d'initialisation
+    if (dropdowns.length > 0) setupDropdowns();
+    setupScrollEffect();
+    adjustBodyPadding();
+    markActiveLink();
+    setupClickOutsideHandler();
+    
+    // Ajuster le padding lors du redimensionnement
+    window.addEventListener('resize', adjustBodyPadding);
+  }
+
+  // Exécuter au chargement initial et à chaque navigation
+  document.addEventListener('DOMContentLoaded', initHeader);
+  document.addEventListener('astro:page-load', initHeader);
+  
+  // Fallback pour s'assurer que le header est toujours initialisé
+  // Si le DOM est déjà chargé quand ce script s'exécute
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(initHeader, 0);
+  }
+</script>
+
+<style>
+  /* Header Variables */
+  :root {
+    --header-height: 80px;
+    --header-height-scrolled: 70px;
+    --header-transition: all 0.3s ease;
+  }
+  
+  /* Header Base */
+  .header {
+    background-color: var(--color-background);
+    box-shadow: var(--shadow-sm);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: var(--header-transition);
+    height: var(--header-height);
+  }
+  
+  /* Scrolled Header State */
+  .header--scrolled {
+    height: var(--header-height-scrolled);
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* Container */
+  .header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+  }
+  
+  /* Logo */
+  .header__logo {
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 1001;
+    transition: var(--header-transition);
+  }
+  
+  .header__logo img {
+    height: 50px;
+    width: auto;
+    transition: var(--header-transition);
+  }
+  
+  .header--scrolled .header__logo img {
+    height: 40px;
+  }
+    /* Mobile Menu Toggle */
+  .header__menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    position: relative;
+    z-index: 1001;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    padding: 12px;
+    margin: -12px;
+    border-radius: 4px;
+    outline: none;
+    transition: background-color 0.2s ease;
+  }
+  
+  .header__menu-toggle:hover,
+  .header__menu-toggle:focus {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .header__menu-toggle:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .header__menu-icon {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin: 0 auto;
+    background-color: var(--color-text-primary);
+    transition: var(--header-transition);
+  }
+  
+  .header__menu-icon::before,
+  .header__menu-icon::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text-primary);
+    transition: var(--header-transition);
+    left: 0;
+  }
+  
+  .header__menu-icon::before {
+    transform: translateY(-8px);
+  }
+  
+  .header__menu-icon::after {
+    transform: translateY(8px);
+  }
+  
+  /* Hamburger to X Animation */
+  .header__menu-toggle--active .header__menu-icon {
+    background-color: transparent;
+  }
+  
+  .header__menu-toggle--active .header__menu-icon::before {
+    transform: rotate(45deg);
+  }
+  
+  .header__menu-toggle--active .header__menu-icon::after {
+    transform: rotate(-45deg);
+  }
+  
+  /* Nav Container */
+  .header__nav-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    flex: 1;
+    justify-content: flex-end;
+    gap: var(--space-lg);
+  }
+  
+  /* Navigation */
+  .header__nav {
+    height: 100%;
+  }
+  
+  .header__nav-list {
+    display: flex;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header__nav-item {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .header__nav-link {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    padding: 0 var(--space-md);
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-weight: 500;
+    transition: var(--header-transition);
+    position: relative;
+  }
+  
+  .header__nav-link:hover {
+    color: var(--color-primary);
+  }
+  
+  /* Active Link Indicator */
+  .header__nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: var(--color-primary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  
+  .header__nav-link:hover::after {
+    width: 60%;
+  }
+  
+  /* Dropdown Icon */
+  .header__dropdown-icon {
+    margin-left: 4px;
+    font-size: 10px;
+    transition: transform 0.2s ease;
+  }
+  
+  .header__has-dropdown--active .header__dropdown-icon {
+    transform: rotate(180deg);
+  }
+  
+  /* Dropdown Menu */
+  .header__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-background);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--border-radius-md);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    list-style: none;
+    padding: var(--space-md);
+    margin: 0;
+  }
+  
+  .header__dropdown li {
+    margin-bottom: var(--space-xs);
+  }
+  
+  .header__dropdown li:last-child {
+    margin-bottom: 0;
+  }
+  
+  .header__dropdown a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    display: block;
+    padding: var(--space-sm) var(--space-md);
+    transition: all 0.2s ease;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.95rem;
+  }
+  
+  .header__dropdown a:hover {
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+    transform: translateX(5px);
+  }
+  
+  .header__dropdown--active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  /* Actions Container */
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+  
+  /* Contact Links */
+  .header__contact-info {
+    display: flex;
+    gap: var(--space-md);
+  }
+  
+  .header__contact-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    font-size: 0.95rem;
+    white-space: nowrap;
+    transition: var(--header-transition);
+  }
+  
+  .header__contact-link:hover {
+    color: var(--color-primary);
+  }
+  
+  .header__contact-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    fill: var(--color-primary);
+  }
+  
+  /* CTA Button */
+  .header__cta {
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: var(--shadow-sm);
+    padding: 0.75rem 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    border-radius: var(--border-radius-md);
+  }
+  
+  .header__cta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    z-index: -1;
+  }
+  
+  .header__cta:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .header__cta:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .header__cta-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 6px;
+    transition: transform 0.3s ease;
+  }
+  
+  .header__cta:hover .header__cta-icon {
+    transform: translateX(3px);
+  }
+  
+  /* Style pour le lien actif */
+  .header__nav-link--active {
+    color: var(--color-primary) !important;
+    font-weight: 600;
+  }
+  
+  .header__nav-link--active::after {
+    width: 60% !important;
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 991px) {
+    :root {
+      --header-height: 70px;
+      --header-height-scrolled: 60px;
+    }
+    
+    /* Show Mobile Menu Toggle */
+    .header__menu-toggle {
+      display: block;
+    }
+    
+    /* Mobile Nav Container */
+    .header__nav-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100vh;
+      background-color: var(--color-background);
+      box-shadow: var(--shadow-lg);
+      padding: 100px var(--space-lg) var(--space-lg);
+      flex-direction: column;
+      align-items: flex-start;
+      transform: translateX(100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease-in-out;
+      overflow-y: auto;
+    }
+    
+    .header__nav-container--active {
+      transform: translateX(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Mobile Navigation */
+    .header__nav {
+      width: 100%;
+      height: auto;
+    }
+    
+    .header__nav-list {
+      flex-direction: column;
+      height: auto;
+      width: 100%;
+    }
+    
+    .header__nav-item {
+      width: 100%;
+      height: auto;
+      margin-bottom: var(--space-md);
+    }
+    
+    .header__nav-link {
+      width: 100%;
+      justify-content: space-between;
+      padding: var(--space-sm) 0;
+      height: auto;
+    }
+    
+    .header__nav-link::after {
+      display: none;
+    }
+    
+    /* Mobile Dropdown */
+    .header__dropdown {
+      position: static;
+      box-shadow: none;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      height: 0;
+      overflow: hidden;
+      padding: 0 0 0 var(--space-md);
+      margin-top: var(--space-xs);
+      transition: height 0.3s ease;
+    }
+    
+    .header__dropdown--active {
+      height: auto;
+      margin-bottom: var(--space-md);
+      padding: var(--space-xs) 0 0 var(--space-md);
+    }
+    
+    /* Mobile Actions */
+    .header__actions {
+      flex-direction: column;
+      width: 100%;
+      align-items: flex-start;
+      margin-top: var(--space-xl);
+    }
+    
+    .header__cta {
+      width: 100%;
+      text-align: center;
+      margin-top: var(--space-md);
+    }
+    
+    /* Disable scroll when menu is open */
+    :global(.no-scroll) {
+      overflow: hidden;
+    }
+  }
+  
+  /* More Responsive Adjustments */
+  @media screen and (max-width: 767px) {
+    .header__contact-info {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    
+    .header__logo img {
+      height: 40px;
+    }
+    
+    .header--scrolled .header__logo img {
+      height: 35px;
+    }
+  }
+</style>

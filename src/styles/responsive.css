@@ -1,0 +1,156 @@
+/* src/styles/responsive.css */
+/* Classes utilitaires pour la gestion du responsive */
+
+/* Classes pour cacher des éléments selon la taille d'écran */
+.hide-on-mobile {
+  display: none !important;
+}
+
+.hide-on-tablet {
+  display: initial;
+}
+
+.hide-on-desktop {
+  display: initial;
+}
+
+.show-on-mobile {
+  display: initial;
+}
+
+.show-on-tablet {
+  display: none !important;
+}
+
+.show-on-desktop {
+  display: none !important;
+}
+
+/* Responsive */
+/* Mobile (< 768px) */
+@media screen and (max-width: 767px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+  
+  .show-on-mobile {
+    display: initial !important;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .hide-on-tablet {
+    display: none !important;
+  }
+  
+  .hide-on-mobile {
+    display: initial !important;
+  }
+  
+  .show-on-tablet {
+    display: initial !important;
+  }
+  
+  .show-on-mobile {
+    display: none !important;
+  }
+}
+
+/* Desktop (≥ 1024px) */
+@media screen and (min-width: 1024px) {
+  .hide-on-desktop {
+    display: none !important;
+  }
+  
+  .hide-on-mobile {
+    display: initial !important;
+  }
+  
+  .show-on-desktop {
+    display: initial !important;
+  }
+  
+  .show-on-mobile {
+    display: none !important;
+  }
+}
+
+/* Classes d'alignement responsive */
+.text-center-mobile {
+  text-align: inherit;
+}
+
+.text-center-tablet {
+  text-align: inherit;
+}
+
+.text-center-desktop {
+  text-align: inherit;
+}
+
+@media screen and (max-width: 767px) {
+  .text-center-mobile {
+    text-align: center !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .text-center-tablet {
+    text-align: center !important;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .text-center-desktop {
+    text-align: center !important;
+  }
+}
+
+/* Classes flex responsive */
+.flex-column-mobile {
+  flex-direction: inherit;
+}
+
+.flex-column-tablet {
+  flex-direction: inherit;
+}
+
+@media screen and (max-width: 767px) {
+  .flex-column-mobile {
+    flex-direction: column !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .flex-column-tablet {
+    flex-direction: column !important;
+  }
+}
+
+/* Classe pour les écrans très petits */
+@media screen and (max-width: 360px) {
+  .hide-on-tiny {
+    display: none !important;
+  }
+}
+
+/* Classe pour les écrans larges */
+@media screen and (min-width: 1600px) {
+  .visible-on-large {
+    display: initial !important;
+  }
+  
+  .hidden-on-large {
+    display: none !important;
+  }
+}
+
+/* Classe pour améliorer la lisibilité sur mobile */
+@media screen and (max-width: 767px) {
+  .enhanced-mobile-text {
+    font-size: 1.1em !important;
+    line-height: 1.6 !important;
+    letter-spacing: 0.01em !important;
+  }
+}

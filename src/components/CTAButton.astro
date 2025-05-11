@@ -1,0 +1,10 @@
+---
+// CTAButton.astro
+const { href, className = "", target = "_self", targetBlank = false, text } = Astro.props;
+const finalTarget = targetBlank ? "_blank" : target;
+const rel = targetBlank ? "noopener noreferrer" : undefined;
+---
+
+<a href={href} class={`cta-button ${className}`} target={finalTarget} rel={rel}>
+  {text || <slot />}
+</a>

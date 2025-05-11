@@ -1,0 +1,673 @@
+---
+const { title, subtitle } = Astro.props;
+
+import Icon from './Icon.astro';
+import CTAButton from './CTAButton.astro';
+---
+
+<section class="pricing" id="pricing">
+  <div class="container">    <div class="section-header pricing-header">
+      {title && <span class="section-tag pricing-tag">Nos tarifs</span>}
+      {title && <h2 class="section-title pricing-title">{title}</h2>}
+      {subtitle && <p class="section-subtitle pricing-subtitle">{subtitle}</p>}
+    </div>
+    
+    <div class="pricing-cards">
+      <!-- Pack Éveil Sensoriel -->
+      <div class="pricing-card">
+        <div class="pricing-card__header">
+          <h3 class="pricing-card__title">Pack<br/>Éveil Sensoriel</h3>
+        </div>
+        <div class="pricing-card__price">
+          <div class="pricing-card__current-price">7 500 MAD</div>
+          <div class="pricing-card__original-price">(au 9 500 MAD)</div>
+        </div>
+        <ul class="pricing-card__features">
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>4 pages clés (Accueil, Services, À propos, Contact)</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>Design responsive 'spo cozy'</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>SEO de base</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>Formulaire de contact & bouton WhatsApp</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>Hébergement & SSL (1an)</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />            <span>CMS simple pour mises à jour</span>
+          </li>
+        </ul>
+        <div class="pricing-card__cta">
+          <CTAButton href="/contact" className="pricing-card__button">
+            Demander un devis
+            <Icon name="arrow-right" className="pricing-card__button-icon" />
+          </CTAButton>
+          <CTAButton href="tel:+212679782906" className="pricing-card__button call-button">
+            <Icon name="phone" className="pricing-card__button-icon" />
+            Nous appeler
+          </CTAButton>
+        </div>
+      </div>
+      
+      <!-- Pack Harmonie Premium -->
+      <div class="pricing-card pricing-card--featured">
+        <div class="pricing-card__header">
+          <h3 class="pricing-card__title">Pack<br/>Harmonie Premium</h3>
+          <div class="pricing-card__badge">Le + Populaire</div>
+        </div>
+        <div class="pricing-card__price">
+          <div class="pricing-card__current-price">11 900 MAD</div>
+          <div class="pricing-card__original-price">(au 14 900 MAD)</div>
+        </div>
+        <ul class="pricing-card__features">
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>6-8 pages + section Blog/Actualités</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>Design semi sur mesure + animations</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>Intégration d'outils de ligne</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>SEO local avancé FR/AR + Google My Business</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>Galerie photos & témoignages</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>Formation express (2h) + support prioritaire</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>Google Analytics & Search Console</span>
+          </li>
+        </ul>        <div class="pricing-card__cta">          <CTAButton href="/contact" className="pricing-card__button pricing-card__button--featured">
+            Demander un devis
+            <Icon name="arrow-right" className="pricing-card__button-icon" />
+          </CTAButton>
+          <CTAButton href="tel:+212679782906" className="pricing-card__button call-button">
+            <Icon name="phone" className="pricing-card__button-icon" />
+            Nous appeler
+          </CTAButton>
+        </div>
+      </div>
+      
+      <!-- Pack Prestige Suprême -->
+      <div class="pricing-card">
+        <div class="pricing-card__header">
+          <h3 class="pricing-card__title">Pack<br/>Prestige Suprême</h3>
+        </div>
+        <div class="pricing-card__price">
+          <div class="pricing-card__current-price">16 900 MAD</div>
+          <div class="pricing-card__original-price">(au 19 900 MAD)</div>
+        </div>
+        <ul class="pricing-card__features">
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>Site full sur-mesure multilingue (FR/AR/EN)</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>Contenus SEO premium (blog, FAQ, Tips beauté)</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>Réservation - paiement Intégré (CM,Stripe,COD)</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>CMS Headless + Intégration CRM</span>
+          </li>
+          <li>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>Maintenance premium & veille CNDP (8 mois)</span>
+          </li>
+        </ul>        <div class="pricing-card__cta">
+          <CTAButton href="/contact" className="pricing-card__button">
+            Demander un devis
+            <Icon name="arrow-right" className="pricing-card__button-icon" />
+          </CTAButton>
+          <CTAButton href="tel:+212679782906" className="pricing-card__button call-button">
+            <Icon name="phone" className="pricing-card__button-icon" />
+            Nous appeler
+          </CTAButton>
+        </div>
+      </div>
+    </div>
+    
+    <div class="pricing-note">
+      <p>Jusqu'à 4 000 MAD de remise sur nos packs web, pour une présence en ligne alignée à votre univers.</p>
+      <CTAButton href="/creation-site-web-casablanca" className="pricing-note__button secondary-cta">
+        En savoir plus sur nos services
+        <Icon name="arrow-right" className="pricing-note__button-icon" />
+      </CTAButton>
+    </div>
+  </div>
+</section>
+
+<style>  .pricing {
+    padding: 6rem 0;
+    background-color: #f8f9fd;
+    background-image: linear-gradient(135deg, #f8f9fd 0%, #e9eeff 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .pricing::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #ff6b6b, #ffd166, #06d6a0, #118ab2, #073b4c);
+  }
+  
+  .pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .pricing-card {
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem 2rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: none;
+  }
+  
+  .pricing-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #ff9f1c;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  
+  .pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  }
+  
+  .pricing-card:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .pricing-card--featured {
+    background: linear-gradient(135deg, #118ab2 0%, #073b4c 100%);
+    color: white;
+    border: none;
+    transform: scale(1.05);
+    box-shadow: 0 15px 50px rgba(17, 138, 178, 0.4);
+  }
+    .pricing-card--featured:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 60px rgba(17, 138, 178, 0.5);
+  }
+  
+  .pricing-card--featured::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    z-index: 0;
+    animation: pulse 4s infinite ease-in-out;
+  }
+  
+  .pricing-card--featured::after {
+    content: "";
+    position: absolute;
+    bottom: -50px;
+    left: -50px;
+    width: 70px;
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    z-index: 0;
+    animation: pulse 4s infinite ease-in-out 1s;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.5); opacity: 0.3; }
+    100% { transform: scale(1); opacity: 0.5; }
+  }
+  
+  .pricing-card__header {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+    .pricing-card__title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+    background: linear-gradient(135deg, #118ab2, #073b4c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .pricing-card--featured .pricing-card__title {
+    background: linear-gradient(135deg, #ffffff, #e0f2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+    .pricing-card__badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: linear-gradient(135deg, #ff9f1c, #ff6b6b);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    transform: rotate(3deg);
+    z-index: 2;
+  }
+  
+  .pricing-card__price {
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding-bottom: 1.5rem;
+  }
+  
+  .pricing-card__price::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #ff9f1c;
+  }
+  
+  .pricing-card--featured .pricing-card__price::after {
+    background-color: #ffffff;
+  }
+  
+  .pricing-card__current-price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ff6b6b;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  
+  .pricing-card--featured .pricing-card__current-price {
+    color: white;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+    .pricing-card__original-price {
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: line-through;
+    margin-top: 0.5rem;
+    font-style: italic;
+    font-weight: 500;
+  }
+  
+  .pricing-card--featured .pricing-card__original-price {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .pricing-card__features {
+    list-style: none;
+    padding: 0.5rem;
+    margin: 0 0 2rem;
+    flex-grow: 1;
+    background-color: rgba(248, 249, 253, 0.5);
+    border-radius: var(--border-radius-md);
+  }
+  
+  .pricing-card--featured .pricing-card__features {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .pricing-card__features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0.5rem;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+  }
+  
+  .pricing-card--featured .pricing-card__features li {
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .pricing-card__features li:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+  
+  .pricing-card__icon {
+    width: 20px;
+    height: 20px;
+    color: #06d6a0;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  
+  .pricing-card--featured .pricing-card__icon {
+    color: white;
+  }
+    .pricing-card__button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1.25rem 1.5rem;
+    border-radius: 50px;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-weight: 700;
+    gap: 0.75rem;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #118ab2, #073b4c);
+    color: white;
+    box-shadow: 0 5px 15px rgba(17, 138, 178, 0.4);
+    border: none;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .pricing-card__button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #073b4c, #118ab2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+  
+  .pricing-card__button:hover::after {
+    opacity: 1;
+  }
+  
+  .pricing-card__button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(17, 138, 178, 0.5);
+  }
+  
+  .pricing-card__button--featured {
+    background: linear-gradient(135deg, #fff, #f8f9fd);
+    color: #073b4c;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+  }
+  
+  .pricing-card__button--featured::after {
+    background: linear-gradient(135deg, #f8f9fd, #fff);
+  }
+  
+  .pricing-card__button-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+  
+  .pricing-card__button:hover .pricing-card__button-icon {
+    transform: translateX(3px);
+  }
+    .pricing-note {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #eff6ff, #e0f2fe);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #118ab2;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .pricing-note::before {
+    content: "💡";
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    font-size: 3rem;
+    opacity: 0.1;
+  }
+  
+  .pricing-note p {
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    color: #073b4c;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  
+  .pricing-note__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #ff9f1c, #ff6b6b);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+    transition: all 0.3s ease;
+  }
+  
+  .pricing-note__button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
+  }
+  
+  .pricing-note__button-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+  
+  .pricing-note__button:hover .pricing-note__button-icon {
+    transform: translateX(3px);
+  }
+  
+  /* Média queries pour le responsive */
+  @media (max-width: 991px) {
+    .pricing-cards {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .pricing-card--featured {
+      transform: none;
+    }
+    
+    .pricing-card--featured:hover {
+      transform: translateY(-5px);
+    }
+  }
+    .pricing-header {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .pricing-tag {
+    background-color: rgba(17, 138, 178, 0.1);
+    color: #118ab2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+  }
+  
+  .pricing-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.25rem;
+    background: linear-gradient(135deg, #073b4c, #118ab2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .pricing-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b6b, #ffd166);
+    border-radius: 4px;
+  }
+  
+  .pricing-subtitle {
+    font-size: 1.2rem;
+    max-width: 600px;
+    color: #073b4c;
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .pricing {
+      padding: 4rem 0;
+    }
+    
+    .pricing-cards {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .pricing-card__title {
+      font-size: 1.5rem;
+    }
+    
+    .pricing-card__current-price {
+      font-size: 2rem;
+    }
+    
+    .pricing-title {
+      font-size: 2rem;
+    }
+    
+    .pricing-subtitle {
+      font-size: 1.1rem;
+    }
+  }
+</style>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+  // Animation pour la section des tarifs lorsqu'elle entre dans le viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const cards = document.querySelectorAll('.pricing-card');
+        cards.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('animate-in');
+          }, index * 200);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  const pricingSection = document.querySelector('.pricing');
+  if (pricingSection) {
+    observer.observe(pricingSection);
+  }
+  
+  // Effet de surbrillance sur le tarif mis en avant lors du défilement
+  window.addEventListener('scroll', function() {
+    const featuredCard = document.querySelector('.pricing-card--featured');
+    if (featuredCard && isElementInViewport(featuredCard)) {
+      featuredCard.classList.add('highlight');
+      setTimeout(() => {
+        featuredCard.classList.remove('highlight');
+      }, 1000);
+    }
+  });
+  
+  function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+});
+</script>
+
+<style is:global>
+  .pricing-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .pricing-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .pricing-card--featured.highlight {
+    animation: highlight 1s ease;
+  }
+  
+  @keyframes highlight {
+    0%, 100% { box-shadow: 0 15px 50px rgba(17, 138, 178, 0.4); }
+    50% { box-shadow: 0 15px 70px rgba(255, 159, 28, 0.8); }
+  }
+</style>

@@ -4,6 +4,10 @@ import Layout from '../layouts/Layout.astro';
 import JsonLd from '../components/JsonLd.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import SocialProof from '../components/SocialProof.astro';
+import CTAButton from '../components/CTAButton.astro';
+import Icon from '../components/Icon.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
+import PricingTable from '../components/PricingTable.astro';
 
 const pageSchema = {
   "@context": "https://schema.org",
@@ -88,82 +92,456 @@ const homeSchema = {
 
 <Layout 
   title="Création Site Web Casablanca | Agence Web à Casablanca Maroc - Sites Professionnels & SEO"
-  description="Agence experte en création site web à Casablanca ⭐ Sites vitrines & e-commerce sur-mesure ✓ 1ère page Google ✓ Devis gratuit ✓ Plus de 1000 clients satisfaits à Casablanca et au Maroc. Contactez-nous !">
-  <JsonLd data={homeSchema} />
-  <main>
-    <Breadcrumbs items={breadcrumbItems} />
-
-    <section class="hero">
+  description="Agence experte en création site web à Casablanca ⭐ Sites vitrines & e-commerce sur-mesure ✓ 1ère page Google ✓ Devis gratuit ✓ Plus de 1000 clients satisfaits à Casablanca et au Maroc. Contactez-nous !">  <JsonLd data={homeSchema} />  <main>    <section class="hero" id="hero">
+      <div class="hero__overlay"></div>
+      <div class="container hero__container">
+        <div class="hero__content">          <div class="hero__title-wrapper">
+            <h1 class="hero__title">
+              <span class="hero__title-highlight">Sites Web Professionnels</span>
+              <span class="hero__title-second-line">à Casablanca</span>
+            </h1>
+          </div>
+          <h2 class="hero__subtitle">Transformez votre vision en une présence web remarquable</h2>
+          <p class="hero__text">
+            Notre agence digitale crée des sites web percutants qui attirent, convertissent et fidélisent vos clients. Avec plus de 1000 projets réalisés, nous garantissons votre présence en 1ère page Google.
+          </p>
+          <div class="hero__stats">
+            <div class="hero__stat">
+              <span class="hero__stat-number">1000+</span>
+              <span class="hero__stat-text">Projets réalisés</span>
+            </div>
+            <div class="hero__stat">
+              <span class="hero__stat-number">97%</span>
+              <span class="hero__stat-text">Clients satisfaits</span>
+            </div>
+            <div class="hero__stat">
+              <span class="hero__stat-number">10+</span>
+              <span class="hero__stat-text">Années d'expertise</span>
+            </div>
+          </div>          <div class="hero__cta-container">
+            <CTAButton href="/contact" className="hero__cta primary-cta">
+              Demandez votre devis gratuit
+              <Icon name="arrow-right" className="hero__cta-icon" />
+            </CTAButton>
+            <CTAButton href="tel:+212679782906" className="hero__cta call-cta">
+              <Icon name="phone" className="call-icon" />
+              Appel direct
+            </CTAButton>
+            <CTAButton href="/portfolio-realisations-web-casablanca-maroc" className="hero__cta secondary-cta">
+              Voir nos réalisations
+            </CTAButton>
+          </div>
+        </div>
+        <div class="hero__image-container">
+          <img 
+            src="/images/e-commerce-casablanca-hero.jpg" 
+            alt="Création site web à Casablanca" 
+            class="hero__image"
+            width="600"
+            height="450"
+            loading="eager"
+          />          <div class="hero__clients">
+            <p class="hero__clients-text">Ils nous font confiance</p>
+            <div class="hero__clients-logos">
+              <div class="hero__client-logo">
+                <img src="/icons/le-cely.svg" alt="Le Cely" width="50" height="50" />
+              </div>
+              <div class="hero__client-logo">
+                <img src="/icons/executive-travel.svg" alt="Executive Travel Shuttle" width="50" height="30" />
+              </div>
+              <div class="hero__client-logo">
+                <img src="/icons/surf-logo.svg" alt="Morocco Surf" width="50" height="50" />
+              </div>
+            </div>      </div>
+        </div>
+      </div>    </section>
+    
+    <PricingTable 
+      title="Nos tarifs adaptés à vos besoins" 
+      subtitle="Des solutions accessibles pour tous les budgets, avec un excellent rapport qualité-prix"
+    />
+    
+    <section class="services" id="services">
       <div class="container">
-        <h1>Création Site Web Casablanca : Agence Web N°1 pour votre projet digital</h1>
-        <h2>Votre site web professionnel à Casablanca, optimisé pour Google</h2>
-        <p>
-          Notre agence web à Casablanca est spécialisée dans la création de sites internet performants, modernes et 100% optimisés SEO. Depuis plus de 10 ans, nous aidons les entreprises marocaines à atteindre la 1ère page Google sur le mot-clé <strong>création site web Casablanca</strong>.
-        </p>
-        <ul>
-          <li>+1000 sites web réalisés à Casablanca et au Maroc</li>
-          <li>Référencement SEO avancé pour la 1ère page Google</li>
-          <li>Design responsive et expérience utilisateur optimale</li>
-          <li>Accompagnement, conseils et support local</li>
-        </ul>
-        <a href="/creation-site-web-casablanca" class="cta-button">Obtenez votre devis gratuit</a>
-      </div>
-    </section>
-
-    <section class="services">
-      <div class="container">
-        <h2>Nos Services de Création de Site Web à Casablanca</h2>
+        <div class="section-header">
+          <span class="section-tag">Nos services</span>
+          <h2 class="section-title">Solutions Web Complètes</h2>
+          <p class="section-subtitle">
+            Créons ensemble le site web parfait pour votre entreprise à Casablanca
+          </p>
+        </div>
+        
         <div class="service-grid">
           <div class="service-card">
-            <img src="/icons/web-design.svg" alt="Web Design Casablanca" width="64" height="64" loading="lazy">
-            <h3>Web Design</h3>
-            <p>Des designs modernes et intuitifs pour une expérience utilisateur optimale à Casablanca.</p>
-            <span class="scarcity">Places limitées ce mois-ci!</span>
+            <div class="service-card__icon-wrapper">
+              <img src="/icons/web-design.svg" alt="Web Design Casablanca" width="64" height="64" loading="lazy" class="service-card__icon">
+            </div>
+            <h3 class="service-card__title">Sites Vitrines</h3>
+            <p class="service-card__description">
+              Présentez votre entreprise avec élégance grâce à un design sur mesure, responsive et optimisé SEO.
+            </p>
+            <ul class="service-card__features">
+              <li>Design personnalisé</li>
+              <li>Responsive design</li>
+              <li>Optimisation SEO</li>
+            </ul>
+            <div class="service-card__cta">
+              <a href="/creation-site-web-casablanca" class="service-card__link">En savoir plus</a>
+            </div>
+            <div class="service-card__badge">
+              <span class="service-card__badge-text">Service populaire</span>
+            </div>
           </div>
+          
+          <div class="service-card service-card--featured">
+            <div class="service-card__icon-wrapper">
+              <img src="/icons/development.svg" alt="E-commerce Casablanca" width="64" height="64" loading="lazy" class="service-card__icon">
+            </div>
+            <h3 class="service-card__title">E-commerce</h3>
+            <p class="service-card__description">
+              Vendez en ligne avec une boutique performante, sécurisée et adaptée au marché marocain.
+            </p>
+            <ul class="service-card__features">
+              <li>Paiement sécurisé</li>
+              <li>Gestion des stocks</li>
+              <li>Mobile-first design</li>
+            </ul>
+            <div class="service-card__cta">
+              <a href="/creation-site-web-maroc" class="service-card__link">En savoir plus</a>
+            </div>
+            <div class="service-card__badge service-card__badge--featured">
+              <span class="service-card__badge-text">Meilleure offre</span>
+            </div>
+          </div>
+          
           <div class="service-card">
-            <img src="/icons/development.svg" alt="Développement Web Casablanca" width="64" height="64" loading="lazy">
-            <h3>Développement Web</h3>
-            <p>Sites web robustes et évolutifs, adaptés à vos besoins à Casablanca.</p>
-            <span class="scarcity">3 places restantes!</span>
+            <div class="service-card__icon-wrapper">
+              <img src="/icons/seo.svg" alt="SEO Casablanca" width="64" height="64" loading="lazy" class="service-card__icon">
+            </div>
+            <h3 class="service-card__title">Référencement SEO</h3>
+            <p class="service-card__description">
+              Atteignez la première page Google avec notre expertise en optimisation pour les moteurs de recherche.
+            </p>
+            <ul class="service-card__features">
+              <li>Mots-clés stratégiques</li>
+              <li>Suivi de performance</li>
+              <li>SEO local Casablanca</li>
+            </ul>
+            <div class="service-card__cta">
+              <a href="/agence-digitale-maroc" class="service-card__link">En savoir plus</a>
+            </div>
+            <div class="service-card__badge">
+              <span class="service-card__badge-text">Places limitées</span>
+            </div>
           </div>
-          <div class="service-card">
-            <img src="/icons/seo.svg" alt="SEO Casablanca" width="64" height="64" loading="lazy">
-            <h3>Optimisation SEO</h3>
-            <p>Boostez votre visibilité à Casablanca et atteignez la 1ère page Google.</p>
-            <span class="scarcity">Dernière chance!</span>
+        </div>
+        
+        <div class="services__more">
+          <CTAButton href="/services/creation-site-web-casablanca" className="services__cta">
+            Voir tous nos services
+            <Icon name="arrow-right" className="services__cta-icon" />
+          </CTAButton>
+        </div>
+      </div>
+    </section>    <section class="why-choose-us" id="why-us">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Pourquoi nous choisir</span>
+          <h2 class="section-title">L'Excellence Web à Casablanca</h2>
+          <p class="section-subtitle">
+            Découvrez ce qui fait de nous l'agence web de référence à Casablanca
+          </p>
+        </div>
+        
+        <div class="features-grid">
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-card__icon-wrapper">
+              <Icon name="code" className="feature-card__icon" />
+            </div>
+            <h3 class="feature-card__title">Expertise Locale</h3>
+            <p class="feature-card__text">
+              Une équipe 100% basée à Casablanca, parfaitement adaptée aux spécificités du marché marocain.
+            </p>
           </div>
+          
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-card__icon-wrapper">
+              <Icon name="seo" className="feature-card__icon" />
+            </div>
+            <h3 class="feature-card__title">SEO Avancé</h3>
+            <p class="feature-card__text">
+              Positionnement garanti en première page Google pour dominer votre secteur à Casablanca.
+            </p>
+          </div>
+          
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-card__icon-wrapper">
+              <Icon name="mobile" className="feature-card__icon" />
+            </div>
+            <h3 class="feature-card__title">Design Responsive</h3>
+            <p class="feature-card__text">
+              Sites parfaitement optimisés pour tous les appareils, des smartphones aux grands écrans.
+            </p>
+          </div>
+          
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="feature-card__icon-wrapper">
+              <Icon name="lock" className="feature-card__icon" />
+            </div>
+            <h3 class="feature-card__title">Sécurité Renforcée</h3>
+            <p class="feature-card__text">
+              Protection maximale contre les cyberattaques et conformité aux dernières normes de sécurité.
+            </p>
+          </div>
+        </div>
+        
+        <div class="why-choose-us__stats">
+          <div class="stat-item">
+            <div class="stat-item__number">1000+</div>
+            <div class="stat-item__label">Sites créés</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">97%</div>
+            <div class="stat-item__label">Clients satisfaits</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">10+</</div>
+            <div class="stat-item__label">Années d'expérience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">#1</div>
+            <div class="stat-item__label">Agence à Casablanca</div>
+          </div>        </div>
+      </div>    </section>
+    
+    <section class="portfolio" id="portfolio">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Nos réalisations</span>
+          <h2 class="section-title">Nos Derniers Projets</h2>
+          <p class="section-subtitle">
+            Découvrez notre savoir-faire à travers nos réalisations pour des entreprises de Casablanca
+          </p>
+        </div>
+        
+        <div class="portfolio-grid">
+          <div class="portfolio-item">
+            <div class="portfolio-item__image-container">
+              <img 
+                src="/images/architect-website.jpg" 
+                alt="Site web d'architecture à Casablanca" 
+                class="portfolio-item__image"
+                width="400"
+                height="300"
+                loading="lazy"
+              />
+            </div>
+            <div class="portfolio-item__overlay">
+              <h3 class="portfolio-item__title">Site Architecture</h3>
+              <p class="portfolio-item__category">Site vitrine</p>
+              <a href="/portfolio-realisations-web-casablanca-maroc" class="portfolio-item__link">
+                Voir le projet
+                <Icon name="arrow-right" className="portfolio-item__icon" />
+              </a>
+            </div>
+          </div>
+          
+          <div class="portfolio-item">
+            <div class="portfolio-item__image-container">
+              <img 
+                src="/images/parfum-ecommerce.jpg" 
+                alt="E-commerce de parfumerie à Casablanca" 
+                class="portfolio-item__image"
+                width="400"
+                height="300"
+                loading="lazy"
+              />
+            </div>
+            <div class="portfolio-item__overlay">
+              <h3 class="portfolio-item__title">Boutique Parfums</h3>
+              <p class="portfolio-item__category">E-commerce</p>
+              <a href="/portfolio-realisations-web-casablanca-maroc" class="portfolio-item__link">
+                Voir le projet
+                <Icon name="arrow-right" className="portfolio-item__icon" />
+              </a>
+            </div>
+          </div>
+          
+          <div class="portfolio-item">
+            <div class="portfolio-item__image-container">
+              <img 
+                src="/images/project-management-app.jpg" 
+                alt="Application de gestion de projet à Casablanca" 
+                class="portfolio-item__image"
+                width="400"
+                height="300"
+                loading="lazy"
+              />
+            </div>
+            <div class="portfolio-item__overlay">
+              <h3 class="portfolio-item__title">App Gestion Projet</h3>
+              <p class="portfolio-item__category">Application Web</p>
+              <a href="/portfolio-realisations-web-casablanca-maroc" class="portfolio-item__link">
+                Voir le projet
+                <Icon name="arrow-right" className="portfolio-item__icon" />
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="portfolio__more">
+          <CTAButton href="/portfolio-realisations-web-casablanca-maroc" className="portfolio__cta secondary-cta">
+            Voir tous nos projets
+            <Icon name="arrow-right" className="portfolio__cta-icon" />
+          </CTAButton>
         </div>
       </div>
     </section>
-    <section class="why-choose-us">
-      <div class="container">
-        <h2>Pourquoi choisir notre agence de création de site web à Casablanca ?</h2>
-        <ul>
-          <li><strong>Expertise locale :</strong> Une équipe basée à Casablanca, connaissant parfaitement le marché marocain.</li>
-          <li><strong>Référencement SEO :</strong> Nos sites sont conçus pour atteindre la 1ère page Google sur "création site web Casablanca".</li>
-          <li><strong>Transparence :</strong> Devis gratuit, suivi personnalisé, accompagnement de A à Z.</li>
-          <li><strong>Preuves sociales :</strong> Plus de 100 avis clients positifs et des réalisations concrètes à Casablanca.</li>
-        </ul>
-        <a href="/portfolio-realisations-web-casablanca-maroc">Voir nos réalisations à Casablanca</a>
+    
+    <section class="cta-section" id="cta-mid">
+      <div class="container cta-section__container">
+        <div class="cta-section__content">
+          <h2 class="cta-section__title">Prêt à transformer votre présence en ligne ?</h2>
+          <p class="cta-section__text">
+            Obtenez un site web professionnel qui attire, convertit et fidélise vos clients potentiels.
+          </p>
+          <div class="cta-section__actions">
+            <CTAButton href="/contact" className="cta-section__button primary-cta">
+              Demandez votre devis gratuit
+              <Icon name="arrow-right" className="cta-section__icon" />
+            </CTAButton>
+            <div class="cta-section__guarantee">
+              <Icon name="check" className="cta-section__check-icon" />
+              <span>Satisfaction garantie ou remboursé</span>
+            </div>
+          </div>
+        </div>
+        <div class="cta-section__image-container">
+          <img 
+            src="/images/seo-casablanca-hero.jpg" 
+            alt="Création site web professionnel à Casablanca" 
+            class="cta-section__image"
+            width="500"
+            height="350"
+            loading="lazy"
+          />
+        </div>
       </div>
-    </section>
-    <section class="cta">
+    </section>    <section class="testimonials" id="testimonials">
       <div class="container">
-        <h2>Prêt à booster votre présence en ligne à Casablanca ?</h2>
-        <p>Ne laissez pas vos concurrents vous devancer. Agissez maintenant!</p>
-        <a href="/creation-site-web-casablanca" class="cta-button">Contactez-nous <span class="urgency">Offre spéciale 24h!</span></a>
-        <p class="guarantee">Satisfaction garantie ou remboursé</p>
-      </div>
-    </section>
-    <section class="about-casablanca">
-      <div class="container">
-        <h2>À propos de notre agence web à Casablanca</h2>
-        <p>Depuis plus de 10 ans, notre équipe locale accompagne les entreprises marocaines dans leur transformation digitale. Basés à Casablanca, nous connaissons parfaitement les besoins du marché local et proposons des solutions web sur-mesure, innovantes et performantes.</p>
-        <ul>
-          <li>+1000 projets réalisés à Casablanca et au Maroc</li>
-          <li>Expertise en création de site vitrine, e-commerce, SEO, graphisme, réseaux sociaux</li>
-          <li>Accompagnement personnalisé, en français et en arabe</li>
-        </ul>
+        <div class="section-header">
+          <span class="section-tag">Témoignages</span>
+          <h2 class="section-title">Ce que disent nos clients</h2>
+          <p class="section-subtitle">
+            Découvrez pourquoi nos clients à Casablanca nous font confiance pour leurs projets web
+          </p>
+        </div>
+        
+        <div class="testimonials-slider">
+          <div class="testimonials-wrapper">
+            <div class="testimonial-card">
+              <div class="testimonial-card__rating">
+                <Icon name="star" className="testimonial-card__star" />
+                <Icon name="star" className="testimonial-card__star" />
+                <Icon name="star" className="testimonial-card__star" />
+                <Icon name="star" className="testimonial-card__star" />
+                <Icon name="star" className="testimonial-card__star" />
+              </div>
+              <p class="testimonial-card__text">
+                "L'équipe de CreationSiteWebPro a transformé notre présence en ligne. Notre site e-commerce génère maintenant 40% de notre chiffre d'affaires. Un investissement qui a largement porté ses fruits !"
+              </p>              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar">
+                  MA
+                  <img 
+                    src="/images/mouhcine-talbi.jpg" 
+                    alt="Mohammed Alami" 
+                    width="50" 
+                    height="50"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="testimonial-card__info">
+                  <h4 class="testimonial-card__name">Mohammed Alami</h4>
+                  <p class="testimonial-card__company">Directeur, Alami Commerce</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="testimonial-card">
+              <div class="testimonial-card__rating">
+                <Icon name="star" className="testimonial-card__star" />
+                <Icon name="star" className="testimonial-card__star" />
+                <Icon name="star" className="testimonial-card__star" />
+                <Icon name="star" className="testimonial-card__star" />
+                <Icon name="star" className="testimonial-card__star" />
+              </div>
+              <p class="testimonial-card__text">
+                "Un service client exceptionnel et un site web qui dépasse toutes nos attentes. Nous sommes maintenant en première position sur Google pour nos mots-clés principaux à Casablanca."
+              </p>              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar">
+                  FZ
+                  <img 
+                    src="/images/safae-abed.jpg" 
+                    alt="Fatima Zahra" 
+                    width="50" 
+                    height="50"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="testimonial-card__info">
+                  <h4 class="testimonial-card__name">Fatima Zahra</h4>
+                  <p class="testimonial-card__company">Gérante, Zahra Beauty</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="testimonial-card">
+              <div class="testimonial-card__rating">
+                <Icon name="star" className="testimonial-card__star" />
+                <Icon name="star" className="testimonial-card__star" />
+                <Icon name="star" className="testimonial-card__star" />
+                <Icon name="star" className="testimonial-card__star" />
+                <Icon name="star" className="testimonial-card__star" />
+              </div>
+              <p class="testimonial-card__text">
+                "Professionnalisme, réactivité et expertise technique. Notre nouveau site vitrine a complètement transformé notre image de marque et nous a apporté de nombreux nouveaux clients."
+              </p>              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar">
+                  YE
+                  <img 
+                    src="/images/zakaria-boussnini.jpg" 
+                    alt="Youssef El Mansouri" 
+                    width="50" 
+                    height="50"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="testimonial-card__info">
+                  <h4 class="testimonial-card__name">Youssef El Mansouri</h4>
+                  <p class="testimonial-card__company">Architecte, Studio YM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonials-controls">
+            <button class="testimonials-control testimonials-prev" aria-label="Témoignage précédent">
+              <Icon name="arrow-right" className="testimonials-control__icon testimonials-control__icon--prev" />
+            </button>
+            <button class="testimonials-control testimonials-next" aria-label="Témoignage suivant">
+              <Icon name="arrow-right" className="testimonials-control__icon" />
+            </button>
+          </div>
+          
+          <div class="testimonials-dots"></div>
+        </div>
+        
+        <div class="testimonials__more">
+          <a href="/a-propos-agence-web-casablanca#testimonials" class="testimonials__link">
+            Voir tous les témoignages
+            <Icon name="arrow-right" className="testimonials__link-icon" />
+          </a>
+        </div>
       </div>
     </section>
     <section class="portfolio-casablanca">
@@ -175,26 +553,109 @@ const homeSchema = {
           <li><a href="/blog/creation-site-web-casablanca-guide">Guide création site web Casablanca</a></li>
         </ul>
       </div>
+    </section>    <section class="faq" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">FAQ</span>
+          <h2 class="section-title">Questions Fréquentes</h2>
+          <p class="section-subtitle">
+            Tout ce que vous devez savoir sur la création de site web à Casablanca
+          </p>
+        </div>
+        
+        <div class="faq-container">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Quel est le coût de création d'un site web à Casablanca ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Les tarifs de création de site web à Casablanca varient selon vos besoins spécifiques. Un site vitrine professionnel démarre à partir de 5000 MAD, tandis qu'un e-commerce peut aller de 15000 à 50000 MAD selon la complexité et les fonctionnalités. Chaque projet est différent, et nous proposons des solutions sur mesure adaptées à tous les budgets. Contactez-nous pour un devis personnalisé gratuit.
+              </p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Combien de temps pour créer un site web à Casablanca ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                En moyenne, un site vitrine est livré en 2 à 3 semaines après validation de la maquette. Pour un site e-commerce, comptez 4 à 6 semaines selon la complexité. Notre processus de création est transparent avec des étapes clairement définies : analyse des besoins, conception graphique, développement, tests et mise en ligne.
+              </p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Proposez-vous le référencement SEO à Casablanca ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Absolument ! Tous nos sites sont conçus avec une optimisation SEO de base intégrée. Nous proposons également des prestations de référencement avancées pour maximiser votre visibilité à Casablanca et dans tout le Maroc. Notre expertise en SEO local vous aide à atteindre la première page de Google sur les mots-clés stratégiques pour votre activité.
+              </p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Pourquoi choisir une agence locale à Casablanca ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Une agence web locale à Casablanca comme la nôtre connaît parfaitement les spécificités du marché marocain, les habitudes des consommateurs locaux et les meilleures pratiques pour réussir en ligne au Maroc. Nous offrons un suivi personnalisé, des rencontres en personne si nécessaire, et une réactivité optimale. Notre équipe communique en français et en arabe, facilitant les échanges et la compréhension de vos besoins.
+              </p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Est-ce que mes clients pourront payer en ligne ?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Oui, nous intégrons les solutions de paiement adaptées au marché marocain comme CMI, PayPal, ou les paiements mobiles. Nos sites e-commerce sont équipés de systèmes de paiement sécurisés et conformes aux normes internationales, offrant à vos clients une expérience d'achat fluide et sécurisée.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq__more">
+          <a href="/faq-creation-site-web-maroc" class="faq__link">
+            Voir toutes les questions
+            <Icon name="arrow-right" className="faq__link-icon" />
+          </a>
+        </div>
+      </div>
     </section>
-    <section class="why-choose-us" aria-labelledby="faq-title">
-      <h2 id="faq-title">Questions fréquentes sur la création de site web à Casablanca</h2>
-      <div>
-        <details>
-          <summary>Quel est le coût de création d'un site web à Casablanca ?</summary>
-          <p>Les tarifs de création de site web à Casablanca varient selon vos besoins. Un site vitrine professionnel démarre à partir de 5000 MAD, tandis qu'un e-commerce peut aller de 15000 à 50000 MAD. Nous proposons des solutions sur mesure adaptées à tous les budgets.</p>
-        </details>
-        <details>
-          <summary>Combien de temps pour créer un site web à Casablanca ?</summary>
-          <p>En moyenne, un site vitrine est livré en 2 à 3 semaines, un site e-commerce en 4 à 6 semaines.</p>
-        </details>
-        <details>
-          <summary>Proposez-vous le référencement SEO à Casablanca ?</summary>
-          <p>Oui, tous nos sites sont optimisés SEO et nous proposons des prestations de référencement pour booster votre visibilité à Casablanca.</p>
-        </details>
-        <details>
-          <summary>Pourquoi choisir une agence locale à Casablanca ?</summary>
-          <p>Une agence locale connaît les spécificités du marché casablancais et vous accompagne avec un suivi personnalisé et réactif.</p>
-        </details>
+    
+    <section class="final-cta" id="final-cta">
+      <div class="container">
+        <div class="final-cta__content">
+          <h2 class="final-cta__title">Prêt à lancer votre projet web ?</h2>
+          <p class="final-cta__subtitle">
+            Contactez-nous dès aujourd'hui pour un devis gratuit et sans engagement
+          </p>
+          <div class="final-cta__actions">
+            <CTAButton href="/contact" className="final-cta__button primary-cta">
+              Demander un devis gratuit
+              <Icon name="arrow-right" className="final-cta__button-icon" />
+            </CTAButton>
+            <a href="tel:+212679782906" class="final-cta__phone">
+              <Icon name="phone" className="final-cta__phone-icon" />
+              +212 6 79 78 29 06
+            </a>
+          </div>
+          <p class="final-cta__guarantee">
+            <Icon name="check" className="final-cta__check-icon" />
+            <span>Satisfaction garantie ou remboursé</span>
+          </p>
+        </div>
       </div>
     </section>
     <JsonLd data={{
@@ -240,186 +701,1457 @@ const homeSchema = {
 </Layout>
 
 <style>
-
-  /* Styles spécifiques à la page d'accueil */
-  .hero {
-    background-color: var(--color-primary);
-    color: white;
-    padding: 7rem 0;
+  /* Section Headers */
+  .section-header {
     text-align: center;
-    margin-top: 0;
+    max-width: 800px;
+    margin: 0 auto 3rem;
   }
-  .hero h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-bottom: 1rem;
+  
+  .section-header--left {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
   }
-  .hero p {
-    font-size: clamp(1rem, 3vw, 1.2rem);
-    margin-bottom: 2rem;
-  }
-  .cta-button {
+  
+  .section-tag {
     display: inline-block;
-    background-color: var(--color-secondary);
+    background-color: rgba(var(--color-primary-rgb), 0.1);
+    color: var(--color-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  
+  .section-title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    margin-bottom: 1rem;
+    color: var(--color-text-primary);
+    letter-spacing: -0.025em;
+  }
+  
+  .section-subtitle {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    color: var(--color-text-secondary);
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+  
+  .section-header--left .section-subtitle {
+    margin: 0;
+  }
+  
+  /* Hero Section */
+  .hero {
+    position: relative;
+    padding: 8rem 0 5rem;
+    overflow: hidden;
+    margin-top: 0;
+    transition: all 0.5s ease-in-out;
+  }  .hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(125deg, #0A2647, #144272, #205295);
+    background-size: 200% 200%;
+    opacity: 0.97;
+    z-index: -1;
+    animation: gradientShift 15s ease infinite;
+  }
+  
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+    .hero__content {
+    position: relative;
+    background: rgba(0, 48, 73, 0.7);
+    padding: 2.5rem;
+    border-radius: var(--border-radius-lg);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    transform: translateZ(0);
+    max-width: 650px;
+    width: 100%;
+  }
+  
+  .hero__content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1a56db, #2563eb, #3b82f6);
+    z-index: 1;
+  }
+  
+  .hero__title-wrapper {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+    .hero__title-wrapper::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+    border-radius: 3px;
+  }
+  
+  @media (max-width: 1024px) {
+    .hero__title-wrapper::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+    .hero__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  /* Animation pour l'apparition progressive des éléments du héros */
+  .hero__container > * {
+    animation: fadeInStaggered 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .hero__content {
+    animation-delay: 0.2s;
+  }
+  
+  .hero__image-container {
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes fadeInStaggered {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .hero__title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: #fff;
+    letter-spacing: -0.03em;
+    text-shadow: var(--hero-text-shadow);
+  }  .hero__title-highlight {
+    background: linear-gradient(120deg, #3b82f6, #2563eb, #60a5fa);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-shadow: 0 2px 5px rgba(59, 130, 246, 0.3);
+    animation: gradientMove 6s ease infinite, floatText 5s ease-in-out infinite alternate;
+    padding: 0 0.1em;
+  }
+  
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @keyframes floatText {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+  }    .hero__title-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.4), rgba(59, 130, 246, 0.15));
+    z-index: -1;
+    border-radius: 10px;
+    transform: translateY(5px) scaleX(0.95);
+    opacity: 0.7;
+    filter: blur(3px);
+    animation: shimmer 3s ease-in-out infinite alternate;
+  }
+  
+  @keyframes shimmer {
+    0% { opacity: 0.4; transform: translateY(5px) scaleX(0.95); }
+    100% { opacity: 0.7; transform: translateY(5px) scaleX(1.05); }
+  }
+  
+  .hero__title-second-line {
+    display: block;
+    margin-top: 0.5rem;
     color: white;
-    padding: 0.75rem 1.5rem;
+    position: relative;
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }    .hero__subtitle {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    text-shadow: var(--hero-text-shadow);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    animation: slideIn 0.8s ease-out;
+  }
+  
+  .hero__subtitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, white, transparent);
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }    .hero__text {
+    color: #ffffff;
+    margin-bottom: 2rem;
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
+    max-width: 42rem;
+    line-height: 1.7;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1.25rem;
+    border-radius: var(--border-radius-md);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-left: 3px solid var(--hero-highlight);
+    animation: fadeIn 1s ease-out 0.3s both;
+  }    .hero__stats {
+    display: flex;
+    margin-bottom: 2.5rem;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    background-color: rgba(0, 0, 0, 0.25);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-md);
+    backdrop-filter: blur(4px);
+    border-left: 4px solid #3b82f6;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+    animation: fadeIn 1s ease-out 0.5s both;
+  }
+  
+  .hero__stats::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    right: 20px;
+    width: 40%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+    border-radius: 2px;
+  }
+  
+  .hero__stat {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-right: 1.5rem;
+  }
+  
+  .hero__stat:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+  }    .hero__stat-number {
+    font-size: clamp(1.75rem, 2.75vw, 2.5rem);
+    font-weight: 700;
+    color: #3b82f6;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .hero__stat-text {
+    font-size: 0.95rem;
+    color: #ffffff;
+    font-weight: 500;
+  }
+  
+  .hero__cta-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .hero__cta {
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    font-size: clamp(1rem, 2vw, 1.1rem);
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--border-radius-md);
+  }    .primary-cta {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    border: none;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    box-shadow: 0 8px 15px rgba(37, 99, 235, 0.4);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
   }
-  .cta-button:hover {
-    background-color: #ff8533;
+  
+  .primary-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .primary-cta:hover::before {
+    opacity: 1;
+  }
+  
+  .primary-cta:hover {
     transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(255, 159, 28, 0.5);
   }
+  
+  .secondary-cta {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    font-weight: 600;
+  }
+    .secondary-cta:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    border-color: white;
+  }
+  
+  .hero__cta-container {
+    position: relative;
+    z-index: 5;
+  }
+  
+  .hero__cta-icon {
+    width: 18px;
+    height: 18px;
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+    filter: brightness(1.2);
+  }
+  
+  .hero__cta:hover .hero__cta-icon {
+    transform: translateX(3px);
+  }
+    .hero__image-container {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .hero__image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+    .hero__clients {
+    position: absolute;
+    bottom: -25px;
+    left: 10%;
+    right: 10%;
+    background-color: white;
+    padding: 1.25rem;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    border-top: 3px solid #3b82f6;
+    animation: slideUp 0.5s ease-out 0.8s both;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+    .hero__clients-text {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+  
+  .hero__clients-text::after {
+    content: "";
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+  }
+    .hero__clients-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+  }
+    .hero__client-logo {
+    width: 70px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: var(--border-radius-sm);
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .hero__client-logo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .hero__client-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(70%);
+    transition: filter 0.3s ease;
+  }
+  
+  .hero__client-logo:hover img {
+    filter: grayscale(0%);
+  }
+  
+  /* Services Section */
   .services {
-    padding: 4rem 0;
-    background-color: #f9f9f9;
+    padding: 6rem 0;
+    background-color: var(--color-background);
   }
+  
   .service-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    margin-top: 2rem;
+    margin-bottom: 3rem;
   }
+  
   .service-card {
     background-color: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
     padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
+  
   .service-card:hover {
     transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
   }
-
-  .cta {
-    background-color: var(--color-secondary);
-    color: white;
-    padding: 4rem 0;
-    text-align: center;
+  
+  .service-card--featured {
+    border: 2px solid var(--color-accent);
   }
-  .cta h2 {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  
+  .service-card__icon-wrapper {
+    background-color: rgba(var(--color-primary-rgb), 0.1);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .service-card__icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .service-card__title {
+    font-size: 1.25rem;
     margin-bottom: 1rem;
+    color: var(--color-text-primary);
   }
-  .cta p {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    margin-bottom: 2rem;
+  
+  .service-card__description {
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
-
-  .urgency {
-    display: inline-block;
-    background-color: #ff4500;
-    color: white;
-    font-size: 0.8em;
-    padding: 0.2em 0.5em;
-    border-radius: 3px;
-    margin-left: 0.5em;
-  }
-  .scarcity {
-    display: block;
-    margin-top: 1rem;
-    font-size: 0.9em;
-    color: #ff4500;
-    font-weight: bold;
-  }
-
-  .guarantee {
-    margin-top: 1rem;
-    font-size: clamp(0.9rem, 2vw, 1rem);
-    font-weight: bold;
-  }
-  .testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .testimonial {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .testimonial p {
-    font-style: italic;
-    margin-bottom: 1rem;
-  }
-
-  .testimonial cite {
-    font-weight: bold;
-    display: block;
-  }
-
-  .why-choose-us {
-    padding: 4rem 0;
-    background-color: #f0f8ff;
-  }
-
-  .why-choose-us ul {
+  
+  .service-card__features {
     list-style: none;
     padding: 0;
+    margin: 0 0 1.5rem;
+  }
+  
+  .service-card__features li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+  }
+  
+  .service-card__features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+  
+  .service-card__cta {
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+  
+  .service-card__link {
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .service-card__link:hover {
+    color: var(--color-primary-hover);
+  }
+  
+  .service-card__badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: rgba(var(--color-primary-rgb), 0.1);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--border-radius-sm);
+  }
+  
+  .service-card__badge--featured {
+    background-color: rgba(var(--color-accent-rgb), 0.2);
+    color: var(--color-accent);
+  }
+  
+  .services__more {
+    text-align: center;
+  }
+  
+  .services__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .services__cta:hover {
+    color: var(--color-primary-hover);
+  }
+  
+  /* Features Section */
+  .why-choose-us {
+    padding: 6rem 0;
+    background-color: rgba(var(--color-primary-rgb), 0.03);
+  }
+  
+  .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
+    margin-bottom: 4rem;
   }
-
-  .why-choose-us li {
+  
+  .feature-card {
     background-color: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 2rem;
+    transition: all 0.3s ease;
   }
-
-  .why-choose-us h3 {
-    color: var(--color-secondary);
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .feature-card__icon-wrapper {
+    background-color: rgba(var(--color-primary-rgb), 0.1);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .feature-card__icon {
+    width: 30px;
+    height: 30px;
+    color: var(--color-primary);
+  }
+  
+  .feature-card__title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-text-primary);
+  }
+  
+  .feature-card__text {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .why-choose-us__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    background-color: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  
+  .stat-item__number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
     margin-bottom: 0.5rem;
   }
+  
+  .stat-item__label {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+  
+  /* Portfolio Section */
+  .portfolio {
+    padding: 6rem 0;
+    background-color: var(--color-background);
+  }
+  
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .portfolio-item {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    aspect-ratio: 4/3;
+  }
+  
+  .portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .portfolio-item__image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .portfolio-item__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  
+  .portfolio-item:hover .portfolio-item__image {
+    transform: scale(1.05);
+  }
+  
+  .portfolio-item__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  .portfolio-item__title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+  
+  .portfolio-item__category {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .portfolio-item__link {
+    color: var(--color-accent);
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+  }
+  
+  .portfolio-item:hover .portfolio-item__link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .portfolio-item__icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+  
+  .portfolio-item__link:hover .portfolio-item__icon {
+    transform: translateX(3px);
+  }
+  
+  .portfolio__more {
+    text-align: center;
+  }
+  
+  /* CTA Section */
+  .cta-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+  }
+  
+  .cta-section__container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  .cta-section__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    margin-bottom: 1rem;
+    color: white;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+  
+  .cta-section__text {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .cta-section__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .cta-section__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-section__icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+  }
+  
+  .cta-section__button:hover .cta-section__icon {
+    transform: translateX(3px);
+  }
+  
+  .cta-section__guarantee {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .cta-section__check-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-accent);
+  }
+  
+  .cta-section__image-container {
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .cta-section__image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Testimonials Section */
+  .testimonials {
+    padding: 6rem 0;
+    background-color: var(--color-background);
+  }
+  
+  .testimonials-slider {
+    position: relative;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+  
+  .testimonials-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .testimonial-card {
+    background-color: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .testimonial-card__rating {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .testimonial-card__star {
+    width: 18px;
+    height: 18px;
+    color: var(--color-accent);
+  }
+  
+  .testimonial-card__text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  
+  .testimonial-card__author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .testimonial-card__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: rgba(var(--color-primary-rgb), 0.1);
+  }
+  
+  .testimonial-card__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .testimonial-card__name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--color-text-primary);
+  }
+  
+  .testimonial-card__company {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+  
+  .testimonials-controls {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .testimonials-control {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: white;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .testimonials-control:hover {
+    background-color: var(--color-primary);
+  }
+  
+  .testimonials-control__icon {
+    width: 20px;
+    height: 20px;
+    color: var(--color-text-primary);
+    transition: all 0.3s ease;
+  }
+  
+  .testimonials-control:hover .testimonials-control__icon {
+    color: white;
+  }
+  
+  .testimonials-control__icon--prev {
+    transform: rotate(180deg);
+  }
+  
+  .testimonials-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  
+  .testimonials__more {
+    text-align: center;
+  }
+  
+  .testimonials__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .testimonials__link:hover {
+    color: var(--color-primary-hover);
+  }
+  
+  .testimonials__link-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+  
+  .testimonials__link:hover .testimonials__link-icon {
+    transform: translateX(3px);
+  }
+  
+  /* About Section */
+  .about {
+    padding: 6rem 0;
+    background-color: rgba(var(--color-primary-rgb), 0.03);
+  }
+  
+  .about__layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  .about__text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+  }
+  
+  .about__features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .about__feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+  }
+  
+  .about__feature-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+  
+  .about__image-container {
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .about__image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* FAQ Section */
+  .faq {
+    padding: 6rem 0;
+    background-color: var(--color-background);
+  }
+  
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+  }
+  
+  .faq-item {
+    border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.1);
+  }
+  
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 1.5rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .faq-icon {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    transition: transform 0.3s ease;
+  }
+  
+  .faq-question[aria-expanded="true"] .faq-icon {
+    transform: rotate(45deg);
+  }
+  
+  .faq-answer {
+    padding: 0 0 1.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    display: none;
+  }
+  
+  .faq-question[aria-expanded="true"] + .faq-answer {
+    display: block;
+  }
+  
+  .faq__more {
+    text-align: center;
+  }
+  
+  .faq__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .faq__link:hover {
+    color: var(--color-primary-hover);
+  }
+  
+  .faq__link-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+  
+  .faq__link:hover .faq__link-icon {
+    transform: translateX(3px);
+  }
+  
+  /* Final CTA Section */
+  .final-cta {
+    padding: 6rem 0;
+    background-color: var(--color-background);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.1), rgba(var(--color-accent-rgb), 0.1));
+    z-index: 0;
+  }
+  
+  .final-cta__content {
+    position: relative;
+    z-index: 1;
+    background-color: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 3rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .final-cta__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    margin-bottom: 1rem;
+    color: var(--color-text-primary);
+    letter-spacing: -0.025em;
+  }
+  
+  .final-cta__subtitle {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+  }
+  
+  .final-cta__actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .final-cta__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .final-cta__button-icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+  }
+  
+  .final-cta__button:hover .final-cta__button-icon {
+    transform: translateX(3px);
+  }
+  
+  .final-cta__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-primary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .final-cta__phone:hover {
+    color: var(--color-primary);
+  }
+  
+  .final-cta__phone-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--color-primary);
+  }
+  
+  .final-cta__guarantee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+  }
+  
+  .final-cta__check-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-primary);
+  }
 
+  /* Floating Call Button */  /* Floating button styles moved to global.css */
+
+  /* Responsive Styles */  @media (max-width: 1024px) {
+    .hero__container {
+      justify-content: center;
+      text-align: center;
+    }
+    
+    .cta-section__container,
+    .about__layout {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    
+    .hero__stats {
+      justify-content: center;
+    }
+    
+    .hero__cta-container {
+      justify-content: center;
+    }
+    
+    .service-grid,
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .why-choose-us__stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .testimonials-wrapper {
+      grid-template-columns: 1fr;
+    }
+    
+    .section-header--left {
+      text-align: center;
+      margin: 0 auto 2rem;
+    }
+    
+    .about__features {
+      justify-content: center;
+    }
+    
+    .cta-section__actions {
+      align-items: center;
+    }
+    
+    .about__layout > * {
+      order: 2;
+    }
+    
+    .about__image-container {
+      order: 1;
+      margin-bottom: 2rem;
+    }
+  }
+  
   @media (max-width: 768px) {
-    .testimonial-grid,
-    .why-choose-us ul {
+    .service-grid,
+    .portfolio-grid {
       grid-template-columns: 1fr;
+    }
+    
+    .features-grid,
+    .why-choose-us__stats {
+      grid-template-columns: 1fr;
+    }
+    
+    .testimonials-controls {
+      top: auto;
+      bottom: 0;
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+    }
+    
+    .final-cta__content {
+      padding: 2rem 1.5rem;
+    }
+    
+    .hero__clients {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      right: auto;
+      margin-top: -30px;
+    }
+    
+    .hero__content {
+      max-width: 100%;
+      margin-bottom: 2rem;
+    }
+    
+    .service-card,
+    .feature-card,
+    .testimonial-card,
+    .portfolio-item {
+      max-width: 450px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
-  @media (max-width: 768px) {
-    .service-grid {
-      grid-template-columns: 1fr;
-    }
+  
+  @media (max-width: 480px) {
     .hero {
-    background-color: var(--color-primary);
-    color: white;
-    padding: 8rem 0;
-    text-align: center;
-    margin-top: 0;
-  }
-  }
-  @media (max-width: 500px) {
-    .service-grid {
-      grid-template-columns: 1fr;
+      padding-top: 6rem;
+      padding-bottom: 3rem;
     }
-    .hero {
-    background-color: var(--color-primary);
-    color: white;
-    padding: 10rem 0;
-    text-align: center;
-    margin-top: 0;
-  }
-  }
-  @media (max-width: 347px) {
-    .service-grid {
-      grid-template-columns: 1fr;
+    
+    .hero__cta-container {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
     }
-    .hero {
-    background-color: var(--color-primary);
-    color: white;
-    padding: 11rem 0;
-    text-align: center;
-    margin-top: 0;
+    
+    .hero__content {
+      padding: 1.5rem;
+    }
+    
+    .service-card,
+    .feature-card,
+    .testimonial-card,
+    .portfolio-item {
+      max-width: 100%;
+    }
+    
+    .final-cta__actions {
+      flex-direction: column;
+    }
   }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
+
+<script is:inline>
+  // FAQ Accordion
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const isExpanded = question.getAttribute('aria-expanded') === 'true';
+        question.setAttribute('aria-expanded', !isExpanded);
+      });
+    });
+  });
+</script>

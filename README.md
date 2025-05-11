@@ -52,3 +52,30 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## 📝 Configuration du Formulaire de Contact
+
+Le site utilise [Web3Forms](https://web3forms.com/) pour le traitement des formulaires de contact et l'envoi d'emails.
+
+### Configuration des Emails
+
+1. Le formulaire est configuré pour envoyer les notifications à l'email principal via la clé API principale
+2. Une copie est également envoyée à une adresse secondaire via le champ `cc`
+
+### Tests en Environnement Local
+
+Pour tester le formulaire en développement local :
+
+1. Le formulaire est configuré pour rediriger vers `/merci` en relatif plutôt qu'avec une URL absolue
+2. Un champ honeypot `botcheck` est ajouté pour la validation CORS
+3. Si vous rencontrez des erreurs CORS en développement local, vous pouvez :
+   - Désactiver temporairement JavaScript pour soumettre le formulaire
+   - Utiliser l'extension [CORS Unblock](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino) sur Chrome
+   - Tester uniquement en production
+
+### Dépannage
+
+Si vous recevez les emails sur l'adresse principale mais pas sur l'adresse en CC :
+- Vérifiez que l'adresse email en CC est correctement orthographiée
+- Web3Forms peut parfois retarder les emails en CC, attendez quelques minutes
+- Vérifiez les dossiers spam/indésirables
