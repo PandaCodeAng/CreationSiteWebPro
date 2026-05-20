@@ -23,6 +23,7 @@ const optimizedAlt = alt.trim() ? alt : 'Image descriptive pour CreationSiteWebP
   class:list={[className, { circular: isCircular }]}
   width={width}
   height={height}
+  style={isCircular && width && height ? `width: ${width}px; height: ${height}px;` : undefined}
   loading="lazy"
   decoding="async"
 />
