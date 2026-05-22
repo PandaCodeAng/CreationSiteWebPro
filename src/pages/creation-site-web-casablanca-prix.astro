@@ -1,0 +1,391 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTAButton from '../components/CTAButton.astro';
+import PricingTable from '../components/PricingTable.astro';
+import JsonLd from '../components/JsonLd.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { napInfo } from '../layouts/Layout.astro';
+
+const pageTitle = "Prix Création Site Web Casablanca 2026 | Tarifs & Devis Gratuit";
+const pageDescription = "Combien coûte un site web à Casablanca ? Tarifs clairs 2026 : site vitrine dès 7 500 MAD, e-commerce, application web. Devis gratuit en 24h. Agence locale certifiée.";
+const pageCanonical = "https://www.creationsitewebpro.com/creation-site-web-casablanca-prix";
+
+const breadcrumbItems = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Prix Création Site Web Casablanca' }
+];
+
+const faqItems = [
+  {
+    question: "Quel est le prix d'un site vitrine à Casablanca ?",
+    answer: "Un site vitrine professionnel à Casablanca coûte entre 7 500 MAD et 15 000 MAD selon le nombre de pages et les fonctionnalités. Nos packs incluent design sur mesure, optimisation SEO et hébergement la première année."
+  },
+  {
+    question: "Combien coûte un site e-commerce à Casablanca ?",
+    answer: "La création d'une boutique en ligne à Casablanca est proposée à partir de 15 000 MAD. Le prix final dépend du nombre de produits, des intégrations de paiement (CMI, PayPal, virement) et des fonctionnalités avancées."
+  },
+  {
+    question: "Le prix inclut-il le référencement SEO ?",
+    answer: "Oui, tous nos packs incluent une optimisation SEO de base (balises, vitesse, mobile). Un accompagnement SEO continu est disponible en option pour atteindre la 1ère page Google."
+  },
+  {
+    question: "Combien de temps pour créer un site web à Casablanca ?",
+    answer: "Un site vitrine est livré en 2 à 4 semaines. Un e-commerce en 4 à 8 semaines. Un projet sur mesure (application web, portail) entre 8 et 16 semaines selon la complexité."
+  },
+  {
+    question: "Proposez-vous des facilités de paiement ?",
+    answer: "Oui, nous proposons un paiement en 2 à 3 fois sans frais. Un acompte de 40% au démarrage du projet, le solde à la livraison."
+  }
+];
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": pageTitle,
+  "description": pageDescription,
+  "url": pageCanonical,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": napInfo.name,
+    "telephone": napInfo.phone.replace(/\s+/g, ''),
+    "email": napInfo.email,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": napInfo.address.street,
+      "addressLocality": napInfo.address.city,
+      "postalCode": napInfo.address.postalCode,
+      "addressCountry": "MA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": napInfo.coordinates.latitude,
+      "longitude": napInfo.coordinates.longitude
+    },
+    "priceRange": "7500 MAD - 100000 MAD",
+    "areaServed": {
+      "@type": "City",
+      "name": "Casablanca"
+    }
+  },
+  "mainEntity": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  }
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} canonical={pageCanonical}>
+  <JsonLd data={schemaData} />
+
+  <main class="prix-page">
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <section class="prix-hero">
+      <div class="container">
+        <h1>Prix Création Site Web à Casablanca</h1>
+        <p class="prix-hero__subtitle">Des tarifs transparents, sans surprise — adaptés aux entreprises marocaines</p>
+        <div class="prix-hero__badges">
+          <span class="badge">✓ Devis gratuit en 24h</span>
+          <span class="badge">✓ Paiement en 2-3 fois</span>
+          <span class="badge">✓ Livraison garantie</span>
+        </div>
+      </div>
+    </section>
+
+    <PricingTable
+      title="Nos tarifs création site web Casablanca"
+      subtitle="Packs transparents et adaptés à chaque budget — aucun coût caché"
+    />
+
+    <section class="prix-comparatif container">
+      <h2>Combien coûte vraiment un site web à Casablanca en 2026 ?</h2>
+      <p>
+        Les prix de création de site web à Casablanca varient considérablement selon l'agence et le type de projet.
+        Voici un comparatif des tarifs pratiqués sur le marché marocain pour vous aider à budgéter votre projet.
+      </p>
+
+      <div class="prix-grid">
+        <div class="prix-card">
+          <h3>Site Vitrine</h3>
+          <div class="prix-range">7 500 – 15 000 MAD</div>
+          <ul>
+            <li>4 à 8 pages</li>
+            <li>Design responsive mobile</li>
+            <li>Formulaire de contact</li>
+            <li>Optimisation SEO de base</li>
+            <li>Livraison 2 à 4 semaines</li>
+          </ul>
+          <CTAButton href="/contact" text="Demander un devis" />
+        </div>
+
+        <div class="prix-card prix-card--featured">
+          <span class="prix-card__badge">Le plus demandé</span>
+          <h3>Site E-commerce</h3>
+          <div class="prix-range">15 000 – 40 000 MAD</div>
+          <ul>
+            <li>Catalogue produits illimité</li>
+            <li>Paiement CMI / PayPal</li>
+            <li>Gestion des commandes</li>
+            <li>SEO e-commerce avancé</li>
+            <li>Livraison 4 à 8 semaines</li>
+          </ul>
+          <CTAButton href="/contact" text="Demander un devis" />
+        </div>
+
+        <div class="prix-card">
+          <h3>Application Web</h3>
+          <div class="prix-range">30 000 – 100 000 MAD</div>
+          <ul>
+            <li>Fonctionnalités sur mesure</li>
+            <li>Espace membres / dashboard</li>
+            <li>Intégrations API</li>
+            <li>Base de données complexe</li>
+            <li>Livraison 8 à 16 semaines</li>
+          </ul>
+          <CTAButton href="/contact" text="Demander un devis" />
+        </div>
+      </div>
+    </section>
+
+    <section class="prix-inclus container">
+      <h2>Ce qui est inclus dans nos prix à Casablanca</h2>
+      <p>
+        Contrairement à de nombreuses agences web à Casablanca, nous affichons des prix tout compris.
+        Voici ce que chaque projet inclut systématiquement :
+      </p>
+      <div class="inclus-grid">
+        <div class="inclus-item">
+          <strong>Design sur mesure</strong>
+          <p>Maquettes uniques adaptées à votre identité visuelle. Aucun template générique.</p>
+        </div>
+        <div class="inclus-item">
+          <strong>Responsive mobile</strong>
+          <p>Votre site est parfait sur smartphone, tablette et desktop. Plus de 70% du trafic au Maroc vient du mobile.</p>
+        </div>
+        <div class="inclus-item">
+          <strong>SEO technique</strong>
+          <p>Balises optimisées, vitesse de chargement, sitemap, données structurées — la base pour être trouvé sur Google.</p>
+        </div>
+        <div class="inclus-item">
+          <strong>Hébergement 1 an</strong>
+          <p>Hébergement sécurisé inclus la première année. Certificat SSL (HTTPS) actif dès le lancement.</p>
+        </div>
+        <div class="inclus-item">
+          <strong>Livraison testée</strong>
+          <p>Tests multi-navigateurs et multi-appareils avant livraison. Aucune surprise après mise en ligne.</p>
+        </div>
+        <div class="inclus-item">
+          <strong>Formation & support</strong>
+          <p>Formation à la gestion de votre site et support technique 30 jours après livraison.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="prix-faq container">
+      <h2>Questions fréquentes sur les prix de création de site web à Casablanca</h2>
+      <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+        {faqItems.map((faq) => (
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3 itemprop="name">{faq.question}</h3>
+            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text">{faq.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="prix-cta container">
+      <h2>Obtenez votre devis gratuit pour la création de votre site web à Casablanca</h2>
+      <p>
+        Chaque projet est unique. Contactez-nous pour recevoir un devis personnalisé sous 24h,
+        adapté à votre secteur d'activité et à votre budget.
+      </p>
+      <CTAButton href="/contact" text="Devis gratuit en 24h" />
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .prix-page {
+    margin-top: 5rem;
+  }
+
+  .prix-hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: white;
+    padding: 4rem 1rem;
+    text-align: center;
+  }
+
+  .prix-hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .prix-hero__subtitle {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+  }
+
+  .prix-hero__badges {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .container {
+    max-width: var(--max-width, 1200px);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .prix-comparatif,
+  .prix-inclus,
+  .prix-faq,
+  .prix-cta {
+    padding: 4rem 1.5rem;
+  }
+
+  .prix-comparatif h2,
+  .prix-inclus h2,
+  .prix-faq h2,
+  .prix-cta h2 {
+    color: var(--color-primary);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 1rem;
+  }
+
+  .prix-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .prix-card {
+    border: 1px solid #e2e8f0;
+    border-radius: var(--border-radius-md, 12px);
+    padding: 2rem;
+    position: relative;
+  }
+
+  .prix-card--featured {
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 24px rgba(26, 86, 219, 0.12);
+  }
+
+  .prix-card__badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: white;
+    padding: 0.2rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .prix-card h3 {
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .prix-range {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-cta, #e53e3e);
+    margin-bottom: 1rem;
+  }
+
+  .prix-card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .prix-card ul li {
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    font-size: 0.95rem;
+  }
+
+  .prix-card ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-success, #38a169);
+    font-weight: 700;
+  }
+
+  .inclus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .inclus-item {
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: var(--border-radius-md, 12px);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .inclus-item strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+
+  .faq-list {
+    margin-top: 2rem;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1.5rem 0;
+  }
+
+  .faq-item h3 {
+    font-size: 1.05rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .prix-cta {
+    text-align: center;
+    background: #f0f4ff;
+    border-radius: var(--border-radius-md, 12px);
+    margin: 0 1.5rem 4rem;
+  }
+
+  .prix-cta p {
+    max-width: 600px;
+    margin: 1rem auto 2rem;
+    color: #4a5568;
+  }
+</style>
