@@ -32,7 +32,8 @@ const enrichSchema = (baseData: Record<string, any>) => {
   }
 
   // Enrichissement automatique selon le type
-  if (schema["@type"] === "Organization" || schema["@type"] === "LocalBusiness") {
+  const schemaTypes = Array.isArray(schema["@type"]) ? schema["@type"] : [schema["@type"]];
+  if (schemaTypes.includes("Organization") || schemaTypes.includes("LocalBusiness")) {
     schema.sameAs = [
       "https://www.google.com/search?kgmid=/g/11y8hb26tr",
       "https://www.wikidata.org/wiki/Q139991921",
