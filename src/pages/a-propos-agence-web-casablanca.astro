@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import JsonLd from '../components/JsonLd.astro';
 import OptimizedImage from '../components/OptimizedImage.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
@@ -74,9 +75,82 @@ const milestones = [
   { year: 2019, event: "Obtention de la certification Google Partner" },
   { year: 2023, event: "Célébration de notre 1000ème projet réussi" }
 ];
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#mouhcine-talbi",
+      "name": "Mouhcine Talbi",
+      "jobTitle": "Fondateur & Directeur Technique",
+      "worksFor": { "@type": "Organization", "name": "CreationSiteWebPro", "url": "https://www.creationsitewebpro.com" },
+      "alumniOf": [
+        { "@type": "Organization", "name": "Capgemini" },
+        { "@type": "Organization", "name": "CGI" }
+      ],
+      "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca",
+      "image": "https://www.creationsitewebpro.com/images/mouhcine-talbi.jpg",
+      "knowsAbout": ["Développement web", "Architecture logicielle", "Création site web Casablanca"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#zakaria-boussnini",
+      "name": "Zakaria Boussnini",
+      "jobTitle": "Cofondateur & Directeur Commercial",
+      "worksFor": { "@type": "Organization", "name": "CreationSiteWebPro", "url": "https://www.creationsitewebpro.com" },
+      "alumniOf": [
+        { "@type": "Organization", "name": "Capgemini" },
+        { "@type": "Organization", "name": "Fintech Accelex" }
+      ],
+      "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca",
+      "image": "https://www.creationsitewebpro.com/images/zakaria-boussnini.jpg",
+      "knowsAbout": ["Stratégie digitale", "Développement commercial", "UX Design"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#safae-abed",
+      "name": "Safae Abed",
+      "jobTitle": "Ingénieure QA & Experte SEO",
+      "worksFor": { "@type": "Organization", "name": "CreationSiteWebPro", "url": "https://www.creationsitewebpro.com" },
+      "hasCredential": [
+        { "@type": "EducationalOccupationalCredential", "name": "Google Analytics Certified", "recognizedBy": { "@type": "Organization", "name": "Google" } },
+        { "@type": "EducationalOccupationalCredential", "name": "Google Search Console Certified", "recognizedBy": { "@type": "Organization", "name": "Google" } }
+      ],
+      "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca",
+      "image": "https://www.creationsitewebpro.com/images/safae-abed.jpg",
+      "knowsAbout": ["SEO technique", "Assurance qualité", "Google Analytics", "Référencement Casablanca"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#ikram-talbi",
+      "name": "Ikram Talbi",
+      "jobTitle": "Senior Analyste Fonctionnelle & Stratège Digital",
+      "worksFor": { "@type": "Organization", "name": "CreationSiteWebPro", "url": "https://www.creationsitewebpro.com" },
+      "alumniOf": [
+        { "@type": "Organization", "name": "Capgemini" },
+        { "@type": "Organization", "name": "Sopra Banking Software" }
+      ],
+      "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca",
+      "image": "https://www.creationsitewebpro.com/images/Ikrame-talbi.jpg",
+      "knowsAbout": ["Analyse fonctionnelle", "Gestion de projets digitaux", "Transformation numérique"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#fatima-benzahra",
+      "name": "Fatima Ezzahra Benzahra",
+      "jobTitle": "Directrice Produit & Innovation",
+      "worksFor": { "@type": "Organization", "name": "CreationSiteWebPro", "url": "https://www.creationsitewebpro.com" },
+      "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca",
+      "image": "https://www.creationsitewebpro.com/images/fatima-benzahra.jpg",
+      "knowsAbout": ["Gestion de produit", "Innovation digitale", "UX Research", "Marché marocain"]
+    }
+  ]
+};
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/a-propos-agence-web-casablanca">
+  <JsonLd data={aboutSchema} />
   <main class="about-page">
     <Breadcrumbs items={breadcrumbItems} />
     <section class="hero">

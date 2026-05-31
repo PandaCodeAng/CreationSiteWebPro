@@ -1,6 +1,6 @@
 import { renderers } from './renderers.mjs';
 import { s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_CvSoi7hX.mjs';
-import { manifest } from './manifest_CT1_5idj.mjs';
+import { manifest } from './manifest_C_iIQqh7.mjs';
 import { createExports } from '@astrojs/netlify/ssr-function.js';
 
 const _page0 = () => import('./pages/_image.astro.mjs');
@@ -21,20 +21,21 @@ const _page14 = () => import('./pages/blog.astro.mjs');
 const _page15 = () => import('./pages/contact.astro.mjs');
 const _page16 = () => import('./pages/contact-refactor.astro.mjs');
 const _page17 = () => import('./pages/creation-site-web-casablanca.astro.mjs');
-const _page18 = () => import('./pages/creation-site-web-maroc.astro.mjs');
-const _page19 = () => import('./pages/faq-creation-site-web-maroc.astro.mjs');
-const _page20 = () => import('./pages/mentions-legales.astro.mjs');
-const _page21 = () => import('./pages/merci.astro.mjs');
-const _page22 = () => import('./pages/netlify.astro.mjs');
-const _page23 = () => import('./pages/politique-confidentialite.astro.mjs');
-const _page24 = () => import('./pages/portfolio-realisations-web-casablanca-maroc.astro.mjs');
-const _page25 = () => import('./pages/recherche.astro.mjs');
-const _page26 = () => import('./pages/services/creation-application-web.astro.mjs');
-const _page27 = () => import('./pages/services/creation-site-web-casablanca.astro.mjs');
-const _page28 = () => import('./pages/services/e-commerce-casablanca.astro.mjs');
-const _page29 = () => import('./pages/services/referencement-seo-casablanca.astro.mjs');
-const _page30 = () => import('./pages/services.astro.mjs');
-const _page31 = () => import('./pages/index.astro.mjs');
+const _page18 = () => import('./pages/creation-site-web-casablanca-prix.astro.mjs');
+const _page19 = () => import('./pages/creation-site-web-maroc.astro.mjs');
+const _page20 = () => import('./pages/faq-creation-site-web-maroc.astro.mjs');
+const _page21 = () => import('./pages/mentions-legales.astro.mjs');
+const _page22 = () => import('./pages/merci.astro.mjs');
+const _page23 = () => import('./pages/netlify.astro.mjs');
+const _page24 = () => import('./pages/politique-confidentialite.astro.mjs');
+const _page25 = () => import('./pages/portfolio-realisations-web-casablanca-maroc.astro.mjs');
+const _page26 = () => import('./pages/recherche.astro.mjs');
+const _page27 = () => import('./pages/services/creation-application-web.astro.mjs');
+const _page28 = () => import('./pages/services/creation-site-web-casablanca.astro.mjs');
+const _page29 = () => import('./pages/services/e-commerce-casablanca.astro.mjs');
+const _page30 = () => import('./pages/services/referencement-seo-casablanca.astro.mjs');
+const _page31 = () => import('./pages/services.astro.mjs');
+const _page32 = () => import('./pages/index.astro.mjs');
 
 const pageMap = new Map([
     ["node_modules/astro/dist/assets/endpoint/generic.js", _page0],
@@ -55,20 +56,21 @@ const pageMap = new Map([
     ["src/pages/contact.astro", _page15],
     ["src/pages/contact-refactor.astro", _page16],
     ["src/pages/creation-site-web-casablanca.astro", _page17],
-    ["src/pages/creation-site-web-maroc.astro", _page18],
-    ["src/pages/faq-creation-site-web-maroc.astro", _page19],
-    ["src/pages/mentions-legales.astro", _page20],
-    ["src/pages/merci.astro", _page21],
-    ["src/pages/netlify.js", _page22],
-    ["src/pages/politique-confidentialite.astro", _page23],
-    ["src/pages/portfolio-realisations-web-casablanca-maroc.astro", _page24],
-    ["src/pages/recherche.astro", _page25],
-    ["src/pages/services/creation-application-web.astro", _page26],
-    ["src/pages/services/creation-site-web-casablanca.astro", _page27],
-    ["src/pages/services/e-commerce-casablanca.astro", _page28],
-    ["src/pages/services/referencement-seo-casablanca.astro", _page29],
-    ["src/pages/services.md", _page30],
-    ["src/pages/index.astro", _page31]
+    ["src/pages/creation-site-web-casablanca-prix.astro", _page18],
+    ["src/pages/creation-site-web-maroc.astro", _page19],
+    ["src/pages/faq-creation-site-web-maroc.astro", _page20],
+    ["src/pages/mentions-legales.astro", _page21],
+    ["src/pages/merci.astro", _page22],
+    ["src/pages/netlify.js", _page23],
+    ["src/pages/politique-confidentialite.astro", _page24],
+    ["src/pages/portfolio-realisations-web-casablanca-maroc.astro", _page25],
+    ["src/pages/recherche.astro", _page26],
+    ["src/pages/services/creation-application-web.astro", _page27],
+    ["src/pages/services/creation-site-web-casablanca.astro", _page28],
+    ["src/pages/services/e-commerce-casablanca.astro", _page29],
+    ["src/pages/services/referencement-seo-casablanca.astro", _page30],
+    ["src/pages/services.md", _page31],
+    ["src/pages/index.astro", _page32]
 ]);
 const serverIslandMap = new Map();
 const _manifest = Object.assign(manifest, {
@@ -78,7 +80,7 @@ const _manifest = Object.assign(manifest, {
     middleware: () => import('./_noop-middleware.mjs')
 });
 const _args = {
-    "middlewareSecret": "33116505-856d-45a0-b93e-7e4d0a17c91a"
+    "middlewareSecret": "a4051a93-3227-4616-ba6b-c53e130c2f91"
 };
 const _exports = createExports(_manifest, _args);
 const __astrojsSsrVirtualEntry = _exports.default;

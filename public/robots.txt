@@ -1,7 +1,6 @@
 # robots.txt
 User-agent: *
 Allow: /
-# Allow: /recherche # Allowing /recherche is fine if it has a canonical or noindex for parameterized versions
 
 Disallow: /admin/
 Disallow: /private/
@@ -11,6 +10,27 @@ User-agent: Googlebot
 Disallow: /recherche?*
 User-agent: Bingbot
 Disallow: /recherche?*
-# Add other major bots if necessary
 
-Sitemap: https://creationsitewebpro.com/sitemap.xml
+# Crawlers IA majeurs — accès explicitement autorisé
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+Sitemap: https://www.creationsitewebpro.com/sitemap.xml

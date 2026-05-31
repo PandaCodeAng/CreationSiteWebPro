@@ -9,7 +9,7 @@ const breadcrumbItems = [
   { name: 'Accueil', url: '/' },
   { name: 'Referencement' }
 ];
-const pageTitle = "Services de Référencement SEO à Casablanca | Boostez Votre Visibilité en Ligne";
+const pageTitle = "Référencement SEO Casablanca | Agence SEO Maroc";
 const pageDescription = "Optimisez votre présence en ligne avec nos services SEO experts à Casablanca. Améliorez votre classement sur Google et attirez plus de clients qualifiés.";
 
 const services = [
@@ -136,6 +136,36 @@ const schemaData = {
       </dl>
     </section>
   </main>
+  <JsonLd data={{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Combien de temps faut-il pour voir des résultats SEO ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Les premiers résultats sont généralement visibles après 3 à 6 mois, mais le SEO est un processus continu pour des résultats durables."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Le SEO fonctionne-t-il pour tous les types d'entreprises à Casablanca ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, le SEO peut bénéficier à presque tous les types d'entreprises, mais la stratégie doit être adaptée à votre secteur et à votre audience cible."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Pouvez-vous garantir la première place sur Google ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Aucune agence sérieuse ne peut garantir la première place sur Google. Nous nous engageons à améliorer significativement votre visibilité en ligne grâce à des pratiques éthiques et durables."
+        }
+      }
+    ]
+  }} />
 </Layout>
 
 <style>

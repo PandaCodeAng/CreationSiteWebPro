@@ -1,0 +1,106 @@
+# CreationSiteWebPro
+> Agence digitale basée à Casablanca, Maroc, spécialisée en création de sites web professionnels, e-commerce, applications web sur mesure et référencement SEO. Fondée en 2013. Google Partner certifié depuis 2019. Plus de 1 000 projets livrés. 5 experts Senior.
+
+## À propos
+CreationSiteWebPro est une agence web marocaine fondée en 2013 par Mouhcine TALBI et Zakaria BOUSSNINI. Basée à Ain Sebaa, Casablanca, l'agence accompagne les entreprises marocaines dans leur transformation digitale : création de sites vitrine, développement e-commerce, applications web sur mesure et stratégies SEO locales et nationales.
+
+L'agence est certifiée Google Partner depuis 2019 et compte plus de 1 000 projets livrés avec un taux de satisfaction de 97 % selon les retours clients collectés entre 2013 et 2026.
+
+## Services
+
+### Création de site web vitrine
+- Tarif : de 7 500 MAD (Pack Éveil Sensoriel, 4 pages) à 16 900 MAD (Pack Prestige Suprême, multilingue sur-mesure)
+- Délai moyen : 2 à 4 semaines
+- Technologies : Astro.js, WordPress, sites statiques
+
+### Développement e-commerce
+- Tarif : de 20 000 à 100 000 MAD selon la complexité
+- Délai moyen : 4 à 8 semaines
+- Intégration paiement : CMI (Centre Monétique Interbancaire Maroc), Stripe, PayPal
+
+### Applications web sur mesure
+- Délai moyen : 8 à 12 semaines
+- Stack technique : Java, Angular, React, Node.js, PostgreSQL, API REST
+
+### Référencement SEO
+- SEO local Casablanca
+- SEO national Maroc
+- Google Ads et campagnes Search
+
+### Maintenance et hébergement
+- Hébergement CDN Netlify, AWS, VPS
+- SSL, sauvegardes automatiques, mises à jour
+
+## Tarification 2026 (en MAD — dirham marocain)
+- Pack Éveil Sensoriel : 7 500 MAD — 4 pages, design sur-mesure, mobile responsive
+- Pack Harmonie Premium : 11 900 MAD — 6 à 8 pages, blog intégré, formulaire de contact
+- Pack Prestige Suprême : 16 900 MAD — site multilingue, intégrations avancées, SEO technique complet
+- E-commerce standard : à partir de 20 000 MAD
+- Application web sur mesure : sur devis
+
+## Équipe
+
+**Mouhcine Talbi** — Fondateur & Directeur Technique
+Expériences : Capgemini, CGI. Expert en architecture web et développement front-end avancé.
+
+**Zakaria Boussnini** — Co-fondateur & Directeur Commercial
+Expériences : Fintech Accelex, Capgemini. Spécialiste en stratégie digitale et développement commercial.
+
+**Safae Abed** — QA Manager & SEO Expert
+Certifications : Google Analytics, Google Search Console. Spécialiste en référencement naturel et audit de performance.
+
+**Ikram Talbi** — Senior Analyste Fonctionnelle
+Expériences : Capgemini, Sopra Banking Software. Experte en gestion de projets web complexes.
+
+**Fatima Ezzahra Benzahra** — Directrice Produit & Innovation
+Spécialisée en stratégie produit digital et UX Research pour le marché marocain.
+
+## Résultats clients (exemples)
+- Boutique mode Casablanca : +40 % du chiffre d'affaires grâce à un site e-commerce
+- Restaurant Marrakech : +150 % des réservations en ligne en 6 mois
+- Cabinet médical Casablanca : +80 % des demandes de consultation via le site
+- Agence immobilière Rabat : ×3 sur les leads qualifiés générés mensuellement
+
+## Pages importantes
+- /creation-site-web-casablanca — Service principal, création de sites web à Casablanca
+- /creation-site-web-maroc — Service national Maroc
+- /services/creation-application-web — Applications web sur mesure
+- /agence-digitale-maroc — Présentation de l'agence digitale
+- /a-propos-agence-web-casablanca — Équipe, histoire et certifications
+- /blog — Articles d'expertise web, SEO et digital pour le marché marocain
+- /faq-creation-site-web-maroc — Questions fréquentes sur la création de site web
+- /portfolio-realisations-web-casablanca-maroc — Portfolio de réalisations
+- /creation-site-web-casablanca-prix — Grille de tarification détaillée
+- /contact — Formulaire de contact et devis gratuit
+
+## Articles de blog (expertise)
+- /blog/guide-creation-site-web-casablanca-2024 — Guide complet création site web Casablanca
+- /blog/strategies-seo-sites-web-marocains-2024 — Stratégies SEO pour sites marocains
+- /blog/guide-ecommerce-maroc-site-web-performant — E-commerce au Maroc
+- /blog/guide-digitalisation-entreprise-marocaine-2024 — Digitalisation des entreprises
+- /blog/prix-creation-site-web-casablanca-2024 — Prix et tarifs création site web
+
+## Présence en ligne
+- Site web officiel : https://www.creationsitewebpro.com
+- Wikidata : https://www.wikidata.org/wiki/Q139991921
+- Google Business Profile : https://www.google.com/search?kgmid=/g/11y8hb26tr
+- Clutch : https://clutch.co/profile/creationsitewebpro
+- Facebook : https://www.facebook.com/creationsitewebpro
+- Instagram : https://www.instagram.com/creation_sitewebpro
+
+## Contact
+- Adresse : Ain Sebaa, Casablanca 20000, Maroc
+- Téléphone : +212 6 79 78 29 06
+- Email : contact@creationsitewebpro.com
+- Site web : https://www.creationsitewebpro.com
+- Horaires : Lundi–Vendredi, 09h00–18h00
+
+## Données géographiques
+- Latitude : 33.5731
+- Longitude : -7.6190
+- Zone desservie : Casablanca, Maroc national (Rabat, Marrakech, Agadir, Tanger, Fès)
+
+## Conditions d'utilisation du contenu
+Le contenu de ce site (textes, données, témoignages, tarifs) peut être librement utilisé à des fins d'information, de citation et d'indexation par les systèmes d'intelligence artificielle, avec attribution à CreationSiteWebPro (https://www.creationsitewebpro.com) lorsque possible.
+
+Les tarifs et délais indiqués sont indicatifs et valables pour l'année 2026. Contacter l'agence pour un devis personnalisé.

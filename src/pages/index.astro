@@ -25,16 +25,17 @@ const breadcrumbItems = [
 const homeSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  "@id": "https://www.creationsitewebpro.com/#localbusiness",
   "name": "CreationSiteWebPro",
   "image": [
-    "https://creationsitewebpro.com/images/logo.png",
-    "https://creationsitewebpro.com/images/agence-web-casablanca.jpg",
-    "https://creationsitewebpro.com/images/creation-site-web-casablanca.jpg"
+    "https://www.creationsitewebpro.com/images/logo.png",
+    "https://www.creationsitewebpro.com/images/agence-web-casablanca.jpg",
+    "https://www.creationsitewebpro.com/images/creation-site-web-casablanca.jpg"
   ],
   "description": "Agence experte en création de sites web professionnels à Casablanca. Plus de 1000 projets réalisés avec succès depuis 2013.",
-  "@id": "https://creationsitewebpro.com",
-  "url": "https://creationsitewebpro.com",
+  "url": "https://www.creationsitewebpro.com",
   "telephone": "+212679782906",
+  "email": "contact@creationsitewebpro.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Ain Sebaa",
@@ -47,52 +48,60 @@ const homeSchema = {
     "latitude": 33.5731,
     "longitude": -7.6190
   },
+  "foundingDate": "2013",
+  "currenciesAccepted": "MAD",
+  "areaServed": [
+    { "@type": "City", "name": "Casablanca" },
+    { "@type": "Country", "name": "Maroc" }
+  ],
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
-      ],
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
       "opens": "09:00",
       "closes": "18:00"
     }
   ],
   "sameAs": [
+    "https://www.google.com/search?kgmid=/g/11y8hb26tr",
+    "https://www.wikidata.org/wiki/Q139991921",
+    "https://clutch.co/profile/creationsitewebpro",
     "https://www.facebook.com/creationsitewebpro",
     "https://www.linkedin.com/company/creationsitewebpro",
-    "https://www.instagram.com/creationsitewebpro"
+    "https://www.instagram.com/creation_sitewebpro"
   ],
-  "priceRange": "€€",
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Certification",
+      "name": "Google Partner",
+      "recognizedBy": { "@type": "Organization", "name": "Google" }
+    }
+  ],
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.9",
     "reviewCount": "147"
   },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".hero__text", ".pricing__description", ".faq__answer"]
+  },
   "review": [
     {
       "@type": "Review",
-      "author": {
-        "@type": "Person",
-        "name": "Mohammed Alami"
-      },
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      },
+      "author": { "@type": "Person", "name": "Mohammed Alami" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
       "datePublished": "2024-01-15",
-      "reviewBody": "Excellent service de création de site web. L'équipe est professionnelle et réactive."
+      "reviewBody": "Excellent service de création de site web. L'équipe est professionnelle et réactive. Notre e-commerce génère maintenant 40 % de notre chiffre d'affaires."
     }
   ]
 };
 ---
 
 <Layout 
-  title="Création Site Web Casablanca | Agence Web à Casablanca Maroc - Sites Professionnels & SEO"
-  description="Agence experte en création site web à Casablanca ⭐ Sites vitrines & e-commerce sur-mesure ✓ 1ère page Google ✓ Devis gratuit ✓ Plus de 1000 clients satisfaits à Casablanca et au Maroc. Contactez-nous !"
+  title="Création Site Web Casablanca | CreationSiteWebPro"
+  description="Agence web à Casablanca experte en création de sites web, e-commerce et SEO. Google Partner certifié. Plus de 1 000 projets depuis 2013. Devis gratuit."
   canonical="https://www.creationsitewebpro.com/">  <JsonLd data={homeSchema} />  <main>    <section class="hero" id="hero">
       <div class="hero__overlay"></div>
       <div class="container hero__container">

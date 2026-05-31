@@ -34,9 +34,12 @@ const enrichSchema = (baseData: Record<string, any>) => {
   // Enrichissement automatique selon le type
   if (schema["@type"] === "Organization" || schema["@type"] === "LocalBusiness") {
     schema.sameAs = [
+      "https://www.google.com/search?kgmid=/g/11y8hb26tr",
+      "https://www.wikidata.org/wiki/Q139991921",
+      "https://clutch.co/profile/creationsitewebpro",
       "https://www.facebook.com/creationsitewebpro",
       "https://www.linkedin.com/company/creationsitewebpro",
-      "https://www.instagram.com/creationsitewebpro"
+      "https://www.instagram.com/creation_sitewebpro"
     ];
     schema.areaServed = {
       "@type": "City",

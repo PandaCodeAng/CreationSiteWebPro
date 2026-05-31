@@ -25,27 +25,28 @@ export const napInfo = {
 // Fonts pour le design moderne et minimaliste
 const fontImportUrl = "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap";
 
-const baseSchema = {
+// WebSite schema injecté sur toutes les pages (SearchAction = éligibilité Sitelinks Search Box)
+const websiteSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": napInfo.name,
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": napInfo.address.street,
-    "addressLocality": napInfo.address.city,
-    "postalCode": napInfo.address.postalCode,
-    "addressCountry": "MA"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": napInfo.coordinates.latitude,
-    "longitude": napInfo.coordinates.longitude
-  },
-  "telephone": napInfo.phone.replace(/\s+/g, ''),
-  "email": napInfo.email,
+  "@type": "WebSite",
+  "@id": "https://www.creationsitewebpro.com/#website",
+  "name": "CreationSiteWebPro",
   "url": "https://www.creationsitewebpro.com",
-  "image": "/images/logo.png",
-  "priceRange": "€€"
+  "description": "Agence web à Casablanca spécialisée en création de sites web professionnels, e-commerce et référencement SEO au Maroc depuis 2013.",
+  "publisher": {
+    "@type": "LocalBusiness",
+    "@id": "https://www.creationsitewebpro.com/#localbusiness",
+    "name": "CreationSiteWebPro"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://www.creationsitewebpro.com/recherche?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "inLanguage": "fr-MA"
 };
 const isProd = import.meta.env.PROD; // true en production, false en développement
 
@@ -56,7 +57,8 @@ export interface Props {
 }
 
 const { title, description, canonical } = Astro.props;
-const fullTitle = `${title} - Expert en création site web Maroc`;
+// Pas de suffix global — chaque page contrôle son propre titre (max 60 chars)
+const fullTitle = title;
 ---
 
 <!DOCTYPE html>
@@ -127,7 +129,7 @@ const fullTitle = `${title} - Expert en création site web Maroc`;
 				basic: {
 					title: fullTitle,
 					type: "website",
-					image: "/images/og-image.jpg",
+					image: "https://www.creationsitewebpro.com/images/og-image.jpg",
 				}
 			}}
 			twitter={{
@@ -136,19 +138,17 @@ const fullTitle = `${title} - Expert en création site web Maroc`;
 			extend={{
 				link: [{ rel: "icon", href: "/favicon.svg" }],
 				meta: [
+					{ name: "twitter:card", content: "summary_large_image" },
+					{ name: "twitter:site", content: "@CreationSiteWebPro" },
 					{ name: "twitter:title", content: fullTitle },
 					{ name: "twitter:description", content: description },
-					{ name: "twitter:image", content: "/images/og-image.jpg" },
+					{ name: "twitter:image", content: "https://www.creationsitewebpro.com/images/og-image.jpg" },
 				],
 			}}
 		/>
 	
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
-		<link href={fontImportUrl} rel="stylesheet">
-		<meta name="geo.position" content="33.5731;-7.6190">
-		<meta name="geo.placename" content="Casablanca">
-		<meta name="geo.region" content="MA-CAS">
-		<JsonLd data={baseSchema} />
+		<JsonLd data={websiteSchema} />
 	</head>	<body>
 		<FixedHeader />
 		<main>
