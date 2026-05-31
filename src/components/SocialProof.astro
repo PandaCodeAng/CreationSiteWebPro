@@ -3,72 +3,10 @@ import { testimonials } from '../data/testimonials';
 
 // S'assurer que testimonials est un tableau valide
 const validTestimonials = Array.isArray(testimonials) ? testimonials : [];
-
-// Calculer la moyenne des notes (avec vérification)
-const averageRating = validTestimonials.length > 0 
-  ? validTestimonials.reduce((acc, curr) => acc + curr.rating, 0) / validTestimonials.length
-  : 5; // Valeur par défaut si aucun témoignage
-
-// Définir l'objet complet des données structurées
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "CreationSiteWebPro",
-  "image": "https://creationsitewebpro.com/images/logo.png",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Ain Sebaa",
-    "addressLocality": "Casablanca",
-    "postalCode": "20000",
-    "addressCountry": "MA"
-  },
-  "telephone": "+212679782906",
-  "priceRange": "€€",  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": averageRating.toFixed(1),
-    "reviewCount": validTestimonials.length,
-    "bestRating": 5,
-    "worstRating": 1
-  },
-  "review": validTestimonials.map(testimonial => ({
-    "@type": "Review",
-    "itemReviewed": {
-      "@type": "LocalBusiness",
-      "telephone": "+212679782906",
-      "priceRange": "€€",
-      "name": "CreationSiteWebPro",
-      "image": "https://creationsitewebpro.com/images/logo.png",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Ain Sebaa",
-        "addressLocality": "Casablanca",
-        "postalCode": "20000",
-        "addressCountry": "MA"
-      }
-    },
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": testimonial.rating,
-      "bestRating": 5,
-      "worstRating": 1
-    },
-    "author": {
-      "@type": "Person",
-      "name": testimonial.name,
-      "jobTitle": testimonial.position,
-      "worksFor": {
-        "@type": "Organization",
-        "name": testimonial.company
-      }
-    },
-    "reviewBody": testimonial.text,
-    "datePublished": testimonial.date
-  }))
-};
 ---
 
 <section class="social-proof">
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData, null, 2)} />
+  {/* JSON-LD LocalBusiness centralisé dans index.astro — pas de doublon ici */
 
   <div class="metrics-container">
     <div class="metrics">
