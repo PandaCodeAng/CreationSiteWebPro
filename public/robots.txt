@@ -34,3 +34,6 @@ User-agent: Amazonbot
 Allow: /
 
 Sitemap: https://www.creationsitewebpro.com/sitemap.xml
+
+# Signal pour les crawlers IA — entraînement et récupération autorisés
+Content-Signal: ai-train=yes, search=yes, ai-retrieval=yes, ai-personalization=no

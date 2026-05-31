@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import JsonLd from '../components/JsonLd.astro';
 const breadcrumbItems = [
   { name: 'Accueil', url: '/' },
   { name: 'Faq' }
@@ -34,9 +35,23 @@ const faqs = [
     answer: "Absolument. Tous nos sites web sont conçus avec une approche 'mobile-first' et sont entièrement responsives. Cela signifie qu'ils s'adaptent parfaitement à tous les appareils, qu'il s'agisse de smartphones, tablettes ou ordinateurs de bureau, offrant ainsi une expérience utilisateur optimale sur tous les écrans."
   }
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/faq-creation-site-web-maroc">
+  <JsonLd data={faqSchema} />
   <main class="faq-page">
     <Breadcrumbs items={breadcrumbItems} />
 
