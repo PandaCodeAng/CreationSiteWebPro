@@ -1,14 +1,12 @@
 import { defineConfig } from 'astro/config';
 import netlify from '@astrojs/netlify';
-import sitemap from '@astrojs/sitemap';
 import compress from 'astro-compress';
 
 export default defineConfig({
-  site: 'https://creationsitewebpro.com',
+  site: 'https://www.creationsitewebpro.com',
   output: 'hybrid',
   adapter: netlify(),
   integrations: [
-    sitemap(),
     compress({
       css: true,
       html: true,
@@ -22,15 +20,14 @@ export default defineConfig({
     format: 'directory'
   },
   vite: {
+    optimizeDeps: {
+      // Le site actif n'utilise aucun composant client issu de node_modules.
+      // Évite que Vite analyse les anciens composants Astro non importés.
+      noDiscovery: true,
+    },
     ssr: {
       noExternal: ['@iconify/react']
     },
-     define: {
-       'process.env.EMAIL_USER': JSON.stringify(process.env.EMAIL_USER),
-       'process.env.EMAIL_PASS': JSON.stringify(process.env.EMAIL_PASS),
-       'process.env.EMAIL_PORT': JSON.stringify(process.env.EMAIL_PORT),
-       'process.env.EMAIL_HOST': JSON.stringify(process.env.EMAIL_HOST),
-     },
     envDir: '.',
   }
 });

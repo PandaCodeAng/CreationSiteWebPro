@@ -1,251 +1,307 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CTAButton from '../components/CTAButton.astro';
-import Icon from '../components/Icon.astro';
-import JsonLd from '../components/JsonLd.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { napInfo } from '../layouts/Layout.astro';
+import JsonLd from '../components/JsonLd.astro';
 
-const breadcrumbItems = [
-  { name: 'Accueil', url: '/' },
-  { name: 'Création Site Web Maroc' }
+const canonical = 'https://www.creationsitewebpro.com/creation-site-web-maroc';
+const title = 'Création de site web au Maroc | CreationSiteWebPro';
+const description = 'Création de sites vitrines, boutiques e-commerce et applications web pour les entreprises au Maroc. Cadrage, conception, développement et mise en ligne.';
+
+const services = [
+  {
+    title: 'Site vitrine',
+    text: 'Présentez clairement votre activité, vos services et vos points de contact sur un site rapide, responsive et administrable.',
+    href: '/creation-site-web-casablanca'
+  },
+  {
+    title: 'Boutique e-commerce',
+    text: 'Structurez votre catalogue, vos commandes et vos parcours d’achat selon vos moyens de paiement et vos règles de livraison.',
+    href: '/services/e-commerce-casablanca'
+  },
+  {
+    title: 'Application web',
+    text: 'Digitalisez un processus avec un portail client, un outil de gestion ou une plateforme conçue autour de votre métier.',
+    href: '/services/creation-application-web'
+  }
 ];
 
-const pageTitle = "Création Site Web Maroc | Agence Web Professionnelle 2026";
-const pageDescription = "Agence experte en création de sites web sur mesure partout au Maroc. Sites vitrines, e-commerce et applications web adaptés au marché marocain. Devis gratuit !";
+const faq = [
+  {
+    question: 'Travaillez-vous avec des entreprises partout au Maroc ?',
+    answer: 'Oui. L’agence est basée à Aïn Sebaâ, Casablanca, et peut organiser le cadrage, les validations et le suivi à distance avec des entreprises situées dans les différentes régions du Maroc.'
+  },
+  {
+    question: 'Quel budget prévoir pour créer un site web ?',
+    answer: 'Le budget dépend du nombre de pages, des fonctionnalités, des contenus et des intégrations. Nos repères tarifaires commencent à 7 500 MAD pour un site vitrine et à 15 000 MAD pour un site e-commerce. Un devis confirme le périmètre exact.'
+  },
+  {
+    question: 'Le référencement naturel est-il pris en compte ?',
+    answer: 'La structure sémantique, les métadonnées, les performances, le responsive et l’indexabilité font partie du socle technique. Une stratégie SEO continue peut être ajoutée selon vos objectifs et votre marché.'
+  },
+  {
+    question: 'Pourrai-je modifier le contenu du site ?',
+    answer: 'Le choix de l’outil d’administration et le niveau d’autonomie sont définis pendant le cadrage. Une prise en main peut être prévue lors de la livraison.'
+  }
+];
 
-const pageSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": pageTitle,
-  "description": pageDescription,
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": napInfo.name,
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": napInfo.address.city,
-      "addressCountry": "MA"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": napInfo.coordinates.latitude,
-      "longitude": napInfo.coordinates.longitude
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${canonical}#service`,
+  name: 'Création de site web au Maroc',
+  description,
+  url: canonical,
+  provider: {
+    '@id': 'https://www.creationsitewebpro.com/#localbusiness'
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Maroc'
+  },
+  serviceType: 'Conception et développement de sites web'
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer
     }
-  },
-  "areaServed": {
-    "@type": "Country",
-    "name": "Maroc"
-  },
-  "serviceType": "Création de site web"
+  }))
 };
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/creation-site-web-maroc">
-  <JsonLd data={pageSchema} />
-  <main class="creation-site-web-maroc">
-    <Breadcrumbs items={breadcrumbItems} />
+<Layout title={title} description={description} canonical={canonical}>
+  <JsonLd data={serviceSchema} />
+  <JsonLd data={faqSchema} />
 
-    <h1>Création de Site Web Professionnel au Maroc</h1>
-    <p class="intro">Chez CreationSiteWebPro, nous sommes les experts de la création de sites web au Maroc. Nous concevons des solutions web innovantes et sur mesure pour propulser votre entreprise vers le succès digital dans tout le royaume.</p>
+  <div class="national-page">
+    <Breadcrumbs items={[
+      { name: 'Accueil', url: '/' },
+      { name: 'Création de site web au Maroc' }
+    ]} />
 
-    <!-- Contenu similaire à la page creation-site-web-casablanca.astro mais adapté pour tout le Maroc -->
-    
-    <section class="morocco-expertise">
-      <h2>Notre Expertise en Création de Sites Web au Maroc</h2>
-      <p>Chez CreationSiteWebPro, nous sommes fiers d'accompagner les entreprises de tout le Maroc dans leur transformation digitale. Notre équipe comprend les nuances régionales et les spécificités du marché marocain :</p>
+    <header class="national-page__hero">
+      <p class="eyebrow">Agence basée à Casablanca · Projets au Maroc</p>
+      <h1>Création de site web au Maroc</h1>
+      <p>{description}</p>
+      <div class="actions">
+        <a class="button" href="/contact">Demander un devis</a>
+        <a class="text-link" href="/portfolio-realisations-web-casablanca-maroc">Voir nos réalisations</a>
+      </div>
+    </header>
+
+    <section aria-labelledby="solutions-title">
+      <h2 id="solutions-title">Une solution adaptée à votre projet</h2>
+      <div class="cards">
+        {services.map((service) => (
+          <article>
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
+            <a href={service.href}>Découvrir le service <span aria-hidden="true">→</span></a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="deliverables" aria-labelledby="deliverables-title">
+      <div>
+        <p class="eyebrow">Un socle clair</p>
+        <h2 id="deliverables-title">Ce que couvre la création du site</h2>
+        <p>Le périmètre est défini avant la production afin de relier chaque page et chaque fonctionnalité à un besoin concret de votre entreprise.</p>
+      </div>
       <ul>
-        <li>Connaissance approfondie des habitudes digitales des consommateurs marocains</li>
-        <li>Solutions adaptées aux différentes régions du Royaume</li>
-        <li>Optimisation pour les recherches en arabe, français et dialecte marocain</li>
-        <li>Intégration des moyens de paiement préférés des Marocains</li>
-        <li>Support multilingue pour toucher toutes les audiences du Maroc</li>
+        <li>Architecture des pages et parcours de navigation</li>
+        <li>Interface adaptée aux mobiles, tablettes et ordinateurs</li>
+        <li>Intégration des contenus fournis ou validés</li>
+        <li>Fondations techniques pour l’indexation et le SEO</li>
+        <li>Contrôles de performance, d’accessibilité et de sécurité</li>
+        <li>Mise en ligne et prise en main selon le projet</li>
       </ul>
-      <p>Que vous soyez une start-up ambitieuse ou une entreprise établie au Maroc, nous avons les compétences pour créer un site web qui vous démarquera de la concurrence.</p>
     </section>
-    
-    <section class="cta-section">
-      <h2>Prêt à Booster Votre Présence En Ligne au Maroc ?</h2>
-      <p>Obtenez un devis gratuit pour votre projet digital au Maroc.</p>
-      <a href="/contact" class="cta-button">Obtenez votre devis gratuit <span class="urgency">Offre limitée!</span></a>
+
+    <section aria-labelledby="method-title">
+      <h2 id="method-title">Comment se déroule un projet à distance ?</h2>
+      <ol class="steps">
+        <li><strong>Cadrage :</strong> objectifs, utilisateurs, contenus, fonctionnalités et contraintes.</li>
+        <li><strong>Conception :</strong> arborescence, parcours et écrans principaux.</li>
+        <li><strong>Production :</strong> développement et intégration avec des validations intermédiaires.</li>
+        <li><strong>Recette :</strong> vérification du contenu, des formulaires, de l’affichage et des performances.</li>
+        <li><strong>Livraison :</strong> déploiement, accès et modalités de maintenance convenues.</li>
+      </ol>
+      <p>Les échanges peuvent être organisés par visioconférence, téléphone et e-mail. Les livrables et décisions restent centralisés afin de faciliter le suivi, quelle que soit votre ville.</p>
     </section>
-  </main>
+
+    <section aria-labelledby="faq-title">
+      <h2 id="faq-title">Questions fréquentes</h2>
+      <div class="faq-list">
+        {faq.map((item) => (
+          <details>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <aside class="contact-panel">
+      <h2>Présentez-nous votre projet</h2>
+      <p>Indiquez votre activité, vos objectifs et les fonctionnalités envisagées pour recevoir une réponse adaptée.</p>
+      <a class="button" href="/contact">Contacter l’agence</a>
+      <a href="/creation-site-web-casablanca-prix">Consulter les repères de prix</a>
+    </aside>
+  </div>
 </Layout>
 
 <style>
-  .creation-site-web-maroc {
-    max-width: 1200px;
+  .national-page {
+    max-width: 1120px;
     margin: 0 auto;
-    padding: 1rem;
-    margin-top: 5rem;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  .national-page__hero {
+    max-width: 850px;
+    margin: 3rem auto 5rem;
+    text-align: center;
+  }
+
+  .national-page__hero > p:not(.eyebrow) {
+    max-width: 760px;
+    margin: 1rem auto;
+    font-size: 1.15rem;
+  }
+
+  .eyebrow {
+    color: var(--color-secondary);
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--color-primary);
   }
 
   h1 {
-    color: var(--color-primary);
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
-    margin-bottom: 1rem;
-    text-align: center;
+    margin: .5rem 0 1rem;
+    font-size: clamp(2.3rem, 6vw, 4.3rem);
+    line-height: 1.08;
   }
 
-  .intro {
-    font-size: clamp(0.9rem, 3vw, 1.2rem);
-    text-align: center;
-    margin-bottom: 2rem;
+  h2 {
+    margin-top: 4rem;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
   }
 
-  .morocco-expertise {
-    background-color: #f5f5f5;
-    padding: 2rem;
-    border-radius: 8px;
-    margin-top: 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  .actions,
+  .contact-panel {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
-  .morocco-expertise h2 {
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-  }
-
-  .morocco-expertise ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-
-  .morocco-expertise li {
-    margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    position: relative;
-  }
-
-  .morocco-expertise li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--color-secondary);
-  }
-
-  .cta-section {
-    background-color: var(--color-primary);
-    color: white;
-    padding: 2rem 1rem;
-    border-radius: 8px;
-    text-align: center;
-    margin-top: 3rem;
-  }
-
-  .cta-section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .cta-section p {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .cta-button {
+  .button {
     display: inline-block;
-    background-color: var(--color-secondary);
-    color: white;
-    padding: 0.75rem 1.5rem;
+    padding: .85rem 1.25rem;
+    border-radius: .5rem;
+    background: var(--color-secondary);
+    color: #fff;
+    font-weight: 700;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    font-size: clamp(1rem, 2vw, 1.1rem);
-  }
-  
-  .cta-button:hover {
-    background-color: #ff8533;
-    transform: translateY(-3px);
-  }
-  
-  .urgency {
-    display: inline-block;
-    background-color: #ff4500;
-    color: white;
-    font-size: 0.8em;
-    padding: 0.2em 0.5em;
-    border-radius: 3px;
-    margin-left: 0.5em;
   }
 
-  @media (max-width: 768px) {
-    .creation-site-web-maroc {
-      padding: 0.5rem;
-      margin-top: 7rem;
-    }
-    
-    h1 {
-      font-size: 2rem;
-    }
+  .text-link,
+  .cards a,
+  .contact-panel > a:not(.button) {
+    color: var(--color-primary);
+    font-weight: 700;
   }
 
-  @media (max-width: 459px) {
-    .creation-site-web-maroc {
-      padding: 0.5rem;
-      margin-top: 11rem;
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .cards article,
+  .deliverables,
+  .steps,
+  details {
+    padding: 1.5rem;
+    border: 1px solid rgba(7, 59, 76, .14);
+    border-radius: 1rem;
+    background: #fff;
+  }
+
+  .deliverables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 4rem;
+    background: #f4f8fa;
+  }
+
+  .deliverables h2 {
+    margin-top: .5rem;
+  }
+
+  .deliverables li,
+  .steps li {
+    margin-bottom: .75rem;
+  }
+
+  .steps {
+    background: #f4f8fa;
+  }
+
+  .faq-list {
+    display: grid;
+    gap: .8rem;
+  }
+
+  summary {
+    cursor: pointer;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .contact-panel {
+    margin-top: 4rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    background: var(--color-primary);
+    color: #fff;
+    text-align: center;
+  }
+
+  .contact-panel h2,
+  .contact-panel p {
+    flex-basis: 100%;
+    margin: 0;
+    color: #fff;
+  }
+
+  .contact-panel > a:not(.button) {
+    color: #fff;
+  }
+
+  @media (max-width: 800px) {
+    .cards,
+    .deliverables {
+      grid-template-columns: 1fr;
+    }
+
+    .national-page__hero {
+      margin-top: 2rem;
     }
   }
 </style>
-
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const serviceCards = document.querySelectorAll('.service-card');
-    
-    serviceCards.forEach(card => {
-      if (card instanceof HTMLElement) {
-        let touchStartTime: number;
-        let touchEndTime: number;
-        
-        card.addEventListener('touchstart', (e: TouchEvent) => {
-          e.preventDefault(); // Empêche le comportement par défaut du navigateur
-          touchStartTime = new Date().getTime();
-          card.style.transform = 'scale(0.98)';
-          card.style.transition = 'transform 0.1s ease-in-out';
-        });
-
-        card.addEventListener('touchend', () => {
-          touchEndTime = new Date().getTime();
-          const touchDuration = touchEndTime - touchStartTime;
-
-          card.style.transform = 'scale(1)';
-
-          // Si le toucher a duré moins de 300ms, considérez-le comme un tap
-          if (touchDuration < 300) {
-            // Simuler un clic pour activer les liens ou autres interactions
-            card.click();
-          }
-        });
-
-        // Gestion du hover pour les appareils non tactiles
-        card.addEventListener('mouseenter', () => {
-          if (window.matchMedia('(hover: hover)').matches) {
-            card.style.transform = 'translateY(-5px)';
-            card.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-            card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
-          }
-        });
-
-        card.addEventListener('mouseleave', () => {
-          if (window.matchMedia('(hover: hover)').matches) {
-            card.style.transform = 'translateY(0)';
-            card.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
-          }
-        });
-      }
-    });
-
-    // Gestion de l'ouverture/fermeture des détails
-    const detailsElements = document.querySelectorAll('details');
-    detailsElements.forEach(details => {
-      details.addEventListener('toggle', () => {
-        if (details.open) {
-          // Faire défiler doucement jusqu'aux détails ouverts
-          setTimeout(() => {
-            details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }, 300);
-        }
-      });
-    });
-  });
-</script>

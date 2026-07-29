@@ -1,56 +1,52 @@
-// src/content/blog/creation-site-web-casablanca-guide.md
 ---
-title: "Guide Complet Création Site Web Casablanca 2024"
-description: "Découvrez tout ce qu'il faut savoir sur la création de site web à Casablanca. Prix, conseils et meilleures pratiques pour réussir votre projet digital."
-publishDate: "2024-03-15"
-author: "Mouhcine TALBI"
+layout: ./_MarkdownArticleLayout.astro
+title: "Guide complémentaire pour préparer un site web à Casablanca"
+description: "Les questions, livrables et étapes à clarifier avant de lancer un projet de site web professionnel à Casablanca."
+publishDate: "2026-03-20"
+modifiedDate: "2026-05-30"
+author: "Mouhcine Talbi"
 category: "Création Web Casablanca"
-excerpt: "Guide détaillé sur la création de sites web professionnels à Casablanca, avec conseils d'experts et tarifs 2024."
-slug: "guide-creation-site-web-casablanca-2024"
-featured: true
-image:
-  src: "/images/blog/creation-site-web-casablanca.jpg"
-  alt: "Création site web Casablanca"
+excerpt: "Guide complémentaire sur le cadrage, les fonctionnalités et les étapes d'un projet web à Casablanca."
+slug: "creation-site-web-casablanca-guide"
+featured: false
 tags:
   - "création site web"
   - "Casablanca"
   - "web design"
   - "développement web"
-readingTime: "8 minutes"
+readingTime: "4 minutes"
 seo:
-  title: "Guide Création Site Web Casablanca 2024 : Prix et Conseils"
-  description: "Guide complet sur la création de site web à Casablanca. Découvrez les prix, conseils et étapes pour créer un site web professionnel en 2024."
+  title: "Préparer un site web à Casablanca | Guide complémentaire"
+  description: "Questions, livrables et étapes à clarifier avant de lancer un projet de site web professionnel à Casablanca."
   keywords:
     - "création site web Casablanca"
     - "prix site web Casablanca"
     - "agence web Casablanca"
 ---
 
-# Guide Complet pour Créer votre Site Web à Casablanca en 2024
+# Guide complémentaire pour préparer votre site web à Casablanca
 
-Salam ! Vous cherchez à créer un site web professionnel à Casablanca ? Après avoir accompagné plus de 500 entreprises dans leur transformation digitale, je partage avec vous tout ce que vous devez savoir pour réussir votre projet.
+Vous cherchez à créer un site web professionnel à Casablanca ? Commencez par clarifier l'objectif, les utilisateurs visés, le contenu disponible et les actions que le site doit permettre.
 
-## Les Prix du Marché en 2024
+## Préparer le budget
 
-### 1. Site Vitrine Professionnel
-- **Budget**: 4,000 - 8,000 DH
+Le budget dépend du nombre de pages, du design, des langues, des contenus et des fonctionnalités. Consultez les [offres actuelles](/creation-site-web-casablanca-prix) ou demandez un devis détaillé pour obtenir une estimation adaptée.
+
+### 1. Site vitrine professionnel
 - **Inclus**:
-  - Design responsive
-  - 5-7 pages optimisées
+  - Design adapté aux différents écrans
+  - Pages et contenus définis dans le devis
   - Formulaire de contact
-  - Intégration réseaux sociaux
-  - Optimisation SEO de base
+  - Socle technique pour le référencement
 
-### 2. Site E-commerce
-- **Budget**: 15,000 - 30,000 DH
+### 2. Site e-commerce
 - **Fonctionnalités**:
   - Catalogue produits
-  - Paiement en ligne CMI
+  - Modes de paiement définis selon le projet
   - Gestion des stocks
-  - Dashboard administration
-  - Formation incluse
+  - Interface d'administration
 
-## Pourquoi ces Prix ?
+## Pourquoi les devis varient-ils ?
 
 Les tarifs varient selon plusieurs facteurs :
 1. Complexité du design
@@ -59,7 +55,7 @@ Les tarifs varient selon plusieurs facteurs :
 4. Technologies utilisées
 5. Support et maintenance
 
-## Les Étapes de Création
+## Les étapes de création
 
 1. **Analyse des Besoins**
    - Définition des objectifs
@@ -81,4 +77,4 @@ Les tarifs varient selon plusieurs facteurs :
 
 La création d'un site web professionnel est un investissement important pour votre entreprise. Avec les bons choix et un partenaire fiable, votre présence en ligne deviendra un véritable atout pour votre développement.
 
-Besoin d'un devis personnalisé ? Contactez-nous pour discuter de votre projet !
+Pour aller plus loin, consultez le [guide principal de création de site web à Casablanca](/blog/guide-creation-site-web-casablanca-2024) ou [contactez-nous](/contact) pour discuter de votre projet.

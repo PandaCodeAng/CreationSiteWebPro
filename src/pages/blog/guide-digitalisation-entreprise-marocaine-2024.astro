@@ -1,123 +1,84 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { generateTimeTag } from '../../utils/dates';
+import { createArticleSchema, getArticleBySlug, getAuthorProfile } from './_articles';
 
-const title = "Digitaliser Votre Entreprise Marocaine : Guide Complet 2026";
-const description = "Découvrez les stratégies essentielles pour digitaliser votre entreprise au Maroc. De la création de site web à l'e-commerce, apprenez à prospérer dans l'ère numérique post-COVID avec notre guide expert.";
-const publishDate = "2026-02-20";
-const author = "Ikram Talbi";
-const readingTime = "15 minutes";
-
-const schema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": title,
-  "description": description,
-  "image": "https://creationsitewebpro.com/images/digitalisation-entreprise-maroc-2024.jpg",
-  "author": {
-    "@type": "Person",
-    "name": author,
-    "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca"
-  },
-  "datePublished": publishDate,
-  "dateModified": "2026-05-30",
-  "inLanguage": "fr",
-  "publisher": {
-    "@type": "Organization",
-    "name": "CreationSiteWebPro",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://creationsitewebpro.com/logo.png"
-    }
-  }
-});
+const article = getArticleBySlug('guide-digitalisation-entreprise-marocaine-2024');
+const { title, description, publishDate, modifiedDate, author, readingTime } = article;
+const authorProfile = getAuthorProfile(author);
+const schema = createArticleSchema(article);
 ---
 
-<Layout title={title} description={description} canonical="https://www.creationsitewebpro.com/blog/guide-digitalisation-entreprise-marocaine-2024">
-  <article itemscope itemtype="http://schema.org/BlogPosting" class="blog-post">
+<Layout title={title} description={description} canonical={article.url}>
+  <JsonLd data={schema} />
+  <article itemscope itemtype="https://schema.org/BlogPosting" class="blog-post">
     <header>
       <h1 itemprop="headline">{title}</h1>
       <p class="post-meta">
         Publié le <Fragment set:html={generateTimeTag(publishDate)} />
-        | Par <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <span itemprop="name">{author}</span>
+        | Mis à jour le <Fragment set:html={generateTimeTag(modifiedDate)} />
+        | Par <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <a href={authorProfile.url} itemprop="url"><span itemprop="name">{author}</span></a>
         </span>
         | Temps de lecture : {readingTime}
       </p>
     </header>
 
     <div itemprop="articleBody">
-      <h2>La Digitalisation au Maroc : C'est Maintenant ou Jamais !</h2>
-      <p>Salam ! Si le Covid nous a appris un truc, c'est que le digital, c'est plus un luxe - c'est comme le pain sur la table ! J'ai vu des m'chamel traditionnels de la médina se mettre sur Instagram, et des épiciers du derb gérer leurs commandes sur WhatsApp. La transformation digitale au Maroc, ce n'est plus "inchallah ghada" (peut-être demain), c'est "daba daba" (maintenant) !</p>
+      <p>Digitaliser une entreprise ne consiste pas à empiler des outils. La démarche doit résoudre un problème métier identifiable : mieux présenter l'offre, centraliser l'information, réduire les saisies manuelles ou faciliter la relation client.</p>
 
-      <h2>1. Le Digital au Maroc en 2024 : On en Est Où ?</h2>
-      <p>Franchement, depuis le confinement, c'est le jour et la nuit ! Les commerçants de Derb Omar font des lives sur TikTok pour montrer leurs nouveautés, les restaurants du Maârif sont tous sur Glovo, et même ma tante qui vend du ftour en Ramadan a son groupe WhatsApp Business !</p>
+      <h2>1. Commencer par un diagnostic</h2>
+      <p>Cartographiez les étapes importantes de l'activité, de la première demande client jusqu'au suivi après-vente. Repérez les informations saisies plusieurs fois, les documents difficiles à retrouver et les tâches qui dépendent d'une seule personne.</p>
 
-      <h2>2. Les Bases pour Réussir dans le Digital à la Marocaine</h2>
-      
-      <h3>2.1 Un Site Web qui Déchire</h3>
-      <p>C'est comme votre boutique : si c'est mzien (beau), les gens rentrent ! On vous fait un site qui claque, qui marche aussi bien sur l'iPhone 15 que sur le vieux Samsung de khaltik (ta tante). Avec nous, même les tagines se vendent en ligne !</p>
+      <h2>2. Fixer des objectifs mesurables</h2>
+      <p>Un projet est plus facile à piloter lorsque son résultat attendu est explicite. Il peut s'agir, par exemple, de réduire les erreurs de saisie, d'accélérer le traitement des demandes ou de disposer d'un historique client centralisé.</p>
 
-      <h3>2.2 La Boutique en Ligne, le Nouveau Souk</h3>
-      <p>Le e-commerce au Maroc ? C'est comme le souk, mais version 2.0 ! Plus besoin de se garer à Derb Omar ou de négocier sous le soleil. Vos clients achètent tranquillement depuis leur salon, même pendant l'heure de la sieste !</p>
-
-      <h3>2.3 Marketing Digital Sauce Marocaine</h3>
-      <p>On mélange l'arabe, le français, un peu de darija... comme dans un bon tajine ! Sur Facebook, on parle décontracté, sur LinkedIn on fait pro, et sur Instagram on fait rêver. C'est ça le marketing à la marocaine !</p>
-
-      <h3>2.4 Le Travail à Distance, Version Bladi</h3>
-      <p>Que votre équipe soit à Casa, Rabat ou Tanger, on vous équipe pour bosser aussi efficacement que si vous étiez tous au même café ! Fini les "Je suis coincé dans les embouteillages de Casa" !</p>
-
-      <h2>3. Comment On S'y Met, Concrètement ?</h2>
+      <h2>3. Avancer par étapes</h2>
       <ol>
-        <li><strong>Faites le Point</strong> : Vous en êtes où ? Même si vous utilisez juste WhatsApp pour vos commandes, c'est déjà un début !</li>
-        <li><strong>Fixez vos Objectifs</strong> : Vous voulez vendre en ligne ? Avoir moins de papiers qui traînent ? On définit ça ensemble, b'la z'ma (sans chichi) !</li>
-        <li><strong>Créez votre Site</strong> : Un site web qui marche aussi vite que le tramway de Casa (quand il n'y a pas de panne !).</li>
-        <li><strong>Formez l'Équipe</strong> : Même Moussa, le gardien qui ne jurait que par son Nokia 3310, utilise maintenant un smartphone pour les badges digitaux !</li>
-        <li><strong>Passez au Cloud</strong> : Fini les papiers qui se perdent et les "Chouf f'PC l'9dim" (regarde dans le vieux PC) !</li>
-        <li><strong>Lancez votre Marketing</strong> : Plus efficace qu'un crieur dans le souk !</li>
+        <li><strong>Prioriser un processus :</strong> choisissez un besoin utile et suffisamment limité pour être testé.</li>
+        <li><strong>Définir les données :</strong> précisez les informations collectées, leur source et les personnes autorisées à les consulter.</li>
+        <li><strong>Choisir l'outil :</strong> comparez les fonctions, les possibilités d'export, le support et les coûts récurrents.</li>
+        <li><strong>Tester avec les utilisateurs :</strong> vérifiez le parcours sur des cas réels avant le déploiement général.</li>
+        <li><strong>Former l'équipe :</strong> documentez les tâches courantes et désignez un responsable interne.</li>
+        <li><strong>Mesurer puis ajuster :</strong> suivez quelques indicateurs liés à l'objectif initial.</li>
       </ol>
 
-      <h2>4. Les Défis de Chez Nous (et Comment les Gérer)</h2>
+      <h2>4. Construire une présence en ligne cohérente</h2>
+      <p>Le site web constitue une source d'information contrôlée par l'entreprise. Il doit expliquer l'offre, fournir des coordonnées exactes et orienter vers les bons canaux de contact. Les réseaux sociaux ou les messageries peuvent le compléter, mais ne remplacent pas nécessairement les pages de référence.</p>
+
+      <h2>5. Adapter le parcours aux clients</h2>
+      <p>Les langues, les moyens de contact, les modes de paiement et les options de livraison doivent être choisis à partir des besoins de la clientèle visée et des capacités réelles de l'entreprise. Chaque option ajoutée doit être testée et expliquée clairement.</p>
+
+      <h2>6. Protéger les données et les accès</h2>
       <ul>
-        <li><strong>La Langue ?</strong> On parle toutes les langues du Maroc ! Même le darija si ça parle mieux à vos clients.</li>
-        <li><strong>Peur des Paiements En Ligne ?</strong> Cash à la livraison, CMI, PayPal... On s'adapte comme un chameau dans le désert !</li>
-        <li><strong>Connexion qui Rame ?</strong> On optimise tout pour que ça marche même quand le wifi fait la sieste !</li>
+        <li>Accordez à chaque utilisateur uniquement les droits nécessaires.</li>
+        <li>Activez l'authentification renforcée lorsqu'elle est disponible.</li>
+        <li>Prévoyez des sauvegardes et vérifiez la procédure de restauration.</li>
+        <li>Documentez le départ d'un collaborateur et la révocation de ses accès.</li>
       </ul>
 
-      <h2>5. Les Success Stories du Bled</h2>
-      <p>Tenez, prenez l'exemple de Rachid, qui vendait ses épices dans la médina. Aujourd'hui, il expédie dans tout le Maroc grâce à son site web. Ou Fatima, qui a digitalisé sa pâtisserie traditionnelle - elle reçoit maintenant des commandes de MRE pendant le Ramadan !</p>
+      <h2>7. Vérifier les aides au moment du projet</h2>
+      <p>Les programmes d'accompagnement et leurs critères peuvent évoluer. Avant d'intégrer une aide au budget, consultez les informations publiées par l'organisme concerné et obtenez une confirmation écrite de l'éligibilité et des dépenses prises en charge.</p>
 
-      <h2>6. Les Coups de Pouce pour se Lancer</h2>
-      <p>Le Makhzen aussi pousse au digital ! Il y a plein d'aides :</p>
-      <ul>
-        <li>Des formations gratuites au centre Moulay Rachid</li>
-        <li>Des subventions pour les jeunes entrepreneurs</li>
-        <li>Des programmes spéciaux pour les artisans</li>
-      </ul>
-
-      <h2>Alors, On se Lance ?</h2>
-      <p>La digitalisation au Maroc, c'est comme le couscous du vendredi : c'est devenu indispensable ! Avec notre expertise 100% marocaine et notre connaissance du terrain (de Casa à Oujda, en passant par Marrakech), on vous accompagne dans cette aventure.</p>
-
-      <p>Yallah ! On prend un café près de Twin Center pour en parler ? La première consultation, c'est kif kif le thé à la menthe : c'est la maison qui offre !</p>
+      <h2>En résumé</h2>
+      <p>Une digitalisation durable est progressive, documentée et portée par les personnes qui utiliseront les outils. Un premier cadrage permet de distinguer les besoins prioritaires des fonctions qui peuvent attendre.</p>
     </div>
 
     <footer>
-      <h3>Prêt à Digitaliser Votre Entreprise Marocaine ?</h3>
-      <p>CreationSiteWebPro est votre partenaire de confiance pour la transformation digitale au Maroc. De la création de site web à la stratégie digitale complète, nous sommes là pour vous guider à chaque étape.</p>
-      <a href="/creation-site-web-casablanca" class="cta-button">Demander une Consultation Gratuite</a>
+      <h3>Cadrer la digitalisation de votre entreprise</h3>
+      <p>Décrivez votre processus actuel et le résultat recherché pour identifier une première étape réaliste.</p>
+      <a href="/contact" class="cta-button">Demander une consultation</a>
     </footer>
   </article>
 </Layout>
-
-<script type="application/ld+json" is:inline set:html={schema} />
 
 <style>
   .blog-post {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    margin-top: 7rem;
-    margin-top: 7rem;
+    margin-top: 0;
   }
 
   h1 {
@@ -173,7 +134,7 @@ const schema = JSON.stringify({
   @media (max-width: 768px) {
     .blog-post {
       padding: 1rem;
-      margin-top: 11rem;
+      margin-top: 0;
     }
   }
 </style>

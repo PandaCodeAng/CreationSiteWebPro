@@ -12,27 +12,27 @@ const pageDescription = "Toutes les réponses sur la création de site web au Ma
 const faqs = [
   {
     question: "Combien coûte la création d'un site web à Casablanca ?",
-    answer: "Le coût de création d'un site web à Casablanca varie en fonction de vos besoins spécifiques. Un site vitrine simple peut coûter entre 5000 et 15000 MAD, tandis qu'un e-commerce ou une application web complexe peut aller de 20000 à 100000 MAD ou plus. Nous offrons des devis personnalisés gratuits pour chaque projet."
+    answer: "Un site vitrine professionnel démarre à 7 500 MAD et une boutique e-commerce standard à 15 000 MAD. Une application web est chiffrée après un cadrage fonctionnel. Le devis final dépend des contenus, fonctionnalités et intégrations."
   },
   {
     question: "Combien de temps faut-il pour créer un site web ?",
-    answer: "La durée de création d'un site web dépend de sa complexité. En général, un site vitrine peut être réalisé en 2 à 4 semaines, un e-commerce en 4 à 8 semaines, et une application web sur mesure peut prendre de 8 à 12 semaines ou plus. Nous établissons un calendrier précis au début de chaque projet."
+    answer: "La durée dépend du périmètre, des contenus, des intégrations et des validations. Les étapes et la date de livraison prévisionnelle sont précisées dans le devis avant le démarrage."
   },
   {
     question: "Proposez-vous des services de maintenance après le lancement du site ?",
-    answer: "Absolument ! Nous offrons des forfaits de maintenance pour garder votre site à jour, sécurisé et performant. Nos services incluent les mises à jour régulières, la surveillance de la sécurité, les sauvegardes, et l'assistance technique. Votre tranquillité d'esprit est notre priorité."
+    answer: "Des modalités de maintenance peuvent être prévues selon le projet. Les mises à jour, sauvegardes, contrôles et délais d'assistance inclus sont détaillés dans la proposition commerciale."
   },
   {
     question: "Puis-je mettre à jour moi-même le contenu de mon site ?",
-    answer: "Oui, nous développons la plupart de nos sites avec des systèmes de gestion de contenu (CMS) conviviaux qui vous permettent de mettre à jour facilement votre contenu. Nous fournissons également une formation pour vous assurer que vous êtes à l'aise avec la gestion de votre site."
+    answer: "Le choix du système de gestion de contenu et votre niveau d'autonomie sont définis pendant le cadrage. Une prise en main peut être prévue lorsque l'administration du contenu fait partie du périmètre."
   },
   {
     question: "Votre entreprise s'occupe-t-elle du référencement (SEO) ?",
-    answer: "Oui, nous offrons des services complets d'optimisation pour les moteurs de recherche (SEO). Cela inclut l'optimisation on-page, la création de contenu optimisé, l'amélioration de la structure technique du site, et des stratégies de création de liens. Notre objectif est d'améliorer votre visibilité en ligne et d'attirer plus de trafic qualifié vers votre site."
+    answer: "Les sites incluent un socle d'indexabilité, de métadonnées, de structure sémantique et de performance. Un accompagnement SEO continu peut être défini séparément, avec des indicateurs adaptés au marché."
   },
   {
     question: "Créez-vous des sites web adaptés aux mobiles ?",
-    answer: "Absolument. Tous nos sites web sont conçus avec une approche 'mobile-first' et sont entièrement responsives. Cela signifie qu'ils s'adaptent parfaitement à tous les appareils, qu'il s'agisse de smartphones, tablettes ou ordinateurs de bureau, offrant ainsi une expérience utilisateur optimale sur tous les écrans."
+    answer: "Oui. L'affichage responsive sur smartphones, tablettes et ordinateurs fait partie du socle de conception. Les principaux parcours sont vérifiés avant la mise en ligne."
   }
 ];
 
@@ -52,20 +52,18 @@ const faqSchema = {
 
 <Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/faq-creation-site-web-maroc">
   <JsonLd data={faqSchema} />
-  <main class="faq-page">
+  <div class="faq-page">
     <Breadcrumbs items={breadcrumbItems} />
 
     <h1>{pageTitle}</h1>
     <p class="intro">{pageDescription}</p>
 
-    <div class="faq-container" itemscope itemtype="https://schema.org/FAQPage">
+    <div class="faq-container">
       {faqs.map((faq) => (
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <h2 itemprop="name">{faq.question}</h2>
-          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <div itemprop="text">
-              <p>{faq.answer}</p>
-            </div>
+        <div class="faq-item">
+          <h2>{faq.question}</h2>
+          <div>
+            <p>{faq.answer}</p>
           </div>
         </div>
       ))}
@@ -74,9 +72,9 @@ const faqSchema = {
     <section class="cta-section">
       <h2>Vous avez d'autres questions ?</h2>
       <p>N'hésitez pas à nous contacter pour obtenir des réponses personnalisées à vos questions.</p>
-      <a href="/creation-site-web-casablanca" class="cta-button">Contactez-nous</a>
+      <a href="/contact" class="cta-button">Contactez-nous</a>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
@@ -84,7 +82,7 @@ const faqSchema = {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    margin-top: 5rem;
+    margin-top: 0;
   }
 
   h1 {
@@ -153,7 +151,7 @@ const faqSchema = {
   @media (max-width: 768px) {
     .faq-page {
       padding: 1rem;
-      margin-top: 11rem;
+      margin-top: 0;
     }
   }
 </style>

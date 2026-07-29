@@ -8,60 +8,73 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 
 const breadcrumbItems = [
   { name: 'Accueil', url: '/' },
+  { name: 'Services', url: '/services' },
   { name: 'E-commerce' }
 ];
+const canonical = "https://www.creationsitewebpro.com/services/e-commerce-casablanca";
 const pageTitle = "Création de Site E-commerce à Casablanca";
-const pageDescription = "Propulsez votre entreprise avec une boutique en ligne performante. Experts en création de sites e-commerce à Casablanca pour booster vos ventes en ligne.";
+const pageDescription = "Création de boutiques en ligne à Casablanca : catalogue, commandes, paiement, livraison, administration et socle SEO adaptés au périmètre du projet.";
 
 const features = [
   {
     title: "Design Responsive",
-    description: "Boutiques adaptées à tous les appareils pour une expérience d'achat optimale.",
+    description: "Parcours adaptés aux mobiles, tablettes et ordinateurs.",
     icon: "mobile"
   },
   {
     title: "Paiement Sécurisé",
-    description: "Intégration des méthodes de paiement locales et internationales sécurisées.",
+    description: "Intégration des moyens de paiement validés selon le prestataire et le compte marchand.",
     icon: "lock"
   },
   {
     title: "Gestion de Stock",
-    description: "Outils puissants pour gérer votre inventaire en temps réel.",
+    description: "Gestion du catalogue et des stocks selon les règles définies pendant le cadrage.",
     icon: "box"
   },
   {
     title: "SEO E-commerce",
-    description: "Optimisation pour les moteurs de recherche pour attirer plus de clients.",
+    description: "Structure technique pour l'indexation des catégories et des fiches produits.",
     icon: "search"
+  }
+];
+
+const faqItems = [
+  {
+    question: "Combien coûte la création d'un site e-commerce à Casablanca ?",
+    answer: "Une boutique en ligne démarre à 15 000 MAD. Le devis final dépend du catalogue, des paiements, des livraisons, des contenus et des intégrations nécessaires."
+  },
+  {
+    question: "Combien de temps faut-il pour créer un site e-commerce ?",
+    answer: "Le calendrier dépend du volume du catalogue, des contenus, des intégrations et des validations. Les étapes et la date de livraison prévisionnelle sont précisées dans le devis."
+  },
+  {
+    question: "Quels modes de paiement pouvez-vous intégrer au Maroc ?",
+    answer: "Le choix dépend des prestataires disponibles, de votre compte marchand et de vos besoins. Les moyens de paiement retenus et leurs conditions d'intégration sont confirmés pendant le cadrage."
   }
 ];
 
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": `${canonical}#service`,
   "name": pageTitle,
   "description": pageDescription,
+  "url": canonical,
   "provider": {
-    "@type": "LocalBusiness",
-    "name": "CreationSiteWebPro",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Casablanca",
-      "addressCountry": "MA"
-    }
+    "@id": "https://www.creationsitewebpro.com/#localbusiness"
   },
   "areaServed": {
     "@type": "City",
     "name": "Casablanca"
   },
-  "serviceType": "E-commerce Website Creation"
+  "serviceType": "Création de boutique e-commerce"
 };
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/services/e-commerce-casablanca">
+<Layout title={pageTitle} description={pageDescription} canonical={canonical}>
   <JsonLd data={schemaData} />
   
-  <main class="e-commerce-casablanca">
+  <div class="e-commerce-casablanca">
     <Breadcrumbs items={breadcrumbItems} />
     <h1>{pageTitle}</h1>
     <p class="intro">{pageDescription}</p>
@@ -72,6 +85,9 @@ const schemaData = {
         alt="Création de site e-commerce à Casablanca" 
         width={600} 
         height={300} 
+        loading="eager"
+        fetchpriority="high"
+        sizes="(max-width: 800px) 100vw, 600px"
       />
     </section>
 
@@ -93,8 +109,8 @@ const schemaData = {
       <ul>
         <li>Expertise locale du marché casablancais et marocain</li>
         <li>Solutions sur mesure adaptées à votre secteur d'activité</li>
-        <li>Intégration des modes de paiement populaires au Maroc</li>
-        <li>Support technique en arabe et en français</li>
+        <li>Intégration des moyens de paiement prévus dans le devis</li>
+        <li>Administration et accompagnement définis selon le projet</li>
         <li>Optimisation pour le référencement local à Casablanca</li>
       </ul>
     </section>
@@ -107,59 +123,39 @@ const schemaData = {
         <li>Développement de fonctionnalités e-commerce avancées</li>
         <li>Tests approfondis et optimisation des performances</li>
         <li>Formation à l'utilisation de votre nouvelle boutique en ligne</li>
-        <li>Lancement et support continu</li>
+        <li>Lancement et modalités de support convenues</li>
       </ol>
     </section>
 
     <section class="cta">
       <h2>Prêt à Lancer Votre E-commerce à Casablanca?</h2>
       <p>Contactez-nous dès aujourd'hui pour un devis personnalisé et propulsez votre entreprise dans l'ère du commerce en ligne!</p>
-      <CTAButton text="Demander un Devis Gratuit" href="/creation-site-web-casablanca" />
+      <CTAButton text="Demander un devis" href="/contact" />
     </section>
 
     <section class="faq">
       <h2>Questions Fréquentes sur la Création d'E-commerce à Casablanca</h2>
       <dl>
-        <dt>Combien coûte la création d'un site e-commerce à Casablanca?</dt>
-        <dd>Le coût varie en fonction de vos besoins spécifiques, mais nos solutions commencent à partir de X MAD. Contactez-nous pour un devis précis.</dd>
-        
-        <dt>Combien de temps faut-il pour créer un site e-commerce?</dt>
-        <dd>En général, un site e-commerce basique peut être réalisé en 4 à 6 semaines. Des projets plus complexes peuvent prendre 8 à 12 semaines.</dd>
-        
-        <dt>Pouvez-vous m'aider avec le marketing digital pour mon e-commerce?</dt>
-        <dd>Absolument! Nous offrons des services de marketing digital complets pour promouvoir votre boutique en ligne, incluant le SEO, les réseaux sociaux et le marketing par e-mail.</dd>
+        {faqItems.map((item) => (
+          <Fragment>
+            <dt>{item.question}</dt>
+            <dd>{item.answer}</dd>
+          </Fragment>
+        ))}
       </dl>
     </section>
-  </main>
+  </div>
   <JsonLd data={{
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Combien coûte la création d'un site e-commerce à Casablanca ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Le coût varie en fonction de vos besoins. Nos solutions e-commerce démarrent à partir de 20 000 MAD pour une boutique standard avec paiement en ligne (CMI, Stripe) et peuvent aller jusquà 100 000 MAD pour des projets complexes."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Combien de temps faut-il pour créer un site e-commerce à Casablanca ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Un site e-commerce basique peut être réalisé en 4 à 6 semaines. Des projets plus complexes avec des fonctionnalités avancées prennent 8 à 12 semaines."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Quels modes de paiement pouvez-vous intégrer dans un e-commerce au Maroc ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nous intégrons les principaux moyens de paiement disponibles au Maroc : CMI (Centre Monétique Interbancaire), carte bancaire, Stripe, PayPal, et virement bancaire."
-        }
+    "mainEntity": faqItems.map((item) => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
       }
-    ]
+    }))
   }} />
 </Layout>
 
@@ -168,7 +164,7 @@ const schemaData = {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
-    margin-top: 7rem;
+    margin-top: 0;
   }
 
   h1 {
@@ -227,7 +223,7 @@ const schemaData = {
 
   @media (max-width: 768px) {
     .e-commerce-casablanca {
-      padding: 11rem;
+      padding: 1rem;
     }
 
     h1 {

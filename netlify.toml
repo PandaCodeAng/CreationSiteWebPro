@@ -23,11 +23,17 @@
   force = true
 
 [[redirects]]
-  from = "/creation-site-web-casablanca.astro.bak"
+  from = "/contact-refactor"
   to = "/contact"
   status = 301
   force = true
-  
+
+[[redirects]]
+  from = "/blog/creation-site-web-casablanca-guide"
+  to = "/blog/guide-creation-site-web-casablanca-2024"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -36,7 +42,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com https://www.googletagmanager.com https://static.axept.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com https://www.googletagmanager.com https://static.axept.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com https://fonts.axept.io; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://www.google.com https://www.googletagmanager.com https://*.axept.io https://*.axeptio.eu https://*.axeptio.tech; frame-src 'self' https://www.google.com https://maps.google.com; media-src 'self' https://axeptio-video.imgix.net;"
 
 # Configuration pour les assets statiques
 [[headers]]

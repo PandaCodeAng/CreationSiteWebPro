@@ -1,100 +1,75 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { generateTimeTag } from '../../utils/dates';
+import { createArticleSchema, getArticleBySlug, getAuthorProfile } from './_articles';
 
-const title = "SEO & Recherche Vocale : Guide pour Sites Marocains";
-const description = "Découvrez comment adapter votre stratégie SEO pour la recherche vocale et dominez le marché digital à Casablanca et au Maroc. Conseils d'experts pour optimiser votre site web et rester en tête de la concurrence.";
-const publishDate = "2026-03-05";
-const author = "Zakaria Boussnini";
-const readingTime = "7 minutes";
-
-const schema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": title,
-  "description": description,
-  "author": {
-    "@type": "Person",
-    "name": author,
-    "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca"
-  },
-  "datePublished": publishDate,
-  "dateModified": "2026-05-30",
-  "inLanguage": "fr",
-  "image": "https://creationsitewebpro.com/images/optimisation-recherche-vocale-maroc.jpg",
-  "publisher": {
-    "@type": "Organization",
-    "name": "CreationSiteWebPro",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://creationsitewebpro.com/logo.png"
-    }
-  }
-});
+const article = getArticleBySlug('strategies-seo-sites-web-marocains-2024');
+const { title, description, publishDate, modifiedDate, author, readingTime } = article;
+const authorProfile = getAuthorProfile(author);
+const schema = createArticleSchema(article);
 ---
 
-<Layout title={title} description={description} canonical="https://www.creationsitewebpro.com/blog/strategies-seo-sites-web-marocains-2024">
-  <article itemscope itemtype="http://schema.org/BlogPosting" class="blog-post">
+<Layout title={title} description={description} canonical={article.url}>
+  <JsonLd data={schema} />
+  <article itemscope itemtype="https://schema.org/BlogPosting" class="blog-post">
     <header>
       <h1 itemprop="headline">{title}</h1>
       <p class="post-meta">
         Publié le <Fragment set:html={generateTimeTag(publishDate)} />
-        | Par <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <span itemprop="name">{author}</span>
+        | Mis à jour le <Fragment set:html={generateTimeTag(modifiedDate)} />
+        | Par <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <a href={authorProfile.url} itemprop="url"><span itemprop="name">{author}</span></a>
         </span>
         | Temps de lecture : {readingTime}
       </p>
     </header>
 
     <div itemprop="articleBody">
-      <p>Sérieux, qui n'a pas déjà crié "Ok Google" dans les embouteillages de Casa pour trouver le resto le plus proche ? La recherche vocale, c'est devenu notre quotidien au Maroc ! Et franchement, si votre site web n'est pas prêt pour ça, c'est comme ouvrir un magasin sans enseigne dans les ruelles de l'ancienne médina - personne ne vous trouve ! Laissez-moi vous expliquer comment on gère ça chez nous à Casa.</p>
+      <p>Les recherches vocales sont souvent formulées comme des questions complètes, mais elles ne nécessitent pas un référencement séparé. Les mêmes fondations restent utiles : une information exacte, une structure compréhensible, un site accessible et des réponses adaptées à l'intention de recherche.</p>
 
-      <h2>1. Parlez comme un vrai Casablancais !</h2>
-      <p>Oubliez le langage robot ! Quand un client cherche un resto, il ne dit pas "établissement de restauration Casablanca" - il demande "Feen kayn chi resto zwin f Casa ?". Pour votre site, il faut penser pratique : intégrez le français, l'arabe, et même le darija. C'est comme au café du coin : on mélange les langues naturellement !</p>
+      <h2>1. Partir des questions des clients</h2>
+      <p>Recueillez les formulations utilisées dans les appels, les messages et les échanges commerciaux. Regroupez-les par intention : obtenir un prix, vérifier une disponibilité, localiser l'entreprise ou comprendre une prestation.</p>
 
-      <h2>2. Le Local, c'est Capital à Casa</h2>
-      <p>Vous êtes où exactement ? À Maârif ? Gauthier ? Les gens qui cherchent avec leur voix veulent du précis ! Mettez tout : votre adresse complète, vos horaires (et si vous fermez pendant l'heure de prière, dites-le), comment vous rejoindre depuis la mosquée Hassan II... Bref, facilitez la vie de vos clients !</p>
+      <h2>2. Publier des informations locales exactes</h2>
+      <p>Le nom de l'entreprise, l'adresse, le téléphone, les horaires et les zones desservies doivent être cohérents sur le site et sur les profils officiels. Ne mentionnez un quartier ou une ville que si l'entreprise y est réellement présente ou y fournit le service décrit.</p>
 
-      <h2>3. Un Site Rapide comme un Petit Taxi</h2>
-      <p>Wallah, personne n'a la patience d'attendre un site qui rame ! Même avec la 4G qui fait des siennes vers Ain Diab, votre site doit être plus rapide qu'un petit taxi qui slalome sur le boulevard d'Anfa. On optimise tout : les images, le code, tout doit être nickel !</p>
+      <h2>3. Répondre clairement dès le début</h2>
+      <p>Placez une réponse courte sous le titre concerné, puis développez les conditions et les exceptions. Les listes, tableaux et étapes numérotées sont utiles lorsqu'ils rendent l'information plus facile à parcourir.</p>
 
-      <h2>4. Des FAQ qui Parlent aux Marocains</h2>
-      <p>Créez une section questions-réponses qui a du sens pour les gens d'ici. "Est-ce que vous livrez pendant le Ramadan ?", "Vous acceptez les cartes bancaires ?", "Il y a un parking à proximité ?". Vous voyez le genre ? Des vraies questions de vrais Casablancais !</p>
+      <h2>4. Créer une FAQ à partir de besoins réels</h2>
+      <p>Une FAQ peut traiter les modalités de livraison, les moyens de paiement, les horaires ou la préparation d'un rendez-vous. Chaque réponse doit être visible sur la page, exacte et tenue à jour. Le balisage structuré, lorsqu'il est utilisé, doit correspondre au contenu affiché.</p>
 
-      <h2>5. Visez la Première Place sur Google</h2>
-      <p>C'est comme avoir la meilleure place au souk : faut être tout en haut ! Quand quelqu'un demande à son téléphone "meilleur coiffeur à Casa", c'est VOUS qu'on doit lui proposer en premier. On structure tout pour ça !</p>
+      <h2>5. Employer la langue du public</h2>
+      <p>Le français, l'arabe, le darija ou l'anglais peuvent être pertinents selon la clientèle. Évitez toutefois d'accumuler des variantes de mots-clés dans une même phrase. Une version linguistique utile doit être relue et fournir un contenu complet.</p>
 
-      <h2>6. Les Longues Phrases, c'est Notre Truc</h2>
-      <p>Au Maroc, on aime bien détailler ! Alors intégrez des phrases complètes : "Où trouver un bon plombier disponible maintenant à Casablanca ?", "Quel est le meilleur salon de beauté ouvert le lundi à Maârif ?". C'est comme ça que les gens parlent vraiment !</p>
+      <h2>6. Faciliter l'exploration du site</h2>
+      <p>Reliez les guides aux pages de services correspondantes, utilisez des ancres de lien explicites et veillez à ce que les pages importantes restent accessibles depuis la navigation. Chaque page doit avoir un sujet principal identifiable.</p>
 
-      <h2>7. Le Mobile D'abord, comme au Derb !</h2>
-      <p>Soyons honnêtes : au Maroc, tout le monde vit sur son téléphone ! Du vendeur de sims à Derb Omar jusqu'au businessman de Casa Marina, tout le monde cherche avec son portable. Alors votre site doit être au top sur mobile, c'est obligé !</p>
+      <h2>7. Soigner l'expérience mobile et la performance</h2>
+      <p>Un affichage stable, des boutons suffisamment grands et des pages légères facilitent la consultation sur smartphone. Dimensionnez les images, limitez les scripts non essentiels et testez les formulaires sur plusieurs tailles d'écran.</p>
 
-      <h2>8. Le Darija, Notre Langue du Cœur</h2>
-      <p>Faut pas avoir peur d'utiliser le darija ! "Feen ?", "Chhal ?", "Ki dayer ?", ce sont les vrais mots que les gens utilisent. Alors on les intègre intelligemment, surtout si vous visez la jeunesse casablancaise qui jongle entre trois langues sans même y penser !</p>
+      <h2>8. Mesurer sans promettre de position</h2>
+      <p>Suivez les pages consultées, les requêtes visibles dans les outils pour webmasters et les demandes reçues. Ces données permettent d'améliorer les réponses et le maillage interne, mais aucune optimisation ne garantit une position précise dans les résultats.</p>
 
-      <h2>Le Dernier Mot</h2>
-      <p>Écoutez, la recherche vocale à Casa, c'est pas juste une mode qui va passer comme les trottinettes électriques ! C'est l'avenir, et franchement, c'est pas si compliqué de s'y mettre. Il faut juste penser "marocain", penser "pratique", et surtout, penser "naturel".</p>
-
-      <p>Chez nous, dans notre agence du boulevard Mohammed V (oui, celle avec la grande terrasse où on vous offre toujours un thé à la menthe !), on crée des sites qui parlent le même langage que vous. Pas de blabla compliqué, que du concret qui marche pour les entreprises d'ici !</p>
+      <h2>En résumé</h2>
+      <p>Pour les recherches textuelles comme vocales, privilégiez des informations fiables et des réponses directes. Cette approche aide les internautes, les moteurs de recherche et les assistants à comprendre ce que l'entreprise propose.</p>
     </div>
 
     <footer>
-      <h3>Besoin d'Optimiser votre Site pour la Recherche Vocale au Maroc ?</h3>
-      <p>Faites appel à CreationSiteWebPro pour une stratégie SEO complète et moderne, adaptée au marché marocain.</p>
-      <a href="/creation-site-web-casablanca" class="cta-button">Demander une Consultation Personnalisée</a>
+      <h3>Structurer le référencement de votre site</h3>
+      <p>Nous pouvons auditer vos pages, leurs contenus et leurs informations locales afin de définir les améliorations prioritaires.</p>
+      <a href="/services/referencement-seo-casablanca" class="cta-button">Découvrir le service SEO</a>
     </footer>
   </article>
 </Layout>
-
-<script type="application/ld+json" is:inline set:html={schema} />
 
 <style>
   .blog-post {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    margin-top: 7rem;
+    margin-top: 0;
   }
 
   h1 {
@@ -150,7 +125,7 @@ const schema = JSON.stringify({
   @media (max-width: 768px) {
     .blog-post {
       padding: 1rem;
-      margin-top: 11rem;
+      margin-top: 0;
     }
   }
 </style>

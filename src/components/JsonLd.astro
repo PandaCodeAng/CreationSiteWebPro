@@ -1,83 +1,45 @@
 ---
-// Types
-import { napInfo } from '../layouts/Layout.astro';
-
 interface BreadcrumbItem {
   name: string;
   item: string;
 }
 
 interface Props {
-  data: Record<string, any>;
+  data: Record<string, unknown>;
   breadcrumbs?: BreadcrumbItem[];
 }
 
-const { data, breadcrumbs } = Astro.props;
+const { data, breadcrumbs = [] } = Astro.props;
+const siteUrl = Astro.site ?? new URL('https://www.creationsitewebpro.com');
 
-// Construction du schéma enrichi
-const enrichSchema = (baseData: Record<string, any>) => {
-  const schema = { ...baseData };
-  // Ajout des breadcrumbs si fournis
-  if (breadcrumbs && Array.isArray(breadcrumbs) && breadcrumbs.length > 0 && Astro.site) {
-    schema.breadcrumb = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": breadcrumbs.map((item, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": item.name,
-        "item": item.item.startsWith('http') ? item.item : new URL(item.item, Astro.site!).toString()
-      }))
-    };
-  }
+// Les données métier restent sous le contrôle de la page qui les fournit.
+// Un BreadcrumbList éventuel est émis comme un schéma distinct, sans modifier
+// Organization, LocalBusiness ou leur zone desservie.
+const schemas: Record<string, unknown>[] = [data];
 
-  // Enrichissement automatique selon le type
-  const schemaTypes = Array.isArray(schema["@type"]) ? schema["@type"] : [schema["@type"]];
-  if (schemaTypes.includes("Organization") || schemaTypes.includes("LocalBusiness")) {
-    schema.sameAs = [
-      "https://www.google.com/search?kgmid=/g/11y8hb26tr",
-      "https://www.wikidata.org/wiki/Q139991921",
-      "https://clutch.co/profile/creationsitewebpro",
-      "https://www.facebook.com/creationsitewebpro",
-      "https://www.linkedin.com/company/creationsitewebpro",
-      "https://www.instagram.com/creation_sitewebpro"
-    ];
-    schema.areaServed = {
-      "@type": "City",
-      "name": "Casablanca",
-      "containedInPlace": { 
-        "@type": "Country",
-        "name": "Maroc"
-      }
-    };
-    schema.foundingDate = "2013";
-    // schema.award = "Meilleure agence web de Casablanca 2023"; // Award should be verifiable
-    schema.hasOfferCatalog = { 
-      "@type": "OfferCatalog",
-      "name": "Services de création de site web",
-      "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Création de site web vitrine Casablanca" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Création de site e-commerce Casablanca" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Référencement SEO Casablanca" } }
-      ]
-    };
-    schema.hasCredential = [
-      {
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "Certification",
-        "name": "Google Partner",
-        "recognizedBy": {
-          "@type": "Organization",
-          "name": "Google"
-        }
-      }
-    ];
-  }
+if (breadcrumbs.length > 0) {
+  schemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.item.startsWith('http')
+        ? item.item
+        : new URL(item.item, siteUrl).toString(),
+    })),
+  });
+}
 
-  return schema;
-};
-
-const enrichedData = enrichSchema(data);
+const serializeSchema = (schema: Record<string, unknown>) =>
+  JSON.stringify(schema).replace(/</g, '\\u003c');
 ---
 
-<script type="application/ld+json" is:inline set:html={JSON.stringify(enrichedData, null, 2)} />
+{schemas.map((schema) => (
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={serializeSchema(schema)}
+  />
+))}

@@ -7,7 +7,9 @@
     "start": "astro dev",
     "prebuild": "npm run optimize-images && npm run optimize-svg",
     "build": "astro build",
+    "check": "astro check",
     "preview": "astro preview",
+    "audit-seo": "node scripts/auditSeo.mjs",
     "astro": "astro",
     "optimize-images": "node scripts/optimizeImages.js",
     "optimize-svg": "node scripts/optimizeSvg.js"

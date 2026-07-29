@@ -5,56 +5,65 @@ import OptimizedImage from '../components/OptimizedImage.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 const pageTitle = "À Propos | Votre Partenaire Digital à Casablanca Maroc";
-const pageDescription = "Découvrez l'équipe passionnée derrière CreationSiteWebPro. 10+ ans d'expérience en création de sites web et applications sur mesure à Casablanca.";
+const pageDescription = "Découvrez l'équipe de CreationSiteWebPro et ses domaines d'intervention en création de sites web et applications sur mesure à Casablanca.";
+const siteUrl = "https://www.creationsitewebpro.com";
+const aboutUrl = `${siteUrl}/a-propos-agence-web-casablanca`;
+const organizationId = `${siteUrl}/#localbusiness`;
 const breadcrumbItems = [
   { name: 'Accueil', url: '/' },
   { name: 'À Propos' }
 ];
 const teamMembers = [
   {
+    id: "mouhcine-talbi",
     name: "Mouhcine Talbi",
     role: "Fondateur & Directeur Technique",
     image: "/images/mouhcine-talbi.jpg",
     quote: "Notre mission est de fournir des solutions logicielles innovantes et sur mesure pour propulser nos clients vers le succès digital.",
     experience: [
-      "Senior Software Engineer",
-      "Expérience chez Capgemini, Vivalis Salaf, CGI, Ingelec, STCR",
-      "Expert en développement de solutions complexes et gestion de projets techniques"
+      "Architecture et développement web",
+      "Gestion de projets techniques",
+      "Conception de solutions web sur mesure"
     ]
   },
   {
+    id: "zakaria-boussnini",
     name: "Zakaria Boussnini",
     role: "Cofondateur & Directeur Commercial",
     image: "/images/zakaria-boussnini.jpg",
     quote: "L'expérience utilisateur est au cœur de chaque projet. Nous créons des interfaces intuitives qui enchantent les utilisateurs.",
     experience: [
-      "Senior Software Engineer",
-      "Expérience chez Fintech Accelex, Capgemini, Inetum, Corporate Software",
-      "Spécialiste en conception d'interfaces utilisateur et expérience utilisateur"
+      "Stratégie digitale",
+      "Développement commercial",
+      "Relation client et cadrage des projets"
     ]
   },
   {
+    id: "safae-abed",
     name: "Safae Abed",
     role: "Ingénieure QA & Experte SEO",
     image: "/images/safae-abed.jpg",
-    quote: "La qualité et la visibilité sont les piliers d'un projet web réussi. Nous veillons à ce que chaque site soit parfaitement optimisé et fonctionnel.",
+    quote: "La qualité et la visibilité sont les piliers d'un projet web réussi. Nous suivons avec attention les tests, la performance et l'optimisation.",
     experience: [
-      "QA Manager, Scrum Master et certifiée Google Analytics",
-      "Plus de 7 ans d'expérience en assurance qualité, SEO et stratégie de contenu",
-      "Spécialiste dans l'optimisation SEO technique et l'audit de performance",
-    ]
-  },  {
-    name: "Ikram Talbi",
-    role: "Senior Analyste Fonctionnelle & Stratège Digital",
-    image: "/images/Ikrame-talbi.jpg",
-    quote: "Chaque projet web est une opportunité d'aligner technologie et objectifs business. Notre approche analytique garantit des solutions qui répondent précisément aux besoins de nos clients.",
-    experience: [
-      "IT Senior Business Analyst avec plus de 8 ans d'expérience",
-      "Expérience chez Capgemini, BDSI Maroc, Sopra Banking Software",
-      "Experte en analyse des besoins et optimisation des processus digitaux"
+      "Assurance qualité et tests fonctionnels",
+      "SEO et stratégie de contenu",
+      "Audit de performance web"
     ]
   },
   {
+    id: "ikram-talbi",
+    name: "Ikram Talbi",
+    role: "Senior Analyste Fonctionnelle & Stratège Digital",
+    image: "/images/Ikrame-talbi.jpg",
+    quote: "Chaque projet web est une opportunité d'aligner technologie et objectifs business. Notre approche analytique vise des solutions adaptées aux besoins de nos clients.",
+    experience: [
+      "Analyse fonctionnelle et recueil des besoins",
+      "Gestion de projets digitaux",
+      "Optimisation des processus"
+    ]
+  },
+  {
+    id: "fatima-benzahra",
     name: "Fatima Ezzahra Benzahra",
     role: "Directrice Produit & Innovation",
     image: "/images/fatima-benzahra.jpg",
@@ -70,88 +79,43 @@ const teamMembers = [
 
 const milestones = [
   { year: 2013, event: "Fondation de CreationSiteWebPro" },
-  { year: 2015, event: "100ème site web livré" },
-  { year: 2017, event: "Lancement de notre service d'applications web" },
-  { year: 2019, event: "Obtention de la certification Google Partner" },
-  { year: 2023, event: "Célébration de notre 1000ème projet réussi" }
+  { year: 2017, event: "Lancement du service d'applications web" }
 ];
 
 const aboutSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Person",
-      "@id": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#mouhcine-talbi",
-      "name": "Mouhcine Talbi",
-      "jobTitle": "Fondateur & Directeur Technique",
-      "worksFor": { "@type": "Organization", "name": "CreationSiteWebPro", "url": "https://www.creationsitewebpro.com" },
-      "alumniOf": [
-        { "@type": "Organization", "name": "Capgemini" },
-        { "@type": "Organization", "name": "CGI" }
-      ],
-      "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca",
-      "image": "https://www.creationsitewebpro.com/images/mouhcine-talbi.jpg",
-      "knowsAbout": ["Développement web", "Architecture logicielle", "Création site web Casablanca"]
+      "@type": "AboutPage",
+      "@id": `${aboutUrl}#webpage`,
+      "url": aboutUrl,
+      "name": pageTitle,
+      "description": pageDescription,
+      "isPartOf": { "@id": `${siteUrl}/#website` },
+      "about": teamMembers.map((member) => ({ "@id": `${aboutUrl}#${member.id}` }))
     },
-    {
+    ...teamMembers.map((member) => ({
       "@type": "Person",
-      "@id": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#zakaria-boussnini",
-      "name": "Zakaria Boussnini",
-      "jobTitle": "Cofondateur & Directeur Commercial",
-      "worksFor": { "@type": "Organization", "name": "CreationSiteWebPro", "url": "https://www.creationsitewebpro.com" },
-      "alumniOf": [
-        { "@type": "Organization", "name": "Capgemini" },
-        { "@type": "Organization", "name": "Fintech Accelex" }
-      ],
-      "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca",
-      "image": "https://www.creationsitewebpro.com/images/zakaria-boussnini.jpg",
-      "knowsAbout": ["Stratégie digitale", "Développement commercial", "UX Design"]
-    },
-    {
-      "@type": "Person",
-      "@id": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#safae-abed",
-      "name": "Safae Abed",
-      "jobTitle": "Ingénieure QA & Experte SEO",
-      "worksFor": { "@type": "Organization", "name": "CreationSiteWebPro", "url": "https://www.creationsitewebpro.com" },
-      "hasCredential": [
-        { "@type": "EducationalOccupationalCredential", "name": "Google Analytics Certified", "recognizedBy": { "@type": "Organization", "name": "Google" } },
-        { "@type": "EducationalOccupationalCredential", "name": "Google Search Console Certified", "recognizedBy": { "@type": "Organization", "name": "Google" } }
-      ],
-      "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca",
-      "image": "https://www.creationsitewebpro.com/images/safae-abed.jpg",
-      "knowsAbout": ["SEO technique", "Assurance qualité", "Google Analytics", "Référencement Casablanca"]
-    },
-    {
-      "@type": "Person",
-      "@id": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#ikram-talbi",
-      "name": "Ikram Talbi",
-      "jobTitle": "Senior Analyste Fonctionnelle & Stratège Digital",
-      "worksFor": { "@type": "Organization", "name": "CreationSiteWebPro", "url": "https://www.creationsitewebpro.com" },
-      "alumniOf": [
-        { "@type": "Organization", "name": "Capgemini" },
-        { "@type": "Organization", "name": "Sopra Banking Software" }
-      ],
-      "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca",
-      "image": "https://www.creationsitewebpro.com/images/Ikrame-talbi.jpg",
-      "knowsAbout": ["Analyse fonctionnelle", "Gestion de projets digitaux", "Transformation numérique"]
-    },
-    {
-      "@type": "Person",
-      "@id": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#fatima-benzahra",
-      "name": "Fatima Ezzahra Benzahra",
-      "jobTitle": "Directrice Produit & Innovation",
-      "worksFor": { "@type": "Organization", "name": "CreationSiteWebPro", "url": "https://www.creationsitewebpro.com" },
-      "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca",
-      "image": "https://www.creationsitewebpro.com/images/fatima-benzahra.jpg",
-      "knowsAbout": ["Gestion de produit", "Innovation digitale", "UX Research", "Marché marocain"]
-    }
+      "@id": `${aboutUrl}#${member.id}`,
+      "name": member.name,
+      "jobTitle": member.role,
+      "url": `${aboutUrl}#${member.id}`,
+      "image": `${siteUrl}${member.image}`,
+      "description": member.experience.join(". "),
+      "worksFor": {
+        "@type": "Organization",
+        "@id": organizationId,
+        "name": "CreationSiteWebPro",
+        "url": siteUrl
+      }
+    }))
   ]
 };
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/a-propos-agence-web-casablanca">
   <JsonLd data={aboutSchema} />
-  <main class="about-page">
+  <div class="about-page">
     <Breadcrumbs items={breadcrumbItems} />
     <section class="hero">
       <h1>{pageTitle}</h1>
@@ -160,7 +124,7 @@ const aboutSchema = {
 
     <section class="our-story">
       <h2>Notre Histoire</h2>
-      <p>Fondée en 2013 par Mouhcine TALBI, CreationSiteWebPro est née d'une vision : rendre l'excellence digitale accessible à toutes les entreprises, quelle que soit leur taille. Depuis, nous avons grandi, innové et transformé la présence en ligne de centaines d'entreprises.</p>
+      <p>Fondée en 2013, CreationSiteWebPro accompagne les entreprises dans la conception de sites web, d'applications et de dispositifs digitaux adaptés à leurs objectifs.</p>
       <div class="timeline">
         {milestones.map((milestone) => (
           <div class="milestone">
@@ -176,7 +140,7 @@ const aboutSchema = {
       <p>Derrière chaque projet réussi se cache une équipe passionnée et expérimentée. Découvrez les visages qui font de CreationSiteWebPro votre partenaire digital de confiance.</p>
       <div class="team-grid">
         {teamMembers.map((member) => (
-          <div class="team-member" itemscope itemtype="https://schema.org/Person">
+          <div id={member.id} class="team-member" itemscope itemtype="https://schema.org/Person">
               <OptimizedImage 
                 src={member.image} 
                 alt={member.name} 
@@ -221,11 +185,10 @@ const aboutSchema = {
 
     <section class="cta">
       <h2>Prêt à Transformer Votre Présence Digitale ?</h2>
-      <p>Rejoignez les centaines d'entreprises qui ont fait confiance à CreationSiteWebPro pour leurs projets web.</p>
-      <a href="/creation-site-web-casablanca" class="cta-button">Obtenez votre devis gratuit <span class="urgency">Offre limitée!</span></a>
-      <p class="social-proof">Déjà plus de 1000 entreprises satisfaites</p>
+      <p>Présentez-nous votre projet afin d'évaluer les besoins, les livrables et le calendrier.</p>
+      <a href="/contact" class="cta-button">Présenter votre projet</a>
      </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
@@ -233,7 +196,7 @@ const aboutSchema = {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
-    margin-top: 5rem;
+    margin-top: 0;
   }
   .social-proof {
     margin-top: 1rem;
@@ -456,7 +419,7 @@ const aboutSchema = {
   @media (max-width: 421px) {
     .about-page {
       padding: 1rem;
-      margin-top: 11rem;
+      margin-top: 0;
     }
 
     h1 {
@@ -544,33 +507,3 @@ const aboutSchema = {
     }
   }
 </style>
-
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "${pageTitle}",
-    "description": "${pageDescription}",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CreationSiteWebPro",
-      "foundingDate": "2013",
-      "founders": [
-        {
-          "@type": "Person",
-          "name": "Mouhcine TALBI"
-        }
-      ],
-      "employee": [
-        ${teamMembers.map(member => `
-          {
-            "@type": "Person",
-            "name": "${member.name}",
-            "jobTitle": "${member.role}",
-            "image": "${member.image}"
-          }
-        `).join(',')}
-      ]
-    }
-  }
-</script>

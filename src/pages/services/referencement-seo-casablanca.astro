@@ -7,10 +7,12 @@ import Icon from '../../components/Icon.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 const breadcrumbItems = [
   { name: 'Accueil', url: '/' },
-  { name: 'Referencement' }
+  { name: 'Services', url: '/services' },
+  { name: 'Référencement SEO' }
 ];
+const canonical = "https://www.creationsitewebpro.com/services/referencement-seo-casablanca";
 const pageTitle = "Référencement SEO Casablanca | Agence SEO Maroc";
-const pageDescription = "Optimisez votre présence en ligne avec nos services SEO experts à Casablanca. Améliorez votre classement sur Google et attirez plus de clients qualifiés.";
+const pageDescription = "Audit SEO, optimisation technique, contenu et référencement local à Casablanca, avec des indicateurs définis selon les objectifs de votre entreprise.";
 
 const services = [
   {
@@ -30,37 +32,48 @@ const services = [
   },
   {
     title: "Référencement Local",
-    description: "Stratégies pour dominer les recherches locales à Casablanca et ses environs.",
+    description: "Optimisation de la présence locale et de la cohérence des informations de l'entreprise.",
     icon: "map-pin"
+  }
+];
+
+const faqItems = [
+  {
+    question: "Combien de temps faut-il pour voir des résultats SEO ?",
+    answer: "Il n'existe pas de délai fixe. L'évolution dépend de l'état initial du site, de la concurrence, des contenus, de l'autorité du domaine et de la fréquence des optimisations. Les indicateurs sont suivis dans la durée."
+  },
+  {
+    question: "Le SEO convient-il à toutes les entreprises de Casablanca ?",
+    answer: "Le SEO est pertinent lorsqu'un public recherche réellement les services ou contenus proposés. L'audit initial permet d'évaluer la demande, la concurrence et les priorités avant de définir un accompagnement."
+  },
+  {
+    question: "Pouvez-vous garantir la première place sur Google ?",
+    answer: "Non. Une position déterminée ne peut pas être garantie. Les actions, priorités et indicateurs sont documentés, mais les résultats varient selon le site, le marché et la concurrence."
   }
 ];
 
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": `${canonical}#service`,
   "name": pageTitle,
   "description": pageDescription,
+  "url": canonical,
   "provider": {
-    "@type": "LocalBusiness",
-    "name": "CreationSiteWebPro",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Casablanca",
-      "addressCountry": "MA"
-    }
+    "@id": "https://www.creationsitewebpro.com/#localbusiness"
   },
   "areaServed": {
     "@type": "City",
     "name": "Casablanca"
   },
-  "serviceType": "SEO Services"
+  "serviceType": "Référencement naturel et SEO local"
 };
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/services/referencement-seo-casablanca">
+<Layout title={pageTitle} description={pageDescription} canonical={canonical}>
   <JsonLd data={schemaData} />
 
-  <main class="seo-casablanca">
+  <div class="seo-casablanca">
     <Breadcrumbs items={breadcrumbItems} />
     <h1>{pageTitle}</h1>
     <p class="intro">{pageDescription}</p>
@@ -71,6 +84,9 @@ const schemaData = {
         alt="Services de référencement SEO à Casablanca" 
         width={600} 
         height={300} 
+        loading="eager"
+        fetchpriority="high"
+        sizes="(max-width: 800px) 100vw, 600px"
       />
     </section>
 
@@ -92,9 +108,9 @@ const schemaData = {
       <ul>
         <li>Expertise du marché digital casablancais et marocain</li>
         <li>Stratégies SEO personnalisées pour votre secteur d'activité</li>
-        <li>Utilisation des dernières techniques de référencement conformes aux guidelines de Google</li>
+        <li>Recommandations fondées sur les consignes publiques des moteurs de recherche</li>
         <li>Rapports détaillés et suivi transparent de vos performances</li>
-        <li>Équipe bilingue (arabe/français) pour une meilleure communication</li>
+        <li>Priorités définies selon votre audience, vos contenus et vos objectifs</li>
       </ul>
     </section>
 
@@ -105,66 +121,46 @@ const schemaData = {
         <li>Définition d'une stratégie SEO sur mesure</li>
         <li>Optimisation technique et on-page de votre site</li>
         <li>Création de contenu de qualité et optimisé</li>
-        <li>Construction de liens de qualité</li>
+        <li>Développement de la notoriété avec des liens pertinents lorsque nécessaire</li>
         <li>Suivi des performances et ajustements continus</li>
       </ol>
     </section>
 
     <section class="case-study">
-      <h2>Cas Concret : Succès SEO à Casablanca</h2>
-      <p>Découvrez comment nous avons aidé ZeenWall, une entreprise locale de Casablanca, à augmenter son trafic organique de 200% en 6 mois grâce à notre stratégie SEO sur mesure.</p>
-      <CTAButton text="Lire l'Étude de Cas" href="/case-studies/seo-success-casablanca" />
+      <h2>Des résultats suivis avec des indicateurs vérifiables</h2>
+      <p>Chaque accompagnement définit ses indicateurs avant le démarrage : visibilité sur les requêtes prioritaires, clics organiques, demandes de contact et conversions. Les résultats dépendent du marché, du site et de la concurrence.</p>
+      <CTAButton text="Découvrir nos réalisations" href="/portfolio-realisations-web-casablanca-maroc" />
     </section>
 
     <section class="cta">
-      <h2>Prêt à Booster Votre Visibilité en Ligne à Casablanca?</h2>
-      <p>Contactez-nous dès aujourd'hui pour un audit SEO gratuit et découvrez comment nous pouvons améliorer votre classement sur Google!</p>
-      <CTAButton text="Demander un Audit SEO Gratuit" href="/creation-site-web-casablanca" />
+      <h2>Évaluons votre visibilité organique à Casablanca</h2>
+      <p>Présentez-nous votre site, votre marché et vos objectifs pour définir les premières vérifications utiles.</p>
+      <CTAButton text="Présenter mon besoin SEO" href="/contact" />
     </section>
 
     <section class="faq">
       <h2>Questions Fréquentes sur le SEO à Casablanca</h2>
       <dl>
-        <dt>Combien de temps faut-il pour voir des résultats SEO?</dt>
-        <dd>Les premiers résultats sont généralement visibles après 3 à 6 mois, mais le SEO est un processus continu pour des résultats durables.</dd>
-        
-        <dt>Le SEO fonctionne-t-il pour tous les types d'entreprises à Casablanca?</dt>
-        <dd>Oui, le SEO peut bénéficier à presque tous les types d'entreprises, mais la stratégie doit être adaptée à votre secteur et à votre audience cible.</dd>
-        
-        <dt>Pouvez-vous garantir la première place sur Google?</dt>
-        <dd>Aucune agence sérieuse ne peut garantir la première place sur Google. Nous nous engageons à améliorer significativement votre visibilité en ligne grâce à des pratiques éthiques et durables.</dd>
+        {faqItems.map((item) => (
+          <Fragment>
+            <dt>{item.question}</dt>
+            <dd>{item.answer}</dd>
+          </Fragment>
+        ))}
       </dl>
     </section>
-  </main>
+  </div>
   <JsonLd data={{
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Combien de temps faut-il pour voir des résultats SEO ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Les premiers résultats sont généralement visibles après 3 à 6 mois, mais le SEO est un processus continu pour des résultats durables."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Le SEO fonctionne-t-il pour tous les types d'entreprises à Casablanca ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Oui, le SEO peut bénéficier à presque tous les types d'entreprises, mais la stratégie doit être adaptée à votre secteur et à votre audience cible."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Pouvez-vous garantir la première place sur Google ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Aucune agence sérieuse ne peut garantir la première place sur Google. Nous nous engageons à améliorer significativement votre visibilité en ligne grâce à des pratiques éthiques et durables."
-        }
+    "mainEntity": faqItems.map((item) => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
       }
-    ]
+    }))
   }} />
 </Layout>
 
@@ -173,7 +169,7 @@ const schemaData = {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
-    margin-top: 7rem;
+    margin-top: 0;
   }
 
   h1 {
@@ -246,7 +242,7 @@ const schemaData = {
   @media (max-width: 768px) {
     .seo-casablanca {
       padding: 1rem;
-      margin-top: 11rem;
+      margin-top: 0;
     }
 
     h1 {

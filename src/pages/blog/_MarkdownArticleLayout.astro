@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    seo?: {
+      title?: string;
+      description?: string;
+    };
+  };
+}
+
+const { frontmatter } = Astro.props;
+const canonical = 'https://www.creationsitewebpro.com/blog/guide-creation-site-web-casablanca-2024';
+---
+
+<Layout
+  title={frontmatter.seo?.title ?? frontmatter.title}
+  description={frontmatter.seo?.description ?? frontmatter.description}
+  canonical={canonical}
+  noindex={true}
+>
+  <article class="markdown-article">
+    <aside class="archive-note">
+      Cette page complémentaire n'est plus la version de référence.
+      <a href="/blog/guide-creation-site-web-casablanca-2024">Consulter le guide principal</a>.
+    </aside>
+    <slot />
+  </article>
+</Layout>
+
+<style>
+  .markdown-article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    line-height: 1.7;
+  }
+
+  .archive-note {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border-left: 4px solid var(--color-primary);
+    background: #f5f7fa;
+  }
+</style>

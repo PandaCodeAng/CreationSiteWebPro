@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { napInfo } from '../layouts/Layout.astro';
+import { napInfo } from '../data/business';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 const pageTitle = "Politique de Confidentialité - CreationSiteWebPro";
@@ -13,7 +13,7 @@ const breadcrumbItems = [
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/politique-confidentialite">
-  <main class="privacy-page">
+  <div class="privacy-page">
     <Breadcrumbs items={breadcrumbItems} />
     
     <section class="privacy-header">
@@ -28,16 +28,16 @@ const breadcrumbItems = [
         <div class="privacy-section">
           <h2>Introduction</h2>
           <p>Chez {napInfo.name}, nous accordons une grande importance à la confidentialité de vos données personnelles. Cette politique de confidentialité explique comment nous collectons, utilisons, partageons et protégeons vos informations lorsque vous utilisez notre site web et nos services.</p>
-          <p>En utilisant notre site, vous acceptez les pratiques décrites dans la présente politique de confidentialité.</p>
+          <p>Vos choix relatifs aux cookies et à la mesure d’audience peuvent être définis depuis le module de consentement affiché sur le site.</p>
         </div>
 
         <div class="privacy-section">
           <h2>Collecte des données</h2>
-          <p>Nous pouvons collecter les types d'informations suivants :</p>
+          <p>Selon votre utilisation du site, nous pouvons collecter les catégories d’informations suivantes :</p>
           <ul>
-            <li><strong>Informations personnelles :</strong> Nom, prénom, adresse e-mail, numéro de téléphone, adresse postale, lorsque vous nous contactez ou utilisez nos services.</li>
-            <li><strong>Informations de navigation :</strong> Adresse IP, type de navigateur, pages visitées, durée de la visite, via des cookies et technologies similaires.</li>
-            <li><strong>Informations de paiement :</strong> Coordonnées bancaires ou de carte de crédit lorsque vous effectuez un achat ou souscrivez à un service.</li>
+            <li><strong>Informations transmises par le formulaire :</strong> nom, adresse e-mail, numéro de téléphone facultatif, type de projet et contenu du message.</li>
+            <li><strong>Informations techniques et de navigation :</strong> adresse IP, type de navigateur, pages consultées et événements de mesure, selon votre choix de consentement.</li>
+            <li><strong>Choix de consentement :</strong> préférences enregistrées par le gestionnaire de cookies afin de respecter votre décision.</li>
           </ul>
         </div>
 
@@ -45,32 +45,27 @@ const breadcrumbItems = [
           <h2>Utilisation des données</h2>
           <p>Nous utilisons vos données personnelles pour :</p>
           <ul>
-            <li>Fournir, exploiter et maintenir nos services</li>
-            <li>Améliorer, personnaliser et développer nos services</li>
-            <li>Comprendre comment vous utilisez notre site</li>
-            <li>Communiquer avec vous concernant nos services</li>
-            <li>Traiter vos paiements et prévenir la fraude</li>
-            <li>Vous envoyer des informations marketing (avec votre consentement)</li>
-            <li>Respecter nos obligations légales</li>
+            <li>répondre à votre demande et préparer, le cas échéant, une proposition commerciale ;</li>
+            <li>assurer la sécurité, le fonctionnement et l’amélioration du site ;</li>
+            <li>mesurer l’audience lorsque vous y avez consenti ;</li>
+            <li>respecter nos obligations légales.</li>
           </ul>
         </div>
 
         <div class="privacy-section">
           <h2>Partage des données</h2>
-          <p>Nous ne vendons pas vos données personnelles à des tiers. Nous pouvons partager vos informations dans les situations suivantes :</p>
+          <p>Nous ne vendons pas vos données personnelles. Elles peuvent être accessibles, dans la limite nécessaire, aux catégories de destinataires suivantes :</p>
           <ul>
-            <li>Avec des prestataires de services tiers qui nous aident à exploiter notre site et nos services</li>
-            <li>Pour respecter des obligations légales</li>
-            <li>Pour protéger nos droits, notre vie privée, notre sécurité ou notre propriété</li>
-            <li>Dans le cadre d'une fusion, acquisition ou vente d'actifs</li>
-            <li>Avec votre consentement ou selon vos instructions</li>
+            <li>prestataires techniques chargés de l’hébergement, de l’envoi des messages, de la gestion du consentement et, si vous l’acceptez, de la mesure d’audience ;</li>
+            <li>autorités ou organismes habilités lorsque la loi l’exige ;</li>
+            <li>autres destinataires uniquement avec votre accord ou selon vos instructions.</li>
           </ul>
         </div>
 
         <div class="privacy-section">
           <h2>Cookies et technologies similaires</h2>
-          <p>Notre site utilise des cookies et d'autres technologies similaires pour collecter des informations sur votre navigation. Ces technologies nous permettent de personnaliser votre expérience, d'analyser l'utilisation du site et d'optimiser nos services.</p>
-          <p>Vous pouvez configurer votre navigateur pour refuser les cookies ou vous alerter lorsque des cookies sont envoyés. Cependant, certaines parties de notre site peuvent ne pas fonctionner correctement si vous désactivez les cookies.</p>
+          <p>Le site peut utiliser des traceurs nécessaires à son fonctionnement ainsi que des traceurs de mesure d’audience. Les traceurs analytiques sont désactivés par défaut jusqu’à l’enregistrement de votre choix.</p>
+          <p>Le module de consentement vous permet d’accepter, de refuser ou de personnaliser ces traceurs. Vous pouvez également modifier votre choix ultérieurement depuis ce module ou les réglages de votre navigateur.</p>
         </div>
 
         <div class="privacy-section">
@@ -85,17 +80,14 @@ const breadcrumbItems = [
 
         <div class="privacy-section">
           <h2>Vos droits</h2>
-          <p>Conformément à la loi 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel, vous disposez des droits suivants :</p>
+          <p>Conformément à la loi marocaine n° 09-08, vous pouvez exercer les droits applicables à votre situation, notamment :</p>
           <ul>
-            <li>Droit d'accès à vos données personnelles</li>
-            <li>Droit de rectification des données inexactes</li>
-            <li>Droit à l'effacement de vos données</li>
-            <li>Droit à la limitation du traitement</li>
-            <li>Droit à la portabilité des données</li>
-            <li>Droit d'opposition au traitement</li>
-            <li>Droit de retirer votre consentement à tout moment</li>
+            <li>droit d’accès à vos données personnelles ;</li>
+            <li>droit de rectification ou d’actualisation des données inexactes ;</li>
+            <li>droit d’opposition, dans les conditions prévues par la loi ;</li>
+            <li>droit de retirer votre consentement pour les traitements qui reposent sur celui-ci.</li>
           </ul>
-          <p>Pour exercer ces droits, veuillez nous contacter à {napInfo.email}</p>
+          <p>Pour exercer ces droits, contactez-nous à {napInfo.email}. Vous pouvez également consulter les informations destinées aux personnes concernées sur le <a href="https://www.cndp.ma/personnes-concernees/">site de la CNDP</a>.</p>
         </div>
 
         <div class="privacy-section">
@@ -114,11 +106,11 @@ const breadcrumbItems = [
         </div>
 
         <div class="privacy-section">
-          <p class="update-date"><strong>Dernière mise à jour :</strong> 10 mai 2025</p>
+          <p class="update-date"><strong>Dernière mise à jour :</strong> 29 juillet 2026</p>
         </div>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>

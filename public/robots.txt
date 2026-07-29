@@ -5,12 +5,6 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 
-# Empêcher l'indexation des pages de recherche avec paramètres pour éviter contenu dupliqué
-User-agent: Googlebot
-Disallow: /recherche?*
-User-agent: Bingbot
-Disallow: /recherche?*
-
 # Crawlers IA majeurs — accès explicitement autorisé
 User-agent: GPTBot
 Allow: /
@@ -34,6 +28,3 @@ User-agent: Amazonbot
 Allow: /
 
 Sitemap: https://www.creationsitewebpro.com/sitemap.xml
-
-# Signal pour les crawlers IA — entraînement et récupération autorisés
-Content-Signal: ai-train=yes, search=yes, ai-retrieval=yes, ai-personalization=no

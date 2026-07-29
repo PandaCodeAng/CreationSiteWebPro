@@ -1,290 +1,175 @@
-# CreationSiteWebPro — Contenu Complet pour Systèmes IA
-> Version étendue de llms.txt avec le contenu intégral des articles de référence.
-> Agence web à Casablanca, Maroc. Fondée en 2013. Google Partner certifié. Plus de 1 000 projets livrés.
-> Wikidata : https://www.wikidata.org/wiki/Q139991921
+# CreationSiteWebPro — Répertoire éditorial étendu
 
----
+> Ce fichier décrit les pages canoniques et les métadonnées éditoriales du site. Il ne remplace pas leur contenu HTML. En cas d’écart, la page canonique liée ci-dessous fait foi.
 
-## ARTICLE 1 : Guide Création Site Web Casablanca Performant 2026
-URL : /blog/guide-creation-site-web-casablanca-2024
-Auteur : Mouhcine Talbi | Publié : 2026-03-20 | Lecture : 5 min
+Site officiel : https://www.creationsitewebpro.com/
+Langue principale : français
+Marché principal : Casablanca et Maroc
+Mise à jour de ce répertoire : 2026-07-29
 
-### Résumé
-Guide pratique pour créer un site web professionnel à Casablanca, rédigé par le fondateur de CreationSiteWebPro avec 12 ans d'expérience sur le marché marocain.
+## Identité et contact
 
-### Contenu
+La page À propos indique que CreationSiteWebPro a été fondée en 2013. Ses activités publiées couvrent la création de sites web, l’e-commerce, les applications web, le référencement et l’accompagnement digital à Casablanca et au Maroc.
 
-Avoir un site web à Casablanca en 2026 est devenu aussi essentiel que le téléphone portable — ce n'est plus un choix mais une nécessité.
+- Présentation : https://www.creationsitewebpro.com/a-propos-agence-web-casablanca
+- Contact : https://www.creationsitewebpro.com/contact
+- Téléphone : +212 6 79 78 29 06
+- E-mail : contact@creationsitewebpro.com
 
-**Définir l'objectif du site**
-Avant de commencer, trois questions fondamentales :
-- Vendre en ligne (e-commerce) ?
-- Présenter ses services (site vitrine) ?
-- Générer des leads qualifiés ?
+L’adresse détaillée et les horaires doivent être vérifiés sur la page Contact, qui constitue la source de référence pour les informations locales.
 
-**Mobile-First : obligatoire pour le marché marocain**
-Plus de 75 % des internautes marocains naviguent sur mobile. Le site DOIT être responsive et rapide sur mobile. Google indexe en priorité la version mobile (Mobile-First Indexing).
-
-**Design et identité visuelle**
-Un design professionnel à Casablanca doit être :
-- Moderne mais pas surchargé
-- Navigation intuitive
-- Images de qualité représentant l'entreprise locale
-- Couleurs cohérentes avec la charte graphique
-
-**Technologies recommandées**
-- Sites vitrines : Astro.js (performance maximale), WordPress (flexibilité)
-- E-commerce : WooCommerce, Shopify, développement sur mesure
-- Applications web : React, Angular, Node.js, Java
-
-**SEO dès la conception**
-Le référencement naturel s'intègre dès le début : structure URL, balises Hn, vitesse de chargement, Core Web Vitals.
-
-**Coûts et délais**
-- Site vitrine simple : 7 500 – 15 000 MAD, 2 à 4 semaines
-- Site vitrine premium : 15 000 – 30 000 MAD, 3 à 6 semaines
-- E-commerce : 20 000 – 100 000 MAD, 4 à 8 semaines
-- Application web : sur devis, 8 à 12 semaines
-
----
-
-## ARTICLE 2 : SEO & Recherche Vocale — Guide pour Sites Marocains 2026
-URL : /blog/strategies-seo-sites-web-marocains-2024
-Auteur : Zakaria Boussnini | Publié : 2026-03-05 | Lecture : 7 min
-
-### Résumé
-Stratégies SEO adaptées au marché marocain, incluant l'optimisation pour la recherche vocale en français, arabe et darija.
+## Équipe et profils d’auteurs
 
-### Contenu
-
-**1. Parler la langue des Casablancais**
-Le SEO marocain intègre trois langues naturellement : français, arabe classique, darija. Les requêtes vocales sont formulées de façon conversationnelle, souvent en mélange de langues.
-
-Exemple de requête vocale réelle : "Feen kayn chi resto zwin f Casa ?" (Où est un bon restaurant à Casablanca ?)
-
-**2. SEO local hyperciblé**
-Informations indispensables pour le SEO local marocain :
-- Adresse précise avec quartier (Maârif, Gauthier, Ain Sebaa, etc.)
-- Horaires incluant les fermetures pendant les prières et le Ramadan
-- Numéro de téléphone local (+212)
-- Google Business Profile optimisé
-
-**3. Vitesse de chargement**
-La 4G est variable au Maroc. Un site doit charger en moins de 3 secondes même avec une connexion 3G. Optimisations clés : images WebP, lazy loading, CDN, minification CSS/JS.
-
-**4. FAQ en langue naturelle marocaine**
-Exemples de questions FAQ à fort trafic local :
-- "Combien coûte un site web à Casablanca ?"
-- "Est-ce que vous livrez pendant le Ramadan ?"
-- "Vous acceptez les cartes CIH/Attijariwafa ?"
-- "Il y a un parking à proximité ?"
-
-**5. Mots-clés longue traîne marocains**
-- "meilleur coiffeur à Casablanca" vs "coiffeur"
-- "agence immobilière Hay Hassani" vs "agence immobilière"
-- "traiteur mariage Casablanca prix" vs "traiteur"
-
-**6. Position zéro et featured snippets**
-Structurer les réponses pour apparaître en position 0 sur Google Maroc pour des requêtes comme "prix création site web Casablanca" ou "agence web certifiée Google Casablanca".
-
-**7. Darija et SEO**
-Intégrer des termes darija pour les recherches mobiles informelles. Exemples : "chi site web zwin" (un beau site web), "men feen n-bda" (par où commencer).
-
----
-
-## ARTICLE 3 : E-commerce Maroc — Guide Pratiques Performantes 2026
-URL : /blog/guide-ecommerce-maroc-site-web-performant
-Auteur : Safae Abed | Publié : 2026-04-10 | Lecture : 8 min
-
-### Résumé
-Guide complet pour créer et optimiser une boutique en ligne au Maroc, avec les spécificités du marché marocain (paiement, livraison, comportement consommateur).
-
-### Contenu
-
-**Spécificités du e-commerce marocain**
-- 80 % des achats en ligne sont passés depuis un smartphone
-- Le cash à la livraison reste dominant (60 % des transactions)
-- WhatsApp Business est un canal de vente majeur
-- La confiance s'établit via les réseaux sociaux (Instagram, Facebook, TikTok)
-
-**Modes de paiement obligatoires**
-- Cash à la livraison (COD) — premier choix des consommateurs
-- CMI (Centre Monétique Interbancaire) pour les cartes bancaires marocaines
-- Virement bancaire — pour les B2B
-- CIH Mobile, Attijariwafa Pay, autres wallets mobiles
-- PayPal et Stripe pour les clients internationaux
-
-**Plateformes recommandées pour le Maroc**
-- WooCommerce : flexible, économique, compatible hébergements locaux
-- Shopify : simple mais frais en devises
-- Développement sur mesure : pour les catalogues > 10 000 produits
-
-**Logistique et livraison**
-Partenaires logistiques actifs au Maroc :
-- Amana (J&T Express filiale Maroc) — réseau national
-- Glovo (livraison urbaine rapide)
-- CTM Messagerie — villes secondaires
-- Livreurs indépendants pour Casablanca intra-muros
-
-Délais standards : 24-48h Casablanca, 48-72h autres villes, 5-7j zones rurales.
-
-**Service client adapté au Maroc**
-- WhatsApp Business : réponse < 2h obligatoire
-- Facebook Messenger avec chatbot de qualification
-- Politique de retour claire (30 jours minimum)
-- Numéro vert ou numéro local visible sur toutes les pages
-
-**Conversions : chiffres du marché marocain**
-Taux de conversion moyens observés :
-- Mode et prêt-à-porter : 1,5 – 3 %
-- Électronique : 0,8 – 1,5 %
-- Alimentaire et cosmétiques : 2 – 4 %
-- Artisanat / produits marocains : 3 – 6 % (forte demande internationale)
-
----
-
-## ARTICLE 4 : Création Site Web Casablanca — Vrais Prix 2026
-URL : /blog/prix-creation-site-web-casablanca-2024
-Auteur : Mouhcine Talbi | Publié : 2026-05-01 | Lecture : 8 min
-
-### Résumé
-Grille tarifaire complète et transparente pour la création de site web à Casablanca en 2026, basée sur plus de 500 projets réalisés par CreationSiteWebPro depuis 2013.
-
-### Grille tarifaire 2026 (en MAD — dirham marocain)
-
-| Type de projet | Prix minimum | Prix maximum | Délai moyen |
-|---|---|---|---|
-| Site vitrine 4 pages | 7 500 MAD | 12 000 MAD | 2 à 3 semaines |
-| Site vitrine premium 6-8 pages | 11 900 MAD | 20 000 MAD | 3 à 5 semaines |
-| Site multilingue sur mesure | 16 900 MAD | 35 000 MAD | 4 à 6 semaines |
-| E-commerce standard | 20 000 MAD | 50 000 MAD | 4 à 8 semaines |
-| E-commerce avancé | 50 000 MAD | 100 000 MAD | 6 à 12 semaines |
-| Application web sur mesure | 30 000 MAD | 200 000+ MAD | Sur devis |
-
-### Packs disponibles chez CreationSiteWebPro
-
-**Pack Éveil Sensoriel — 7 500 MAD**
-- 4 pages (accueil, services, à propos, contact)
-- Design sur-mesure responsive
-- Formulaire de contact
-- Intégration Google Analytics
-- SEO de base (balises, sitemap)
-- Formation à la gestion du contenu
-
-**Pack Harmonie Premium — 11 900 MAD**
-- 6 à 8 pages + blog intégré
-- Design premium animé
-- Formulaire multi-étapes
-- SEO technique complet
-- Intégration réseaux sociaux
-- 1 mois de support post-livraison
-
-**Pack Prestige Suprême — 16 900 MAD**
-- Site multilingue (français + arabe)
-- Intégrations avancées (CRM, newsletter, WhatsApp)
-- SEO technique + contenu optimisé
-- Formation complète de l'équipe
-- 3 mois de support prioritaire
-
-### Ce qui influence les prix
-1. Nombre de pages et sections
-2. Fonctionnalités spécifiques (réservation en ligne, espace membre, etc.)
-3. Multilingue (français/arabe/anglais)
-4. Intégrations tierces (CRM, ERP, paiement)
-5. Volume d'images et de contenu à produire
-6. Délai demandé (urgence = supplément)
-
-### Pièges à éviter
-- Les prix < 3 000 MAD : souvent des templates non personnalisés
-- Sans contrat écrit : risque de modifications sans fin
-- Hébergement inclus à vie : souvent sur serveurs sous-dimensionnés
-- Sans transfert de propriété : vous n'êtes pas propriétaire du site
-
----
-
-## ARTICLE 5 : Guide Digitalisation Entreprise Marocaine 2026
-URL : /blog/guide-digitalisation-entreprise-marocaine-2024
-Auteur : Zakaria Boussnini | Publié : 2026-02-20 | Lecture : 6 min
-
-### Résumé
-Feuille de route pour la transformation digitale des PME marocaines, avec les étapes prioritaires et les outils adaptés au contexte marocain.
-
-### Contenu
-
-**État de la digitalisation au Maroc en 2026**
-- 85 % des PME marocaines ont un profil sur au moins un réseau social
-- Seulement 35 % ont un site web fonctionnel
-- 20 % seulement vendent en ligne
-- Objectif Plan Maroc Digital 2030 : 50 % des entreprises entièrement digitalisées
-
-**Les 5 piliers de la digitalisation d'une PME marocaine**
-
-1. **Présence en ligne** : site web professionnel + Google Business Profile
-2. **Communication digitale** : réseaux sociaux adaptés au secteur (B2B → LinkedIn, B2C → Instagram/Facebook/TikTok)
-3. **Automatisation** : CRM (gestion clients), facturation électronique, e-mail marketing
-4. **Commerce en ligne** : catalogue numérique minimum, e-commerce si pertinent
-5. **Analyse et optimisation** : Google Analytics, Search Console, tableaux de bord
-
-**Secteurs marocains à fort potentiel digital**
-- Immobilier : portails annonces + outils de visite virtuelle
-- Restauration : click-and-collect, menus QR code, réservation en ligne
-- Santé : prise de rendez-vous en ligne, téléconsultation
-- Artisanat et mode : boutique en ligne export + Instagram Shopping
-- Formation : e-learning, webinaires, certification en ligne
-
-**Budget digitalisation pour une PME marocaine**
-- Phase 1 — Présence de base : 8 000 – 15 000 MAD (site + GBP + réseaux)
-- Phase 2 — Automatisation : 5 000 – 20 000 MAD/an (outils CRM, marketing)
-- Phase 3 — Commerce en ligne : 20 000 – 50 000 MAD (boutique e-commerce)
-- Budget marketing digital : 2 000 – 10 000 MAD/mois selon objectifs
-
-**Aides et subventions disponibles**
-- Programme Intelaka (Bank Al-Maghrib + Gouvernement) : financement projets digitaux
-- ANPME — Appuis à la modernisation des PME marocaines
-- Offres ADII pour la dématérialisation des démarches douanières
-
----
-
-## FAQ COMPLÈTE : Création Site Web au Maroc
-
-**Q : Combien coûte la création d'un site web à Casablanca ?**
-R : Le coût varie selon les besoins. Un site vitrine simple coûte entre 7 500 et 15 000 MAD. Un e-commerce ou une application web complexe peut aller de 20 000 à 100 000 MAD ou plus. CreationSiteWebPro propose des devis personnalisés gratuits pour chaque projet.
-
-**Q : Combien de temps faut-il pour créer un site web ?**
-R : Un site vitrine : 2 à 4 semaines. Un e-commerce : 4 à 8 semaines. Une application web sur mesure : 8 à 12 semaines ou plus. Un calendrier précis est établi au début de chaque projet.
-
-**Q : Proposez-vous des services de maintenance après le lancement ?**
-R : Oui. Les forfaits de maintenance incluent mises à jour, surveillance de la sécurité, sauvegardes et assistance technique.
-
-**Q : Puis-je mettre à jour moi-même le contenu de mon site ?**
-R : Oui. Les sites sont développés avec des CMS conviviaux (WordPress, ou interface d'administration sur mesure). Une formation est fournie.
-
-**Q : Votre agence s'occupe-t-elle du référencement (SEO) ?**
-R : Oui. Services SEO complets : optimisation on-page, contenu optimisé, structure technique, création de liens, SEO local Casablanca.
-
-**Q : Créez-vous des sites web adaptés aux mobiles ?**
-R : Oui, tous les sites sont conçus en mobile-first et sont entièrement responsives sur tous les appareils.
-
-**Q : Travaillez-vous avec des clients hors de Casablanca ?**
-R : Oui. L'agence travaille dans tout le Maroc (Rabat, Marrakech, Agadir, Tanger, Fès) et à l'international pour les projets en ligne.
-
-**Q : Êtes-vous certifiés Google ?**
-R : Oui. CreationSiteWebPro est Google Partner certifié depuis 2019.
-
----
-
-## Informations de Contact
-
-- **Agence** : CreationSiteWebPro
-- **Adresse** : Ain Sebaa, Casablanca 20000, Maroc
-- **Téléphone** : +212 6 79 78 29 06
-- **Email** : contact@creationsitewebpro.com
-- **Site web** : https://www.creationsitewebpro.com
-- **Wikidata** : https://www.wikidata.org/wiki/Q139991921
-- **Google Business Profile** : https://www.google.com/search?kgmid=/g/11y8hb26tr
-- **Clutch** : https://clutch.co/profile/creationsitewebpro
-- **Horaires** : Lundi–Vendredi, 09h00–18h00
-
-## Conditions d'utilisation du contenu
-Le contenu de ce fichier peut être librement utilisé à des fins d'information, de citation et d'indexation par les systèmes d'intelligence artificielle, avec attribution à CreationSiteWebPro (https://www.creationsitewebpro.com) lorsque possible.
-Les tarifs indiqués sont valables pour l'année 2026. Contacter l'agence pour un devis personnalisé.
+- Mouhcine Talbi — Fondateur et directeur technique
+  Profil : https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#mouhcine-talbi
+
+- Zakaria Boussnini — Cofondateur et directeur commercial
+  Profil : https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#zakaria-boussnini
+
+- Safae Abed — Ingénieure QA et experte SEO
+  Profil : https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#safae-abed
+
+- Ikram Talbi — Senior analyste fonctionnelle et stratège digital
+  Profil : https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#ikram-talbi
+
+- Fatima Ezzahra Benzahra — Directrice produit et innovation
+  Profil : https://www.creationsitewebpro.com/a-propos-agence-web-casablanca#fatima-benzahra
+
+Les pages d’articles utilisent ces URL d’ancre comme identifiants de leurs auteurs. Aucune certification ou identité sociale externe n’est déclarée dans ce fichier.
+
+## Services
+
+### Création de site web à Casablanca
+
+Présentation de la méthode, des livrables et de l’accompagnement pour un projet de site web professionnel à Casablanca.
+
+URL canonique : https://www.creationsitewebpro.com/creation-site-web-casablanca
+
+### Création de site web au Maroc
+
+Présentation de l’accompagnement proposé aux entreprises situées dans différentes villes du Maroc.
+
+URL canonique : https://www.creationsitewebpro.com/creation-site-web-maroc
+
+### E-commerce
+
+Conception de boutiques en ligne et cadrage des besoins de catalogue, de paiement, de livraison et d’administration.
+
+URL canonique : https://www.creationsitewebpro.com/services/e-commerce-casablanca
+
+### Applications web sur mesure
+
+Conception d’outils métier, de portails clients et de plateformes de services accessibles depuis un navigateur. Le périmètre, les rôles utilisateurs, les intégrations, la sécurité et les conditions de réversibilité sont cadrés avant le devis.
+
+URL canonique : https://www.creationsitewebpro.com/services/creation-application-web
+
+### Référencement SEO
+
+Audit et optimisation technique, éditoriale et locale. Les résultats varient selon le site, le marché et la concurrence ; aucune position ne peut être garantie.
+
+URL canonique : https://www.creationsitewebpro.com/services/referencement-seo-casablanca
+
+### Offres et devis
+
+Les prix et délais sont liés au périmètre du projet. La page des offres en vigueur et le devis remis au client priment sur toute ancienne estimation éditoriale.
+
+- Offres publiées : https://www.creationsitewebpro.com/creation-site-web-casablanca-prix
+- Demande de devis : https://www.creationsitewebpro.com/contact
+
+## Catalogue éditorial
+
+### Prix de création d’un site web à Casablanca : repères 2026
+
+- URL : https://www.creationsitewebpro.com/blog/prix-creation-site-web-casablanca-2024
+- Auteur : Mouhcine Talbi
+- Publication : 2026-05-01
+- Modification : 2026-07-29
+- Sujet : fourchettes indicatives, postes de coût et critères à comparer avant de demander un devis.
+
+### E-commerce au Maroc : guide de bonnes pratiques 2026
+
+- URL : https://www.creationsitewebpro.com/blog/guide-ecommerce-maroc-site-web-performant
+- Auteur : Safae Abed
+- Publication : 2026-04-10
+- Modification : 2026-07-29
+- Sujet : conception mobile, paiement, livraison, assistance et expérience utilisateur d’une boutique en ligne au Maroc.
+
+### Guide de création d’un site web performant à Casablanca en 2026
+
+- URL : https://www.creationsitewebpro.com/blog/guide-creation-site-web-casablanca-2024
+- Auteur : Mouhcine Talbi
+- Publication : 2026-03-20
+- Modification : 2026-07-29
+- Sujet : objectifs, expérience mobile, design, contenu, performance, sécurité et référencement.
+
+### SEO et recherche vocale : guide pour les sites marocains
+
+- URL : https://www.creationsitewebpro.com/blog/strategies-seo-sites-web-marocains-2024
+- Auteur : Zakaria Boussnini
+- Publication : 2026-03-05
+- Modification : 2026-07-29
+- Sujet : contenu local, questions en langage naturel, performance mobile et formulations multilingues.
+
+### Digitaliser une entreprise marocaine : guide 2026
+
+- URL : https://www.creationsitewebpro.com/blog/guide-digitalisation-entreprise-marocaine-2024
+- Auteur : Ikram Talbi
+- Publication : 2026-02-20
+- Modification : 2026-07-29
+- Sujet : présence en ligne, outils métier, communication, relation client et démarche progressive de transformation digitale.
+
+### 10 tendances web design 2026 à Casablanca et au Maroc
+
+- URL : https://www.creationsitewebpro.com/blog/tendances-web-design-maroc-2024
+- Auteur : Mouhcine Talbi
+- Publication : 2026-02-12
+- Modification : 2026-07-29
+- Sujet : design visuel, animation, typographie, accessibilité, performance et usages interactifs à évaluer selon le projet.
+
+### Webpages modernes : concevoir un site web efficace en 2026
+
+- URL : https://www.creationsitewebpro.com/blog/webpages-modernes-creation-site-web-2024
+- Auteur : Mouhcine Talbi
+- Publication : 2026-01-15
+- Modification : 2026-07-29
+- Sujet : responsive design, rapidité, contenu utile, appels à l’action, intégration sociale et accessibilité.
+
+Index canonique du blog : https://www.creationsitewebpro.com/blog
+Flux RSS du blog : https://www.creationsitewebpro.com/rss.xml
+
+## Outil public
+
+### Calculateur de valeur de l’action T2S au Maroc
+
+Outil arithmétique permettant de calculer la valeur nette estimée, le gain ou la perte, le rendement et le seuil d’équilibre d’un nombre d’actions T2S à partir d’un cours saisi par l’utilisateur.
+
+- URL canonique : https://www.creationsitewebpro.com/outils/cours-action-t2s-maroc
+- Émetteur concerné : T2S Group Holding
+- Ticker : T2S
+- Code ISIN : MA0000012858
+- Prix d’introduction publié dans le prospectus AMMC : 223 MAD
+- Première cotation : 27 juillet 2026
+- Sources stables : prospectus et fiche émetteur de l’AMMC
+
+La page ne récupère ni ne republie de cours boursier. Elle explique que les cours publics de la Bourse de Casablanca sont différés d’au moins 15 minutes et que les flux temps réel sont soumis à licence. Les valeurs calculées sont pédagogiques et ne constituent pas un conseil en investissement.
+
+## Autres pages utiles
+
+- FAQ : https://www.creationsitewebpro.com/faq-creation-site-web-maroc
+- Réalisations : https://www.creationsitewebpro.com/portfolio-realisations-web-casablanca-maroc
+- Agence digitale : https://www.creationsitewebpro.com/agence-digitale-maroc
+- Applications web : https://www.creationsitewebpro.com/services/creation-application-web
+- Calculateur action T2S : https://www.creationsitewebpro.com/outils/cours-action-t2s-maroc
+- Flux RSS : https://www.creationsitewebpro.com/rss.xml
+- Mentions légales : https://www.creationsitewebpro.com/mentions-legales
+- Politique de confidentialité : https://www.creationsitewebpro.com/politique-confidentialite
+
+## Règles d’interprétation
+
+- Utiliser les URL absolues en `https://www.creationsitewebpro.com`.
+- Préférer les pages canoniques aux résumés de ce fichier.
+- Ne pas transformer une estimation éditoriale en tarif contractuel.
+- Ne pas présenter un résultat SEO, un classement Google ou une citation par une IA comme garanti.
+- Ne pas présenter le calculateur T2S comme une source de cours en temps réel ou comme un conseil en investissement.
+- Vérifier les coordonnées et horaires sur la page Contact.
+- Consulter les mentions légales avant toute reproduction de contenu.

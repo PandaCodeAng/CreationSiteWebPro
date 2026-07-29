@@ -4,7 +4,7 @@ import CTAButton from '../components/CTAButton.astro';
 import OptimizedImage from '../components/OptimizedImage.astro';
 
 const pageTitle = "Portfolio | Réalisations au Maroc";
-const pageDescription = "Explorez nos projets de sites web et d'applications réussis. Des solutions innovantes qui ont propulsé nos clients vers le succès digital.";
+const pageDescription = "Découvrez une sélection de sites web réalisés pour des activités de tourisme et de restauration, avec les livrables présentés pour chaque projet.";
 
 const projects = [
   {
@@ -12,7 +12,7 @@ const projects = [
     description: "Création d'un site premium pour une agence de voyage de luxe, offrant une expérience utilisateur fluide et élégante.",
     image: "/images/executive-travel.webp",
     tags: ["Site Vitrine", "Tourisme", "Premium"],
-    results: ["Augmentation des réservations de 45%", "Temps de navigation moyen de 4 minutes", "Taux de rebond réduit à 25%"],
+    results: ["Présentation claire des offres", "Parcours responsive", "Accès direct aux demandes de réservation"],
     url: "https://executivetravel.fr/"
   },
   {
@@ -20,7 +20,7 @@ const projects = [
     description: "Développement d'une plateforme mettant en valeur les attractions touristiques d'Essaouira avec une interface immersive.",
     image: "/images/essaouira-spirit.jpg",
     tags: ["Tourisme", "Culture", "Design Immersif"],
-    results: ["200+ réservations mensuelles", "Visibilité internationale accrue", "Intégration de fonctions multilingues"],
+    results: ["Valorisation des expériences locales", "Navigation visuelle", "Contenus adaptés à plusieurs audiences"],
     url: "https://www.essaouiraspirit.ma/"
   },
   {
@@ -28,35 +28,15 @@ const projects = [
     description: "Conception d'un site moderne pour un restaurant gastronomique, facilitant les réservations en ligne et la présentation des menus.",
     image: "/images/le-cely.webp",
     tags: ["Restauration", "E-réservation", "Gastronomie"],
-    results: ["Réservations en ligne augmentées de 60%", "Présentation interactive des menus", "Fidélisation client améliorée"],
+    results: ["Présentation du restaurant et de sa carte", "Parcours mobile", "Accès simplifié aux informations pratiques"],
     url: "https://restaurantlecely.fr/"
-  },
-  {
-    title: "E-commerce Luxe pour Maison de Parfum",
-    description: "Refonte complète d'une boutique en ligne, résultant en une augmentation de 200% des ventes en 6 mois.",
-    image: "/images/parfum-ecommerce.jpg",
-    tags: ["E-commerce", "UI/UX", "SEO"],
-    results: ["200% d'augmentation des ventes", "Taux de conversion amélioré de 15%", "Temps de chargement réduit de 50%"]
-  },
-  {
-    title: "Application Web pour Gestion de Projet",
-    description: "Développement d'une application SaaS de gestion de projet utilisée par plus de 10 000 professionnels.",
-    image: "/images/project-management-app.jpg",
-    tags: ["Application Web", "SaaS", "UI/UX"],
-    results: ["10 000+ utilisateurs actifs", "97% de taux de satisfaction client", "Intégration avec 20+ outils populaires"]
-  },
-  {
-    title: "Site Vitrine pour Cabinet d'Architectes",
-    description: "Création d'un site vitrine élégant et performant, mettant en valeur les réalisations du cabinet.",
-    image: "/images/architect-website.jpg",
-    tags: ["Site Vitrine", "Design Responsive", "SEO"],
-    results: ["Trafic organique augmenté de 150%", "Temps passé sur le site amélioré de 75%", "30% d'augmentation des demandes de devis"]
   }
 ];
 
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/portfolio-realisations-web-casablanca-maroc">  <main class="portfolio-page">
+<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/portfolio-realisations-web-casablanca-maroc">
+  <div class="portfolio-page">
     <h1>{pageTitle}</h1>
     <p class="intro">{pageDescription}</p>
     
@@ -64,7 +44,7 @@ const projects = [
       <h2 class="highlight-title">Découvrez nos dernières réalisations</h2>
       <p class="highlight-text">Nous sommes fiers de vous présenter nos projets les plus récents, démontrant notre expertise dans différents secteurs, du tourisme à la gastronomie.</p>
     </div><section class="projects">
-      {projects.map((project, index) => (
+      {projects.map((project) => (
         <div class="project-card">
           <OptimizedImage 
             src={project.image} 
@@ -79,49 +59,21 @@ const projects = [
             <div class="tags">
               {project.tags.map(tag => <span class="tag">{tag}</span>)}
             </div>
-            <h3>Résultats Clés :</h3>
+            <h3>Livrables clés :</h3>
             <ul class="results">
               {project.results.map(result => <li>{result}</li>)}
             </ul>
-            {project.url ? (
-              <CTAButton text="Visiter le site" href={project.url} targetBlank={true} />
-            ) : (
-              <CTAButton text="Voir le projet" href={`#project-modal-${index}`} />
-            )}
+            <CTAButton text="Visiter le site" href={project.url} targetBlank={true} />
           </div>
         </div>
       ))}
-    </section>    <section class="social-proof">
-      <h2>Ce que disent nos clients</h2>
-      <div class="testimonials">
-        <blockquote>
-          <div class="testimonial-content">
-            <div class="testimonial-avatar">MD</div>
-            <div class="testimonial-text">
-              "L'équipe de CreationSiteWebPro a transformé notre présence en ligne. Leur expertise en SEO nous a permis d'atteindre de nouveaux sommets!"
-              <cite>Marie Dupont, PDG de TechInnovate</cite>
-            </div>
-          </div>
-        </blockquote>
-        <blockquote>
-          <div class="testimonial-content">
-            <div class="testimonial-avatar">JM</div>
-            <div class="testimonial-text">
-              "Un travail exceptionnel! Notre e-commerce a vu ses ventes exploser grâce à leur refonte intelligente et orientée conversion."
-              <cite>Jean Martin, Fondateur de LuxeParfums</cite>
-            </div>
-          </div>
-        </blockquote>
-      </div>
     </section>
-
     <section class="cta-section">
-      <h2>Prêt à propulser votre projet?</h2>
-      <p>Rejoignez nos clients satisfaits et transformez votre vision en réalité digitale.</p>
-      <a href="/creation-site-web-casablanca" class="cta-button">Obtenez votre devis gratuit <span class="urgency">Offre limitée!</span></a>
-      <p class="social-proof2">Déjà plus de 1000 entreprises satisfaites</p>
+      <h2>Vous avez un projet similaire&nbsp;?</h2>
+      <p>Présentez-nous vos objectifs, vos contenus et les fonctionnalités attendues.</p>
+      <a href="/contact" class="cta-button">Demander un devis</a>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
@@ -157,7 +109,7 @@ const projects = [
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem;
-    margin-top: 5rem;
+    margin-top: 0;
   }
 
   h1 {
@@ -355,7 +307,7 @@ const projects = [
   @media (max-width: 1067px) {
     .portfolio-page {
       padding: 0.5rem;
-      margin-top: 7rem;
+      margin-top: 0;
     }
     .project-card {
       display: block;
@@ -364,7 +316,7 @@ const projects = [
   @media (max-width: 768px) {
     .portfolio-page {
       padding: 0.5rem;
-      margin-top: 7rem;
+      margin-top: 0;
     }
     .project-card {
       display: block;
@@ -373,7 +325,7 @@ const projects = [
   @media (max-width: 459px) {
     .portfolio-page {
       padding: 0.5rem;
-      margin-top: 11rem;
+      margin-top: 0;
     }
   }
   @media (min-width: 769px) {
@@ -394,7 +346,7 @@ const projects = [
   @media (max-width: 320px) {
     .portfolio-page {
       padding: 0.5rem;
-      margin-top: 11rem;
+      margin-top: 0;
     }
 
     h1 {

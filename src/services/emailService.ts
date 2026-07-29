@@ -1,21 +1,38 @@
 import nodemailer from 'nodemailer';
 
-export const sendEmail = async ({ to, subject, html }) => {
+interface EmailPayload {
+  to: string;
+  subject: string;
+  html: string;
+  replyTo?: string;
+}
+
+export const sendEmail = async ({ to, subject, html, replyTo }: EmailPayload) => {
+  const host = process.env.EMAIL_HOST;
+  const user = process.env.EMAIL_USER;
+  const pass = process.env.EMAIL_PASS;
+
+  if (!host || !user || !pass) {
+    throw new Error('La configuration SMTP est incomplète.');
+  }
+
+  const port = Number(process.env.EMAIL_PORT || 587);
   const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
+    host,
+    port,
+    secure: port === 465,
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
+      user,
+      pass
     },
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_FROM,
+    from: process.env.EMAIL_FROM || user,
     to,
     subject,
     html,
+    replyTo,
   };
 
   try {

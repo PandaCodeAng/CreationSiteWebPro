@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CTAButton from '../components/CTAButton.astro';
 import Icon from '../components/Icon.astro';
 import JsonLd from '../components/JsonLd.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { napInfo } from '../data/business';
 
 const breadcrumbItems = [
   { name: 'Accueil', url: '/' },
@@ -11,25 +11,25 @@ const breadcrumbItems = [
 ];
 
 const pageTitle = "Création Site Web Casablanca | Agence Web Maroc";
-const pageDescription = "Boostez votre présence en ligne avec nos services de création de site web à Casablanca. Experts en design, développement, SEO et 1ère page Google pour votre entreprise à Casablanca et au Maroc.";
+const pageDescription = "Création de sites web professionnels à Casablanca : site vitrine dès 7 500 MAD, e-commerce dès 15 000 MAD et projets sur mesure. Devis gratuit.";
 
 const contactMethods = [
   {
     icon: 'phone',
     title: 'Appelez-nous pour votre projet web à Casablanca',
-    content: '+212 6 79 78 29 06',
-    action: 'tel:+212679782906'
+    content: napInfo.phone,
+    action: `tel:${napInfo.phone.replace(/\s+/g, '')}`
   },
   {
     icon: 'email',
     title: 'Email pour création de site web à Casablanca',
-    content: 'contact@creationsitewebpro.com',
-    action: 'mailto:contact@creationsitewebpro.com'
+    content: napInfo.email,
+    action: `mailto:${napInfo.email}`
   },
   {
     icon: 'map-marker',
     title: 'Agence Web à Casablanca',
-    content: 'belvédère, 20000 Casablanca, Maroc',
+    content: `${napInfo.address.street}, ${napInfo.address.postalCode} ${napInfo.address.city}, ${napInfo.address.country}`,
     action: 'https://maps.app.goo.gl/b9iNw8ijonfNrXWA7'
   }
 ];
@@ -37,186 +37,61 @@ const contactMethods = [
 const faqs = [
   {
     question: "Quel est le prix pour la création d'un site web à Casablanca ?",
-    answer: "Le coût de création d'un site web à Casablanca varie selon la complexité et les fonctionnalités désirées. Nous proposons des devis personnalisés et gratuits pour s'adapter à votre budget."
+    answer: "Un site vitrine professionnel démarre à 7 500 MAD et un site e-commerce à 15 000 MAD. Le devis final dépend des contenus, des fonctionnalités, des intégrations et du calendrier."
   },
   {
     question: "Combien de temps pour la création d'un site web à Casablanca ?",
-    answer: "La durée pour la création d'un site web à Casablanca est généralement de 2-4 semaines pour un site vitrine et 4-8 semaines pour un site e-commerce. Un calendrier précis est fourni pour chaque projet."
+    answer: "Le calendrier dépend du périmètre, des contenus, des validations et des intégrations. Une date de livraison prévisionnelle est indiquée dans le devis avant le démarrage."
   },
   {
     question: "Offrez-vous la maintenance de site web à Casablanca ?",
-    answer: "Oui, nous proposons des services de maintenance de site web à Casablanca pour assurer sa sécurité, sa mise à jour et ses performances optimales."
+    answer: "Des modalités de maintenance peuvent être prévues selon le projet. Leur périmètre, leur durée et leur tarif sont précisés dans la proposition commerciale."
+  },
+  {
+    question: "Pouvez-vous garantir une première position sur Google ?",
+    answer: "Non. Aucune agence ne peut garantir une position déterminée. Nous mettons en place un socle SEO et pouvons assurer un accompagnement continu pour améliorer la visibilité du site."
   }
 ];
 
 const pageSchema = {
   "@context": "https://schema.org",
-  "@type": "WebPage",
+  "@type": "Service",
+  "@id": "https://www.creationsitewebpro.com/creation-site-web-casablanca#service",
   "name": pageTitle,
   "description": pageDescription,
-  "url": "https://creationsitewebpro.com/creation-site-web-casablanca",
-  "mainEntity": {
-    "@type": "LocalBusiness",
-    "name": "CreationSiteWebPro - Agence de Création Site Web Casablanca",
-    "telephone": "+212679782906",
-    "priceRange": "€€",
-    "email": "contact@creationsitewebpro.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "belvédère",
-      "addressLocality": "Casablanca",
-      "addressCountry": "MA"
-    },
-    "image": "https://creationsitewebpro.com/images/logo.png",
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "33.5951",
-      "longitude": "-7.6183"
-    },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
-        ],
-        "opens": "09:00",
-        "closes": "18:00"
-      }
-    ],
-    "areaServed": {
-      "@type": "City",
-      "name": "Casablanca"
-    },
-    "potentialAction": {
-      "@type": "ReserveAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://creationsitewebpro.com/creation-site-web-casablanca#contact-form",
-        "inLanguage": "fr-FR",
-        "actionPlatform": [
-          "http://schema.org/DesktopWebPlatform",
-          "http://schema.org/IOSPlatform",
-          "http://schema.org/AndroidPlatform"
-        ]
-      },
-      "name": "Demander un devis création site web Casablanca"
-    }
+  "url": "https://www.creationsitewebpro.com/creation-site-web-casablanca",
+  "provider": {
+    "@id": "https://www.creationsitewebpro.com/#localbusiness"
   },
   "areaServed": {
     "@type": "City",
     "name": "Casablanca"
-  },
-  "serviceType": "Création de site web",
-  "offers": {
-    "@type": "Offer",
-    "description": "Services de création de sites web professionnels à Casablanca"
   }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
 };
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/creation-site-web-casablanca">
-  <JsonLd data={{
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "CreationSiteWebPro",
-    "image": [
-      "https://creationsitewebpro.com/images/logo.png"
-    ],
-    "description": pageDescription,
-    "@id": "https://creationsitewebpro.com/creation-site-web-casablanca",
-    "url": "https://creationsitewebpro.com/creation-site-web-casablanca",
-    "telephone": "+212679782906",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Belvédère",
-      "addressLocality": "Casablanca",
-      "postalCode": "20000",
-      "addressCountry": "MA"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 33.5731,
-      "longitude": -7.6190
-    },
-    "priceRange": "€€",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "147"
-    }
-  }} />
-  <Breadcrumbs items={breadcrumbItems} />
-  <section class="hero">
-    <h1>Création site web Casablanca : votre site sur-mesure, optimisé Google</h1>
-    <p>Notre agence web à Casablanca conçoit des sites internet professionnels, modernes et SEO pour garantir votre visibilité sur Google. Obtenez un devis gratuit et boostez votre activité à Casablanca !</p>
-    <CTAButton href="/contact">Demandez votre devis gratuit</CTAButton>
-  </section>
-  <section class="services">
-    <h2>Nos services de création de site web à Casablanca</h2>
-    <ul>
-      <li>Création de site vitrine et e-commerce à Casablanca</li>
-      <li>Optimisation SEO pour la 1ère page Google</li>
-      <li>Design responsive et expérience utilisateur</li>
-      <li>Maintenance, sécurité et accompagnement local</li>
-    </ul>
-  </section>
-  <section class="faq">
-    <h2>FAQ - Création site web Casablanca</h2>
-    <ul>
-      <li><strong>Quel est le prix pour la création d’un site web à Casablanca ?</strong> Le coût dépend du type de site et des fonctionnalités. Contactez-nous pour un devis personnalisé.</li>
-      <li><strong>Combien de temps pour créer un site web à Casablanca ?</strong> En moyenne, 2 à 4 semaines pour un site vitrine, 4 à 8 semaines pour un e-commerce.</li>
-      <li><strong>Proposez-vous le référencement SEO à Casablanca ?</strong> Oui, tous nos sites sont optimisés pour Google et nous proposons des prestations SEO avancées.</li>
-      <li><strong>Pourquoi choisir une agence locale à Casablanca ?</strong> Pour un accompagnement personnalisé, une meilleure réactivité et une expertise du marché marocain.</li>
-    </ul>
-  </section>
-  <JsonLd data={{
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Quel est le prix pour la création d’un site web à Casablanca ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Le coût dépend du type de site et des fonctionnalités. Contactez-nous pour un devis personnalisé."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Combien de temps pour créer un site web à Casablanca ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "En moyenne, 2 à 4 semaines pour un site vitrine, 4 à 8 semaines pour un e-commerce."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Proposez-vous le référencement SEO à Casablanca ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Oui, tous nos sites sont optimisés pour Google et nous proposons des prestations SEO avancées."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Pourquoi choisir une agence locale à Casablanca ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Pour un accompagnement personnalisé, une meilleure réactivité et une expertise du marché marocain."
-        }
-      }
-    ]
-  }} />
-  <main class="creation-site-web-casablanca">
+  <JsonLd data={pageSchema} />
+  <JsonLd data={faqSchema} />
+  <div class="creation-site-web-casablanca">
     <Breadcrumbs items={breadcrumbItems} />
-    <h1>Création Site Web Casablanca: Votre Partenaire Digital au Maroc</h1>
+    <h1>Création de site web à Casablanca</h1>
     
     <p class="intro">
-      Vous cherchez une agence experte en <strong>création de site web à Casablanca</strong>? CreationSiteWebPro est votre partenaire de confiance pour développer une présence en ligne puissante et rentable. Nous concevons des sites web sur mesure, optimisés pour le SEO et adaptés à vos objectifs. Que vous ayez besoin d'un site vitrine, d'une boutique e-commerce ou d'une application web complexe, notre équipe à Casablanca est prête à relever le défi.
+      CreationSiteWebPro conçoit des sites vitrines, des boutiques e-commerce et des applications web adaptés aux objectifs des entreprises de Casablanca. Chaque projet commence par un périmètre, un calendrier et des livrables clairement définis.
     </p>
 
     <section class="contact-methods">
@@ -232,8 +107,9 @@ const pageSchema = {
 
     <section class="contact-form" id="contact-form">
       <h2>Demandez un Devis Gratuit pour Votre Site Web à Casablanca</h2>
-      <p>Remplissez ce formulaire pour obtenir une proposition personnalisée pour la création de votre site web à Casablanca. Réponse sous 24h.</p>
-      <form id="contact-form-element">
+      <p>Remplissez ce formulaire pour nous présenter votre besoin. Nous vous recontacterons afin de préciser le périmètre et de préparer un devis personnalisé.</p>
+      <form id="contact-form-element" action="/api/submit-form" method="POST">
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="honeypot" />
         <div>
           <label for="name">Nom</label>
           <input type="text" id="name" name="name" required />
@@ -260,6 +136,8 @@ const pageSchema = {
           <label for="message">Décrivez votre projet de site web</label>
           <textarea id="message" name="message" placeholder="Détaillez vos besoins pour la création de votre site web à Casablanca..." required></textarea>
         </div>
+        <p class="form-privacy">En envoyant ce formulaire, vous acceptez que les informations saisies soient utilisées pour répondre à votre demande. Consultez notre <a href="/politique-confidentialite">politique de confidentialité</a>.</p>
+        <p id="form-status" role="status" aria-live="polite"></p>
         <button type="submit" class="cta-button">Envoyer ma demande de devis</button>
       </form>
     </section>
@@ -277,75 +155,84 @@ const pageSchema = {
     <section class="services-casablanca">
       <h2>Nos Services de Création de Site Web à Casablanca</h2>
       <p>
-        En tant qu'agence web leader à Casablanca, nous offrons une gamme complète de services pour garantir le succès de votre projet digital :
+        Notre agence propose plusieurs formats de projets web selon vos objectifs et votre organisation :
       </p>
       <ul>
         <li>Conception de sites web vitrines professionnels à Casablanca.</li>
         <li>Développement de plateformes e-commerce performantes pour vendre en ligne au Maroc.</li>
         <li>Création d'applications web sur mesure pour répondre à des besoins spécifiques.</li>
-        <li>Optimisation SEO pour un meilleur classement de votre site web à Casablanca sur Google.</li>
+        <li>Socle SEO technique et optimisation des informations locales utiles.</li>
         <li>Refonte de sites existants pour améliorer leur design et leurs performances.</li>
         <li>Hébergement web et maintenance technique pour votre site à Casablanca.</li>
       </ul>
       <p>
-        Notre approche est centrée sur vos objectifs. Nous travaillons en étroite collaboration avec vous pour comprendre vos besoins et vous livrer un site web qui non seulement est esthétique, mais qui génère également des résultats concrets pour votre entreprise à Casablanca.
+        Le site vitrine démarre à 7 500 MAD et le site e-commerce à 15 000 MAD. Chaque devis précise les contenus, les fonctionnalités, les intégrations, le calendrier et les conditions de maintenance.
       </p>
     </section>
 
-    <section class="trust-signals">
-      <h2>Ils Ont Choisi Notre Agence Web à Casablanca</h2>
-      <div class="logo-grid">
-        <!-- Ajoutez ici les logos de vos clients ou partenaires -->
+    <section class="why-choose-us">
+      <h2>Nos engagements pour votre projet</h2>
+      <div class="benefits-grid">
+        <div class="benefit">
+          <Icon name="check" />
+          <h3>Périmètre défini</h3>
+          <p>Les livrables et les responsabilités sont précisés dans le devis.</p>
+        </div>
+        <div class="benefit">
+          <Icon name="code" />
+          <h3>Développement adapté</h3>
+          <p>La solution technique est choisie selon les besoins du projet.</p>
+        </div>
+        <div class="benefit">
+          <Icon name="lock" />
+          <h3>Tests avant livraison</h3>
+          <p>Les fonctions prévues sont vérifiées avant la mise en ligne.</p>
+        </div>
+        <div class="benefit">
+          <Icon name="phone" />
+          <h3>Suivi local</h3>
+          <p>Vous disposez d'un interlocuteur joignable à Casablanca.</p>
+        </div>
       </div>
-      <p>Rejoignez plus de 1000 entreprises à Casablanca et au Maroc satisfaites par CreationSiteWebPro.</p>
-    </section>
-    <section class="faq" aria-labelledby="faq-title">
-      <h2 id="faq-title">Questions fréquentes sur la création de sites web à Casablanca</h2>
-      <dl>
-        <dt>Combien coûte la création d'un site web à Casablanca ?</dt>
-        <dd>Le coût varie en fonction de vos besoins spécifiques. Nos tarifs commencent à partir de 4 776 MAD pour un site vitrine de base. Contactez-nous pour un devis personnalisé.</dd>
-        
-        <dt>Combien de temps faut-il pour créer un site web ?</dt>
-        <dd>La durée de création dépend de la complexité du projet. En général, un site vitrine peut être réalisé en 2 à 4 semaines, tandis qu'un e-commerce peut prendre 4 à 8 semaines.</dd>
-        
-        <!-- Ajoutez d'autres questions pertinentes -->
-      </dl>
     </section>
     <section id="contact" class="cta-section">
-      <h2>Prêt à Booster Votre Présence En Ligne à Casablanca ?</h2>
-      <p>Obtenez un devis gratuit pour votre projet digital à Casablanca.</p>
-      <a href="/creation-site-web-casablanca" class="cta-button">Obtenez votre devis gratuit <span class="urgency">Offre limitée!</span></a>
-      <p class="social-proof">Déjà plus de 1000 entreprises satisfaites</p>
-  </section>
-  <section class="map-section">
-  <h2>Nous trouver à Casablanca</h2>
-  <div class="map-container">
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106376.72691566402!2d-7.6190!3d33.5731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7cd4778aa113b%3A0xb06c1d84f310fd3!2sAin%20Sebaa%2C%20Casablanca%2C%20Maroc!5e0!3m2!1sfr!2s!4v1617000000000!5m2!1sfr!2s" 
-      width="100%" 
-      height="450" 
-      style="border:0;" 
-      allowfullscreen="" 
-      loading="lazy" 
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+      <h2>Prêt à cadrer votre projet web à Casablanca ?</h2>
+      <p>Présentez-nous votre besoin pour recevoir un devis détaillé et sans engagement.</p>
+      <a href="/contact" class="cta-button">Demander un devis gratuit</a>
+    </section>
+
+    <section class="map-section">
+      <h2>Nous trouver à Ain Sebaa, Casablanca</h2>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106376.72691566402!2d-7.6190!3d33.5731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7cd4778aa113b%3A0xb06c1d84f310fd3!2sAin%20Sebaa%2C%20Casablanca%2C%20Maroc!5e0!3m2!1sfr!2s!4v1617000000000!5m2!1sfr!2s"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Localisation de CreationSiteWebPro à Ain Sebaa, Casablanca">
+        </iframe>
+      </div>
+    </section>
   </div>
-</section>
-  </main>
   <script>
-    const form = document.getElementById('contact-form-element') as HTMLFormElement; 
+    const form = document.getElementById('contact-form-element') as HTMLFormElement | null;
+    const status = document.getElementById('form-status');
     
-    form.addEventListener('submit', async (e) => {
+    form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = new FormData(form);
       const data = Object.fromEntries(formData);
-  
-      const apiUrl = import.meta.env.DEV 
-        ? '/api/send-email' 
-        : '/.netlify/functions/send-email';
+      const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+      if (formData.get('botcheck')) return;
+      if (submitButton) submitButton.disabled = true;
+      if (status) status.textContent = 'Envoi en cours…';
   
       try {
-        const response = await fetch(apiUrl, {
+        const response = await fetch('/api/submit-form', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -354,26 +241,13 @@ const pageSchema = {
         });
   
         if (response.ok) {
-          const result = await response.json();
-          alert(result.message || 'Message envoyé avec succès!');
-          form.reset();
+          window.location.assign('/merci');
         } else {
-          let errorMessage = "Erreur lors de l'envoi du message";
-          try {
-            const errorResult = await response.json();
-            errorMessage = errorResult.message || errorMessage;
-          } catch (jsonError) {
-            console.error('Failed to parse error response JSON:', jsonError);
-          }
-          throw new Error(errorMessage);
+          throw new Error("Erreur lors de l'envoi du message");
         }
-      } catch (error) {
-        console.error('Erreur:', error);
-        if (error instanceof Error) {
-          alert(error.message);
-        } else {
-          alert('Une erreur est survenue. Veuillez réessayer.');
-        }
+      } catch {
+        if (status) status.textContent = "L'envoi a échoué. Vous pouvez aussi nous écrire à contact@creationsitewebpro.com.";
+        if (submitButton) submitButton.disabled = false;
       }
     });
   </script>
@@ -385,7 +259,7 @@ const pageSchema = {
     padding: 1rem;
     max-width: 100%;
     overflow-x: hidden;
-    margin-top: 10rem;
+    margin-top: 0;
   }
   .social-proof {
     margin-top: 1rem;
@@ -654,7 +528,7 @@ const pageSchema = {
       max-width: 1200px;
       margin: 0 auto;
       padding: 3rem 2rem;
-      margin-top: 5rem;
+      margin-top: 0;
     }
 
     h1 {
@@ -686,7 +560,7 @@ const pageSchema = {
   @media (max-width: 459px) {
     .creation-site-web-casablanca {
       padding: 0.5rem;
-      margin-top: 11rem;
+      margin-top: 0;
     }
 
     h1 {
@@ -755,6 +629,11 @@ const pageSchema = {
   width: 100%;
   height: 450px;
   border: none;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
 }
 
 /* Responsive adjustments */

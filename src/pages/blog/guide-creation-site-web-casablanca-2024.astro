@@ -1,129 +1,99 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { generateTimeTag } from '../../utils/dates';
+import { createArticleSchema, getArticleBySlug, getAuthorProfile } from './_articles';
 
-const title = "Guide Création Site Web Casablanca Performant 2026";
-const description = "Découvrez les stratégies essentielles pour créer un site web professionnel et performant à Casablanca. Nos experts partagent leurs conseils pour booster votre présence en ligne et réussir dans le marché digital marocain.";
-const publishDate = "2026-03-20";
-const author = "Mouhcine Talbi";
-const readingTime = "5 minutes";
-
-const schema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": title,
-  "description": description,
-  "author": {
-    "@type": "Person",
-    "name": author,
-    "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca",
-    "sameAs": "https://www.linkedin.com/in/mouhcine-talbi/"
-  },
-  "datePublished": publishDate,
-  "dateModified": "2026-05-30",
-  "inLanguage": "fr",
-  "image": "https://creationsitewebpro.com/images/creation-site-web-casablanca.jpg",
-  "publisher": {
-    "@type": "Organization",
-    "name": "CreationSiteWebPro",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://creationsitewebpro.com/logo.png"
-    }
-  }
-});
+const article = getArticleBySlug('guide-creation-site-web-casablanca-2024');
+const { title, description, publishDate, modifiedDate, author, readingTime } = article;
+const authorProfile = getAuthorProfile(author);
+const schema = createArticleSchema(article);
 ---
 
-<Layout title={title} description={description} canonical="https://www.creationsitewebpro.com/blog/guide-creation-site-web-casablanca-2024">
-  <article itemscope itemtype="http://schema.org/BlogPosting" class="blog-post">
+<Layout title={title} description={description} canonical={article.url}>
+  <JsonLd data={schema} />
+  <article itemscope itemtype="https://schema.org/BlogPosting" class="blog-post">
     <header>
       <h1 itemprop="headline">{title}</h1>
       <p class="post-meta">
         Publié le <Fragment set:html={generateTimeTag(publishDate)} />
-        | Par <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <span itemprop="name">{author}</span>
+        | Mis à jour le <Fragment set:html={generateTimeTag(modifiedDate)} />
+        | Par <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <a href={authorProfile.url} itemprop="url"><span itemprop="name">{author}</span></a>
         </span>
         | Temps de lecture : {readingTime}
       </p>
     </header>
 
     <div itemprop="articleBody">
-      <h1>On Crée Votre Site Web à Casa : Le Guide de Moul L'Khibra (L'Expert) !</h1>
-      
-      <p>Salam les amis ! C'est Mouhcine de l'agence création site web Casablanca. Après 12 ans à créer des sites pour tout Casa et ses environs (et une consommation industrielle de café chez Sidi Haj Omar !), je vais vous dire un truc : avoir un site aujourd'hui à Casa, c'est comme avoir un portable - t'as pas le choix, khoya, khti !</p>
+      <p>Un site web efficace ne commence pas par le choix d'une couleur ou d'une technologie. Il commence par un objectif précis, un périmètre réaliste et des contenus capables de répondre aux questions des futurs clients.</p>
 
-      <h2>Casa et le Digital : Parlons Vrai !</h2>
-      <p>Vous vous rappelez l'époque où on allait tous à Derb Ghallef pour le moindre truc tech ? Maintenant, même moul l'hanout du coin a son site web ! La création site web Casablanca, c'est devenu aussi essentiel que le klaxon dans les embouteillages de Mohammed V. Et croyez-moi, j'en ai vu passer des sites... des bons, des moins bons, et des "ya latif" 😅</p>
-
-      <h2>Première Étape : On Fait Quoi, B'ha'dak Site ?</h2>
-      <p>Avant de se lancer comme un chauffeur de taxi qui vient de voir un client, faut se poser LA question : c'est pour quoi faire, ce site ? Vous voulez :</p>
+      <h2>1. Définir le rôle du site</h2>
+      <p>Avant de demander un devis, déterminez l'action principale attendue de vos visiteurs. Selon votre activité, le site peut servir à :</p>
       <ul>
-        <li>Vendre en ligne comme les gros bonnets du Morocco Mall ?</li>
-        <li>Montrer vos talents comme les artistes de la Corniche ?</li>
-        <li>Ou juste avoir une vitrine plus classe que les bureaux de CFC ?</li>
+        <li>présenter une entreprise et générer des demandes de contact ;</li>
+        <li>expliquer des services et leurs conditions ;</li>
+        <li>vendre des produits en ligne ;</li>
+        <li>prendre des rendez-vous ou recueillir des demandes de devis.</li>
+      </ul>
+      <p>Cet objectif aide à choisir les pages, les fonctionnalités et les indicateurs à suivre après la mise en ligne.</p>
+
+      <h2>2. Préparer un cahier des charges simple</h2>
+      <p>Un document court suffit pour cadrer le projet. Il doit préciser l'activité, les publics visés, les langues, les pages souhaitées, les fonctionnalités, les contenus disponibles et la personne chargée de valider les livrables.</p>
+      <ul>
+        <li>Listez les fonctionnalités indispensables séparément des options.</li>
+        <li>Identifiez les textes, photos et documents à produire.</li>
+        <li>Précisez qui possède le nom de domaine, l'hébergement et les comptes techniques.</li>
       </ul>
 
-      <p>La création site web à Casablanca, c'est comme choisir un appart : l'emplacement (digital) et le style, c'est tout ce qui compte !</p>
-
-      <h2>Le Site Mobile-First : Obligé, Wlah Ma 3andek Ma Dir !</h2>
-      <p>Sérieux, vous avez déjà essayé de trouver un Casablancais sans smartphone ? C'est plus rare qu'un taxi libre sous la pluie ! Pour la création site web Casablanca qui cartonne, il FAUT que ça marche nickel sur mobile. Pourquoi ?</p>
+      <h2>3. Concevoir d'abord pour l'usage</h2>
+      <p>Le site doit rester lisible et facile à utiliser sur mobile comme sur ordinateur. Une navigation courte, des titres explicites et des boutons d'action clairement nommés sont généralement plus utiles qu'une accumulation d'effets visuels.</p>
       <ul>
-        <li>Même m'ma surfe sur son téléphone pendant que le tajine mijote</li>
-        <li>Les jeunes de Casa sont H24 sur leurs portables</li>
-        <li>Même les business meetings se font sur WhatsApp maintenant !</li>
+        <li>Prévoyez des contrastes suffisants et une taille de texte confortable.</li>
+        <li>Rendez les formulaires compréhensibles et utilisables au clavier.</li>
+        <li>Compressez les images et évitez les animations inutiles.</li>
       </ul>
 
-      <h2>Le Design : Faut Que Ça Pète Plus Que Twin Center La Nuit !</h2>
-      <p>Le design pour un site web à Casa, c'est comme la déco d'un café branché de Gauthier : faut que ce soit moderne mais pas trop "bling-bling". On fait :</p>
+      <h2>4. Produire des contenus locaux utiles</h2>
+      <p>Pour une entreprise qui sert Casablanca, les informations locales doivent être exactes et cohérentes : nom, adresse, téléphone, zones desservies et modalités de contact. Les quartiers ne doivent être cités que lorsqu'ils correspondent réellement à l'activité ou au service proposé.</p>
       <ul>
-        <li>Des couleurs qui claquent (mais pas comme les taxis jaunes non plus !)</li>
-        <li>Une navigation plus fluide que le tram aux heures creuses</li>
-        <li>Des images qui donnent envie, comme les vitrines du Maarif</li>
+        <li>Présentez chaque service avec ses livrables et ses limites.</li>
+        <li>Répondez aux questions réellement posées avant l'achat.</li>
+        <li>Ajoutez des réalisations vérifiables lorsque vous avez l'autorisation de les publier.</li>
       </ul>
 
-      <h2>Le SEO à la Sauce Casablancaise</h2>
-      <p>Bon, la création site web Casablanca c'est bien, mais faut qu'on vous trouve sur Google ! C'est comme connaître les raccourcis dans les ruelles de l'ancienne médina - faut être malin :</p>
+      <h2>5. Préparer le référencement dès la conception</h2>
+      <p>Le référencement naturel repose sur un ensemble cohérent : pages accessibles aux moteurs, structure éditoriale claire, contenus originaux, liens internes et réputation du site. Aucun prestataire ne peut garantir une première position.</p>
       <ul>
-        <li>On parle le langage de Casa dans le contenu</li>
-        <li>On mentionne les quartiers (parce que personne ne dit juste "Casablanca")</li>
-        <li>On utilise des mots-clés naturels, pas du robot !</li>
+        <li>Attribuez un sujet principal et une adresse canonique à chaque page.</li>
+        <li>Rédigez des titres et descriptions fidèles au contenu affiché.</li>
+        <li>Reliez les pages de services aux guides qui les complètent.</li>
       </ul>
 
-      <h2>Le Contenu : Plus Authentique qu'un Petit-Déj' à La Sqala</h2>
-      <p>Wallah, le contenu c'est roi ! Mais pas n'importe quel contenu. Faut que ça soit :</p>
-      <ul>
-        <li>Vrai comme un thé à la menthe bien sucré</li>
-        <li>Utile comme un parapluie à Casa en hiver</li>
-        <li>Bien écrit, mais pas avec des mots de dictionnaire qui donnent mal à la tête</li>
-      </ul>
+      <h2>6. Anticiper la sécurité et la maintenance</h2>
+      <p>Le protocole HTTPS, les sauvegardes, les mises à jour et la gestion des accès doivent être prévus avant la publication. Demandez aussi qui interviendra en cas d'incident et quelles opérations sont comprises dans la maintenance.</p>
 
-      <h2>La Sécurité : Aussi Fiable que le Coffre de Bank Al-Maghrib !</h2>
-      <p>La sécurité de votre site, c'est pas négociable ! C'est comme le vigile à l'entrée de AnfaPlace - toujours là, toujours vigilant.</p>
+      <h2>7. Comparer des offres sur le même périmètre</h2>
+      <p>Un prix n'est comparable que si les livrables le sont. Vérifiez notamment le nombre de pages, la production des contenus, les fonctionnalités, la formation, l'hébergement, la maintenance et la propriété des comptes. Le devis doit distinguer les prestations incluses des coûts récurrents.</p>
 
-      <h2>Et Pour Finir...</h2>
-      <p>Écoutez, la création site web à Casablanca, c'est notre passion. Dans notre petit bureau (oui, celui avec la vue sur les embouteillages de Zerktouni 😅), on crée des sites qui ont l'âme de Casa : modernes mais authentiques, pro mais pas guindés.</p>
-
-      <p>Besoin d'un site qui déchire ? Venez nous voir ! On est là, entre le marchand de sardines qui fait les meilleures grillades de Casa et le café où tout le quartier se retrouve. Premier café offert (le vrai café bledi, pas la version instantanée), et on parle de votre projet ? Comme on dit chez nous : "Marhba bikom" !</p>
-
-      <p>N'oubliez pas : un bon site à Casa, c'est comme un bon tajine - faut les bons ingrédients, du savoir-faire, et beaucoup d'amour ! Yallah, on s'y met ? 😊</p>
+      <h2>En résumé</h2>
+      <p>Pour préparer une création de site web à Casablanca en 2026, partez des besoins des utilisateurs, formalisez le périmètre et exigez des contenus exacts. Cette base facilite la conception, le suivi du projet et les améliorations après la mise en ligne.</p>
     </div>
 
     <footer>
-      <h3>Prêt à Lancer votre Projet Web à Casablanca ?</h3>
-      <p>Contactez CreationSiteWebPro aujourd'hui pour un site web sur mesure, performant et parfaitement adapté au marché marocain.</p>
-      <a href="/creation-site-web-casablanca" class="cta-button">Demander un Devis Personnalisé</a>
+      <h3>Préparer votre projet web à Casablanca</h3>
+      <p>Présentez-nous vos objectifs et vos contraintes pour définir un périmètre de site adapté à votre activité.</p>
+      <a href="/contact" class="cta-button">Demander un devis personnalisé</a>
     </footer>
   </article>
 </Layout>
-
-<script type="application/ld+json" is:inline set:html={schema} />
 
 <style>
   .blog-post {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    margin-top: 7rem;
+    margin-top: 0;
   }
 
   h1 {
@@ -179,7 +149,7 @@ const schema = JSON.stringify({
   @media (max-width: 768px) {
     .blog-post {
       padding: 1rem;
-      margin-top: 11rem;
+      margin-top: 0;
     }
   }
 </style>

@@ -1,5 +1,5 @@
 ---
-import { napInfo } from '../layouts/Layout.astro';
+import { napInfo } from '../data/business';
 import Icon from "./Icon.astro";
 const currentYear = new Date().getFullYear();
 ---
@@ -34,6 +34,7 @@ const currentYear = new Date().getFullYear();
         <li><a href="/creation-site-web-maroc">Création Site Web Maroc</a></li>
         <li><a href="/services/e-commerce-casablanca">E-commerce Casablanca</a></li>
         <li><a href="/services/referencement-seo-casablanca">SEO Casablanca</a></li>
+        <li><a href="/services/creation-application-web">Applications web</a></li>
         <li><a href="/agence-digitale-maroc">Agence Digitale Maroc</a></li>
       </ul>
     </div>
@@ -44,39 +45,35 @@ const currentYear = new Date().getFullYear();
         <li><a href="/portfolio-realisations-web-casablanca-maroc">Portfolio</a></li>
         <li><a href="/a-propos-agence-web-casablanca">À propos</a></li>
         <li><a href="/blog">Blog</a></li>
+        <li><a href="/outils/cours-action-t2s-maroc">Calculateur action T2S</a></li>
         <li><a href="/contact">Contact</a></li>
         <li><a href="/faq-creation-site-web-maroc">FAQ</a></li>
       </ul>
     </div>    <div class="footer-section">
       <h3>Contact</h3>
-      <div class="contact-info" itemscope itemtype="https://schema.org/LocalBusiness">
+      <div class="contact-info">
         <p class="address-line">
           <Icon name="map-pin" className="footer-icon" />
-          <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-            <span itemprop="streetAddress">{napInfo.address.street}</span>,
-            <span itemprop="addressLocality">{napInfo.address.city}</span>
-            <span itemprop="postalCode">{napInfo.address.postalCode}</span>,
-            <span itemprop="addressCountry">{napInfo.address.country}</span>
+          <span>
+            <span>{napInfo.address.street}</span>,
+            <span>{napInfo.address.city}</span>
+            <span>{napInfo.address.postalCode}</span>,
+            <span>{napInfo.address.country}</span>
           </span>
         </p>
         <p class="contact-line">
           <Icon name="phone" className="footer-icon" />
-          <a href={`tel:${napInfo.phone.replace(/\s+/g, '')}`} itemprop="telephone">{napInfo.phone}</a>
+          <a href={`tel:${napInfo.phone.replace(/\s+/g, '')}`}>{napInfo.phone}</a>
         </p>
         <p class="contact-line">
           <Icon name="email" className="footer-icon" />
-          <a href={`mailto:${napInfo.email}`} itemprop="email">{napInfo.email}</a>
+          <a href={`mailto:${napInfo.email}`}>{napInfo.email}</a>
         </p>
       </div>
 
       <div class="newsletter">
-        <h4>Newsletter</h4>
-        <form class="newsletter-form" action="/api/subscribe" method="POST">
-          <input type="email" name="email" placeholder="Votre email" required />
-          <button type="submit" class="btn-primary btn-sm">
-            S'abonner
-          </button>
-        </form>
+        <h4>Un projet web&nbsp;?</h4>
+        <a class="btn-primary btn-sm" href="/contact">Parler à un conseiller</a>
       </div>
     </div>
   </div>
@@ -84,7 +81,7 @@ const currentYear = new Date().getFullYear();
   <div class="footer-bottom">
     <div class="container">
       <div class="footer-copyright">
-        <p>&copy; {currentYear} <span itemprop="name">{napInfo.name}</span>. Tous droits réservés.</p>
+        <p>&copy; {currentYear} <span>{napInfo.name}</span>. Tous droits réservés.</p>
         <div class="footer-legal-links">
           <a href="/mentions-legales">Mentions légales</a>
           <span class="separator"></span>

@@ -2,30 +2,10 @@
 import '../styles/global.css';
 import FixedHeader from '../components/FixedHeader3.astro';
 import Footer from '../components/Footer.astro';
-import { SEO } from "astro-seo";
 import JsonLd from '../components/JsonLd.astro';
+import { napInfo } from '../data/business';
 
-// Déclarer napInfo avant de l'utiliser
-export const napInfo = {
-  name: "CreationSiteWebPro",
-  address: {
-    street: "Ain Sebaa",
-    city: "Casablanca",
-    postalCode: "20000",
-    country: "Maroc"
-  },
-  phone: "+212 6 79 78 29 06",
-  email: "contact@creationsitewebpro.com",
-  coordinates: {
-    latitude: 33.5731,
-    longitude: -7.6190
-  }
-};
-
-// Fonts pour le design moderne et minimaliste
-const fontImportUrl = "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap";
-
-// WebSite schema injecté sur toutes les pages (SearchAction = éligibilité Sitelinks Search Box)
+// WebSite schema injecté sur toutes les pages
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -38,50 +18,82 @@ const websiteSchema = {
     "@id": "https://www.creationsitewebpro.com/#localbusiness",
     "name": "CreationSiteWebPro"
   },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://www.creationsitewebpro.com/recherche?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  },
   "inLanguage": "fr-MA"
 };
-const isProd = import.meta.env.PROD; // true en production, false en développement
 
 export interface Props {
 	title: string;
 	description: string;
 	canonical?: string;
+	noindex?: boolean;
+	nofollow?: boolean;
 }
 
-const { title, description, canonical } = Astro.props;
+const {
+	title,
+	description,
+	canonical,
+	noindex = false,
+	nofollow = false
+} = Astro.props;
 // Pas de suffix global — chaque page contrôle son propre titre (max 60 chars)
 const fullTitle = title;
+const siteUrl = 'https://www.creationsitewebpro.com';
+const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).toString();
+const socialImage = `${siteUrl}/images/og-image.jpg`;
+const robotsContent = [
+	noindex ? 'noindex' : 'index',
+	nofollow ? 'nofollow' : 'follow',
+	...(!noindex ? ['max-snippet:-1', 'max-image-preview:large', 'max-video-preview:-1'] : [])
+].join(', ');
+const phoneHref = `tel:${napInfo.phone.replace(/\s+/g, '')}`;
+const whatsappNumber = napInfo.phone.replace(/\D/g, '');
+const whatsappHref = `https://wa.me/${whatsappNumber}?text=Bonjour%2C%20je%20souhaite%20vous%20parler%20de%20mon%20projet%20web.`;
 ---
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr-MA">
 	<head>
-		<link rel="canonical" href={canonical || "https://www.creationsitewebpro.com"} />
-		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-		<meta name="geo.position" content="33.5731;-7.6190">
-		<meta name="geo.placename" content="Casablanca">
-		<meta name="geo.region" content="MA-CAS">
-		<meta name="ICBM" content="33.5731, -7.6190">
-		<meta name="locality" content="Casablanca">
-		<meta name="country" content="Maroc">
-		<meta name="language" content="fr">
-		<meta name="target" content="Morocco">
-		<link rel="alternate" hreflang="fr" href="https://creationsitewebpro.com">
-		
-		<!-- Polices modernisées -->
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{fullTitle}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content={robotsContent} />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={socialImage} />
+		<meta property="og:image:alt" content="CreationSiteWebPro, agence web à Casablanca" />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="fr_MA" />
+		<meta property="og:site_name" content="CreationSiteWebPro" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImage} />
+		<meta name="twitter:image:alt" content="CreationSiteWebPro, agence web à Casablanca" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="alternate" type="application/rss+xml" title="Blog CreationSiteWebPro" href="/rss.xml" />
+
+		<!-- La feuille Google Fonts est importée une seule fois depuis global.css -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href={fontImportUrl} rel="stylesheet">
 		
 		<meta name="google-adsense-account" content="ca-pub-9201463900934910">
+		  <!-- Consentement refusé par défaut avant toute commande de mesure -->
+		  <script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('consent', 'default', {
+			  analytics_storage: 'denied',
+			  ad_storage: 'denied',
+			  ad_user_data: 'denied',
+			  ad_personalization: 'denied',
+			  wait_for_update: 500
+			});
+			gtag('set', 'ads_data_redaction', true);
+		  </script>
 		  <!-- Axeptio script -->
 		  <script is:inline>
 			window.axeptioSettings = {
@@ -99,67 +111,42 @@ const fullTitle = title;
 			};
 			(function(d, s) {
 			  var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-			  e.async = true; e.src = "//static.axept.io/sdk.js";
+			  e.async = true; e.src = "https://static.axept.io/sdk.js";
 			  t.parentNode.insertBefore(e, t);
 			})(document, "script");
 		  </script>
 	<!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NXNXH1YHKH"></script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-NXNXH1YHKH"></script>
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-NXNXH1YHKH');
     </script>
 
-		<meta charset="UTF-8" />
 		<meta name="google-site-verification" content="fnVkDYa43l9HV440UQFMYxR143Nlqkw95E5ZEg_2cJg" />
-		<meta property="og:title" content={title}>
-		<meta property="og:description" content={description}>
-		<meta property="og:image" content="https://creationsitewebpro.com/og-image.jpg">
-		<meta property="og:url" content={Astro.url}>
-		<meta property="og:type" content="website">
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<SEO
-			title={fullTitle}
-			description={description}
-			canonical={canonical || Astro.url.href}
-			openGraph={{
-				basic: {
-					title: fullTitle,
-					type: "website",
-					image: "https://www.creationsitewebpro.com/images/og-image.jpg",
-				}
-			}}
-			twitter={{
-				creator: "@CreationSiteWebPro"
-			}}
-			extend={{
-				link: [{ rel: "icon", href: "/favicon.svg" }],
-				meta: [
-					{ name: "twitter:card", content: "summary_large_image" },
-					{ name: "twitter:site", content: "@CreationSiteWebPro" },
-					{ name: "twitter:title", content: fullTitle },
-					{ name: "twitter:description", content: description },
-					{ name: "twitter:image", content: "https://www.creationsitewebpro.com/images/og-image.jpg" },
-				],
-			}}
-		/>
-	
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
 		<JsonLd data={websiteSchema} />
 	</head>	<body>
 		<FixedHeader />
-		<main>
+		<main class="site-content">
 			<slot />
 		</main>
 		<Footer />		<!-- Floating action buttons -->
-		<a href="https://wa.me/+212679782906?text=Bonjour%2C%20je%20suis%20intéressé%20par%20vos%20services%20de%20création%20de%20site%20web." class="floating-whatsapp-btn" aria-label="Nous contacter sur WhatsApp">
-			<img src="/icons/WhatsApp.svg" alt="WhatsApp" class="floating-whatsapp-icon" />
+		<a href={whatsappHref} class="floating-whatsapp-btn" aria-label="Nous contacter sur WhatsApp">
+			<img src="/icons/WhatsApp.svg" alt="" class="floating-whatsapp-icon" width="30" height="30" />
 		</a>
-		<a href="tel:+212679782906" class="floating-call-btn" aria-label="Nous appeler directement">
-			<img src="/icons/phone-simple.svg" alt="Appeler" class="floating-call-icon" />
+		<a href={phoneHref} class="floating-call-btn" aria-label="Nous appeler directement">
+			<img src="/icons/phone-simple.svg" alt="" class="floating-call-icon" width="30" height="30" />
 		</a>
 	</body>
 </html>
+
+<style>
+	.site-content {
+		padding-top: 80px;
+	}
+
+	@media screen and (max-width: 1399px) {
+		.site-content {
+			padding-top: 70px;
+		}
+	}
+</style>

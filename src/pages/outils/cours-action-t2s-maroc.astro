@@ -1,0 +1,1099 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import JsonLd from '../../components/JsonLd.astro';
+
+const canonical = 'https://www.creationsitewebpro.com/outils/cours-action-t2s-maroc';
+const title = 'Cours action T2S Maroc : calculateur de valeur';
+const description = 'Calculez la valeur et le rendement de vos actions T2S au Maroc à partir du cours observé, avec les données officielles de l’IPO.';
+const publishedDate = '2026-07-29';
+
+const instrumentFacts = [
+  ['Société', 'T2S Group Holding'],
+  ['Ticker', 'T2S'],
+  ['Code ISIN', 'MA0000012858'],
+  ['Prix d’introduction', '223 MAD'],
+  ['Valeur nominale', '50 MAD'],
+  ['Première cotation', '27 juillet 2026'],
+  ['Compartiment', 'Marché Principal F'],
+  ['Actions proposées lors de l’IPO', '4 932 734'],
+  ['Montant maximal de l’opération', '1 099 999 682 MAD']
+];
+
+const faqItems = [
+  {
+    question: 'Quel est le cours de l’action T2S aujourd’hui ?',
+    answer: 'Ce calculateur ne republie pas de cours de marché. Saisissez le cours horodaté affiché par votre société de bourse ou un diffuseur autorisé. Les cours publics de la Bourse de Casablanca sont différés d’au moins 15 minutes, tandis que les flux temps réel nécessitent une licence.'
+  },
+  {
+    question: 'Quel était le prix d’introduction en bourse de T2S ?',
+    answer: 'Le prix d’introduction de T2S Group Holding a été fixé à 223 dirhams par action dans le prospectus visé par l’AMMC le 6 juillet 2026.'
+  },
+  {
+    question: 'Quels sont le ticker et le code ISIN de T2S ?',
+    answer: 'Le ticker est T2S et le code ISIN est MA0000012858. Ces identifiants permettent de distinguer précisément l’action T2S Group Holding.'
+  },
+  {
+    question: 'Comment calculer le rendement d’une action T2S ?',
+    answer: 'Le calculateur compare la valeur nette estimée au cours saisi avec le coût d’achat estimé. Le rendement correspond à la différence divisée par le coût d’achat, multipliée par 100. Les taxes, frais fixes et droits de garde éventuels ne sont pas inclus.'
+  },
+  {
+    question: 'Ce calculateur constitue-t-il un conseil en investissement ?',
+    answer: 'Non. Il s’agit d’un outil arithmétique et pédagogique. Il ne recommande ni d’acheter, ni de conserver, ni de vendre l’action T2S.'
+  }
+];
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: title,
+      description,
+      inLanguage: 'fr-MA',
+      datePublished: publishedDate,
+      dateModified: publishedDate,
+      isPartOf: {
+        '@id': 'https://www.creationsitewebpro.com/#website'
+      },
+      about: {
+        '@type': 'Corporation',
+        name: 'T2S Group Holding',
+        identifier: [
+          {
+            '@type': 'PropertyValue',
+            propertyID: 'Ticker',
+            value: 'T2S'
+          },
+          {
+            '@type': 'PropertyValue',
+            propertyID: 'ISIN',
+            value: 'MA0000012858'
+          }
+        ]
+      }
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': `${canonical}#calculator`,
+      name: 'Calculateur de valeur de l’action T2S',
+      url: canonical,
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'Tout système disposant d’un navigateur web',
+      browserRequirements: 'JavaScript activé',
+      inLanguage: 'fr-MA',
+      isAccessibleForFree: true,
+      featureList: [
+        'Calcul de la valeur estimée des actions',
+        'Calcul du gain ou de la perte',
+        'Calcul du rendement en pourcentage',
+        'Estimation du seuil d’équilibre'
+      ]
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer
+        }
+      }))
+    }
+  ]
+};
+---
+
+<Layout title={title} description={description} canonical={canonical}>
+  <JsonLd data={structuredData} />
+
+  <div class="tool-page">
+    <Breadcrumbs items={[
+      { name: 'Accueil', url: '/' },
+      { name: 'Calculateur action T2S' }
+    ]} />
+
+    <header class="tool-hero">
+      <div class="tool-container tool-hero__grid">
+        <div>
+          <p class="eyebrow">Outil gratuit · Bourse de Casablanca</p>
+          <h1>Cours de l’action T2S au Maroc : calculateur de valeur</h1>
+          <p class="tool-hero__lead">
+            Saisissez un cours T2S horodaté pour calculer la valeur estimée de vos actions,
+            votre gain ou perte et votre rendement par rapport au prix d’achat.
+          </p>
+          <div class="tool-hero__meta">
+            <span>Ticker <strong>T2S</strong></span>
+            <span>ISIN <strong>MA0000012858</strong></span>
+            <span>IPO <strong>223 MAD</strong></span>
+          </div>
+        </div>
+
+        <aside class="market-notice" aria-labelledby="market-notice-title">
+          <span class="market-notice__badge">Donnée de marché</span>
+          <h2 id="market-notice-title">Pas de faux « temps réel »</h2>
+          <p>
+            Cette page ne récupère ni ne republie un cours sans licence. Les cours publics
+            de la place casablancaise sont différés d’au moins 15 minutes et les flux temps
+            réel sont des produits de données sous licence.
+          </p>
+          <p>
+            Utilisez le cours affiché par votre société de bourse ou un diffuseur autorisé,
+            avec son heure de mise à jour.
+          </p>
+        </aside>
+      </div>
+    </header>
+
+    <section class="calculator-section" aria-labelledby="calculator-title">
+      <div class="tool-container calculator-layout">
+        <div class="calculator-card">
+          <div class="section-heading">
+            <p class="eyebrow">Calcul instantané dans votre navigateur</p>
+            <h2 id="calculator-title">Calculer la valeur de vos actions T2S</h2>
+            <p>Les valeurs saisies restent dans votre navigateur et ne sont pas envoyées au serveur.</p>
+          </div>
+
+          <form id="t2s-calculator" class="calculator-form" novalidate>
+            <div class="form-grid">
+              <label>
+                <span>Nombre d’actions</span>
+                <input
+                  id="share-count"
+                  name="shareCount"
+                  type="text"
+                  inputmode="numeric"
+                  value="10"
+                  autocomplete="off"
+                  aria-describedby="share-count-help"
+                />
+                <small id="share-count-help">Un nombre entier supérieur à zéro.</small>
+              </label>
+
+              <label>
+                <span>Prix d’achat unitaire (MAD)</span>
+                <input
+                  id="purchase-price"
+                  name="purchasePrice"
+                  type="text"
+                  inputmode="decimal"
+                  value="223"
+                  autocomplete="off"
+                  aria-describedby="purchase-price-help"
+                />
+                <small id="purchase-price-help">223 MAD correspond au prix de l’IPO.</small>
+              </label>
+
+              <label>
+                <span>Cours T2S observé (MAD)</span>
+                <input
+                  id="observed-price"
+                  name="observedPrice"
+                  type="text"
+                  inputmode="decimal"
+                  placeholder="Ex. 238,10"
+                  autocomplete="off"
+                  aria-describedby="observed-price-help"
+                />
+                <small id="observed-price-help">Relevez aussi la date et l’heure chez votre diffuseur.</small>
+              </label>
+
+              <label>
+                <span>Frais d’achat estimés (%)</span>
+                <input
+                  id="buy-fees"
+                  name="buyFees"
+                  type="text"
+                  inputmode="decimal"
+                  value="0"
+                  autocomplete="off"
+                />
+              </label>
+
+              <label>
+                <span>Frais de vente estimés (%)</span>
+                <input
+                  id="sell-fees"
+                  name="sellFees"
+                  type="text"
+                  inputmode="decimal"
+                  value="0"
+                  autocomplete="off"
+                />
+              </label>
+            </div>
+
+            <p id="calculator-error" class="calculator-error" role="alert" hidden></p>
+
+            <div class="calculator-actions">
+              <button class="calculate-button" type="submit">Calculer</button>
+              <button class="reset-button" type="reset">Réinitialiser</button>
+            </div>
+          </form>
+        </div>
+
+        <aside class="results-card" aria-labelledby="results-title" aria-live="polite">
+          <p class="eyebrow">Estimation</p>
+          <h2 id="results-title">Résultat du calcul</h2>
+
+          <dl class="results-list">
+            <div>
+              <dt>Coût d’achat estimé</dt>
+              <dd id="purchase-total">—</dd>
+            </div>
+            <div>
+              <dt>Valeur nette estimée</dt>
+              <dd id="current-value">—</dd>
+            </div>
+            <div>
+              <dt>Gain ou perte estimé</dt>
+              <dd id="gain-loss">—</dd>
+            </div>
+            <div>
+              <dt>Rendement estimé</dt>
+              <dd id="performance">—</dd>
+            </div>
+            <div>
+              <dt>Seuil d’équilibre estimé</dt>
+              <dd id="break-even">—</dd>
+            </div>
+          </dl>
+
+          <p class="results-card__note">
+            Estimation hors fiscalité, droits de garde, frais fixes, minimums de commission
+            et TVA éventuelle. Vérifiez le décompte de votre intermédiaire.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="facts-section" aria-labelledby="facts-title">
+      <div class="tool-container facts-layout">
+        <div>
+          <p class="eyebrow">Données de référence</p>
+          <h2 id="facts-title">Fiche rapide de l’action T2S</h2>
+          <p>
+            Les informations ci-dessous proviennent du prospectus d’introduction visé par
+            l’Autorité Marocaine du Marché des Capitaux et de sa fiche émetteur.
+          </p>
+
+          <dl class="facts-list">
+            {instrumentFacts.map(([label, value]) => (
+              <div>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <aside class="method-card">
+          <h2>Comment utiliser l’outil correctement ?</h2>
+          <ol>
+            <li>Relevez le cours T2S et son horodatage auprès d’une source autorisée.</li>
+            <li>Indiquez votre nombre d’actions et votre prix moyen réel d’acquisition.</li>
+            <li>Ajoutez les pourcentages de frais figurant sur votre tarification.</li>
+            <li>Comparez le résultat avec le relevé officiel de votre intermédiaire.</li>
+          </ol>
+          <p>
+            Le prix d’introduction de 223 MAD est une référence historique, pas une estimation
+            de la valeur actuelle ou future du titre.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sources-section" aria-labelledby="sources-title">
+      <div class="tool-container">
+        <p class="eyebrow">Méthodologie et transparence</p>
+        <h2 id="sources-title">Sources officielles utilisées</h2>
+        <ul class="source-list">
+          <li>
+            <a href="https://www.ammc.ma/fr/espace-emetteurs/operations-financieres/t2s-group-holding-lammc-vise-le-prospectus-relatif" rel="noopener">
+              Opération financière T2S Group Holding — AMMC
+            </a>
+          </li>
+          <li>
+            <a href="https://www.ammc.ma/sites/default/files/T2S_IPO_NO_021_2026.pdf" rel="noopener">
+              Prospectus d’introduction en bourse — visa VI/EM/021/2026
+            </a>
+          </li>
+          <li>
+            <a href="https://www.ammc.ma/fr/espace-emetteurs/t2s-group-holding" rel="noopener">
+              Fiche émetteur T2S Group Holding — AMMC
+            </a>
+          </li>
+          <li>
+            <a href="https://www.ammc.ma/fr/espace-epargnants/risque-et-rentabilite" rel="noopener">
+              Risque et rentabilité — espace épargnants de l’AMMC
+            </a>
+          </li>
+          <li>
+            <a href="https://www.casablanca-bourse.com/fr/produits" rel="noopener">
+              Conditions de diffusion des données de marché — Bourse de Casablanca
+            </a>
+          </li>
+          <li>
+            <a href="https://www.casablanca-bourse.com/fr/mentions-legales" rel="noopener">
+              Mentions légales — Bourse de Casablanca
+            </a>
+          </li>
+        </ul>
+        <p class="update-note">
+          Vérification éditoriale : <time datetime={publishedDate}>29 juillet 2026</time>.
+          Les données de marché variables ne sont volontairement pas copiées dans cette page.
+        </p>
+      </div>
+    </section>
+
+    <section class="risk-section" aria-labelledby="risk-title">
+      <div class="tool-container risk-card">
+        <div>
+          <p class="eyebrow">Avertissement</p>
+          <h2 id="risk-title">Une action peut monter comme baisser</h2>
+        </div>
+        <p>
+          Investir en actions comporte notamment un risque de perte en capital, de liquidité
+          et lié à l’émetteur. Ce contenu est fourni à titre pédagogique et ne constitue pas
+          un conseil financier, une recommandation personnalisée ou une sollicitation.
+        </p>
+      </div>
+    </section>
+
+    <section class="faq-section" aria-labelledby="faq-title">
+      <div class="tool-container">
+        <p class="eyebrow">Questions fréquentes</p>
+        <h2 id="faq-title">Cours et action T2S au Maroc</h2>
+        <div class="faq-list">
+          {faqItems.map((item) => (
+            <details>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="conversion-section" aria-labelledby="conversion-title">
+      <div class="tool-container conversion-card">
+        <div>
+          <p class="eyebrow">Un outil métier pour votre entreprise ?</p>
+          <h2 id="conversion-title">Nous concevons aussi des calculateurs et tableaux de bord sur mesure</h2>
+          <p>
+            Simulateur, espace client, reporting ou application web : découvrez notre méthode
+            de conception d’outils professionnels.
+          </p>
+        </div>
+        <div class="conversion-actions">
+          <a class="primary-link" href="/services/creation-application-web">Voir les applications web</a>
+          <a class="secondary-link" href="/contact">Présenter votre besoin</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#t2s-calculator');
+  const shareCountInput = document.querySelector<HTMLInputElement>('#share-count');
+  const purchasePriceInput = document.querySelector<HTMLInputElement>('#purchase-price');
+  const observedPriceInput = document.querySelector<HTMLInputElement>('#observed-price');
+  const buyFeesInput = document.querySelector<HTMLInputElement>('#buy-fees');
+  const sellFeesInput = document.querySelector<HTMLInputElement>('#sell-fees');
+  const errorElement = document.querySelector<HTMLElement>('#calculator-error');
+  const purchaseTotalElement = document.querySelector<HTMLElement>('#purchase-total');
+  const currentValueElement = document.querySelector<HTMLElement>('#current-value');
+  const gainLossElement = document.querySelector<HTMLElement>('#gain-loss');
+  const performanceElement = document.querySelector<HTMLElement>('#performance');
+  const breakEvenElement = document.querySelector<HTMLElement>('#break-even');
+
+  const formatMad = new Intl.NumberFormat('fr-MA', {
+    style: 'currency',
+    currency: 'MAD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
+  const formatPercent = new Intl.NumberFormat('fr-MA', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
+  const parseLocalizedNumber = (value: string) => {
+    const normalized = value
+      .trim()
+      .replace(/\s/g, '')
+      .replace(',', '.');
+    return normalized === '' ? Number.NaN : Number(normalized);
+  };
+
+  const resetOutputs = () => {
+    [purchaseTotalElement, currentValueElement, gainLossElement, performanceElement, breakEvenElement]
+      .forEach((element) => {
+        if (element) {
+          element.textContent = '—';
+          element.classList.remove('value-positive', 'value-negative');
+        }
+      });
+  };
+
+  const showError = (message: string) => {
+    if (!errorElement) return;
+    errorElement.textContent = message;
+    errorElement.hidden = false;
+  };
+
+  const clearError = () => {
+    if (!errorElement) return;
+    errorElement.textContent = '';
+    errorElement.hidden = true;
+  };
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    clearError();
+
+    if (
+      !shareCountInput ||
+      !purchasePriceInput ||
+      !observedPriceInput ||
+      !buyFeesInput ||
+      !sellFeesInput
+    ) {
+      showError('Le calculateur n’a pas pu être initialisé.');
+      return;
+    }
+
+    const shareCount = parseLocalizedNumber(shareCountInput.value);
+    const purchasePrice = parseLocalizedNumber(purchasePriceInput.value);
+    const observedPrice = parseLocalizedNumber(observedPriceInput.value);
+    const buyFeesPercent = parseLocalizedNumber(buyFeesInput.value);
+    const sellFeesPercent = parseLocalizedNumber(sellFeesInput.value);
+
+    if (!Number.isInteger(shareCount) || shareCount <= 0) {
+      showError('Indiquez un nombre entier d’actions supérieur à zéro.');
+      shareCountInput.focus();
+      return;
+    }
+
+    if (!Number.isFinite(purchasePrice) || purchasePrice <= 0) {
+      showError('Indiquez un prix d’achat valide supérieur à zéro.');
+      purchasePriceInput.focus();
+      return;
+    }
+
+    if (!Number.isFinite(observedPrice) || observedPrice <= 0) {
+      showError('Indiquez le cours T2S observé auprès de votre diffuseur.');
+      observedPriceInput.focus();
+      return;
+    }
+
+    if (
+      !Number.isFinite(buyFeesPercent) ||
+      !Number.isFinite(sellFeesPercent) ||
+      buyFeesPercent < 0 ||
+      sellFeesPercent < 0 ||
+      buyFeesPercent >= 100 ||
+      sellFeesPercent >= 100
+    ) {
+      showError('Les frais doivent être compris entre 0 % et moins de 100 %.');
+      return;
+    }
+
+    const buyFeesRate = buyFeesPercent / 100;
+    const sellFeesRate = sellFeesPercent / 100;
+    const purchaseTotal = shareCount * purchasePrice * (1 + buyFeesRate);
+    const currentValue = shareCount * observedPrice * (1 - sellFeesRate);
+    const gainLoss = currentValue - purchaseTotal;
+    const performance = (gainLoss / purchaseTotal) * 100;
+    const breakEven = (purchasePrice * (1 + buyFeesRate)) / (1 - sellFeesRate);
+
+    if (purchaseTotalElement) purchaseTotalElement.textContent = formatMad.format(purchaseTotal);
+    if (currentValueElement) currentValueElement.textContent = formatMad.format(currentValue);
+    if (gainLossElement) {
+      gainLossElement.textContent = `${gainLoss >= 0 ? '+' : ''}${formatMad.format(gainLoss)}`;
+      gainLossElement.classList.toggle('value-positive', gainLoss >= 0);
+      gainLossElement.classList.toggle('value-negative', gainLoss < 0);
+    }
+    if (performanceElement) {
+      performanceElement.textContent = `${performance >= 0 ? '+' : ''}${formatPercent.format(performance)} %`;
+      performanceElement.classList.toggle('value-positive', performance >= 0);
+      performanceElement.classList.toggle('value-negative', performance < 0);
+    }
+    if (breakEvenElement) breakEvenElement.textContent = formatMad.format(breakEven);
+  });
+
+  form?.addEventListener('reset', () => {
+    window.setTimeout(() => {
+      clearError();
+      resetOutputs();
+      observedPriceInput?.focus();
+    }, 0);
+  });
+</script>
+
+<style>
+  .tool-page {
+    background: #f5f7fb;
+    color: #10233f;
+  }
+
+  .tool-container {
+    width: min(1160px, calc(100% - 2rem));
+    margin: 0 auto;
+  }
+
+  .tool-hero {
+    padding: 4.5rem 0;
+    background:
+      radial-gradient(circle at 90% 10%, rgba(70, 138, 255, 0.34), transparent 34%),
+      linear-gradient(135deg, #071d38 0%, #0b3562 58%, #115d8f 100%);
+    color: #fff;
+  }
+
+  .tool-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+    color: #1e67df;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .tool-hero .eyebrow {
+    color: #8fc4ff;
+  }
+
+  .tool-hero h1 {
+    max-width: 780px;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2.3rem, 5vw, 4.3rem);
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+  }
+
+  .tool-hero__lead {
+    max-width: 720px;
+    margin: 1.5rem 0 0;
+    color: #dbeafe;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.65;
+  }
+
+  .tool-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .tool-hero__meta span {
+    padding: 0.65rem 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #dbeafe;
+  }
+
+  .tool-hero__meta strong {
+    color: #fff;
+  }
+
+  .market-notice {
+    padding: 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 18px;
+    background: rgba(4, 21, 42, 0.7);
+    box-shadow: 0 24px 55px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12px);
+  }
+
+  .market-notice__badge {
+    display: inline-flex;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: #ffd166;
+    color: #392600;
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .market-notice h2 {
+    margin: 1rem 0 0.75rem;
+    color: #fff;
+    font-size: 1.45rem;
+  }
+
+  .market-notice p {
+    margin: 0.7rem 0 0;
+    color: #dbeafe;
+    line-height: 1.65;
+  }
+
+  .calculator-section,
+  .facts-section,
+  .sources-section,
+  .risk-section,
+  .faq-section,
+  .conversion-section {
+    padding: 4.5rem 0;
+  }
+
+  .calculator-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.6fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .calculator-card,
+  .results-card,
+  .method-card,
+  .risk-card,
+  .conversion-card {
+    border: 1px solid #dce4ef;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 16px 45px rgba(16, 35, 63, 0.08);
+  }
+
+  .calculator-card {
+    padding: clamp(1.25rem, 4vw, 2.25rem);
+  }
+
+  .section-heading h2,
+  .facts-section h2,
+  .sources-section h2,
+  .faq-section h2 {
+    margin: 0;
+    color: #10233f;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    line-height: 1.15;
+  }
+
+  .section-heading > p:last-child,
+  .facts-section h2 + p {
+    color: #52657e;
+    line-height: 1.65;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.75rem;
+  }
+
+  .form-grid label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    color: #203b60;
+    font-weight: 700;
+  }
+
+  .form-grid label:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+
+  .form-grid input {
+    min-height: 48px;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid #b8c7da;
+    border-radius: 10px;
+    background: #fff;
+    color: #10233f;
+    font: inherit;
+  }
+
+  .form-grid input:focus {
+    border-color: #1e67df;
+    outline: 3px solid rgba(30, 103, 223, 0.15);
+  }
+
+  .form-grid small {
+    color: #667892;
+    font-size: 0.78rem;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .calculator-error {
+    margin: 1rem 0 0;
+    padding: 0.85rem 1rem;
+    border-left: 4px solid #c62828;
+    border-radius: 8px;
+    background: #fff1f1;
+    color: #8f1b1b;
+    font-weight: 700;
+  }
+
+  .calculator-actions,
+  .conversion-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .calculate-button,
+  .reset-button,
+  .primary-link,
+  .secondary-link {
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.15rem;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .calculate-button,
+  .primary-link {
+    border: 1px solid #1e67df;
+    background: #1e67df;
+    color: #fff;
+  }
+
+  .reset-button,
+  .secondary-link {
+    border: 1px solid #b8c7da;
+    background: #fff;
+    color: #203b60;
+  }
+
+  .calculate-button:hover,
+  .primary-link:hover {
+    background: #1452b8;
+  }
+
+  .reset-button:hover,
+  .secondary-link:hover {
+    background: #edf3fa;
+  }
+
+  .results-card {
+    position: sticky;
+    top: 100px;
+    padding: 1.75rem;
+  }
+
+  .results-card h2 {
+    margin: 0;
+    font-size: 1.55rem;
+  }
+
+  .results-list {
+    margin: 1.5rem 0 0;
+  }
+
+  .results-list > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid #e4eaf2;
+  }
+
+  .results-list dt {
+    color: #5d6f86;
+  }
+
+  .results-list dd {
+    margin: 0;
+    color: #10233f;
+    font-size: 1.05rem;
+    font-weight: 800;
+    text-align: right;
+  }
+
+  .results-list .value-positive {
+    color: #0a7a43;
+  }
+
+  .results-list .value-negative {
+    color: #bd2828;
+  }
+
+  .results-card__note,
+  .update-note {
+    color: #667892;
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  .facts-section {
+    background: #fff;
+  }
+
+  .facts-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .facts-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin: 2rem 0 0;
+    border: 1px solid #dce4ef;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .facts-list > div {
+    padding: 1rem;
+    border-bottom: 1px solid #e4eaf2;
+    background: #f8fafc;
+  }
+
+  .facts-list > div:nth-child(odd) {
+    border-right: 1px solid #e4eaf2;
+  }
+
+  .facts-list dt {
+    color: #65778e;
+    font-size: 0.82rem;
+  }
+
+  .facts-list dd {
+    margin: 0.35rem 0 0;
+    color: #10233f;
+    font-weight: 800;
+  }
+
+  .method-card {
+    padding: 1.75rem;
+    background: #0b3159;
+    color: #dbeafe;
+  }
+
+  .method-card h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.55rem;
+  }
+
+  .method-card ol {
+    padding-left: 1.25rem;
+    line-height: 1.65;
+  }
+
+  .method-card li + li {
+    margin-top: 0.6rem;
+  }
+
+  .method-card p {
+    margin: 1.25rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    line-height: 1.65;
+  }
+
+  .sources-section {
+    background: #eef3f9;
+  }
+
+  .source-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .source-list a {
+    display: block;
+    min-height: 100%;
+    padding: 1rem;
+    border: 1px solid #d3deeb;
+    border-radius: 12px;
+    background: #fff;
+    color: #1452b8;
+    font-weight: 700;
+    line-height: 1.45;
+    text-decoration: none;
+  }
+
+  .source-list a:hover {
+    border-color: #1e67df;
+    text-decoration: underline;
+  }
+
+  .risk-section {
+    padding-top: 0;
+    background: #eef3f9;
+  }
+
+  .risk-card {
+    display: grid;
+    grid-template-columns: minmax(250px, 0.45fr) minmax(0, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+    border-left: 6px solid #f2a900;
+  }
+
+  .risk-card h2 {
+    margin: 0;
+    color: #10233f;
+    font-size: 1.65rem;
+  }
+
+  .risk-card > p {
+    margin: 0;
+    color: #475d77;
+    line-height: 1.75;
+  }
+
+  .faq-section {
+    background: #fff;
+  }
+
+  .faq-list {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 900px;
+    margin-top: 2rem;
+  }
+
+  .faq-list details {
+    border: 1px solid #dce4ef;
+    border-radius: 12px;
+    background: #f8fafc;
+  }
+
+  .faq-list summary {
+    padding: 1rem 1.25rem;
+    color: #15365c;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .faq-list p {
+    margin: 0;
+    padding: 0 1.25rem 1.25rem;
+    color: #52657e;
+    line-height: 1.7;
+  }
+
+  .conversion-section {
+    background: linear-gradient(135deg, #0a2749, #1452b8);
+  }
+
+  .conversion-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2rem;
+    align-items: center;
+    padding: 2rem;
+    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.09);
+    color: #dbeafe;
+  }
+
+  .conversion-card .eyebrow {
+    color: #9cc9ff;
+  }
+
+  .conversion-card h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+  }
+
+  .conversion-card p {
+    max-width: 720px;
+    margin-bottom: 0;
+    line-height: 1.65;
+  }
+
+  .conversion-actions {
+    margin-top: 0;
+  }
+
+  @media (max-width: 900px) {
+    .tool-hero__grid,
+    .calculator-layout,
+    .facts-layout,
+    .risk-card,
+    .conversion-card {
+      grid-template-columns: 1fr;
+    }
+
+    .results-card {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .tool-hero {
+      padding: 3rem 0;
+    }
+
+    .tool-hero h1 {
+      font-size: clamp(2rem, 12vw, 3rem);
+    }
+
+    .calculator-section,
+    .facts-section,
+    .sources-section,
+    .risk-section,
+    .faq-section,
+    .conversion-section {
+      padding: 3rem 0;
+    }
+
+    .risk-section {
+      padding-top: 0;
+    }
+
+    .form-grid,
+    .facts-list,
+    .source-list {
+      grid-template-columns: 1fr;
+    }
+
+    .form-grid label:nth-child(3) {
+      grid-column: auto;
+    }
+
+    .facts-list > div:nth-child(odd) {
+      border-right: 0;
+    }
+
+    .results-list > div {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+
+    .results-list dd {
+      text-align: left;
+    }
+
+    .calculator-actions,
+    .conversion-actions {
+      flex-direction: column;
+    }
+  }
+</style>

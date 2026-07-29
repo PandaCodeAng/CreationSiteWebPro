@@ -3,11 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import CTAButton from '../components/CTAButton.astro';
 
 const pageTitle = "Merci pour votre message | CreationSiteWebPro";
-const pageDescription = "Votre message a bien été reçu. Notre équipe vous contactera très prochainement.";
+const pageDescription = "Votre message a bien été reçu par CreationSiteWebPro.";
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
-  <main class="thank-you-page">
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonical="https://www.creationsitewebpro.com/merci"
+  noindex={true}
+>
+  <div class="thank-you-page">
     <div class="container">
       <div class="success-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="96" height="96" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -16,13 +21,13 @@ const pageDescription = "Votre message a bien été reçu. Notre équipe vous co
         </svg>
       </div>
       <h1>Message envoyé avec succès !</h1>
-      <p class="message">Merci de nous avoir contacté. Notre équipe d'experts vous répondra dans les plus brefs délais, généralement sous 24 heures ouvrables.</p>
+      <p class="message">Merci de nous avoir contactés. Votre demande a été transmise à notre équipe.</p>
       <div class="next-steps">
         <h2>Et maintenant ?</h2>
         <ul>
           <li>Nous allons analyser votre demande</li>
-          <li>Un expert vous contactera personnellement</li>
-          <li>Nous vous proposerons des solutions adaptées à vos besoins</li>
+          <li>Nous vérifierons les informations transmises</li>
+          <li>Nous vous contacterons avec les prochaines étapes utiles</li>
         </ul>
       </div>
       <div class="cta-container">
@@ -30,7 +35,7 @@ const pageDescription = "Votre message a bien été reçu. Notre équipe vous co
         <CTAButton href="/portfolio-realisations-web-casablanca-maroc" text="Voir nos réalisations" className="secondary-btn" />
       </div>
     </div>
-  </main>
+  </div>
 </Layout>
 
 <style>
@@ -40,7 +45,7 @@ const pageDescription = "Votre message a bien été reçu. Notre équipe vous co
     justify-content: center;
     min-height: 80vh;
     padding: 2rem 1rem;
-    margin-top: 5rem;
+    margin-top: 0;
     text-align: center;
   }
   
@@ -140,7 +145,7 @@ const pageDescription = "Votre message a bien été reçu. Notre équipe vous co
   @media (max-width: 768px) {
     .thank-you-page {
       padding: 1rem;
-      margin-top: 7rem;
+      margin-top: 0;
     }
     
     .container {
@@ -154,7 +159,7 @@ const pageDescription = "Votre message a bien été reçu. Notre équipe vous co
   
   @media (max-width: 480px) {
     .thank-you-page {
-      margin-top: 11rem;
+      margin-top: 0;
     }
     
     .cta-container {

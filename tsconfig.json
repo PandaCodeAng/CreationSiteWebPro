@@ -12,5 +12,9 @@
     "jsxImportSource": "react",
     "strictNullChecks": true,
     "allowJs": true
-  }
+  },
+  "exclude": [
+    "src/components/FixedHeader2.astro",
+    "src/components/ModernHeader.astro"
+  ]
 }

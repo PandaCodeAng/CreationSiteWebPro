@@ -1,113 +1,90 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { generateTimeTag } from '../../utils/dates';
+import { createArticleSchema, getArticleBySlug, getAuthorProfile } from './_articles';
 
-const title = "Webpages Modernes : L'Art de la Création de Site Web en 2024";
-const description = "Découvrez les dernières tendances en création de site web et comment concevoir des webpages performantes pour votre entreprise à Casablanca et au Maroc. Optimisez votre présence en ligne avec nos conseils d'experts.";
-const publishDate = "2026-01-15";
-const author = "Mouhcine Talbi";
-const readingTime = "6 minutes";
-
-const schema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": title,
-  "description": description,
-  "author": {
-    "@type": "Person",
-    "name": author,
-    "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca",
-    "sameAs": "https://www.linkedin.com/in/mouhcine-talbi/"
-  },
-  "datePublished": publishDate,
-  "dateModified": "2026-05-30",
-  "inLanguage": "fr",
-  "image": "https://creationsitewebpro.com/images/webpages-modernes-2024.jpg",
-  "publisher": {
-    "@type": "Organization",
-    "name": "CreationSiteWebPro",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://creationsitewebpro.com/logo.png"
-    }
-  }
-});
+const article = getArticleBySlug('webpages-modernes-creation-site-web-2024');
+const { title, description, publishDate, modifiedDate, author, readingTime } = article;
+const authorProfile = getAuthorProfile(author);
+const schema = createArticleSchema(article);
 ---
 
-<Layout title={title} description={description} canonical="https://www.creationsitewebpro.com/blog/webpages-modernes-creation-site-web-2024">
-  <article itemscope itemtype="http://schema.org/BlogPosting" class="blog-post">
+<Layout title={title} description={description} canonical={article.url}>
+  <JsonLd data={schema} />
+  <article itemscope itemtype="https://schema.org/BlogPosting" class="blog-post">
     <header>
       <h1 itemprop="headline">{title}</h1>
       <p class="post-meta">
         Publié le <Fragment set:html={generateTimeTag(publishDate)} />
-        | Par <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <span itemprop="name">{author}</span>
+        | Mis à jour le <Fragment set:html={generateTimeTag(modifiedDate)} />
+        | Par <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <a href={authorProfile.url} itemprop="url"><span itemprop="name">{author}</span></a>
         </span>
         | Temps de lecture : {readingTime}
       </p>
     </header>
 
     <div itemprop="articleBody">
-      <p>Vous vous lancez dans l'aventure du digital à Casablanca ? Parlons création de site web ! En tant qu'expert basé au cœur du quartier Maârif depuis plus de 15 ans, je constate que le web marocain a fait un sacré bond en avant. Fini le temps des sites vitrine basiques - aujourd'hui, votre présence en ligne doit vraiment en jeter pour séduire les clients casablancais et marocains, de plus en plus connectés.</p>
+      <p>Vous préparez un projet digital à Casablanca ? Parlons création de site web. Une présence en ligne doit être claire, rapide et utile pour répondre aux besoins du public visé.</p>
 
-      <h2>Pourquoi votre business casablancais a besoin d'un site web qui déchire ?</h2>
-      <p>Je ne vous apprends rien : à Casa, comme partout au Maroc, c'est sur le web qu'on cherche tout ! Un site bien pensé, c'est votre meilleur commercial. Voici ce qu'il peut vous apporter :</p>
+      <h2>Quel rôle une page web peut-elle remplir ?</h2>
+      <p>Une page doit répondre à un besoin défini plutôt que tenter de tout présenter. Selon le contexte, elle peut :</p>
       <ul>
-        <li>Une image pro qui inspire confiance aux Casablancais (exit les pages Facebook bricolées !)</li>
-        <li>Une visibilité de ouf sur Google quand les gens cherchent vos services à Casa</li>
-        <li>Des prospects chauds qui correspondent pile à votre cible locale</li>
-        <li>Des clients fidèles qui deviennent vos meilleurs ambassadeurs</li>
+        <li>expliquer une offre et ses conditions ;</li>
+        <li>présenter une entreprise et ses coordonnées ;</li>
+        <li>orienter vers une demande de devis, un achat ou un rendez-vous ;</li>
+        <li>documenter un sujet utile aux clients.</li>
       </ul>
+      <p>Le site ne garantit ni visibilité ni demandes commerciales. Il fournit une base que le contenu, le référencement et les actions de communication peuvent développer dans le temps.</p>
 
-      <h2>Les ingrédients d'un site qui cartonne à Casablanca</h2>
+      <h2>Les fondations d'une page efficace</h2>
       
-      <h3>1. Un site qui s'adapte à tous les écrans, wallah !</h3>
-      <p>Soyons honnêtes, à Casa, tout le monde est scotché à son smartphone. Votre site doit être aussi beau sur un iPhone dernier cri que sur le vieil ordi du bureau. C'est non négociable en 2024 !</p>
+      <h3>1. Une mise en page adaptée aux écrans</h3>
+      <p>Votre site doit rester lisible et utilisable sur smartphone comme sur ordinateur. Testez les contenus, les menus, les formulaires et les boutons sur plusieurs tailles d'écran.</p>
 
-      <h3>2. Rapidité : aussi rapide qu'un petit taxi dans Casa !</h3>
-      <p>On le sait tous, la connexion peut parfois faire des siennes au Maroc. Votre site doit se charger vite, même quand le wifi de la Marina fait des caprices. Pas question de perdre des clients à cause d'un site qui rame !</p>
+      <h3>2. Une performance mesurée</h3>
+      <p>Dimensionnez les images, chargez les ressources selon leur utilité et limitez les scripts tiers. Mesurez ensuite les pages importantes sur des appareils représentatifs plutôt que de supposer leur rapidité.</p>
 
-      <h3>3. Du contenu qui parle aux Casablancais</h3>
-      <p>Oubliez les textes copier-coller ! Il faut parler le langage de Casa : un mix parfait de pro et de proximité, avec ces petites touches locales qui font la différence. Les gens doivent sentir que vous connaissez leur ville et leurs besoins.</p>
+      <h3>3. Un contenu précis</h3>
+      <p>Présentez les services, les livrables, les conditions et les coordonnées avec un vocabulaire compris par le public visé. Les références locales doivent correspondre aux zones réellement desservies, sans ajouter des noms de quartiers uniquement pour le référencement.</p>
 
-      <h3>4. Des boutons d'action qui donnent envie de cliquer</h3>
-      <p>Faut pas avoir peur d'être direct ! "Contactez-nous", "Demandez un devis gratuit", placez ces boutons là où ça fait mal, avec un style qui correspond aux habitudes marocaines.</p>
+      <h3>4. Des actions explicites</h3>
+      <p>Utilisez des libellés qui annoncent le résultat de l'action, comme « Demander un devis » ou « Voir les réalisations ». Les boutons doivent rester visibles et utilisables au clavier sans interrompre la lecture.</p>
 
-      <h3>5. Réseaux sociaux : tous connectés !</h3>
-      <p>Instagram, Facebook, WhatsApp Business... Les Casablancais adorent partager. Facilitez-leur la vie avec des boutons de partage bien visibles.</p>
+      <h3>5. Des canaux de contact cohérents</h3>
+      <p>Ne proposez que les canaux réellement suivis par l'équipe. Indiquez clairement quand utiliser le formulaire, le téléphone ou une messagerie et veillez à ce que les coordonnées restent à jour.</p>
 
-      <h2>Ce qui cartonne dans les sites web à Casa en 2024</h2>
+      <h2>Les principes à évaluer pour un site web en 2026</h2>
       <ol>
-        <li><strong>Le design épuré :</strong> Classe et efficace, comme l'architecture moderne de Casa. Pas besoin d'en faire des tonnes pour impressionner !</li>
-        <li><strong>Les animations :</strong> Quelques effets subtils pour donner du peps, sans transformer votre site en fête foraine digitale.</li>
-        <li><strong>Le mode sombre :</strong> Idéal pour nos soirées de navigation sur le canapé après une longue journée de boulot à Casa.</li>
-        <li><strong>L'expérience sur mesure :</strong> Chaque visiteur se sent spécial, comme dans les meilleurs spots de Casa.</li>
-        <li><strong>Un site pour tous :</strong> Accessible aux personnes handicapées aussi, parce qu'à Casa, on pense à tout le monde.</li>
+        <li><strong>Hiérarchie visuelle :</strong> les titres, espacements et contrastes doivent guider la lecture.</li>
+        <li><strong>Animations utiles :</strong> chaque mouvement doit informer sans gêner les utilisateurs qui préfèrent réduire les animations.</li>
+        <li><strong>Composants cohérents :</strong> boutons, formulaires et cartes doivent suivre les mêmes règles sur toutes les pages.</li>
+        <li><strong>Accessibilité :</strong> navigation au clavier, libellés, alternatives textuelles et contrastes doivent être vérifiés.</li>
+        <li><strong>Maintenance :</strong> le contenu doit pouvoir être mis à jour sans casser la structure de la page.</li>
       </ol>
 
-      <h2>Le mot de la fin : Votre site web, c'est votre avenir à Casa</h2>
-      <p>Écoutez, créer un site web en 2024 à Casablanca, c'est comme ouvrir une boutique sur l'avenue Mohammed V : l'emplacement est top, mais il faut se démarquer ! Chez nous, au cœur de Casa depuis des années, on ne fait pas que des sites web - on crée des expériences qui collent parfaitement à l'esprit de notre ville.</p>
+      <h2>Vérifier la page avant publication</h2>
+      <p>Relisez les informations, testez les liens et les formulaires, puis contrôlez l'affichage sur mobile et ordinateur. Vérifiez aussi le titre de page, la description, l'adresse canonique et l'indexabilité lorsque la page doit apparaître dans les moteurs.</p>
       
-      <p>Notre équipe de Casablancais passionnés connaît les codes du web ET ceux de notre ville. On marie technologie de pointe et "swag" local pour des sites qui ne ressemblent pas à ces trucs génériques qu'on voit partout. Vous méritez un site aussi unique que votre business !</p>
+      <p>Une webpage moderne en 2026 est avant tout compréhensible, robuste et maintenable. Les effets visuels ne doivent intervenir qu'après ces fondations.</p>
     </div>
     
 
     <footer>
-      <h3>Prêt à Booster votre Présence en Ligne au Maroc ?</h3>
-      <p>Contactez CreationSiteWebPro aujourd'hui pour des webpages modernes et performantes, parfaitement adaptées au marché marocain.</p>
-      <a href="/creation-site-web-casablanca" class="cta-button">Demander un Devis Personnalisé</a>
+      <h3>Préparer vos nouvelles pages web</h3>
+      <p>Nous pouvons définir la structure, les contenus et les exigences techniques de votre site à Casablanca ou au Maroc.</p>
+      <a href="/contact" class="cta-button">Demander un devis personnalisé</a>
     </footer>
   </article>
 </Layout>
-
-<script type="application/ld+json" is:inline set:html={schema} />
 
 <style>
   .blog-post {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    margin-top: 7rem;
+    margin-top: 0;
   }
 
   h1 {
@@ -163,7 +140,7 @@ const schema = JSON.stringify({
   @media (max-width: 768px) {
     .blog-post {
       padding: 1rem;
-      margin-top: 11rem;
+      margin-top: 0;
     }
   }
 </style>

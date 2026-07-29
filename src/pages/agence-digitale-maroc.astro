@@ -4,214 +4,211 @@ import CTAButton from '../components/CTAButton.astro';
 import Icon from '../components/Icon.astro';
 import JsonLd from '../components/JsonLd.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { napInfo } from '../layouts/Layout.astro';
 
-const pageTitle = "Agence Digitale Maroc | Agence Web Professionnelle 2026";
-const pageDescription = "Agence experte en création de sites web sur mesure partout au Maroc. Sites vitrines, e-commerce et applications web adaptés au marché marocain. Devis gratuit !";
+const pageTitle = "Agence digitale au Maroc | Sites web et e-commerce";
+const pageDescription = "Création de sites vitrines, boutiques e-commerce, applications web et accompagnement SEO pour les entreprises partout au Maroc.";
 
 const breadcrumbItems = [
   { name: 'Accueil', url: '/' },
-  { name: 'Création Site Web Maroc' }
+  { name: 'Agence digitale Maroc' }
+];
+const canonical = "https://www.creationsitewebpro.com/agence-digitale-maroc";
+const faqItems = [
+  {
+    question: "Combien coûte la création d'un site web au Maroc ?",
+    answer: "Un site vitrine professionnel démarre à 7 500 MAD et une boutique e-commerce à 15 000 MAD. Le prix final dépend des contenus, des fonctionnalités et des intégrations prévues."
+  },
+  {
+    question: "Combien de temps faut-il pour créer un site web ?",
+    answer: "La durée dépend du périmètre, des contenus, des intégrations et des validations. Les étapes et la date de livraison prévisionnelle sont précisées dans le devis."
+  }
 ];
 const pageSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": `${canonical}#service`,
   "name": pageTitle,
   "description": pageDescription,
+  "url": canonical,
   "provider": {
-    "@type": "LocalBusiness",
-    "name": "CreationSiteWebPro"
+    "@id": "https://www.creationsitewebpro.com/#localbusiness"
   },
   "areaServed": {
-    "@type": "City",
-    "name": "Casablanca"
-  }
+    "@type": "Country",
+    "name": "Maroc"
+  },
+  "serviceType": "Conception et accompagnement digital"
+};
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
 };
 const services = [
   {
     icon: 'web',
     title: 'Sites Web Vitrines',
-    description: 'Créez une première impression inoubliable avec un site vitrine élégant et performant, adapté au marché de Casablanca.',
+    description: 'Présentez clairement votre activité avec un site vitrine rapide, accessible et adapté à vos objectifs.',
     features: [
-      'Design responsive adapté aux utilisateurs de Casablanca',
-      'Optimisation SEO locale pour Casablanca',
-      'Contenu personnalisé en arabe et en français',
-      'Formulaires de contact adaptés aux préférences locales',
-      'Compatibilité multi-navigateurs pour tous les appareils utilisés à Casablanca'
+      'Design responsive et accessible',
+      'Fondations SEO techniques',
+      'Structure éditoriale adaptée à vos contenus',
+      'Formulaires et appels à l’action mesurables',
+      'Tests sur les principaux navigateurs'
     ],
-    cta: 'Créer mon site vitrine à Casablanca'
+    cta: 'Créer mon site vitrine'
   },
   {
     icon: 'shopping',
     title: 'E-commerce',
-    description: 'Transformez vos visiteurs casablancais en clients fidèles avec une boutique en ligne puissante et localisée.',
+    description: 'Vendez vos produits avec une boutique conçue autour de votre catalogue et de votre organisation.',
     features: [
       'Gestion de produits adaptée au marché marocain',
-      'Intégration des modes de paiement populaires à Casablanca',
-      'Gestion des stocks en temps réel',
-      'Expérience d\'achat optimisée pour les consommateurs locaux',
-      'Tableau de bord admin en français et en arabe'
+      'Intégration des modes de paiement retenus pour le projet',
+      'Gestion du catalogue et des stocks selon le besoin',
+      'Parcours d\'achat adapté aux clients ciblés',
+      'Tableau de bord et formation à la gestion'
     ],
-    cta: 'Lancer ma boutique en ligne à Casablanca'
+    cta: 'Lancer ma boutique en ligne'
   },
   {
     icon: 'cellphone',
     title: 'Applications Web',
-    description: 'Optimisez vos processus avec des applications web sur mesure, conçues pour les entreprises de Casablanca.',
+    description: 'Digitalisez un processus avec une application web conçue autour de vos utilisateurs et de vos données.',
     features: [
       'Interface intuitive adaptée aux utilisateurs marocains',
-      'Fonctionnalités personnalisées pour le marché de Casablanca',
-      'Intégration avec les systèmes locaux',
-      'Gestion des utilisateurs multilingue',
-      'Analyses et rapports adaptés au marché local'
+      'Fonctionnalités cadrées avec vos équipes',
+      'Intégrations avec vos outils existants',
+      'Gestion des rôles et des accès',
+      'Documentation et modalités de maintenance'
     ],
-    cta: 'Développer mon application pour Casablanca'
+    cta: 'Développer mon application'
   },
   {
     icon: 'magnify',
     title: 'SEO & Performance',
-    description: 'Maximisez votre visibilité en ligne à Casablanca et attirez plus de clients qualifiés locaux.',
+    description: 'Améliorez votre visibilité organique avec une stratégie mesurable et adaptée à votre marché.',
     features: [
-      'Audit SEO complet adapté au marché de Casablanca',
-      'Optimisation on-page pour les recherches locales',
-      'Stratégie de contenu ciblée pour l\'audience casablancaise',
-      'Amélioration de la vitesse pour les connexions locales',
-      'Rapports mensuels personnalisés'
+      'Audit technique et éditorial',
+      'Optimisation des pages prioritaires',
+      'Stratégie de contenu fondée sur les intentions',
+      'Amélioration de la performance',
+      'Suivi des indicateurs convenus'
     ],
-    cta: 'Booster mon référencement à Casablanca'
+    cta: 'Améliorer mon référencement'
   }
 ];
-
-const schemaData = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": pageTitle,
-  "description": pageDescription,
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "CreationSiteWebPro",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Casablanca",
-      "addressCountry": "MA"
-    }
-  },
-  "areaServed": {
-    "@type": "City",
-    "name": "Casablanca"
-  },
-  "serviceType": "Création de site web",
-  "offers": {
-    "@type": "Offer",
-    "description": "Services de création de sites web professionnels à Casablanca"
-  }
-};
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/agence-digitale-maroc">
+<Layout title={pageTitle} description={pageDescription} canonical={canonical}>
   <JsonLd data={pageSchema} />
-  <main class="creation-site-web-casablanca">
+  <JsonLd data={faqSchema} />
+  <div class="creation-site-web-casablanca">
     <Breadcrumbs items={breadcrumbItems} />
 
-    <h1>Agence digital au Maroc</h1>
-    <p class="intro">Chez CreationSiteWebPro, nous sommes les experts de la création de sites web à Casablanca. Nous concevons des solutions web innovantes et sur mesure pour propulser votre entreprise vers le succès digital dans la capitale économique du Maroc.</p>
+    <h1>Agence digitale au Maroc</h1>
+    <p class="intro">CreationSiteWebPro accompagne les entreprises marocaines dans la conception de sites et d’outils web alignés sur leurs objectifs, leurs utilisateurs et leurs contraintes opérationnelles.</p>
 
     <section class="services-grid">
       {services.map((service) => (
         <div class="service-card">
           <div class="service-header">
             <Icon name={service.icon} />
-            <h2>{service.title} à Casablanca</h2>
+            <h2>{service.title}</h2>
           </div>
           <p class="service-description">{service.description}</p>
           <details>
-            <summary>Caractéristiques pour Casablanca</summary>
+            <summary>Ce que le service peut inclure</summary>
             <ul class="features-list">
               {service.features.map((feature) => (
                 <li><Icon name="check" /> {feature}</li>
               ))}
             </ul>
           </details>
-          <CTAButton text={service.cta} href={`/creation-site-web-casablanca?service=${encodeURIComponent(service.title)}`} />
+          <CTAButton text={service.cta} href={`/contact?service=${encodeURIComponent(service.title)}`} />
         </div>
       ))}
     </section>
 
     <section class="casablanca-focus">
-      <h2>Création de Site Web Adapté au Marché de Casablanca</h2>
-      <p>Casablanca, cœur économique du Maroc, nécessite une approche unique en matière de présence en ligne. Chez CreationSiteWebPro, nous comprenons les défis et les opportunités spécifiques au marché casablancais :</p>
+      <h2>Un projet adapté au contexte marocain</h2>
+      <p>Le cadrage tient compte de votre zone de clientèle, de vos langues, de votre organisation et des services tiers réellement disponibles pour votre activité.</p>
       <ul>
-        <li>Design adapté à la culture et aux attentes des consommateurs locaux</li>
-        <li>Optimisation SEO ciblée pour les recherches locales à Casablanca</li>
-        <li>Intégration des modes de paiement préférés des Casablancais</li>
-        <li>Support technique réactif en arabe, français et anglais</li>
-        <li>Conformité aux réglementations marocaines en matière de commerce électronique</li>
+        <li>Contenus et parcours adaptés aux audiences ciblées</li>
+        <li>SEO local ou national selon la zone réellement desservie</li>
+        <li>Paiement et livraison définis selon les partenaires retenus</li>
+        <li>Prise en compte de la protection des données dès le cadrage</li>
+        <li>Mesure des demandes de contact et des conversions utiles</li>
       </ul>
     </section>
     <section class="casablanca-expertise">
-      <h2>Notre Expertise en Création de Sites Web à Casablanca</h2>
-      <p>Chez CreationSiteWebPro, nous sommes fiers d'être le partenaire de choix pour la création de sites web à Casablanca. Notre équipe d'experts comprend les défis uniques et les opportunités du marché casablancais :</p>
+      <h2>Une méthode commune à chaque mission</h2>
+      <p>Le périmètre est écrit avant la production afin d’aligner budget, délais, livrables et responsabilités.</p>
       <ul>
-        <li>Compréhension approfondie du paysage digital de Casablanca</li>
-        <li>Expertise en design adapté aux préférences locales</li>
-        <li>Optimisation pour les moteurs de recherche locaux</li>
-        <li>Intégration des meilleures pratiques de l'e-commerce marocain</li>
-        <li>Support technique en arabe, français et anglais</li>
+        <li>Atelier de cadrage et hiérarchisation des besoins</li>
+        <li>Architecture des contenus et parcours principaux</li>
+        <li>Conception, développement et validations intermédiaires</li>
+        <li>Tests avant mise en ligne</li>
+        <li>Formation et conditions de support précisées au devis</li>
       </ul>
-      <p>Que vous soyez une start-up ambitieuse ou une entreprise établie à Casablanca, nous avons les compétences pour créer un site web qui vous démarquera de la concurrence.</p>
     </section>
     <section class="related-services">
       <h2>Nos Autres Services de Création Web</h2>
       <ul>
         <li><a href="/services/e-commerce-casablanca">Création de Boutiques en Ligne à Casablanca</a></li>
         <li><a href="/services/referencement-seo-casablanca">Services SEO pour Entreprises Casablancaises</a></li>
-        <li><a href="/portfolio">Découvrez Notre Portfolio de Projets à Casablanca</a></li>
+        <li><a href="/portfolio-realisations-web-casablanca-maroc">Découvrez notre portfolio de projets</a></li>
       </ul>
     </section>
     <section class="why-choose-us">
-      <h2>Pourquoi Choisir CreationSiteWebPro à Casablanca ?</h2>
+      <h2>Pourquoi travailler avec CreationSiteWebPro&nbsp;?</h2>
       <div class="benefits-grid">
         <div class="benefit">
           <Icon name="trophy" />
-          <h3>Expertise Locale</h3>
-          <p>10+ ans d'expérience à Casablanca</p>
+          <h3>Cadrage local</h3>
+          <p>Des choix adaptés au marché réellement visé</p>
         </div>
         <div class="benefit">
           <Icon name="rocket" />
           <h3>Solutions Sur Mesure</h3>
-          <p>Adaptées au marché de Casablanca</p>
+          <p>Un périmètre adapté à votre activité</p>
         </div>
         <div class="benefit">
           <Icon name="headphones" />
           <h3>Support Local</h3>
-          <p>Équipe dédiée basée à Casablanca</p>
+          <p>Des modalités définies avant le démarrage</p>
         </div>
         <div class="benefit">
           <Icon name="tools" />
-          <h3>Technologie de Pointe</h3>
-          <p>Pour des sites performants à Casablanca</p>
+          <h3>Choix techniques expliqués</h3>
+          <p>Performance, sécurité et maintenance prises en compte</p>
         </div>
       </div>
     </section>
     <section class="faq" aria-labelledby="faq-title">
-      <h2 id="faq-title">Questions fréquentes sur la création de sites web à Casablanca</h2>
+      <h2 id="faq-title">Questions fréquentes sur nos services au Maroc</h2>
       <dl>
-        <dt>Combien coûte la création d'un site web à Casablanca ?</dt>
-        <dd>Le coût varie en fonction de vos besoins spécifiques. Nos tarifs commencent à partir de 4 776 MAD pour un site vitrine de base. Contactez-nous pour un devis personnalisé.</dd>
-        
-        <dt>Combien de temps faut-il pour créer un site web ?</dt>
-        <dd>La durée de création dépend de la complexité du projet. En général, un site vitrine peut être réalisé en 2 à 4 semaines, tandis qu'un e-commerce peut prendre 4 à 8 semaines.</dd>
-        
-        <!-- Ajoutez d'autres questions pertinentes -->
+        {faqItems.map((item) => (
+          <Fragment>
+            <dt>{item.question}</dt>
+            <dd>{item.answer}</dd>
+          </Fragment>
+        ))}
       </dl>
     </section>
     <section id="contact" class="cta-section">
-      <h2>Prêt à Booster Votre Présence En Ligne à Casablanca ?</h2>
-      <p>Obtenez un devis gratuit pour votre projet digital à Casablanca.</p>
-      <a href="/creation-site-web-casablanca" class="cta-button">Obtenez votre devis gratuit <span class="urgency">Offre limitée!</span></a>
-      <p class="social-proof">Déjà plus de 1000 entreprises satisfaites</p>
+      <h2>Prêt à cadrer votre projet digital&nbsp;?</h2>
+      <p>Présentez-nous votre activité, vos utilisateurs et les résultats attendus.</p>
+      <a href="/contact" class="cta-button">Demander un devis</a>
   </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
@@ -220,7 +217,7 @@ const schemaData = {
     padding: 1rem;
     max-width: 100%;
     overflow-x: hidden;
-    margin-top: 10rem;
+    margin-top: 0;
   }
   .social-proof {
     margin-top: 1rem;
@@ -489,7 +486,7 @@ const schemaData = {
       max-width: 1200px;
       margin: 0 auto;
       padding: 3rem 2rem;
-      margin-top: 5rem;
+      margin-top: 0;
     }
 
     h1 {
@@ -521,7 +518,7 @@ const schemaData = {
   @media (max-width: 459px) {
     .creation-site-web-casablanca {
       padding: 0.5rem;
-      margin-top: 11rem;
+      margin-top: 0;
     }
 
     h1 {

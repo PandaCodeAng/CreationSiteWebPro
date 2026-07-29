@@ -1,7 +1,7 @@
 // Fonction Netlify pour envoyer des emails via Web3Forms
 const axios = require('axios');
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   // S'assurer que la méthode est POST
   if (event.httpMethod !== "POST") {
     return { 
@@ -14,14 +14,23 @@ exports.handler = async (event, context) => {
     // Analyser les données du formulaire
     const formData = JSON.parse(event.body);
     
-    // Clé API Web3Forms
-    const apiKey = "6dd0e0c5-9129-4e26-8c0b-dfd03c4b2e96";
+    const apiKey = process.env.WEB3FORMS_ACCESS_KEY;
+    if (!apiKey) {
+      console.error("WEB3FORMS_ACCESS_KEY n'est pas configurée");
+      return {
+        statusCode: 500,
+        body: JSON.stringify({
+          success: false,
+          message: "Le service d'envoi n'est pas configuré"
+        })
+      };
+    }
     
     // Préparer le payload pour la requête
     const payload = {
       ...formData,
       access_key: apiKey,
-      to_email: "creationsitewebpromo@gmail.com", // Adresse email destinataire
+      to_email: process.env.EMAIL_TO || "creationsitewebpromo@gmail.com",
       redirect: false // Ne pas rediriger après soumission
     };
 
@@ -41,16 +50,14 @@ exports.handler = async (event, context) => {
         })
       };
     } else {
-      console.error("Échec d'envoi de l'email", response.data);
+      console.error("Échec d'envoi de l'email via Web3Forms");
       
       return {
         statusCode: 500,
         body: JSON.stringify({
           success: false,
           message: "Échec d'envoi de l'email",
-          errors: {
-            details: response.data
-          }
+          errors: {}
         })
       };
     }  } catch (error) {
@@ -61,7 +68,7 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({
         success: false,
         message: "Une erreur est survenue",
-        error: error.message
+        error: "Erreur interne"
       })
     };
   }

@@ -1,100 +1,78 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { generateTimeTag } from '../../utils/dates';
+import { createArticleSchema, getArticleBySlug, getAuthorProfile } from './_articles';
 
-const title = "E-commerce Maroc : Guide Pratiques Performantes 2026";
-const description = "Découvrez les stratégies essentielles pour créer un e-commerce performant à Casablanca et au Maroc. Augmentez vos conversions et optimisez l'expérience utilisateur de votre boutique en ligne avec nos conseils d'experts en création de site web.";
-const publishDate = "2026-04-10";
-const author = "Safae Abed";
-const readingTime = "8 minutes";
-
-const schema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": title,
-  "description": description,
-  "author": {
-    "@type": "Person",
-    "name": author,
-    "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca"
-  },
-  "datePublished": publishDate,
-  "dateModified": "2026-05-30",
-  "inLanguage": "fr",
-  "image": "https://creationsitewebpro.com/images/ecommerce-maroc-best-practices.jpg",
-  "publisher": {
-    "@type": "Organization",
-    "name": "CreationSiteWebPro",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://creationsitewebpro.com/logo.png"
-    }
-  }
-});
+const article = getArticleBySlug('guide-ecommerce-maroc-site-web-performant');
+const { title, description, publishDate, modifiedDate, author, readingTime } = article;
+const authorProfile = getAuthorProfile(author);
+const schema = createArticleSchema(article);
 ---
 
-<Layout title={title} description={description} canonical="https://www.creationsitewebpro.com/blog/guide-ecommerce-maroc-site-web-performant">
-  <article itemscope itemtype="http://schema.org/BlogPosting" class="blog-post">
+<Layout title={title} description={description} canonical={article.url}>
+  <JsonLd data={schema} />
+  <article itemscope itemtype="https://schema.org/BlogPosting" class="blog-post">
     <header>
       <h1 itemprop="headline">{title}</h1>
       <p class="post-meta">
         Publié le <Fragment set:html={generateTimeTag(publishDate)} />
-        | Par <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <span itemprop="name">{author}</span>
+        | Mis à jour le <Fragment set:html={generateTimeTag(modifiedDate)} />
+        | Par <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <a href={authorProfile.url} itemprop="url"><span itemprop="name">{author}</span></a>
         </span>
         | Temps de lecture : {readingTime}
       </p>
     </header>
 
     <div itemprop="articleBody">
-      <p>Alors, vous voulez vous lancer dans l'e-commerce à Casa ? Mashae Allah, le timing est parfait ! Depuis que j'ai monté ma première boutique en ligne en 2015 à Derb Omar (oui, même les commerçants traditionnels s'y mettent !), j'ai vu le marché exploser. Laissez-moi vous partager les vraies astuces qui marchent chez nous :</p>
+      <p>Un projet e-commerce au Maroc doit relier le catalogue, le paiement, la livraison, le service client et la gestion interne. La qualité de l'interface ne suffit pas si les règles commerciales ou les opérations ne sont pas clairement définies.</p>
 
-      <h2>1. Un Site qui Marche sur Tous les Téléphones, Obligé !</h2>
-      <p>Sérieux, vous avez déjà vu un Casablancais sans son smartphone ? Que vous vendiez des babouches ou des iPhones, votre site DOIT être nickel sur mobile. J'ai un client qui fait 80% de ses ventes via WhatsApp, alors imaginez ! Même les grands-mères commandent sur leur portable maintenant !</p>
+      <h2>1. Définir le catalogue et les données produit</h2>
+      <p>Avant le développement, préparez les catégories, variantes, prix, stocks, photos et informations utiles à la décision. Déterminez aussi qui mettra ces données à jour et à quelle fréquence.</p>
 
-      <h2>2. Rapide comme un Petit Taxi dans le Centre-ville</h2>
-      <p>La connexion à Casa, c'est comme la circulation : des fois ça roule, des fois ça bloque ! Votre site doit charger plus vite qu'un vendeur de M'semen pendant le Ramadan. Si ça rame, wallah, les clients partent plus vite qu'un taxi qui a vu un client faire signe !</p>
+      <h2>2. Concevoir un parcours utilisable sur mobile</h2>
+      <p>Les pages produit, le panier et le paiement doivent rester lisibles sur un petit écran. Limitez les champs du formulaire aux informations nécessaires, affichez les erreurs clairement et permettez au client de vérifier sa commande avant validation.</p>
 
-      <h2>3. Parlez toutes les Langues de Casa !</h2>
-      <p>Français, Arabe, Darija... et oui, même l'anglais pour les expats de CasaNearShore ! C'est comme au souk : plus vous parlez de langues, plus vous vendez. Et attention, pas de Google Translate hein ! On veut du vrai contenu qui parle aux Marocains.</p>
+      <h2>3. Soigner la performance</h2>
+      <p>Des images correctement dimensionnées, un code maîtrisé et un hébergement adapté réduisent le temps d'attente. Testez les pages du catalogue et le tunnel de commande sur plusieurs appareils et conditions de connexion.</p>
 
-      <h2>4. Le Paiement ? Flexible comme un Contorsionniste !</h2>
-      <p>Cash à la livraison ? Bien sûr ! Virement ? Yallah ! CIH Mobile ? Parfait ! CMI en ligne ? Pourquoi pas ! Plus vous avez d'options, mieux c'est. N'oubliez pas que beaucoup de Casablancais préfèrent encore voir le produit avant de payer. C'est comme ça, c'est dans nos gènes !</p>
+      <h2>4. Choisir les langues selon la clientèle</h2>
+      <p>Le français, l'arabe, le darija ou l'anglais peuvent être pertinents selon le public. Chaque version doit être relue, maintenue et associée à une navigation cohérente ; une traduction automatique non vérifiée peut créer des erreurs sur les produits ou les conditions de vente.</p>
 
-      <h2>5. Un Service Client aux Petits Oignons</h2>
-      <p>Ici à Casa, on aime le contact humain ! Mettez un WhatsApp Business, répondez sur Messenger, soyez dispo sur Instagram. Et surtout, parlez comme un vrai Marocain : "Salam, la famille ! On peut vous aider ?" C'est ça qui fait la différence !</p>
+      <h2>5. Cadrer les moyens de paiement</h2>
+      <p>Choisissez les options de paiement en fonction de votre clientèle, de vos contrats avec les prestataires et de vos procédures comptables. Affichez les moyens disponibles avant la dernière étape et testez les paiements réussis, refusés, annulés et remboursés.</p>
 
-      <h2>6. La Livraison, le Nerf de la Guerre</h2>
-      <p>Écoutez, j'ai appris ça à la dure : un bon livreur vaut de l'or ! Trouvez des partenaires fiables qui connaissent les ruelles de l'ancienne médina comme leur poche. Et proposez le tracking en direct, comme ça vos clients ne stressent pas comme pendant l'attente des résultats du Bac !</p>
+      <h2>6. Formaliser la livraison et les retours</h2>
+      <p>Précisez les zones desservies, les frais, les conditions de livraison, le suivi disponible et la procédure de retour. Ces règles doivent correspondre aux capacités des partenaires logistiques et rester accessibles avant la commande.</p>
 
-      <h2>7. Soyez le Roi de Google à Casa</h2>
-      <p>Quand quelqu'un cherche "شراء ملابس في الدار البيضاء" ou "acheter des vêtements à Casa", il faut que vous soyez là ! Utilisez les mots que les gens d'ici utilisent vraiment. "Jeans" ou "جينز" ? Mettez les deux, khoya !</p>
+      <h2>7. Organiser le service client</h2>
+      <p>Indiquez des coordonnées valides, les horaires de réponse et le canal à utiliser selon la demande. Préparez des procédures pour la modification d'une commande, le retard, l'annulation et le remboursement.</p>
 
-      <h2>8. Les Réseaux Sociaux, c'est la Famille</h2>
-      <p>Instagram, Facebook, TikTok... à Casa, c'est plus qu'des réseaux, c'est notre deuxième maison ! Partagez des stories du quotidien, montrez l'équipe qui prépare les commandes, faites des lives pendant les soldes. Les gens adorent voir ce qui se passe en coulisses !</p>
+      <h2>8. Préparer le référencement et la mesure</h2>
+      <p>Utilisez des catégories compréhensibles, des descriptions produit originales et des adresses stables. Configurez des événements de mesure pour le panier et la commande, puis vérifiez leur fonctionnement sans collecter plus de données que nécessaire.</p>
 
-      <h2>Le Mot de la Fin</h2>
-      <p>Franchement, monter un e-commerce à Casa en 2024, c'est comme ouvrir une terrasse de café : l'emplacement (digital) est crucial, le service doit être au top, et il faut créer une ambiance où les gens se sentent comme chez eux !</p>
+      <h2>9. Vérifier la conformité et la sécurité</h2>
+      <p>Les mentions commerciales, la politique de confidentialité et les conditions applicables doivent être validées pour l'activité concernée. Protégez les comptes d'administration, appliquez les mises à jour et prévoyez des sauvegardes testées.</p>
 
-      <p>Chez nous, au bureau près du Twin Center (vous savez, là où y'a toujours des embouteillages !), on crée des e-commerce qui cartonnent parce qu'on connaît notre ville par cœur. On fait pas juste des sites web, on crée des espaces où les Casablancais se sentent à l'aise pour faire leur shopping en ligne, comme s'ils étaient au Morocco Mall un samedi après-midi !</p>
+      <h2>En résumé</h2>
+      <p>En 2026, un e-commerce performant est avant tout un système fiable : l'offre est claire, les étapes d'achat sont testées et les opérations suivent les engagements affichés au client.</p>
     </div>
 
     <footer>
-      <h3>Prêt à Booster les Performances de votre E-commerce au Maroc ?</h3>
-      <p>CreationSiteWebPro peut vous aider à optimiser votre boutique en ligne pour maximiser vos ventes sur le marché marocain.</p>
-      <a href="/creation-site-web-casablanca" class="cta-button">Demander un Audit Gratuit de votre E-commerce</a>
+      <h3>Préparer votre projet e-commerce au Maroc</h3>
+      <p>Présentez votre catalogue, vos règles de paiement et votre organisation logistique pour cadrer une boutique adaptée à votre activité.</p>
+      <a href="/contact" class="cta-button">Demander un devis e-commerce</a>
     </footer>
   </article>
 </Layout>
-
-<script type="application/ld+json" is:inline set:html={schema} />
 
 <style>
   .blog-post {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    margin-top: 7rem;
+    margin-top: 0;
   }
 
   h1 {
@@ -150,7 +128,7 @@ const schema = JSON.stringify({
   @media (max-width: 768px) {
     .blog-post {
       padding: 1rem;
-      margin-top: 11rem;
+      margin-top: 0;
     }
   }
 </style>

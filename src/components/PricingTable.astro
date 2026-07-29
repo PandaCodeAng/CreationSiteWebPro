@@ -3,24 +3,25 @@ const { title, subtitle } = Astro.props;
 
 import Icon from './Icon.astro';
 import CTAButton from './CTAButton.astro';
+import { napInfo } from '../data/business';
 ---
 
 <section class="pricing" id="pricing">
-  <div class="container">    <div class="section-header pricing-header">
+  <div class="container">
+    <div class="section-header pricing-header">
       {title && <span class="section-tag pricing-tag">Nos tarifs</span>}
       {title && <h2 class="section-title pricing-title">{title}</h2>}
       {subtitle && <p class="section-subtitle pricing-subtitle">{subtitle}</p>}
     </div>
     
     <div class="pricing-cards">
-      <!-- Pack Éveil Sensoriel -->
+      <!-- Site vitrine -->
       <div class="pricing-card">
         <div class="pricing-card__header">
-          <h3 class="pricing-card__title">Pack<br/>Éveil Sensoriel</h3>
+          <h3 class="pricing-card__title">Site<br/>Vitrine</h3>
         </div>
         <div class="pricing-card__price">
-          <div class="pricing-card__current-price">7 500 MAD</div>
-          <div class="pricing-card__original-price">(au 9 500 MAD)</div>
+          <div class="pricing-card__current-price">À partir de 7 500 MAD</div>
         </div>
         <ul class="pricing-card__features">
           <li>
@@ -29,11 +30,11 @@ import CTAButton from './CTAButton.astro';
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>Design responsive 'spo cozy'</span>
+            <span>Design responsive sur mesure</span>
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>SEO de base</span>
+            <span>Socle SEO technique et éditorial</span>
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
@@ -41,10 +42,11 @@ import CTAButton from './CTAButton.astro';
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>Hébergement & SSL (1an)</span>
+            <span>Hébergement, SSL et durée précisés au devis</span>
           </li>
           <li>
-            <Icon name="check" className="pricing-card__icon" />            <span>CMS simple pour mises à jour</span>
+            <Icon name="check" className="pricing-card__icon" />
+            <span>CMS simple pour mises à jour</span>
           </li>
         </ul>
         <div class="pricing-card__cta">
@@ -52,99 +54,100 @@ import CTAButton from './CTAButton.astro';
             Demander un devis
             <Icon name="arrow-right" className="pricing-card__button-icon" />
           </CTAButton>
-          <CTAButton href="tel:+212679782906" className="pricing-card__button call-button">
+          <CTAButton href={`tel:${napInfo.phone.replace(/\s+/g, '')}`} className="pricing-card__button call-button">
             <Icon name="phone" className="pricing-card__button-icon" />
             Nous appeler
           </CTAButton>
         </div>
       </div>
       
-      <!-- Pack Harmonie Premium -->
+      <!-- Site e-commerce -->
       <div class="pricing-card pricing-card--featured">
         <div class="pricing-card__header">
-          <h3 class="pricing-card__title">Pack<br/>Harmonie Premium</h3>
-          <div class="pricing-card__badge">Le + Populaire</div>
+          <h3 class="pricing-card__title">Site<br/>E-commerce</h3>
+          <div class="pricing-card__badge">Boutique en ligne</div>
         </div>
         <div class="pricing-card__price">
-          <div class="pricing-card__current-price">11 900 MAD</div>
-          <div class="pricing-card__original-price">(au 14 900 MAD)</div>
+          <div class="pricing-card__current-price">À partir de 15 000 MAD</div>
         </div>
         <ul class="pricing-card__features">
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>6-8 pages + section Blog/Actualités</span>
+            <span>Catalogue, panier et gestion des commandes</span>
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>Design semi sur mesure + animations</span>
+            <span>Design responsive adapté au parcours d'achat</span>
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>Intégration d'outils de ligne</span>
+            <span>Intégration des moyens de paiement prévus au devis</span>
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>SEO local avancé FR/AR + Google My Business</span>
+            <span>Configuration des livraisons et des notifications</span>
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>Galerie photos & témoignages</span>
+            <span>Socle SEO pour les catégories et produits</span>
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>Formation express (2h) + support prioritaire</span>
+            <span>Formation à la gestion de la boutique</span>
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>Google Analytics & Search Console</span>
+            <span>Suivi technique après la mise en ligne</span>
           </li>
-        </ul>        <div class="pricing-card__cta">          <CTAButton href="/contact" className="pricing-card__button pricing-card__button--featured">
+        </ul>
+        <div class="pricing-card__cta">
+          <CTAButton href="/contact" className="pricing-card__button pricing-card__button--featured">
             Demander un devis
             <Icon name="arrow-right" className="pricing-card__button-icon" />
           </CTAButton>
-          <CTAButton href="tel:+212679782906" className="pricing-card__button call-button">
+          <CTAButton href={`tel:${napInfo.phone.replace(/\s+/g, '')}`} className="pricing-card__button call-button">
             <Icon name="phone" className="pricing-card__button-icon" />
             Nous appeler
           </CTAButton>
         </div>
       </div>
       
-      <!-- Pack Prestige Suprême -->
+      <!-- Projet sur mesure -->
       <div class="pricing-card">
         <div class="pricing-card__header">
-          <h3 class="pricing-card__title">Pack<br/>Prestige Suprême</h3>
+          <h3 class="pricing-card__title">Projet<br/>Sur mesure</h3>
         </div>
         <div class="pricing-card__price">
-          <div class="pricing-card__current-price">16 900 MAD</div>
-          <div class="pricing-card__original-price">(au 19 900 MAD)</div>
+          <div class="pricing-card__current-price">Sur devis</div>
         </div>
         <ul class="pricing-card__features">
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>Site full sur-mesure multilingue (FR/AR/EN)</span>
+            <span>Application web ou portail métier</span>
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>Contenus SEO premium (blog, FAQ, Tips beauté)</span>
+            <span>Fonctionnalités définies selon vos processus</span>
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>Réservation - paiement Intégré (CM,Stripe,COD)</span>
+            <span>Intégrations API, CRM ou outils internes</span>
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>CMS Headless + Intégration CRM</span>
+            <span>Architecture et interface personnalisées</span>
           </li>
           <li>
             <Icon name="check" className="pricing-card__icon" />
-            <span>Maintenance premium & veille CNDP (8 mois)</span>
+            <span>Planning et maintenance définis au devis</span>
           </li>
-        </ul>        <div class="pricing-card__cta">
+        </ul>
+        <div class="pricing-card__cta">
           <CTAButton href="/contact" className="pricing-card__button">
             Demander un devis
             <Icon name="arrow-right" className="pricing-card__button-icon" />
           </CTAButton>
-          <CTAButton href="tel:+212679782906" className="pricing-card__button call-button">
+          <CTAButton href={`tel:${napInfo.phone.replace(/\s+/g, '')}`} className="pricing-card__button call-button">
             <Icon name="phone" className="pricing-card__button-icon" />
             Nous appeler
           </CTAButton>
@@ -153,8 +156,8 @@ import CTAButton from './CTAButton.astro';
     </div>
     
     <div class="pricing-note">
-      <p>Jusqu'à 4 000 MAD de remise sur nos packs web, pour une présence en ligne alignée à votre univers.</p>
-      <CTAButton href="/creation-site-web-casablanca" className="pricing-note__button secondary-cta">
+      <p>Ces tarifs sont des prix de départ. Le devis final dépend du périmètre, des contenus, des intégrations et du calendrier validés avec vous.</p>
+      <CTAButton href="/services" className="pricing-note__button secondary-cta">
         En savoir plus sur nos services
         <Icon name="arrow-right" className="pricing-note__button-icon" />
       </CTAButton>
@@ -162,7 +165,8 @@ import CTAButton from './CTAButton.astro';
   </div>
 </section>
 
-<style>  .pricing {
+<style>
+  .pricing {
     padding: 6rem 0;
     background-color: #f8f9fd;
     background-image: linear-gradient(135deg, #f8f9fd 0%, #e9eeff 100%);

@@ -20,6 +20,7 @@ const { items = [], className = '' } = Astro.props;
         itemscope 
         itemtype="https://schema.org/ListItem"
         class={index === items.length - 1 ? 'current' : ''}
+        aria-current={index === items.length - 1 ? 'page' : undefined}
       >
         {item.url ? (
           <a href={item.url} itemprop="item">

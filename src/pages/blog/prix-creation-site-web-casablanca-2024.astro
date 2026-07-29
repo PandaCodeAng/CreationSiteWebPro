@@ -1,71 +1,36 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { generateTimeTag } from '../../utils/dates';
+import { createArticleSchema, getArticleBySlug, getAuthorProfile } from './_articles';
+import { napInfo } from '../../data/business';
 
-const title = "Création Site Web Casablanca : Vrais Prix 2026";
-const description = "Découvrez les vrais prix de création site web à Casablanca, basés sur 500+ projets réalisés. Guide complet des tarifs 2024, astuces pour économiser et conseils d'experts locaux. Devis gratuit personnalisé !";
-const publishDate = "2026-05-01";
-const author = "Mouhcine TALBI";
-const readingTime = "8 minutes";
-const category = "Création Web Casablanca";
-
-const schema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": title,
-  "description": description,
-  "author": {
-    "@type": "Person",
-    "name": author,
-    "url": "https://www.creationsitewebpro.com/a-propos-agence-web-casablanca",
-    "sameAs": "https://www.linkedin.com/in/mouhcine-talbi/",
-    "jobTitle": "Expert Création Site Web",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "CreationSiteWebPro",
-      "url": "https://www.creationsitewebpro.com"
-    }
-  },
-  "datePublished": publishDate,
-  "dateModified": "2026-05-30",
-  "inLanguage": "fr",
-  "image": "https://creationsitewebpro.com/images/prix-creation-site-web-casablanca.jpg",
-  "keywords": "création site web Casablanca, prix site web Casablanca, tarifs création site web Maroc, agence web Casablanca prix, coût site internet Casablanca, devis site web Casablanca",
-  "publisher": {
-    "@type": "Organization",
-    "name": "CreationSiteWebPro",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://creationsitewebpro.com/logo.png"
-    }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://creationsitewebpro.com/blog/prix-creation-site-web-casablanca-2024"
-  }
-});
+const article = getArticleBySlug('prix-creation-site-web-casablanca-2024');
+const { title, description, publishDate, modifiedDate, author, readingTime } = article;
+const authorProfile = getAuthorProfile(author);
+const schema = createArticleSchema(article);
 ---
 
 <Layout 
   title={title}
   description={description}
-  canonical={new URL('/blog/prix-creation-site-web-casablanca-2024', Astro.site).toString()}
+  canonical={article.url}
 >
-  <article itemscope itemtype="http://schema.org/BlogPosting" class="blog-post">
+  <JsonLd data={schema} />
+  <article itemscope itemtype="https://schema.org/BlogPosting" class="blog-post">
     <header class="article-header">
       <h1 itemprop="headline">{title}</h1>
       <div class="post-meta">
         <div class="author-info">
           <div class="author-details">
-            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-              <span itemprop="name">{author}</span>
+            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+              <a href={authorProfile.url} itemprop="url"><span itemprop="name">{author}</span></a>
             </span>
-            <span class="author-title">Expert Création Site Web Casablanca</span>
+            <span class="author-title">Création de site web à Casablanca</span>
           </div>
           <div class="post-details">
-            <time datetime={publishDate}>
-              <Fragment set:html={generateTimeTag(publishDate)} />
-            </time>
+            <Fragment set:html={generateTimeTag(publishDate)} />
+            <span>Mis à jour le <Fragment set:html={generateTimeTag(modifiedDate)} /></span>
             <span class="reading-time">⏱️ {readingTime}</span>
           </div>
         </div>
@@ -75,149 +40,143 @@ const schema = JSON.stringify({
     <nav class="table-of-contents">
       <h2>Dans cet article :</h2>
       <ul>
-        <li><a href="#intro">Prix création site web Casablanca 2024</a></li>
-        <li><a href="#tarifs">Grille tarifaire détaillée</a></li>
+        <li><a href="#intro">Prix création site web Casablanca 2026</a></li>
+        <li><a href="#tarifs">Tarifs de départ</a></li>
         <li><a href="#facteurs">Ce qui influence les prix</a></li>
-        <li><a href="#conseils">Conseils pour économiser</a></li>
+        <li><a href="#conseils">Préparer un budget</a></li>
         <li><a href="#pieges">Pièges à éviter</a></li>
-        <li><a href="#devis">Obtenir un devis gratuit</a></li>
+        <li><a href="#devis">Obtenir un devis</a></li>
       </ul>
     </nav>
 
     <div itemprop="articleBody" class="article-content">
       <section id="intro">
         <p class="lead-paragraph">
-          Salam ! Mouhcine de CreationSiteWebPro ici. Avec plus de 500 sites créés à Casa, je connais une question qui revient souvent : "C'est combien un site web professionnel ?" Aujourd'hui, je vais tout vous dire sur les prix 2024, sans baratin commercial. Et croyez-moi, il y a des choses à savoir avant de vous lancer !
+          Salam ! Mouhcine de CreationSiteWebPro ici. Une question revient souvent : « Combien coûte un site web professionnel ? » Voici des repères pour comprendre les principaux postes de coût et préparer vos demandes de devis en 2026.
         </p>
       </section>
 
       <section id="tarifs" class="pricing-section">
-        <h2>Les Vrais Prix 2024 de Création Site Web à Casablanca</h2>
+        <h2>Tarifs de départ 2026 pour un site web à Casablanca</h2>
+        <p class="pricing-disclaimer">Les montants ci-dessous correspondent aux tarifs de départ affichés par CreationSiteWebPro. Le prix final dépend du périmètre validé dans le devis. Consultez la page de nos <a href="/creation-site-web-casablanca-prix">offres actuelles</a> pour vérifier les informations à jour.</p>
         
         <div class="price-card">
-          <h3>💼 Site Vitrine Pro</h3>
-          <div class="price-range">4 000 - 8 000 DH</div>
+          <h3>Site vitrine</h3>
+          <div class="price-range">À partir de 7 500 MAD</div>
           <ul>
-            <li> 5-7 pages optimisées SEO</li>
-            <li> Design responsive (mobile-first)</li>
-            <li> Formulaire de contact intelligent</li>
-            <li> Intégration réseaux sociaux</li>
-            <li> Optimisation vitesse</li>
+            <li>Pages et contenus définis dans le devis</li>
+            <li>Design responsive</li>
+            <li>Socle SEO technique et éditorial</li>
+            <li>Formulaire de contact</li>
+            <li>Modalités d'hébergement précisées dans l'offre</li>
           </ul>
-          <div class="price-note">Idéal pour : TPE, professions libérales, artisans</div>
+          <div class="price-note">Pour présenter une activité et recueillir des demandes de contact.</div>
         </div>
 
         <div class="price-card featured">
-          <h3>🚀 Pack Business Pro</h3>
-          <div class="price-range">8 000 - 15 000 DH</div>
+          <h3>Site e-commerce</h3>
+          <div class="price-range">À partir de 15 000 MAD</div>
           <ul>
-            <li> 10-15 pages personnalisées</li>
-            <li> Design unique sur mesure</li>
-            <li> Blog professionnel intégré</li>
-            <li> SEO avancé local</li>
-            <li> Formation backoffice incluse</li>
+            <li>Catalogue, panier et gestion des commandes</li>
+            <li>Parcours d'achat responsive</li>
+            <li>Moyens de paiement prévus au devis</li>
+            <li>Configuration des règles de livraison</li>
+            <li>Formation à la gestion de la boutique</li>
           </ul>
-          <div class="price-note">Parfait pour : PME, commerces, restaurants</div>
+          <div class="price-note">Le montant dépend notamment du catalogue et des intégrations.</div>
         </div>
 
         <div class="price-card">
-          <h3>🛍️ E-commerce Complet</h3>
-          <div class="price-range">15 000 - 30 000 DH</div>
+          <h3>Application ou besoin sur mesure</h3>
+          <div class="price-range">Sur devis</div>
           <ul>
-            <li> Jusqu'à 500 produits</li>
-            <li> Paiement en ligne CMI</li>
-            <li> Gestion stocks et commandes</li>
-            <li> Dashboard analytics</li>
-            <li> Formation équipe incluse</li>
+            <li>Fonctions métier cadrées avec l'équipe</li>
+            <li>Rôles et droits d'accès définis</li>
+            <li>Intégrations documentées</li>
+            <li>Tests et critères de validation prévus au projet</li>
+            <li>Maintenance précisée dans la proposition</li>
           </ul>
-          <div class="price-note">Pour : Boutiques en ligne, marketplaces</div>
+          <div class="price-note">Le chiffrage nécessite un périmètre fonctionnel.</div>
         </div>
       </section>
 
       <section id="facteurs" class="content-section">
-        <h2>🤔 Pourquoi ces Prix ? La Vérité sur la Création Site Web à Casa</h2>
+        <h2>Ce qui influence le prix d'un site web</h2>
         
-        <p>À Derb Ghallef, vous trouverez des "sites web" à 1 500 DH. Dans les tours de Marina, certaines agences vous demanderont 50 000 DH. Pourquoi une telle différence ? Voici la vérité :</p>
+        <p>Deux devis ne sont comparables que s'ils couvrent les mêmes livrables, responsabilités et coûts récurrents. Les principaux facteurs sont les suivants :</p>
 
         <div class="info-grid">
           <div class="info-card">
-            <h3>🔧 Technologie</h3>
-            <p>WordPress simple : 4 000 - 8 000 DH<br>
-            Site sur mesure : 15 000 - 30 000 DH<br>
-            E-commerce avancé : 20 000 - 40 000 DH</p>
+            <h3>Périmètre éditorial</h3>
+            <p>Le nombre et le type de pages, la rédaction, les traductions, les photos et la migration de contenus influencent la charge de travail.</p>
           </div>
 
           <div class="info-card">
-            <h3>🎨 Design</h3>
-            <p>Template modifié : 2 000 - 4 000 DH<br>
-            Design personnalisé : 5 000 - 10 000 DH<br>
-            Design premium : 10 000 - 20 000 DH</p>
+            <h3>Conception et design</h3>
+            <p>Le niveau de personnalisation, le nombre de gabarits, les prototypes et les exigences d'accessibilité doivent être précisés.</p>
           </div>
 
           <div class="info-card">
-            <h3>📱 Fonctionnalités</h3>
-            <p>Chaque fonction ajoute au prix :<br>
-            - Réservation en ligne : +3 000 DH<br>
-            - Paiement CMI : +4 000 DH<br>
-            - Chat en direct : +2 000 DH</p>
+            <h3>Fonctionnalités et intégrations</h3>
+            <p>Le paiement, la réservation, les comptes clients, les outils métier et les échanges de données demandent un cadrage, des tests et parfois des abonnements tiers.</p>
           </div>
         </div>
 
         <div class="warning-box">
-          <h3>⚠️ Attention aux Prix Trop Bas !</h3>
-          <p>Si quelqu'un vous propose un site "professionnel" à 2 000 DH, méfiez-vous ! C'est souvent un template basique sans optimisation, qui pourrait vous coûter plus cher à long terme.</p>
+          <h3>Comparer le périmètre, pas seulement le total</h3>
+          <p>Un tarif plus bas peut correspondre à un périmètre réduit. Vérifiez les contenus, les tests, la formation, l'hébergement, la maintenance, les licences et la propriété des comptes avant de choisir.</p>
         </div>
       </section>
 
       <section id="conseils" class="content-section">
-        <h2>💡 Conseils d'Expert pour Réduire vos Coûts</h2>
+        <h2>Comment préparer un budget réaliste</h2>
         
         <div class="tips-container">
           <div class="tip">
-            <h3>1. Commencez Simple</h3>
-            <p>Démarrez avec un site vitrine bien fait, puis évoluez progressivement. C'est comme construire une maison : commencez par les fondations solides !</p>
+            <h3>1. Prioriser le nécessaire</h3>
+            <p>Séparez les fonctions indispensables au lancement de celles qui peuvent être ajoutées après validation des premiers usages.</p>
           </div>
 
           <div class="tip">
-            <h3>2. Préparez Votre Contenu</h3>
-            <p>Fournissez des textes et photos de qualité. Ça peut réduire le coût de 2 000 à 3 000 DH sur le budget total.</p>
+            <h3>2. Inventorier les contenus</h3>
+            <p>Identifiez les textes, photos, traductions et documents déjà disponibles. Demandez au prestataire ce qu'il doit produire, corriger ou intégrer.</p>
           </div>
 
           <div class="tip">
-            <h3>3. Planifiez vos Besoins</h3>
-            <p>Listez toutes les fonctionnalités essentielles dès le début. Les ajouts après coup coûtent toujours plus cher !</p>
+            <h3>3. Inclure les coûts récurrents</h3>
+            <p>Ajoutez au budget l'hébergement, le nom de domaine, les licences, la maintenance et les éventuels services tiers prévus dans l'architecture.</p>
           </div>
         </div>
       </section>
 
       <section id="pieges" class="content-section">
-        <h2>🚫 Les Pièges à Éviter Absolument</h2>
+        <h2>Les points à vérifier avant de signer</h2>
         
         <div class="pitfalls-list">
           <div class="pitfall">
-            <h3>❌ Les Fausses Promesses SEO</h3>
-            <p>"Première page Google garantie en 1 mois" - C'est impossible ! Un bon référencement naturel prend 3 à 6 mois minimum.</p>
+            <h3>Les promesses SEO garanties</h3>
+            <p>Une première position et une date précise ne peuvent pas être garanties. Les résultats dépendent notamment de la concurrence, de la qualité du site, du contenu et de la notoriété.</p>
           </div>
 
           <div class="pitfall">
-            <h3>❌ Les Coûts Cachés</h3>
-            <p>Certaines agences ne mentionnent pas les frais d'hébergement, de maintenance ou de mises à jour. Demandez TOUT dès le début !</p>
+            <h3>Les coûts non détaillés</h3>
+            <p>Demandez quels frais d'hébergement, de maintenance, de licence et de mise à jour sont inclus, facultatifs ou facturés séparément.</p>
           </div>
 
           <div class="pitfall">
-            <h3>❌ Les Freelances Volatils</h3>
-            <p>Attention aux développeurs qui disparaissent après l'acompte. Vérifiez toujours les références et les avis Google.</p>
+            <h3>La dépendance au prestataire</h3>
+            <p>Vérifiez la propriété du domaine et des comptes, les possibilités d'export, la documentation remise et les conditions de reprise du projet.</p>
           </div>
         </div>
       </section>
 
       <section id="devis" class="cta-section">
         <div class="cta-content">
-          <h2>🤝 Besoin d'un Devis Personnalisé ?</h2>
-          <p>Parlons de votre projet autour d'un café ! Consultation gratuite dans nos bureaux au centre de Casa.</p>
+          <h2>Besoin d'un devis personnalisé ?</h2>
+          <p>Parlons de votre projet afin de préciser les besoins, les livrables et le budget.</p>
           <div class="cta-buttons">
-            <a href="/creation-site-web-casablanca" class="btn-primary">Demander un Devis Gratuit</a>
-            <a href="tel:+212661040104" class="btn-secondary">📞 Appeler Maintenant</a>
+            <a href="/contact" class="btn-primary">Demander un devis</a>
+            <a href={`tel:${napInfo.phone.replace(/\s+/g, '')}`} class="btn-secondary">Nous appeler</a>
           </div>
         </div>
       </section>
@@ -238,7 +197,7 @@ const schema = JSON.stringify({
   .article-header {
     margin-bottom: 2rem;
     text-align: left;
-    margin-top: 19%;
+    margin-top: 0;
   }
 
   h1 {
@@ -360,7 +319,7 @@ const schema = JSON.stringify({
     .article-header {
     margin-bottom: 2rem;
     text-align: left;
-    margin-top: 50%;
+    margin-top: 0;
   }
     .blog-post {
       padding: 1rem;
@@ -397,5 +356,3 @@ const schema = JSON.stringify({
     color: var(--color-primary);
   }
 </style>
-
-<script type="application/ld+json" is:inline set:html={schema} />

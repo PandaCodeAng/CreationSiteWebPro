@@ -4,10 +4,9 @@ import CTAButton from '../components/CTAButton.astro';
 import PricingTable from '../components/PricingTable.astro';
 import JsonLd from '../components/JsonLd.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { napInfo } from '../layouts/Layout.astro';
 
 const pageTitle = "Prix Création Site Web Casablanca 2026 | Devis Gratuit";
-const pageDescription = "Combien coûte un site web à Casablanca ? Tarifs clairs 2026 : site vitrine dès 7 500 MAD, e-commerce, application web. Devis gratuit en 24h. Agence locale certifiée.";
+const pageDescription = "Combien coûte un site web à Casablanca ? Tarifs indicatifs 2026 : site vitrine dès 7 500 MAD, e-commerce dès 15 000 MAD et application web sur devis.";
 const pageCanonical = "https://www.creationsitewebpro.com/creation-site-web-casablanca-prix";
 
 const breadcrumbItems = [
@@ -18,23 +17,23 @@ const breadcrumbItems = [
 const faqItems = [
   {
     question: "Quel est le prix d'un site vitrine à Casablanca ?",
-    answer: "Un site vitrine professionnel à Casablanca coûte entre 7 500 MAD et 15 000 MAD selon le nombre de pages et les fonctionnalités. Nos packs incluent design sur mesure, optimisation SEO et hébergement la première année."
+    answer: "Un site vitrine professionnel à Casablanca est proposé à partir de 7 500 MAD. Le prix final dépend notamment du nombre de pages, des contenus, des langues et des fonctionnalités définies dans le devis."
   },
   {
     question: "Combien coûte un site e-commerce à Casablanca ?",
-    answer: "La création d'une boutique en ligne à Casablanca est proposée à partir de 15 000 MAD. Le prix final dépend du nombre de produits, des intégrations de paiement (CMI, PayPal, virement) et des fonctionnalités avancées."
+    answer: "La création d'une boutique en ligne à Casablanca est proposée à partir de 15 000 MAD. Le prix final dépend du catalogue, des règles de livraison, des moyens de paiement et des intégrations nécessaires."
   },
   {
     question: "Le prix inclut-il le référencement SEO ?",
-    answer: "Oui, tous nos packs incluent une optimisation SEO de base (balises, vitesse, mobile). Un accompagnement SEO continu est disponible en option pour atteindre la 1ère page Google."
+    answer: "Oui, tous nos packs incluent une optimisation SEO de base (balises, performance et compatibilité mobile). Un accompagnement SEO continu et mesurable est disponible en option, sans promesse de position."
   },
   {
     question: "Combien de temps pour créer un site web à Casablanca ?",
-    answer: "Un site vitrine est livré en 2 à 4 semaines. Un e-commerce en 4 à 8 semaines. Un projet sur mesure (application web, portail) entre 8 et 16 semaines selon la complexité."
+    answer: "Le calendrier dépend du périmètre, des contenus, des intégrations et des validations. Une date de livraison prévisionnelle est indiquée dans le devis avant le démarrage."
   },
   {
     question: "Proposez-vous des facilités de paiement ?",
-    answer: "Oui, nous proposons un paiement en 2 à 3 fois sans frais. Un acompte de 40% au démarrage du projet, le solde à la livraison."
+    answer: "L'échéancier et les modalités de paiement sont précisés dans la proposition commerciale. Des étapes de règlement peuvent être étudiées selon le projet."
   }
 ];
 
@@ -45,47 +44,29 @@ const schemaData = {
   "description": pageDescription,
   "url": pageCanonical,
   "provider": {
-    "@type": "LocalBusiness",
-    "name": napInfo.name,
-    "telephone": napInfo.phone.replace(/\s+/g, ''),
-    "email": napInfo.email,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": napInfo.address.street,
-      "addressLocality": napInfo.address.city,
-      "postalCode": napInfo.address.postalCode,
-      "addressCountry": "MA"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": napInfo.coordinates.latitude,
-      "longitude": napInfo.coordinates.longitude
-    },
-    "priceRange": "7500 MAD - 100000 MAD",
-    "areaServed": {
-      "@type": "City",
-      "name": "Casablanca"
-    }
-  },
-  "mainEntity": {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqItems.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
+    "@id": "https://www.creationsitewebpro.com/#localbusiness"
   }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
 };
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonical={pageCanonical}>
   <JsonLd data={schemaData} />
+  <JsonLd data={faqSchema} />
 
-  <main class="prix-page">
+  <div class="prix-page">
     <Breadcrumbs items={breadcrumbItems} />
 
     <section class="prix-hero">
@@ -93,35 +74,35 @@ const schemaData = {
         <h1>Prix Création Site Web à Casablanca</h1>
         <p class="prix-hero__subtitle">Des tarifs transparents, sans surprise — adaptés aux entreprises marocaines</p>
         <div class="prix-hero__badges">
-          <span class="badge">✓ Devis gratuit en 24h</span>
-          <span class="badge">✓ Paiement en 2-3 fois</span>
-          <span class="badge">✓ Livraison garantie</span>
+          <span class="badge">✓ Devis détaillé</span>
+          <span class="badge">✓ Tarifs de départ en MAD</span>
+          <span class="badge">✓ Planning défini au devis</span>
         </div>
       </div>
     </section>
 
     <PricingTable
       title="Nos tarifs création site web Casablanca"
-      subtitle="Packs transparents et adaptés à chaque budget — aucun coût caché"
+      subtitle="Des offres de départ et un devis adapté au périmètre réel du projet"
     />
 
     <section class="prix-comparatif container">
       <h2>Combien coûte vraiment un site web à Casablanca en 2026 ?</h2>
       <p>
-        Les prix de création de site web à Casablanca varient considérablement selon l'agence et le type de projet.
-        Voici un comparatif des tarifs pratiqués sur le marché marocain pour vous aider à budgéter votre projet.
+        Le budget varie selon le type de site, le volume de contenu, les fonctionnalités et les intégrations.
+        Voici nos repères de départ pour préparer votre demande de devis.
       </p>
 
       <div class="prix-grid">
         <div class="prix-card">
           <h3>Site Vitrine</h3>
-          <div class="prix-range">7 500 – 15 000 MAD</div>
+          <div class="prix-range">À partir de 7 500 MAD</div>
           <ul>
-            <li>4 à 8 pages</li>
+            <li>Pages et contenus définis au devis</li>
             <li>Design responsive mobile</li>
             <li>Formulaire de contact</li>
             <li>Optimisation SEO de base</li>
-            <li>Livraison 2 à 4 semaines</li>
+            <li>Planning défini au devis</li>
           </ul>
           <CTAButton href="/contact" text="Demander un devis" />
         </div>
@@ -129,26 +110,26 @@ const schemaData = {
         <div class="prix-card prix-card--featured">
           <span class="prix-card__badge">Le plus demandé</span>
           <h3>Site E-commerce</h3>
-          <div class="prix-range">15 000 – 40 000 MAD</div>
+          <div class="prix-range">À partir de 15 000 MAD</div>
           <ul>
-            <li>Catalogue produits illimité</li>
-            <li>Paiement CMI / PayPal</li>
+            <li>Catalogue défini selon le projet</li>
+            <li>Moyens de paiement prévus au devis</li>
             <li>Gestion des commandes</li>
-            <li>SEO e-commerce avancé</li>
-            <li>Livraison 4 à 8 semaines</li>
+            <li>Socle SEO pour catégories et produits</li>
+            <li>Planning défini au devis</li>
           </ul>
           <CTAButton href="/contact" text="Demander un devis" />
         </div>
 
         <div class="prix-card">
           <h3>Application Web</h3>
-          <div class="prix-range">30 000 – 100 000 MAD</div>
+          <div class="prix-range">Sur devis</div>
           <ul>
             <li>Fonctionnalités sur mesure</li>
             <li>Espace membres / dashboard</li>
             <li>Intégrations API</li>
-            <li>Base de données complexe</li>
-            <li>Livraison 8 à 16 semaines</li>
+            <li>Modèle de données adapté au besoin</li>
+            <li>Planning défini après cadrage</li>
           </ul>
           <CTAButton href="/contact" text="Demander un devis" />
         </div>
@@ -158,45 +139,45 @@ const schemaData = {
     <section class="prix-inclus container">
       <h2>Ce qui est inclus dans nos prix à Casablanca</h2>
       <p>
-        Contrairement à de nombreuses agences web à Casablanca, nous affichons des prix tout compris.
-        Voici ce que chaque projet inclut systématiquement :
+        La proposition commerciale précise les éléments inclus pour éviter toute ambiguïté.
+        Le périmètre peut notamment couvrir les éléments suivants :
       </p>
       <div class="inclus-grid">
         <div class="inclus-item">
           <strong>Design sur mesure</strong>
-          <p>Maquettes uniques adaptées à votre identité visuelle. Aucun template générique.</p>
+          <p>Interface adaptée à votre identité visuelle et au périmètre validé.</p>
         </div>
         <div class="inclus-item">
           <strong>Responsive mobile</strong>
-          <p>Votre site est parfait sur smartphone, tablette et desktop. Plus de 70% du trafic au Maroc vient du mobile.</p>
+          <p>Votre site est conçu et testé pour les smartphones, tablettes et ordinateurs.</p>
         </div>
         <div class="inclus-item">
           <strong>SEO technique</strong>
           <p>Balises optimisées, vitesse de chargement, sitemap, données structurées — la base pour être trouvé sur Google.</p>
         </div>
         <div class="inclus-item">
-          <strong>Hébergement 1 an</strong>
-          <p>Hébergement sécurisé inclus la première année. Certificat SSL (HTTPS) actif dès le lancement.</p>
+          <strong>Hébergement et SSL</strong>
+          <p>La solution d'hébergement, sa durée et ses conditions sont précisées dans le devis.</p>
         </div>
         <div class="inclus-item">
           <strong>Livraison testée</strong>
-          <p>Tests multi-navigateurs et multi-appareils avant livraison. Aucune surprise après mise en ligne.</p>
+          <p>Vérifications des parcours, formulaires et principaux affichages avant la mise en ligne.</p>
         </div>
         <div class="inclus-item">
           <strong>Formation & support</strong>
-          <p>Formation à la gestion de votre site et support technique 30 jours après livraison.</p>
+          <p>La prise en main et les modalités de support sont définies selon l'offre retenue.</p>
         </div>
       </div>
     </section>
 
     <section class="prix-faq container">
       <h2>Questions fréquentes sur les prix de création de site web à Casablanca</h2>
-      <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+      <div class="faq-list">
         {faqItems.map((faq) => (
-          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-            <h3 itemprop="name">{faq.question}</h3>
-            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-              <p itemprop="text">{faq.answer}</p>
+          <div class="faq-item">
+            <h3>{faq.question}</h3>
+            <div>
+              <p>{faq.answer}</p>
             </div>
           </div>
         ))}
@@ -206,17 +187,17 @@ const schemaData = {
     <section class="prix-cta container">
       <h2>Obtenez votre devis gratuit pour la création de votre site web à Casablanca</h2>
       <p>
-        Chaque projet est unique. Contactez-nous pour recevoir un devis personnalisé sous 24h,
-        adapté à votre secteur d'activité et à votre budget.
+        Chaque projet est unique. Présentez-nous votre besoin pour recevoir un devis adapté
+        à votre activité, vos contenus et vos fonctionnalités.
       </p>
-      <CTAButton href="/contact" text="Devis gratuit en 24h" />
+      <CTAButton href="/contact" text="Demander un devis" />
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
   .prix-page {
-    margin-top: 5rem;
+    margin-top: 0;
   }
 
   .prix-hero {

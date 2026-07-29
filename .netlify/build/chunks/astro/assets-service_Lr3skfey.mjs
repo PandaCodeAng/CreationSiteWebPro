@@ -131,10 +131,6 @@ const MissingSharp = {
   message: "Could not find Sharp. Please install Sharp (`sharp`) manually into your project or migrate to another image service.",
   hint: "See Sharp's installation instructions for more information: https://sharp.pixelplumbing.com/install. If you are not relying on `astro:assets` to optimize, transform, or process any images, you can configure a passthrough image service instead of installing Sharp. See https://docs.astro.build/en/reference/errors/missing-sharp for more information.\n\nSee https://docs.astro.build/en/guides/images/#default-image-service for more information on how to migrate to another image service."
 };
-const UnknownContentCollectionError = {
-  name: "UnknownContentCollectionError",
-  title: "Unknown Content Collection Error."
-};
 
 function normalizeLF(code) {
   return code.replace(/\r\n|\r(?!\n)|\n/g, "\n");
@@ -206,16 +202,6 @@ class AstroError extends Error {
   }
 }
 
-const VALID_INPUT_FORMATS = [
-  "jpeg",
-  "jpg",
-  "png",
-  "tiff",
-  "webp",
-  "gif",
-  "svg",
-  "avif"
-];
 const VALID_SUPPORTED_FORMATS = [
   "jpeg",
   "jpg",
@@ -553,4 +539,4 @@ const sharp$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   default: sharp_default
 }, Symbol.toStringTag, { value: 'Module' }));
 
-export { AstroError as A, DEFAULT_HASH_PROPS as D, ExpectedImageOptions as E, FailedToFetchRemoteImageDimensions as F, InvalidComponentArgs as I, MissingMediaQueryDirective as M, NoMatchingImport as N, UnknownContentCollectionError as U, VALID_INPUT_FORMATS as V, AstroGlobUsedOutside as a, AstroGlobNoMatch as b, NoMatchingRenderer as c, NoClientOnlyHint as d, NoClientEntrypoint as e, NoImageMetadata as f, ExpectedImage as g, ExpectedNotESMImage as h, isRemoteImage as i, isESMImportedImage as j, isLocalService as k, InvalidImageService as l, ImageMissingAlt as m, isRemoteAllowed as n, resolveSrc as r, sharp$1 as s };
+export { AstroError as A, DEFAULT_HASH_PROPS as D, ExpectedImageOptions as E, FailedToFetchRemoteImageDimensions as F, InvalidComponentArgs as I, MissingMediaQueryDirective as M, NoMatchingImport as N, AstroGlobUsedOutside as a, AstroGlobNoMatch as b, NoMatchingRenderer as c, NoClientOnlyHint as d, NoClientEntrypoint as e, NoImageMetadata as f, ExpectedImage as g, ExpectedNotESMImage as h, isRemoteImage as i, isESMImportedImage as j, isLocalService as k, InvalidImageService as l, ImageMissingAlt as m, isRemoteAllowed as n, resolveSrc as r, sharp$1 as s };

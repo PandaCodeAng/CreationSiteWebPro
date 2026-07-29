@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { napInfo } from '../layouts/Layout.astro';
+import { napInfo } from '../data/business';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 const pageTitle = "Mentions Légales - CreationSiteWebPro";
@@ -13,7 +13,7 @@ const breadcrumbItems = [
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/mentions-legales">
-  <main class="legal-page">
+  <div class="legal-page">
     <Breadcrumbs items={breadcrumbItems} />
     
     <section class="legal-header">
@@ -32,7 +32,6 @@ const breadcrumbItems = [
             <li><strong>Adresse:</strong> {napInfo.address.street}, {napInfo.address.city}, {napInfo.address.postalCode}, {napInfo.address.country}</li>
             <li><strong>Téléphone:</strong> {napInfo.phone}</li>
             <li><strong>Email:</strong> {napInfo.email}</li>
-            <li><strong>SIRET:</strong> 00000000000000</li>
           </ul>
         </div>
 
@@ -44,7 +43,7 @@ const breadcrumbItems = [
         <div class="legal-section">
           <h2>Hébergement</h2>
           <p>Le site web est hébergé par la société Netlify, Inc.</p>
-          <p>Adresse: 2325 3rd Street, Suite 215, San Francisco, CA 94107, États-Unis</p>
+          <p>Adresse : 101 2nd Street, San Francisco, CA 94105, États-Unis</p>
         </div>
 
         <div class="legal-section">
@@ -61,7 +60,7 @@ const breadcrumbItems = [
 
         <div class="legal-section">
           <h2>Cookies</h2>
-          <p>Notre site utilise des cookies pour améliorer l'expérience utilisateur. En naviguant sur notre site, vous acceptez l'utilisation de cookies conformément à notre politique de confidentialité.</p>
+          <p>Les traceurs non nécessaires sont soumis à votre choix dans le module de consentement. Consultez notre <a href="/politique-confidentialite">politique de confidentialité</a> pour connaître les catégories de données et les finalités décrites.</p>
         </div>
 
         <div class="legal-section">
@@ -76,7 +75,7 @@ const breadcrumbItems = [
         </div>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>

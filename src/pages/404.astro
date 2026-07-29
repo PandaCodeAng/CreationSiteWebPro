@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Page introuvable | CreationSiteWebPro"
+  description="Cette page n’existe pas ou a été déplacée."
+  canonical="https://www.creationsitewebpro.com/404"
+  noindex={true}
+>
+  <div class="not-found">
+    <p class="status">404</p>
+    <h1>Cette page est introuvable</h1>
+    <p>Le contenu demandé a peut-être été déplacé. Retrouvez nos services ou revenez à l’accueil.</p>
+    <div class="actions">
+      <a href="/">Retour à l’accueil</a>
+      <a href="/services">Voir nos services</a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .not-found {
+    max-width: 720px;
+    min-height: 65vh;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 4rem;
+    text-align: center;
+  }
+
+  .status {
+    margin: 0;
+    color: var(--color-secondary);
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  h1 {
+    color: var(--color-primary);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .actions a {
+    padding: .8rem 1.1rem;
+    border-radius: .5rem;
+    background: var(--color-primary);
+    color: #fff;
+    text-decoration: none;
+  }
+</style>
