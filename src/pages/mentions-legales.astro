@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { napInfo } from '../data/business';
+import { napInfo, legalInfo } from '../data/business';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 const pageTitle = "Mentions Légales - CreationSiteWebPro";
@@ -10,9 +10,24 @@ const breadcrumbItems = [
   { name: "Accueil", url: "/" },
   { name: "Mentions Légales", url: "/mentions-legales" },
 ];
+const schemaBreadcrumbs = [{ name: 'Mentions légales' }];
+
+// M-5 de l'audit GEO : forme juridique, RC et ICE manquaient aux mentions légales.
+// Ils sont affichés dès que renseignés dans src/data/business.ts, et jamais
+// inventés ici : un identifiant faux sur des mentions légales est un risque réel.
+const companyIdentifiers = [
+  { label: 'Forme juridique', value: legalInfo.legalForm },
+  { label: 'Registre du Commerce (RC)', value: legalInfo.registrationNumber },
+  { label: 'Identifiant Commun de l’Entreprise (ICE)', value: legalInfo.taxId }
+].filter((entry) => Boolean(entry.value));
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/mentions-legales">
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonical="https://www.creationsitewebpro.com/mentions-legales"
+  breadcrumbs={schemaBreadcrumbs}
+>
   <div class="legal-page">
     <Breadcrumbs items={breadcrumbItems} />
     
@@ -29,10 +44,24 @@ const breadcrumbItems = [
           <h2>Informations générales</h2>
           <p>Le présent site web est édité par {napInfo.name}, entreprise de création de sites web et solutions digitales.</p>
           <ul>
-            <li><strong>Adresse:</strong> {napInfo.address.street}, {napInfo.address.city}, {napInfo.address.postalCode}, {napInfo.address.country}</li>
-            <li><strong>Téléphone:</strong> {napInfo.phone}</li>
-            <li><strong>Email:</strong> {napInfo.email}</li>
+            <li><strong>Adresse :</strong> {napInfo.address.street}, {napInfo.address.city}, {napInfo.address.postalCode}, {napInfo.address.country}</li>
+            <li><strong>Téléphone :</strong> {napInfo.phone}</li>
+            <li><strong>Email :</strong> {napInfo.email}</li>
+            <li><strong>Année de création :</strong> {legalInfo.foundingDate}</li>
+            {companyIdentifiers.map((entry) => (
+              <li><strong>{entry.label} :</strong> {entry.value}</li>
+            ))}
           </ul>
+        </div>
+
+        <div class="legal-section">
+          <h2>Conditions générales de vente</h2>
+          <p>
+            Les prestations de création de site web, de développement d'application et
+            d'accompagnement SEO sont régies par nos
+            <a href="/conditions-generales-de-vente">conditions générales de vente</a>,
+            complétées par le devis signé pour chaque projet.
+          </p>
         </div>
 
         <div class="legal-section">

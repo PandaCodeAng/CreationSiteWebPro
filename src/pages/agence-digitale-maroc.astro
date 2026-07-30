@@ -4,7 +4,9 @@ import CTAButton from '../components/CTAButton.astro';
 import Icon from '../components/Icon.astro';
 import JsonLd from '../components/JsonLd.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { LOCAL_BUSINESS_ID, buildOffers } from '../data/business';
 
+const schemaBreadcrumbs = [{ name: 'Agence digitale Maroc' }];
 const pageTitle = "Agence digitale au Maroc | Sites web et e-commerce";
 const pageDescription = "Création de sites vitrines, boutiques e-commerce, applications web et accompagnement SEO pour les entreprises partout au Maroc.";
 
@@ -30,14 +32,14 @@ const pageSchema = {
   "name": pageTitle,
   "description": pageDescription,
   "url": canonical,
-  "provider": {
-    "@id": "https://www.creationsitewebpro.com/#localbusiness"
-  },
+  "provider": { "@id": LOCAL_BUSINESS_ID },
   "areaServed": {
     "@type": "Country",
     "name": "Maroc"
   },
-  "serviceType": "Conception et accompagnement digital"
+  "serviceType": "Conception et accompagnement digital",
+  // Prix en MAD structurés (H-3 de l'audit GEO).
+  "offers": buildOffers(['site-vitrine', 'site-ecommerce'], '/creation-site-web-casablanca-prix')
 };
 const faqSchema = {
   "@context": "https://schema.org",
@@ -107,7 +109,7 @@ const services = [
 ];
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical={canonical}>
+<Layout title={pageTitle} description={pageDescription} canonical={canonical} breadcrumbs={schemaBreadcrumbs}>
   <JsonLd data={pageSchema} />
   <JsonLd data={faqSchema} />
   <div class="creation-site-web-casablanca">

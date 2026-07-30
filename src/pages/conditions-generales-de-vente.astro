@@ -1,0 +1,329 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { napInfo, legalInfo, LOCAL_BUSINESS_ID, WEBSITE_ID, pricingTiers } from '../data/business';
+
+const canonical = 'https://www.creationsitewebpro.com/conditions-generales-de-vente';
+const pageTitle = 'Conditions Générales de Vente | CreationSiteWebPro';
+const pageDescription = 'Conditions générales de vente des prestations de création de site web, e-commerce, application web et référencement de CreationSiteWebPro à Casablanca.';
+
+const breadcrumbItems = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Conditions générales de vente' }
+];
+const schemaBreadcrumbs = [{ name: 'Conditions générales de vente' }];
+
+/** Dernière révision éditoriale réelle de ce document. */
+const lastRevision = '2026-07-30';
+const lastRevisionLabel = '30 juillet 2026';
+
+// M-5 de l'audit GEO : les identifiants d'entreprise sont affichés dès qu'ils sont
+// renseignés dans src/data/business.ts. Ils ne sont jamais inventés.
+const companyIdentifiers = [
+  { label: 'Forme juridique', value: legalInfo.legalForm },
+  { label: 'Registre du Commerce (RC)', value: legalInfo.registrationNumber },
+  { label: 'Identifiant Commun de l’Entreprise (ICE)', value: legalInfo.taxId }
+].filter((entry) => Boolean(entry.value));
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${canonical}#webpage`,
+  name: pageTitle,
+  description: pageDescription,
+  url: canonical,
+  isPartOf: { '@id': WEBSITE_ID },
+  about: { '@id': LOCAL_BUSINESS_ID },
+  inLanguage: 'fr-MA',
+  dateModified: lastRevision
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={canonical}
+  breadcrumbs={schemaBreadcrumbs}
+>
+  <JsonLd data={pageSchema} />
+
+  <div class="legal-page">
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <header class="legal-header">
+      <h1>Conditions Générales de Vente</h1>
+      <p class="legal-intro">
+        Les présentes conditions régissent les prestations de conception, de
+        développement et d'accompagnement web fournies par {napInfo.name}. Elles sont
+        complétées, pour chaque projet, par le devis signé, qui prévaut en cas de
+        divergence sur le périmètre, le calendrier ou le prix.
+      </p>
+      <p class="legal-date">
+        Dernière révision : <time datetime={lastRevision}>{lastRevisionLabel}</time>
+      </p>
+    </header>
+
+    <div class="legal-content">
+      <section class="legal-section">
+        <h2>1. Identification du prestataire</h2>
+        <ul>
+          <li><strong>Dénomination :</strong> {napInfo.name}</li>
+          <li><strong>Adresse :</strong> {napInfo.address.street}, {napInfo.address.city} {napInfo.address.postalCode}, {napInfo.address.country}</li>
+          <li><strong>Téléphone :</strong> {napInfo.phone}</li>
+          <li><strong>Email :</strong> {napInfo.email}</li>
+          <li><strong>Année de création :</strong> {legalInfo.foundingDate}</li>
+          {companyIdentifiers.map((entry) => (
+            <li><strong>{entry.label} :</strong> {entry.value}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="legal-section">
+        <h2>2. Objet et champ d'application</h2>
+        <p>
+          Les présentes conditions s'appliquent à l'ensemble des prestations proposées :
+          création de site vitrine, création de site e-commerce, développement
+          d'application web, refonte de site existant, accompagnement en référencement
+          naturel et prestations de maintenance.
+        </p>
+        <p>
+          Toute commande implique l'acceptation sans réserve des présentes conditions.
+          Elles s'appliquent aux clients professionnels comme aux particuliers, sous
+          réserve des dispositions impératives de la loi 31-08 édictant des mesures de
+          protection du consommateur lorsque le client est un consommateur.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>3. Devis et formation du contrat</h2>
+        <p>
+          Chaque prestation fait l'objet d'un devis écrit, gratuit et sans engagement,
+          précisant le périmètre, les livrables, le calendrier prévisionnel et le prix
+          en dirhams marocains (MAD). Le devis est valable trente jours à compter de son
+          émission, sauf mention contraire.
+        </p>
+        <p>
+          Le contrat est formé à la réception du devis signé accompagné du règlement de
+          l'acompte. Toute demande sortant du périmètre décrit fait l'objet d'un avenant
+          chiffré avant réalisation.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>4. Prix et modalités de règlement</h2>
+        <p>
+          Les prix sont exprimés en dirhams marocains. Les tarifs de départ publiés sur
+          le site sont les suivants :
+        </p>
+        <div class="table-scroll">
+          <table class="article-table">
+            <caption>Tarifs de départ, hors taxes applicables et hors coûts externes</caption>
+            <thead>
+              <tr>
+                <th scope="col">Prestation</th>
+                <th scope="col">Prix de départ</th>
+                <th scope="col">Délai indicatif</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pricingTiers.map((tier) => (
+                <tr>
+                  <th scope="row">{tier.name}</th>
+                  <td>{tier.priceLabel}</td>
+                  <td>{tier.deliveryTime}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Le règlement est échelonné : un acompte est dû à la commande, le solde à la
+          livraison. La répartition exacte des échéances figure sur le devis. Les taxes
+          applicables ainsi que les coûts externes éventuels — nom de domaine,
+          hébergement, licences de modules, commissions bancaires — sont indiqués
+          séparément et ne sont pas compris dans le prix de départ.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>5. Obligations du client</h2>
+        <p>
+          Le client fournit, dans les délais convenus, l'ensemble des éléments
+          nécessaires à la réalisation : textes, images, logo, catalogue produits,
+          accès techniques et validations. Il garantit détenir les droits d'usage des
+          contenus qu'il transmet.
+        </p>
+        <p>
+          Le calendrier prévisionnel court à compter de la réception de ces éléments.
+          Un retard dans leur fourniture ou dans les validations décale la date de
+          livraison à due concurrence, sans que la responsabilité du prestataire puisse
+          être engagée.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>6. Livraison et recette</h2>
+        <p>
+          La livraison intervient après une phase de recette au cours de laquelle le
+          client vérifie la conformité au périmètre convenu. Les retours sont adressés
+          de manière groupée dans le délai indiqué au devis.
+        </p>
+        <p>
+          À défaut de retour dans ce délai, la prestation est réputée acceptée. La
+          correction des anomalies constatées pendant la recette est comprise dans le
+          prix ; les demandes d'évolution sortant du périmètre initial font l'objet d'un
+          avenant.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>7. Propriété et réversibilité</h2>
+        <p>
+          Après règlement intégral du prix, le client devient propriétaire des livrables
+          spécifiquement développés pour lui, ainsi que des contenus qu'il a fournis. Le
+          nom de domaine et les comptes d'hébergement sont ouverts au nom du client.
+        </p>
+        <p>
+          Les accès administrateur, la documentation technique et, le cas échéant, une
+          copie de la base de données sont remis à la livraison. Le prestataire conserve
+          la propriété de ses outils, bibliothèques et méthodes internes préexistants,
+          concédés au client sous forme de licence d'utilisation pour les besoins du
+          projet.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>8. Maintenance et support</h2>
+        <p>
+          La maintenance n'est pas incluse dans le prix de création. Elle fait l'objet
+          d'un forfait distinct, décrit au devis, pouvant couvrir les mises à jour de
+          sécurité, les sauvegardes, la surveillance de disponibilité et le support
+          technique.
+        </p>
+        <p>
+          En l'absence de contrat de maintenance, le client assume la responsabilité des
+          mises à jour et de la sécurité de son site après la période de support
+          incluse mentionnée au devis.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>9. Résultats de référencement</h2>
+        <p>
+          Le prestataire s'engage sur des moyens et des livrables : audit technique,
+          optimisations réalisées, contenus produits, indicateurs suivis. Il ne
+          s'engage sur aucun résultat de positionnement.
+        </p>
+        <p>
+          Aucune position dans les résultats de recherche, aucun volume de trafic et
+          aucune date d'atteinte ne peuvent être garantis. Les algorithmes de classement
+          évoluent en continu et relèvent de tiers sur lesquels le prestataire n'a aucun
+          contrôle. De même, l'activation d'un service tiers — notamment un contrat
+          marchand pour l'encaissement par carte bancaire — relève de l'organisme
+          concerné et ne peut être garantie.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>10. Responsabilité</h2>
+        <p>
+          La responsabilité du prestataire est limitée au montant de la prestation
+          concernée. Elle ne saurait être engagée en cas de dommage indirect, de perte
+          d'exploitation, de perte de données imputable à un défaut de sauvegarde côté
+          client, ou d'indisponibilité d'un service tiers (hébergeur, passerelle de
+          paiement, transporteur, fournisseur de messagerie).
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>11. Données personnelles</h2>
+        <p>
+          Les traitements de données réalisés dans le cadre des prestations respectent
+          la loi 09-08 relative à la protection des personnes physiques à l'égard du
+          traitement des données à caractère personnel. Le client demeure responsable de
+          traitement pour les données collectées via son site ; le prestataire agit en
+          qualité de sous-traitant technique.
+        </p>
+        <p>
+          Les formalités éventuelles auprès de la Commission Nationale de contrôle de la
+          protection des Données à caractère Personnel incombent au client, le
+          prestataire fournissant les éléments techniques nécessaires à leur
+          constitution. Les modalités applicables au présent site sont détaillées dans
+          notre <a href="/politique-confidentialite">politique de confidentialité</a>.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>12. Droit applicable et différends</h2>
+        <p>
+          Les présentes conditions sont soumises au droit marocain. En cas de différend,
+          les parties rechercheront une solution amiable avant toute action
+          contentieuse. À défaut d'accord, le litige relève des tribunaux compétents de
+          Casablanca.
+        </p>
+        <p>
+          Pour toute question relative aux présentes conditions, écrivez à
+          <a href={`mailto:${napInfo.email}`}>{napInfo.email}</a> ou consultez notre
+          <a href="/mentions-legales">page de mentions légales</a>.
+        </p>
+      </section>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .legal-page {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  .legal-header {
+    margin: 2rem 0 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e6e9f0;
+  }
+
+  .legal-header h1 {
+    color: var(--color-primary);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .legal-intro {
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .legal-date {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0;
+  }
+
+  .legal-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .legal-section h2 {
+    color: var(--color-primary);
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    margin-bottom: 0.85rem;
+  }
+
+  .legal-section p {
+    line-height: 1.7;
+  }
+
+  .legal-section ul {
+    padding-left: 1.25rem;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 640px) {
+    .legal-page {
+      padding: 1rem 1rem 3rem;
+    }
+  }
+</style>

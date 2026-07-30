@@ -1,5 +1,8 @@
 # build output
 dist/
+# Sortie de l'adaptateur Netlify, régénérée à chaque `npm run build`.
+# Netlify construit le site sur ses serveurs : ce dossier n'a pas à être versionné.
+.netlify/
 
 # generated types
 .astro/

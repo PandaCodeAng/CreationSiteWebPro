@@ -3,23 +3,13 @@ import '../styles/global.css';
 import FixedHeader from '../components/FixedHeader3.astro';
 import Footer from '../components/Footer.astro';
 import JsonLd from '../components/JsonLd.astro';
-import { napInfo } from '../data/business';
-
-// WebSite schema injecté sur toutes les pages
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://www.creationsitewebpro.com/#website",
-  "name": "CreationSiteWebPro",
-  "url": "https://www.creationsitewebpro.com",
-  "description": "Agence web à Casablanca spécialisée en création de sites web professionnels, e-commerce et référencement SEO au Maroc depuis 2013.",
-  "publisher": {
-    "@type": "LocalBusiness",
-    "@id": "https://www.creationsitewebpro.com/#localbusiness",
-    "name": "CreationSiteWebPro"
-  },
-  "inLanguage": "fr-MA"
-};
+import {
+	napInfo,
+	buildLocalBusinessSchema,
+	buildWebSiteSchema,
+	buildBreadcrumbSchema,
+	type BreadcrumbEntry
+} from '../data/business';
 
 export interface Props {
 	title: string;
@@ -27,6 +17,11 @@ export interface Props {
 	canonical?: string;
 	noindex?: boolean;
 	nofollow?: boolean;
+	/**
+	 * Fil d'Ariane émis en JSON-LD (M-13 de l'audit GEO). L'accueil est ajouté
+	 * automatiquement : ne passer que les niveaux suivants.
+	 */
+	breadcrumbs?: BreadcrumbEntry[];
 }
 
 const {
@@ -34,7 +29,8 @@ const {
 	description,
 	canonical,
 	noindex = false,
-	nofollow = false
+	nofollow = false,
+	breadcrumbs = []
 } = Astro.props;
 // Pas de suffix global — chaque page contrôle son propre titre (max 60 chars)
 const fullTitle = title;
@@ -49,6 +45,15 @@ const robotsContent = [
 const phoneHref = `tel:${napInfo.phone.replace(/\s+/g, '')}`;
 const whatsappNumber = napInfo.phone.replace(/\D/g, '');
 const whatsappHref = `https://wa.me/${whatsappNumber}?text=Bonjour%2C%20je%20souhaite%20vous%20parler%20de%20mon%20projet%20web.`;
+
+// L'entité est inlinée sur chaque page : les crawlers IA ne résolvent pas
+// les références `@id` d'une page à l'autre (H-5 de l'audit GEO).
+const localBusinessSchema = buildLocalBusinessSchema();
+const websiteSchema = buildWebSiteSchema();
+const breadcrumbSchema =
+	breadcrumbs.length > 0
+		? buildBreadcrumbSchema([{ name: 'Accueil', item: '/' }, ...breadcrumbs], canonicalUrl)
+		: null;
 ---
 
 <!DOCTYPE html>
@@ -76,9 +81,17 @@ const whatsappHref = `https://wa.me/${whatsappNumber}?text=Bonjour%2C%20je%20sou
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="alternate" type="application/rss+xml" title="Blog CreationSiteWebPro" href="/rss.xml" />
 
-		<!-- La feuille Google Fonts est importée une seule fois depuis global.css -->
+		<!--
+			Polices chargées ici et non par un `@import` dans global.css : l'`@import`
+			ajoutait un aller-retour réseau (CSS → CSS Google → woff2) avant le rendu
+			du texte, au détriment du LCP (M-10 de l'audit GEO).
+		-->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+		>
 		
 		<meta name="google-adsense-account" content="ca-pub-9201463900934910">
 		  <!-- Consentement refusé par défaut avant toute commande de mesure -->
@@ -123,7 +136,11 @@ const whatsappHref = `https://wa.me/${whatsappNumber}?text=Bonjour%2C%20je%20sou
     </script>
 
 		<meta name="google-site-verification" content="fnVkDYa43l9HV440UQFMYxR143Nlqkw95E5ZEg_2cJg" />
+		<!-- Bing Webmaster Tools : son index alimente ChatGPT Search (M-2 de l'audit GEO). -->
+		<meta name="msvalidate.01" content="7691B0A80104B50113138BCEA78F4D42" />
+		<JsonLd data={localBusinessSchema} />
 		<JsonLd data={websiteSchema} />
+		{breadcrumbSchema && <JsonLd data={breadcrumbSchema} />}
 	</head>	<body>
 		<FixedHeader />
 		<main class="site-content">
@@ -131,10 +148,10 @@ const whatsappHref = `https://wa.me/${whatsappNumber}?text=Bonjour%2C%20je%20sou
 		</main>
 		<Footer />		<!-- Floating action buttons -->
 		<a href={whatsappHref} class="floating-whatsapp-btn" aria-label="Nous contacter sur WhatsApp">
-			<img src="/icons/WhatsApp.svg" alt="" class="floating-whatsapp-icon" width="30" height="30" />
+			<img src="/icons/WhatsApp.svg" alt="Contacter par WhatsApp" class="floating-whatsapp-icon" width="30" height="30" />
 		</a>
 		<a href={phoneHref} class="floating-call-btn" aria-label="Nous appeler directement">
-			<img src="/icons/phone-simple.svg" alt="" class="floating-call-icon" width="30" height="30" />
+			<img src="/icons/phone-simple.svg" alt="Appeler l'agence" class="floating-call-icon" width="30" height="30" />
 		</a>
 	</body>
 </html>

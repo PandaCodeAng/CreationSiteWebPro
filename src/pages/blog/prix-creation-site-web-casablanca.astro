@@ -1,0 +1,578 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { generateTimeTag } from '../../utils/dates';
+import { createArticleSchema, getArticleBySlug, getAuthorProfile, getArticleBreadcrumbs } from './_articles';
+import { napInfo } from '../../data/business';
+
+const article = getArticleBySlug('prix-creation-site-web-casablanca');
+const { title, description, publishDate, modifiedDate, author, readingTime } = article;
+const authorProfile = getAuthorProfile(author);
+const schema = createArticleSchema(article);
+const schemaBreadcrumbs = getArticleBreadcrumbs(article);
+---
+
+<Layout 
+  title={title}
+  description={description}
+  canonical={article.url}
+  breadcrumbs={schemaBreadcrumbs}
+>
+  <JsonLd data={schema} />
+  <article itemscope itemtype="https://schema.org/BlogPosting" class="blog-post">
+    <header class="article-header">
+      <h1 itemprop="headline">{title}</h1>
+      <div class="post-meta">
+        <div class="author-info">
+          <div class="author-details">
+            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+              <a href={authorProfile.url} itemprop="url"><span itemprop="name">{author}</span></a>
+            </span>
+            <span class="author-title">Création de site web à Casablanca</span>
+          </div>
+          <div class="post-details">
+            <Fragment set:html={generateTimeTag(publishDate)} />
+            <span>Mis à jour le <Fragment set:html={generateTimeTag(modifiedDate)} /></span>
+            <span class="reading-time">⏱️ {readingTime}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="table-of-contents">
+      <h2>Dans cet article :</h2>
+      <ul>
+        <li><a href="#intro">Prix création site web Casablanca 2026</a></li>
+        <li><a href="#essentiel">L'essentiel en quatre chiffres</a></li>
+        <li><a href="#tableau">Les trois paliers en un tableau</a></li>
+        <li><a href="#recurrents">Les coûts récurrents</a></li>
+        <li><a href="#lire-devis">Lire un devis : 7 lignes à vérifier</a></li>
+        <li><a href="#contexte">Pourquoi ces montants dans ce marché</a></li>
+        <li><a href="#tarifs">Détail des offres</a></li>
+        <li><a href="#facteurs">Ce qui influence les prix</a></li>
+        <li><a href="#conseils">Préparer un budget</a></li>
+        <li><a href="#pieges">Pièges à éviter</a></li>
+        <li><a href="#methode">Méthode et sources</a></li>
+        <li><a href="#devis">Obtenir un devis</a></li>
+      </ul>
+    </nav>
+
+    <div itemprop="articleBody" class="article-content">
+      <section id="intro">
+        <p class="lead-paragraph">
+          Un site vitrine professionnel à Casablanca démarre à <strong>7 500 MAD</strong> et une boutique e-commerce à <strong>15 000 MAD</strong>. Ces montants couvrent le périmètre décrit plus bas ; les taxes applicables et les coûts externes — nom de domaine, hébergement, licences — s'y ajoutent et figurent au devis. Voici comment ce budget se décompose, ce qui le fait varier, et les sept lignes que je vérifie sur tout devis qu'on me soumet.
+        </p>
+
+        <p class="author-note">
+          Salam, Mouhcine de CreationSiteWebPro. Je développe des sites ici depuis 2013 et
+          je réponds à cette question plusieurs fois par semaine. Ce que je constate,
+          c'est que l'écart entre le budget imaginé et le budget réel ne vient presque
+          jamais du développement : il vient de ce qu'on n'a pas chiffré. C'est
+          précisément ce que cet article détaille.
+        </p>
+      </section>
+
+      <section id="essentiel">
+        <div class="key-takeaways">
+          <h2>L'essentiel en quatre chiffres</h2>
+          <ul>
+            <li><strong>7 500 MAD</strong> : prix de départ d'un site vitrine de 4 pages, livré en 2 à 3 semaines.</li>
+            <li><strong>15 000 MAD</strong> : prix de départ d'une boutique e-commerce, livrée en 4 à 6 semaines.</li>
+            <li><strong>1 200 à 3 000 MAD par an</strong> : ordre de grandeur des coûts récurrents (nom de domaine, hébergement mutualisé, certificat, sauvegardes) à provisionner en plus du développement.</li>
+            <li><strong>0 garantie de position</strong> : aucun prestataire sérieux ne s'engage sur une place précise dans Google. Un devis qui le fait doit vous alerter.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="tableau" class="content-section">
+        <h2>Les trois paliers en un tableau</h2>
+        <p>
+          Je place volontairement les chiffres avant les explications : c'est ce que
+          l'on vient chercher sur une page de prix. Les montants ci-dessous sont nos
+          tarifs de départ, hors taxes applicables et hors coûts externes.
+        </p>
+        <div class="table-scroll">
+          <table class="article-table">
+            <caption>Tarifs de départ CreationSiteWebPro, révisés le 30 juillet 2026</caption>
+            <thead>
+              <tr>
+                <th scope="col">Palier</th>
+                <th scope="col">Prix de départ</th>
+                <th scope="col">Délai</th>
+                <th scope="col">Ce qui fait varier le montant</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Site vitrine</th>
+                <td>7 500 MAD</td>
+                <td>2 à 3 semaines</td>
+                <td>Nombre de pages, rédaction, traductions, photos</td>
+              </tr>
+              <tr>
+                <th scope="row">Site e-commerce</th>
+                <td>15 000 MAD</td>
+                <td>4 à 6 semaines</td>
+                <td>Taille du catalogue, variantes, moyens de paiement, transporteurs</td>
+              </tr>
+              <tr>
+                <th scope="row">Application web</th>
+                <td>Sur devis</td>
+                <td>Défini au cadrage</td>
+                <td>Rôles utilisateurs, intégrations, exigences de sécurité</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="recurrents" class="content-section">
+        <h2>Le poste que presque tous les devis oublient : le récurrent</h2>
+        <p>
+          En treize ans, l'écart le plus fréquent entre le budget imaginé et le budget
+          réel ne vient pas du développement. Il vient de ce qui se paie <em>chaque
+          année</em>, et qui n'apparaît pas toujours sur la première page d'un devis.
+          Voici les postes à provisionner.
+        </p>
+        <div class="table-scroll">
+          <table class="article-table">
+            <caption>Coûts récurrents typiques d'un site professionnel au Maroc, ordres de grandeur annuels</caption>
+            <thead>
+              <tr>
+                <th scope="col">Poste</th>
+                <th scope="col">Ordre de grandeur annuel</th>
+                <th scope="col">Qui doit le porter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Nom de domaine (.ma ou .com)</th>
+                <td>150 à 500 MAD</td>
+                <td>Le client, à son nom</td>
+              </tr>
+              <tr>
+                <th scope="row">Hébergement mutualisé</th>
+                <td>600 à 2 000 MAD</td>
+                <td>Le client, ou refacturé</td>
+              </tr>
+              <tr>
+                <th scope="row">Maintenance et mises à jour de sécurité</th>
+                <td>Sur forfait mensuel</td>
+                <td>Prestation distincte, optionnelle</td>
+              </tr>
+              <tr>
+                <th scope="row">Licences d'extensions (e-commerce surtout)</th>
+                <td>Variable, souvent en devises</td>
+                <td>Le client, à vérifier au devis</td>
+              </tr>
+              <tr>
+                <th scope="row">Commissions de paiement en ligne</th>
+                <td>Pourcentage par transaction</td>
+                <td>Le client, fixé par la banque</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Un point d'attention propre au marché marocain : les licences d'extensions
+          e-commerce sont presque toujours facturées en dollars ou en euros. Le montant
+          en dirhams dépend donc du cours du jour, publié par
+          <a href="https://www.bkam.ma/" rel="noopener nofollow" target="_blank">Bank Al-Maghrib</a>.
+          Demandez que le devis précise si ces licences sont incluses, refacturées, ou
+          à votre charge directe.
+        </p>
+      </section>
+
+      <section id="lire-devis" class="content-section">
+        <h2>Lire un devis : les sept lignes que je vérifie</h2>
+        <p>
+          Quand un client me montre un devis concurrent pour avis, je regarde toujours
+          les mêmes sept points. Ils suffisent à savoir si deux propositions sont
+          réellement comparables.
+        </p>
+        <ol class="checklist">
+          <li><strong>Le nombre de gabarits</strong>, pas le nombre de pages. Dix pages sur deux gabarits coûtent moins que quatre pages sur quatre gabarits.</li>
+          <li><strong>Qui rédige.</strong> « Intégration des contenus fournis par le client » et « rédaction des contenus » ne sont pas le même métier ni le même prix.</li>
+          <li><strong>Le nombre d'allers-retours</strong> inclus sur les maquettes. Au-delà, la facturation doit être écrite.</li>
+          <li><strong>La propriété du domaine et des comptes.</strong> Ils doivent être à votre nom, pas à celui de l'agence.</li>
+          <li><strong>Ce qui se passe après la livraison</strong> : durée du support inclus, périmètre, délai de réponse.</li>
+          <li><strong>La réversibilité.</strong> Pouvez-vous partir avec le site, la base de données et les accès, sans dépendre d'un outil propriétaire ?</li>
+          <li><strong>Les taxes.</strong> Un montant « à partir de » hors taxes et un montant toutes taxes comprises peuvent différer sensiblement.</li>
+        </ol>
+        <div class="warning-box">
+          <h3>Le signal d'alerte le plus fiable</h3>
+          <p>
+            Un devis qui promet une première position sur Google, ou un nombre de
+            visiteurs, s'engage sur quelque chose qu'il ne contrôle pas. Les critères
+            de classement évoluent en continu, comme le documente
+            <a href="https://developers.google.com/search/docs/appearance/ranking-systems-guide" rel="noopener nofollow" target="_blank">la documentation de Google Search</a>.
+            Personne ne peut garantir un rang.
+          </p>
+        </div>
+      </section>
+
+      <section id="contexte" class="content-section">
+        <h2>Pourquoi ces montants, dans ce marché</h2>
+        <p>
+          Un site professionnel au Maroc se conçoit d'abord pour le mobile. Ce n'est
+          pas une préférence esthétique : les tableaux de bord trimestriels du marché
+          publiés par l'<a href="https://www.anrt.ma/" rel="noopener nofollow" target="_blank">ANRT</a>,
+          le régulateur des télécommunications, montrent une population connectée très
+          majoritairement via le mobile. Un budget qui traite le mobile comme une
+          adaptation de fin de projet, plutôt que comme le point de départ, produit un
+          site plus cher à corriger ensuite.
+        </p>
+        <p>
+          Deuxième élément de contexte, pour les projets marchands : le paiement par
+          carte sur un site marocain passe par un acquéreur partenaire du
+          <a href="https://www.cmi.co.ma/" rel="noopener nofollow" target="_blank">Centre Monétique Interbancaire</a>
+          et suppose un contrat marchand à votre nom. Le budget technique de
+          l'intégration est une chose ; l'éligibilité bancaire en est une autre, et
+          elle ne dépend pas de l'agence. Prévoyez ce délai administratif dans votre
+          calendrier de lancement.
+        </p>
+        <p>
+          Troisième élément, souvent sous-estimé : la performance a un coût, et un
+          bénéfice mesurable. Google publie des seuils explicites pour ses Core Web
+          Vitals — un affichage du contenu principal (LCP) sous 2,5 secondes et une
+          stabilité visuelle (CLS) sous 0,1, documentés sur
+          <a href="https://web.dev/articles/vitals" rel="noopener nofollow" target="_blank">web.dev</a>.
+          Atteindre ces seuils demande du travail sur les images, les polices et le
+          code. C'est une ligne de devis légitime, pas un supplément décoratif.
+        </p>
+      </section>
+
+      <section id="methode" class="content-section">
+        <h2>Comment ces repères ont été établis</h2>
+        <p>
+          Les montants de cet article sont nos propres tarifs de départ, publiés et
+          vérifiables sur notre <a href="/creation-site-web-casablanca-prix">page tarifs</a>.
+          Les ordres de grandeur des coûts récurrents proviennent des grilles publiques
+          des registrars et hébergeurs, et varient selon le prestataire retenu. Ils sont
+          donnés comme repères de provisionnement, pas comme un relevé de marché : nous
+          ne publions pas de moyenne sectorielle que nous n'aurions pas mesurée
+          nous-mêmes.
+        </p>
+        <p>
+          Si vous comparez plusieurs prestataires, notre
+          <a href="/agence-web-vs-freelance-vs-no-code-maroc">comparatif agence, freelance et no-code</a>
+          détaille ce que chaque option implique en coût total, en délai et en
+          dépendance technique.
+        </p>
+
+        <div class="sources-box">
+          <h3>Sources</h3>
+          <ul>
+            <li><a href="https://www.bkam.ma/" rel="noopener nofollow" target="_blank">Bank Al-Maghrib</a> — cours de change applicables aux licences facturées en devises.</li>
+            <li><a href="https://www.cmi.co.ma/" rel="noopener nofollow" target="_blank">Centre Monétique Interbancaire</a> — cadre de l'encaissement par carte au Maroc.</li>
+            <li><a href="https://www.anrt.ma/" rel="noopener nofollow" target="_blank">ANRT</a> — tableaux de bord trimestriels des usages Internet et mobile.</li>
+            <li><a href="https://web.dev/articles/vitals" rel="noopener nofollow" target="_blank">web.dev — Core Web Vitals</a> — seuils de performance à atteindre.</li>
+            <li><a href="https://developers.google.com/search/docs/appearance/ranking-systems-guide" rel="noopener nofollow" target="_blank">Google Search Central</a> — guide des systèmes de classement.</li>
+          </ul>
+          <p>
+            Aucune moyenne de prix du marché marocain n'est citée dans cet article : nous
+            ne publions pas de statistique que nous n'avons pas mesurée nous-mêmes.
+          </p>
+        </div>
+      </section>
+
+      <section id="tarifs" class="pricing-section">
+        <h2>Tarifs de départ 2026 pour un site web à Casablanca</h2>
+        <p class="pricing-disclaimer">Les montants ci-dessous correspondent aux tarifs de départ affichés par CreationSiteWebPro. Le prix final dépend du périmètre validé dans le devis. Consultez la page de nos <a href="/creation-site-web-casablanca-prix">offres actuelles</a> pour vérifier les informations à jour.</p>
+        
+        <div class="price-card">
+          <h3>Site vitrine</h3>
+          <div class="price-range">À partir de 7 500 MAD</div>
+          <ul>
+            <li>Pages et contenus définis dans le devis</li>
+            <li>Design responsive</li>
+            <li>Socle SEO technique et éditorial</li>
+            <li>Formulaire de contact</li>
+            <li>Modalités d'hébergement précisées dans l'offre</li>
+          </ul>
+          <div class="price-note">Pour présenter une activité et recueillir des demandes de contact.</div>
+        </div>
+
+        <div class="price-card featured">
+          <h3>Site e-commerce</h3>
+          <div class="price-range">À partir de 15 000 MAD</div>
+          <ul>
+            <li>Catalogue, panier et gestion des commandes</li>
+            <li>Parcours d'achat responsive</li>
+            <li>Moyens de paiement prévus au devis</li>
+            <li>Configuration des règles de livraison</li>
+            <li>Formation à la gestion de la boutique</li>
+          </ul>
+          <div class="price-note">Le montant dépend notamment du catalogue et des intégrations.</div>
+        </div>
+
+        <div class="price-card">
+          <h3>Application ou besoin sur mesure</h3>
+          <div class="price-range">Sur devis</div>
+          <ul>
+            <li>Fonctions métier cadrées avec l'équipe</li>
+            <li>Rôles et droits d'accès définis</li>
+            <li>Intégrations documentées</li>
+            <li>Tests et critères de validation prévus au projet</li>
+            <li>Maintenance précisée dans la proposition</li>
+          </ul>
+          <div class="price-note">Le chiffrage nécessite un périmètre fonctionnel.</div>
+        </div>
+      </section>
+
+      <section id="facteurs" class="content-section">
+        <h2>Ce qui influence le prix d'un site web</h2>
+        
+        <p>Deux devis ne sont comparables que s'ils couvrent les mêmes livrables, responsabilités et coûts récurrents. Les principaux facteurs sont les suivants :</p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Périmètre éditorial</h3>
+            <p>Le nombre et le type de pages, la rédaction, les traductions, les photos et la migration de contenus influencent la charge de travail.</p>
+          </div>
+
+          <div class="info-card">
+            <h3>Conception et design</h3>
+            <p>Le niveau de personnalisation, le nombre de gabarits, les prototypes et les exigences d'accessibilité doivent être précisés.</p>
+          </div>
+
+          <div class="info-card">
+            <h3>Fonctionnalités et intégrations</h3>
+            <p>Le paiement, la réservation, les comptes clients, les outils métier et les échanges de données demandent un cadrage, des tests et parfois des abonnements tiers.</p>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h3>Comparer le périmètre, pas seulement le total</h3>
+          <p>Un tarif plus bas peut correspondre à un périmètre réduit. Vérifiez les contenus, les tests, la formation, l'hébergement, la maintenance, les licences et la propriété des comptes avant de choisir.</p>
+        </div>
+      </section>
+
+      <section id="conseils" class="content-section">
+        <h2>Comment préparer un budget réaliste</h2>
+        
+        <div class="tips-container">
+          <div class="tip">
+            <h3>1. Prioriser le nécessaire</h3>
+            <p>Séparez les fonctions indispensables au lancement de celles qui peuvent être ajoutées après validation des premiers usages.</p>
+          </div>
+
+          <div class="tip">
+            <h3>2. Inventorier les contenus</h3>
+            <p>Identifiez les textes, photos, traductions et documents déjà disponibles. Demandez au prestataire ce qu'il doit produire, corriger ou intégrer.</p>
+          </div>
+
+          <div class="tip">
+            <h3>3. Inclure les coûts récurrents</h3>
+            <p>Ajoutez au budget l'hébergement, le nom de domaine, les licences, la maintenance et les éventuels services tiers prévus dans l'architecture.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="pieges" class="content-section">
+        <h2>Les points à vérifier avant de signer</h2>
+        
+        <div class="pitfalls-list">
+          <div class="pitfall">
+            <h3>Les promesses SEO garanties</h3>
+            <p>Une première position et une date précise ne peuvent pas être garanties. Les résultats dépendent notamment de la concurrence, de la qualité du site, du contenu et de la notoriété.</p>
+          </div>
+
+          <div class="pitfall">
+            <h3>Les coûts non détaillés</h3>
+            <p>Demandez quels frais d'hébergement, de maintenance, de licence et de mise à jour sont inclus, facultatifs ou facturés séparément.</p>
+          </div>
+
+          <div class="pitfall">
+            <h3>La dépendance au prestataire</h3>
+            <p>Vérifiez la propriété du domaine et des comptes, les possibilités d'export, la documentation remise et les conditions de reprise du projet.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="devis" class="cta-section">
+        <div class="cta-content">
+          <h2>Besoin d'un devis personnalisé ?</h2>
+          <p>Parlons de votre projet afin de préciser les besoins, les livrables et le budget.</p>
+          <div class="cta-buttons">
+            <a href="/contact" class="btn-primary">Demander un devis</a>
+            <a href={`tel:${napInfo.phone.replace(/\s+/g, '')}`} class="btn-secondary">Nous appeler</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .article-header {
+    margin-bottom: 2rem;
+    text-align: left;
+    margin-top: 0;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin: 2.5rem 0 1.5rem;
+    color: var(--color-secondary);
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    margin: 1.5rem 0 1rem;
+    color: #2c3e50;
+  }
+
+  .post-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .author-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .author-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lead-paragraph {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  .price-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .price-card.featured {
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .price-range {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin: 1rem 0;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .warning-box {
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+
+  .tips-container, .pitfalls-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cta-section {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 3rem 0;
+    text-align: center;
+  }
+
+  .btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .btn-secondary {
+    background: white;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .article-header {
+    margin-bottom: 2rem;
+    text-align: left;
+    margin-top: 0;
+  }
+    .blog-post {
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .price-card {
+      margin: 1rem 0;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+  }
+</style>

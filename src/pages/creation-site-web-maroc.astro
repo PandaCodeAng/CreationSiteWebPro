@@ -2,7 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import JsonLd from '../components/JsonLd.astro';
+import { LOCAL_BUSINESS_ID, buildOffers } from '../data/business';
 
+const schemaBreadcrumbs = [{ name: 'Création de site web au Maroc' }];
 const canonical = 'https://www.creationsitewebpro.com/creation-site-web-maroc';
 const title = 'Création de site web au Maroc | CreationSiteWebPro';
 const description = 'Création de sites vitrines, boutiques e-commerce et applications web pour les entreprises au Maroc. Cadrage, conception, développement et mise en ligne.';
@@ -51,14 +53,14 @@ const serviceSchema = {
   name: 'Création de site web au Maroc',
   description,
   url: canonical,
-  provider: {
-    '@id': 'https://www.creationsitewebpro.com/#localbusiness'
-  },
+  provider: { '@id': LOCAL_BUSINESS_ID },
   areaServed: {
     '@type': 'Country',
     name: 'Maroc'
   },
-  serviceType: 'Conception et développement de sites web'
+  serviceType: 'Conception et développement de sites web',
+  // Prix en MAD structurés (H-3 de l'audit GEO).
+  offers: buildOffers(['site-vitrine', 'site-ecommerce'], '/creation-site-web-casablanca-prix')
 };
 
 const faqSchema = {
@@ -75,7 +77,7 @@ const faqSchema = {
 };
 ---
 
-<Layout title={title} description={description} canonical={canonical}>
+<Layout title={title} description={description} canonical={canonical} breadcrumbs={schemaBreadcrumbs}>
   <JsonLd data={serviceSchema} />
   <JsonLd data={faqSchema} />
 

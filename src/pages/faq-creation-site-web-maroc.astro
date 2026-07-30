@@ -2,77 +2,125 @@
 import Layout from '../layouts/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import JsonLd from '../components/JsonLd.astro';
+import { pricingTiers } from '../data/business';
+
+const canonical = 'https://www.creationsitewebpro.com/faq-creation-site-web-maroc';
 const breadcrumbItems = [
   { name: 'Accueil', url: '/' },
-  { name: 'Faq' }
+  { name: 'FAQ' }
 ];
+const schemaBreadcrumbs = [{ name: 'FAQ création site web Maroc' }];
 const pageTitle = "FAQ Création Site Web Maroc & Prix 2026 | CreationSiteWebPro";
-const pageDescription = "Toutes les réponses sur la création de site web au Maroc : prix, délais, SEO, maintenance. Devis gratuit personnalisé pour votre projet à Casablanca.";
+const pageDescription = "Prix, délais, SEO, maintenance, paiement en ligne : les réponses chiffrées sur la création d'un site web au Maroc. Site vitrine dès 7 500 MAD.";
 
+// Chaque réponse commence par une affirmation extractible et contient au moins un
+// chiffre ou une condition vérifiable. Les réponses évasives notées 28-38/100 en
+// citabilité par l'audit GEO ont été réécrites ici (M-7).
 const faqs = [
   {
     question: "Combien coûte la création d'un site web à Casablanca ?",
-    answer: "Un site vitrine professionnel démarre à 7 500 MAD et une boutique e-commerce standard à 15 000 MAD. Une application web est chiffrée après un cadrage fonctionnel. Le devis final dépend des contenus, fonctionnalités et intégrations."
+    answer: "Un site vitrine professionnel démarre à 7 500 MAD et une boutique e-commerce standard à 15 000 MAD. Un projet sur mesure (application web, portail métier) est chiffré après un cadrage fonctionnel. Ces montants correspondent au périmètre décrit dans nos offres ; les taxes applicables et les coûts externes éventuels — nom de domaine, hébergement au-delà de la première année, licences de modules — sont détaillés au devis."
   },
   {
     question: "Combien de temps faut-il pour créer un site web ?",
-    answer: "La durée dépend du périmètre, des contenus, des intégrations et des validations. Les étapes et la date de livraison prévisionnelle sont précisées dans le devis avant le démarrage."
+    answer: "Un site vitrine est livré en 2 à 3 semaines et un site e-commerce en 4 à 6 semaines, à partir de la validation de la maquette. Un projet sur mesure est planifié au cadrage. Le délai court à compter de la réception de vos contenus : textes, photos et, pour une boutique, le catalogue produits. C'est le poste qui décale le plus souvent un calendrier."
   },
   {
     question: "Proposez-vous des services de maintenance après le lancement du site ?",
-    answer: "Des modalités de maintenance peuvent être prévues selon le projet. Les mises à jour, sauvegardes, contrôles et délais d'assistance inclus sont détaillés dans la proposition commerciale."
+    answer: "Oui, un forfait de maintenance mensuel est disponible. Il couvre les mises à jour de sécurité du CMS et des extensions, les sauvegardes régulières, la surveillance de la disponibilité et le support technique. Son contenu exact et son tarif en dirhams sont précisés dans le devis. La maintenance n'est pas incluse d'office dans le prix de création : c'est une prestation distincte, que vous pouvez refuser."
   },
   {
     question: "Puis-je mettre à jour moi-même le contenu de mon site ?",
-    answer: "Le choix du système de gestion de contenu et votre niveau d'autonomie sont définis pendant le cadrage. Une prise en main peut être prévue lorsque l'administration du contenu fait partie du périmètre."
+    answer: "Oui : nous configurons un CMS (par exemple WordPress) qui vous permet de modifier vous-même textes et images après la mise en ligne. Une session de formation est prévue à la livraison, et vous recevez les accès administrateur. Le périmètre exact de votre autonomie — ajout de pages, gestion du blog, modification des produits — est défini avec vous avant le développement, car il détermine la structure du back-office."
   },
   {
     question: "Votre entreprise s'occupe-t-elle du référencement (SEO) ?",
-    answer: "Les sites incluent un socle d'indexabilité, de métadonnées, de structure sémantique et de performance. Un accompagnement SEO continu peut être défini séparément, avec des indicateurs adaptés au marché."
+    answer: "Oui, à deux niveaux. Chaque site livré inclut le SEO technique de base : indexation, balises title et description, structure de titres, données structurées et optimisation des temps de chargement. Un accompagnement continu (audit, contenus, netlinking, suivi de positions) est proposé séparément, sur devis. Une première position ou une date précise ne peuvent pas être garanties : aucun prestataire ne contrôle l'algorithme de Google."
   },
   {
     question: "Créez-vous des sites web adaptés aux mobiles ?",
-    answer: "Oui. L'affichage responsive sur smartphones, tablettes et ordinateurs fait partie du socle de conception. Les principaux parcours sont vérifiés avant la mise en ligne."
+    answer: "Oui, tous nos sites sont conçus en mobile-first et l'affichage est vérifié sur smartphone, tablette et ordinateur avant la mise en ligne. Ce choix n'est pas cosmétique : au Maroc, l'accès à Internet est très majoritairement mobile, comme le montrent les tableaux de bord trimestriels publiés par l'ANRT. Nous visons également les seuils Core Web Vitals de Google (LCP sous 2,5 s, CLS sous 0,1) sur les pages livrées."
+  },
+  {
+    question: "Mes clients pourront-ils payer par carte bancaire ?",
+    answer: "Oui, sous condition d'éligibilité bancaire. Au Maroc, le paiement par carte sur un site marchand passe par un acquéreur partenaire du Centre Monétique Interbancaire (CMI) et suppose un contrat marchand établi à votre nom. Nous préparons le dossier technique et réalisons l'intégration, mais l'ouverture du contrat relève de votre banque et ne peut pas être garantie par l'agence. Le paiement à la livraison et le virement sont disponibles sans cette contrainte."
+  },
+  {
+    question: "À qui appartiennent le site et les données une fois le projet livré ?",
+    answer: "Le site, ses contenus et ses données vous appartiennent après règlement intégral. Vous recevez les accès administrateur, l'accès à l'hébergement et au nom de domaine, ainsi que la documentation technique. Les conditions de propriété, d'hébergement, de réversibilité et d'accès au code figurent dans la proposition commerciale et dans nos conditions générales de vente."
+  },
+  {
+    question: "Traitez-vous les données personnelles conformément à la loi marocaine ?",
+    answer: "Oui. Les formulaires et les traitements de données que nous mettons en place tiennent compte de la loi 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel, dont l'application est contrôlée par la CNDP. Les déclarations éventuelles auprès de la CNDP restent à la charge du responsable de traitement, c'est-à-dire vous, mais nous fournissons les éléments techniques nécessaires au dossier."
   }
 ];
 
 const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${canonical}#faq`,
+  name: 'Questions fréquentes sur la création de site web au Maroc',
+  url: canonical,
+  inLanguage: 'fr-MA',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer
     }
   }))
 };
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/faq-creation-site-web-maroc">
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={canonical}
+  breadcrumbs={schemaBreadcrumbs}
+>
   <JsonLd data={faqSchema} />
   <div class="faq-page">
     <Breadcrumbs items={breadcrumbItems} />
 
-    <h1>{pageTitle}</h1>
+    <h1>FAQ création site web au Maroc</h1>
     <p class="intro">{pageDescription}</p>
+
+    <div class="table-scroll">
+      <table class="faq-table">
+        <caption>Repères chiffrés : prix de départ et délai indicatif par type de projet</caption>
+        <thead>
+          <tr>
+            <th scope="col">Type de projet</th>
+            <th scope="col">Prix de départ</th>
+            <th scope="col">Délai indicatif</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pricingTiers.map((tier) => (
+            <tr>
+              <th scope="row">{tier.name}</th>
+              <td>{tier.priceLabel}</td>
+              <td>{tier.deliveryTime}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
 
     <div class="faq-container">
       {faqs.map((faq) => (
         <div class="faq-item">
           <h2>{faq.question}</h2>
-          <div>
-            <p>{faq.answer}</p>
-          </div>
+          <p>{faq.answer}</p>
         </div>
       ))}
     </div>
 
     <section class="cta-section">
       <h2>Vous avez d'autres questions ?</h2>
-      <p>N'hésitez pas à nous contacter pour obtenir des réponses personnalisées à vos questions.</p>
-      <a href="/contact" class="cta-button">Contactez-nous</a>
+      <p>Présentez votre projet et nous vous répondons avec un périmètre, un délai et un montant en dirhams.</p>
+      <a href="/contact" class="cta-button">Nous contacter</a>
     </section>
   </div>
 </Layout>
@@ -82,7 +130,7 @@ const faqSchema = {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    margin-top: 0;
+    margin-top: 5rem;
   }
 
   h1 {
@@ -96,6 +144,48 @@ const faqSchema = {
     text-align: center;
     margin-bottom: 2rem;
     font-size: clamp(1rem, 3vw, 1.1rem);
+  }
+
+  /* Le tableau défile dans son propre conteneur : la page ne doit jamais
+     défiler horizontalement sur mobile. */
+  .table-scroll {
+    overflow-x: auto;
+    margin-bottom: 3rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .faq-table {
+    width: 100%;
+    min-width: 480px;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 0.95rem;
+  }
+
+  .faq-table caption {
+    caption-side: top;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #555;
+    padding-bottom: 0.75rem;
+  }
+
+  .faq-table th,
+  .faq-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e6e9f0;
+  }
+
+  .faq-table thead th {
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .faq-table tbody th {
+    color: var(--color-primary);
+    font-weight: 700;
   }
 
   .faq-container {
@@ -151,7 +241,7 @@ const faqSchema = {
   @media (max-width: 768px) {
     .faq-page {
       padding: 1rem;
-      margin-top: 0;
+      margin-top: 11rem;
     }
   }
 </style>

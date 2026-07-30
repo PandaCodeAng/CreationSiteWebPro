@@ -2,15 +2,18 @@
 import Layout from '../../layouts/Layout.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import { generateTimeTag } from '../../utils/dates';
-import { createArticleSchema, getArticleBySlug, getAuthorProfile } from './_articles';
+import { createArticleSchema, getArticleBySlug, getAuthorProfile, getArticleBreadcrumbs } from './_articles';
 
 const article = getArticleBySlug('guide-ecommerce-maroc-site-web-performant');
 const { title, description, publishDate, modifiedDate, author, readingTime } = article;
 const authorProfile = getAuthorProfile(author);
 const schema = createArticleSchema(article);
+const schemaBreadcrumbs = getArticleBreadcrumbs(article);
 ---
 
-<Layout title={title} description={description} canonical={article.url}>
+<Layout title={title} description={description} canonical={article.url}
+  breadcrumbs={schemaBreadcrumbs}
+>
   <JsonLd data={schema} />
   <article itemscope itemtype="https://schema.org/BlogPosting" class="blog-post">
     <header>
@@ -26,7 +29,24 @@ const schema = createArticleSchema(article);
     </header>
 
     <div itemprop="articleBody">
-      <p>Un projet e-commerce au Maroc doit relier le catalogue, le paiement, la livraison, le service client et la gestion interne. La qualité de l'interface ne suffit pas si les règles commerciales ou les opérations ne sont pas clairement définies.</p>
+      <p class="lead-paragraph">Un projet e-commerce au Maroc doit relier le catalogue, le paiement, la livraison, le service client et la gestion interne. La qualité de l'interface ne suffit pas si les règles commerciales ou les opérations ne sont pas clairement définies. Si vous cherchez un accompagnement local, consultez notre offre de <a href="/services/e-commerce-casablanca">création de site e-commerce à Casablanca</a>.</p>
+
+      <div class="key-takeaways">
+        <h2>Ce qu'il faut retenir avant de lancer une boutique au Maroc</h2>
+        <ul>
+          <li><strong>Le paiement par carte n'est pas un réglage technique</strong> : il suppose un contrat marchand à votre nom auprès d'un acquéreur partenaire du CMI, avec un délai administratif propre à votre banque.</li>
+          <li><strong>Le paiement à la livraison reste un mode attendu</strong> par une partie de la clientèle. Le prévoir change vos règles de commande, de comptabilité et de retour.</li>
+          <li><strong>Une boutique se teste, elle ne se livre pas</strong> : paiement réussi, refusé, annulé, remboursé, rupture de stock. Ces cinq scénarios sont le minimum recevable avant mise en ligne.</li>
+          <li><strong>Budget de départ : 15 000 MAD</strong>, pour 4 à 6 semaines, hors licences d'extensions et commissions bancaires.</li>
+        </ul>
+      </div>
+
+      <p class="author-note">
+        Je suis ingénieure QA avant d'être spécialiste SEO, et cela oriente ma façon
+        de voir un projet e-commerce : une boutique n'est pas un site avec un panier,
+        c'est un système de transactions. Ce qui la fait échouer n'est presque jamais
+        le design. Ce sont les cas limites que personne n'a testés.
+      </p>
 
       <h2>1. Définir le catalogue et les données produit</h2>
       <p>Avant le développement, préparez les catégories, variantes, prix, stocks, photos et informations utiles à la décision. Déterminez aussi qui mettra ces données à jour et à quelle fréquence.</p>
@@ -55,6 +75,173 @@ const schema = createArticleSchema(article);
       <h2>9. Vérifier la conformité et la sécurité</h2>
       <p>Les mentions commerciales, la politique de confidentialité et les conditions applicables doivent être validées pour l'activité concernée. Protégez les comptes d'administration, appliquez les mises à jour et prévoyez des sauvegardes testées.</p>
 
+      <h2>10. Choisir la plateforme : ce qui départage réellement</h2>
+      <p>
+        La question « WooCommerce ou Shopify ? » arrive presque toujours en premier.
+        Elle devrait arriver en dernier, après le catalogue, les paiements et la
+        logistique — parce que ce sont eux qui départagent. Voici comment je compare
+        les options sur un projet marocain.
+      </p>
+      <div class="table-scroll">
+        <table class="article-table">
+          <caption>Critères de choix d'une plateforme e-commerce pour un projet au Maroc</caption>
+          <thead>
+            <tr>
+              <th scope="col">Critère</th>
+              <th scope="col">WooCommerce / PrestaShop</th>
+              <th scope="col">Shopify et SaaS équivalents</th>
+              <th scope="col">Développement sur mesure</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Coût d'entrée</th>
+              <td>Bas, hébergement à votre charge</td>
+              <td>Abonnement mensuel, souvent en devises</td>
+              <td>Le plus élevé</td>
+            </tr>
+            <tr>
+              <th scope="row">Intégration d'un acquéreur CMI</th>
+              <td>Possible via module dédié</td>
+              <td>Dépend des passerelles disponibles dans le pays</td>
+              <td>Intégration directe, à développer</td>
+            </tr>
+            <tr>
+              <th scope="row">Paiement à la livraison</th>
+              <td>Standard ou via extension</td>
+              <td>Selon la plateforme</td>
+              <td>Modélisé selon vos règles</td>
+            </tr>
+            <tr>
+              <th scope="row">Transporteurs locaux</th>
+              <td>Modules ou intégration manuelle</td>
+              <td>Souvent à connecter à la main</td>
+              <td>Intégration API sur mesure</td>
+            </tr>
+            <tr>
+              <th scope="row">Réversibilité</th>
+              <td>Bonne : base de données exportable</td>
+              <td>Limitée par le format de l'export</td>
+              <td>Totale, code et données vous appartiennent</td>
+            </tr>
+            <tr>
+              <th scope="row">Charge de maintenance</th>
+              <td>À votre charge ou en forfait</td>
+              <td>Assurée par l'éditeur</td>
+              <td>À prévoir contractuellement</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Il n'y a pas de bonne réponse générale. Un catalogue de 40 références avec
+        paiement à la livraison et deux transporteurs ne pose pas les mêmes contraintes
+        qu'un catalogue de 8 000 références avec variantes et stocks multi-entrepôts.
+        C'est le second cas qui justifie un développement spécifique, pas le premier.
+      </p>
+
+      <h2>11. Les cinq scénarios de paiement à tester avant la mise en ligne</h2>
+      <p>
+        C'est la partie de mon travail que les clients voient le moins et qui évite le
+        plus de dégâts. Un tunnel de commande doit être éprouvé sur des cas d'échec,
+        pas seulement sur le cas idéal.
+      </p>
+      <ol class="checklist">
+        <li><strong>Paiement accepté</strong> : la commande passe en préparation, l'e-mail de confirmation part, le stock est décrémenté.</li>
+        <li><strong>Paiement refusé par la banque</strong> : le panier est conservé, le message est compréhensible, aucune commande fantôme n'est créée.</li>
+        <li><strong>Abandon en cours de paiement</strong> : le client ferme l'onglet sur la page de la banque. Vérifiez qu'aucune commande ne reste bloquée dans un état indéterminé.</li>
+        <li><strong>Remboursement partiel</strong> : un article sur trois est retourné. Le montant, le stock et la comptabilité doivent suivre.</li>
+        <li><strong>Rupture de stock pendant le paiement</strong> : deux clients achètent le dernier article en même temps. Décidez de la règle — réservation au panier ou premier payé — et testez-la.</li>
+      </ol>
+      <p>
+        Sur le paiement par carte, rappelons le point qui surprend le plus souvent :
+        au Maroc, l'encaissement passe par un acquéreur partenaire du
+        <a href="https://www.cmi.co.ma/" rel="noopener nofollow" target="_blank">Centre Monétique Interbancaire</a>.
+        L'agence prépare le dossier technique et réalise l'intégration, mais
+        l'ouverture du contrat marchand relève de votre banque. Anticipez ce délai :
+        il conditionne votre date de lancement plus sûrement que le développement.
+      </p>
+
+      <h2>12. Performance du catalogue : les seuils à viser</h2>
+      <p>
+        Sur une boutique, la lenteur se paie en commandes perdues. Google publie des
+        seuils explicites pour ses Core Web Vitals, documentés sur
+        <a href="https://web.dev/articles/vitals" rel="noopener nofollow" target="_blank">web.dev</a>.
+        Ce sont ceux que nous visons sur les pages livrées.
+      </p>
+      <div class="table-scroll">
+        <table class="article-table">
+          <caption>Seuils Core Web Vitals considérés comme « bons » par Google</caption>
+          <thead>
+            <tr>
+              <th scope="col">Indicateur</th>
+              <th scope="col">Ce qu'il mesure</th>
+              <th scope="col">Seuil « bon »</th>
+              <th scope="col">Levier principal sur une boutique</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">LCP</th>
+              <td>Affichage du contenu principal</td>
+              <td>≤ 2,5 s</td>
+              <td>Poids et format des visuels produit</td>
+            </tr>
+            <tr>
+              <th scope="row">INP</th>
+              <td>Réactivité aux interactions</td>
+              <td>≤ 200 ms</td>
+              <td>Scripts de filtres et de panier</td>
+            </tr>
+            <tr>
+              <th scope="row">CLS</th>
+              <td>Stabilité visuelle</td>
+              <td>≤ 0,1</td>
+              <td>Dimensions déclarées sur les images</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Concrètement, sur un catalogue, l'essentiel du gain vient de trois gestes :
+        servir les visuels en WebP correctement dimensionnés, déclarer
+        <code>width</code> et <code>height</code> sur chaque image, et retarder les
+        scripts non essentiels au premier affichage.
+      </p>
+
+      <h2>13. Conformité : ce que la loi 09-08 implique pour une boutique</h2>
+      <p>
+        Une boutique collecte des données personnelles : identité, adresse, historique
+        d'achat, parfois numéro de téléphone. Au Maroc, ces traitements relèvent de la
+        loi 09-08 relative à la protection des personnes physiques à l'égard du
+        traitement des données à caractère personnel, dont l'application est contrôlée
+        par la <a href="https://www.dgssi.gov.ma/" rel="noopener nofollow" target="_blank">CNDP</a>.
+        Le responsable de traitement, c'est vous, pas votre prestataire technique.
+      </p>
+      <p>
+        En pratique : publiez une politique de confidentialité qui décrit réellement ce
+        que vous collectez, limitez la collecte au nécessaire pour honorer une commande,
+        et prévoyez comment répondre à une demande d'accès ou de suppression. Les
+        conditions générales de vente doivent aussi préciser les délais de livraison,
+        la procédure de retour et les modalités de remboursement.
+      </p>
+
+      <div class="sources-box">
+        <h2>Sources et limites de ce guide</h2>
+        <ul>
+          <li><a href="https://www.cmi.co.ma/" rel="noopener nofollow" target="_blank">Centre Monétique Interbancaire</a> — cadre de l'acceptation des cartes bancaires au Maroc.</li>
+          <li><a href="https://www.anrt.ma/" rel="noopener nofollow" target="_blank">ANRT</a> — tableaux de bord trimestriels du marché Internet et mobile marocain.</li>
+          <li><a href="https://web.dev/articles/vitals" rel="noopener nofollow" target="_blank">web.dev — Core Web Vitals</a> — définition et seuils des indicateurs de performance.</li>
+          <li><a href="https://schema.org/Product" rel="noopener nofollow" target="_blank">schema.org/Product</a> — balisage des fiches produit.</li>
+        </ul>
+        <p>
+          Ce guide décrit une méthode de préparation. Il ne contient ni volume de marché
+          ni taux de conversion moyen : nous ne publions pas de statistique que nous
+          n'avons pas mesurée. Les délais bancaires et les conditions des transporteurs
+          dépendent de votre situation et doivent être vérifiés auprès d'eux.
+        </p>
+      </div>
+
       <h2>En résumé</h2>
       <p>En 2026, un e-commerce performant est avant tout un système fiable : l'offre est claire, les étapes d'achat sont testées et les opérations suivent les engagements affichés au client.</p>
     </div>
@@ -62,7 +249,7 @@ const schema = createArticleSchema(article);
     <footer>
       <h3>Préparer votre projet e-commerce au Maroc</h3>
       <p>Présentez votre catalogue, vos règles de paiement et votre organisation logistique pour cadrer une boutique adaptée à votre activité.</p>
-      <a href="/contact" class="cta-button">Demander un devis e-commerce</a>
+      <a href="/services/e-commerce-casablanca" class="cta-button">Découvrir l’offre e-commerce à Casablanca</a>
     </footer>
   </article>
 </Layout>

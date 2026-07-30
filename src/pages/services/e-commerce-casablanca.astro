@@ -5,233 +5,999 @@ import OptimizedImage from '../../components/OptimizedImage.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import Icon from '../../components/Icon.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { LOCAL_BUSINESS_ID, buildOffers } from '../../data/business';
+
+const canonical = 'https://www.creationsitewebpro.com/services/e-commerce-casablanca';
+const pageTitle = 'Création de site e-commerce à Casablanca | Dès 15 000 MAD';
+const pageDescription = 'Création de site e-commerce à Casablanca dès 15 000 MAD : catalogue, paiement, livraison, commandes et SEO. Taxes et périmètre précisés au devis.';
 
 const breadcrumbItems = [
   { name: 'Accueil', url: '/' },
   { name: 'Services', url: '/services' },
-  { name: 'E-commerce' }
+  { name: 'Création de site e-commerce à Casablanca' }
 ];
-const canonical = "https://www.creationsitewebpro.com/services/e-commerce-casablanca";
-const pageTitle = "Création de Site E-commerce à Casablanca";
-const pageDescription = "Création de boutiques en ligne à Casablanca : catalogue, commandes, paiement, livraison, administration et socle SEO adaptés au périmètre du projet.";
 
-const features = [
+// Layout.astro ajoute l'accueil et émet le BreadcrumbList : on ne déclare que
+// les niveaux suivants.
+const schemaBreadcrumbs = [
+  { name: 'Services', item: '/services' },
+  { name: 'Création de site e-commerce à Casablanca' }
+];
+
+const deliverables = [
   {
-    title: "Design Responsive",
-    description: "Parcours adaptés aux mobiles, tablettes et ordinateurs.",
-    icon: "mobile"
+    title: 'Catalogue et fiches produits',
+    description: 'Catégories, variantes, prix, promotions, photos et informations utiles sont structurés pour faciliter le choix.',
+    icon: 'box'
   },
   {
-    title: "Paiement Sécurisé",
-    description: "Intégration des moyens de paiement validés selon le prestataire et le compte marchand.",
-    icon: "lock"
+    title: 'Panier et commandes',
+    description: 'Le tunnel d’achat, les emails transactionnels et les statuts de commande sont définis selon votre organisation.',
+    icon: 'shopping'
   },
   {
-    title: "Gestion de Stock",
-    description: "Gestion du catalogue et des stocks selon les règles définies pendant le cadrage.",
-    icon: "box"
+    title: 'Paiement adapté au Maroc',
+    description: 'Carte bancaire, paiement à la livraison ou virement sont étudiés selon vos contrats et votre clientèle.',
+    icon: 'lock'
   },
   {
-    title: "SEO E-commerce",
-    description: "Structure technique pour l'indexation des catégories et des fiches produits.",
-    icon: "search"
+    title: 'Livraison et zones desservies',
+    description: 'Tarifs, seuils, villes, délais indicatifs et suivi sont configurés selon vos transporteurs et vos règles.',
+    icon: 'map-pin'
+  },
+  {
+    title: 'Administration autonome',
+    description: 'Vous gérez les produits, les stocks et les commandes depuis une interface adaptée à l’équipe désignée.',
+    icon: 'tools'
+  },
+  {
+    title: 'Socle SEO e-commerce',
+    description: 'Architecture, métadonnées, canonicals, sitemap et performances préparent l’indexation des pages utiles.',
+    icon: 'magnify'
+  }
+];
+
+const platformOptions = [
+  {
+    title: 'WooCommerce ou PrestaShop',
+    description: 'Pour garder la main sur l’hébergement, les extensions et les adaptations métier, avec un entretien technique planifié.'
+  },
+  {
+    title: 'Shopify ou solution SaaS',
+    description: 'Pour simplifier l’exploitation courante, après vérification des fonctions, paiements et coûts disponibles au Maroc.'
+  },
+  {
+    title: 'Développement sur mesure',
+    description: 'Pour un catalogue, un parcours ou des connexions métier qui dépassent le fonctionnement d’une boutique standard.'
+  }
+];
+
+const processSteps = [
+  {
+    title: 'Cadrage commercial',
+    description: 'Objectifs, clients, catalogue, règles de prix, langues, paiement, livraison et responsabilités.'
+  },
+  {
+    title: 'Architecture et parcours',
+    description: 'Organisation des catégories, recherche, fiches produits, panier et passage de commande sur mobile.'
+  },
+  {
+    title: 'Conception et intégration',
+    description: 'Design, développement, contenus fournis, paramétrage des fonctions et connexions prévues au devis.'
+  },
+  {
+    title: 'Recette avant lancement',
+    description: 'Tests des commandes, emails, affichages, règles de livraison, vérifications techniques de base et principaux scénarios d’erreur.'
+  },
+  {
+    title: 'Mise en ligne et prise en main',
+    description: 'Formation de l’équipe, transmission des accès et modalités de maintenance définies ensemble.'
   }
 ];
 
 const faqItems = [
   {
-    question: "Combien coûte la création d'un site e-commerce à Casablanca ?",
-    answer: "Une boutique en ligne démarre à 15 000 MAD. Le devis final dépend du catalogue, des paiements, des livraisons, des contenus et des intégrations nécessaires."
+    question: 'Combien coûte la création d’un site e-commerce à Casablanca ?',
+    answer: 'La création d’une boutique en ligne démarre à 15 000 MAD. Le prix final dépend notamment du volume du catalogue, des variantes, des langues, des moyens de paiement, des règles de livraison et des intégrations. Le devis détaille les livrables, les coûts externes éventuels et le traitement fiscal applicable.'
   },
   {
-    question: "Combien de temps faut-il pour créer un site e-commerce ?",
-    answer: "Le calendrier dépend du volume du catalogue, des contenus, des intégrations et des validations. Les étapes et la date de livraison prévisionnelle sont précisées dans le devis."
+    question: 'Quel délai prévoir pour créer une boutique en ligne ?',
+    answer: 'Le calendrier est fixé après le cadrage. Il dépend du nombre de produits, de la disponibilité des contenus, des validations, des contrats de paiement et des connexions nécessaires. Les étapes et la date de livraison prévisionnelle figurent dans le devis.'
   },
   {
-    question: "Quels modes de paiement pouvez-vous intégrer au Maroc ?",
-    answer: "Le choix dépend des prestataires disponibles, de votre compte marchand et de vos besoins. Les moyens de paiement retenus et leurs conditions d'intégration sont confirmés pendant le cadrage."
+    question: 'Quelle plateforme choisir : Shopify, WooCommerce ou PrestaShop ?',
+    answer: 'Le choix dépend de votre catalogue, de votre équipe, de vos intégrations, de votre budget récurrent et des services réellement disponibles au Maroc. Nous comparons les options pendant le cadrage avant de recommander une solution.'
+  },
+  {
+    question: 'Quels moyens de paiement peut-on proposer au Maroc ?',
+    answer: 'Selon le projet, la boutique peut prévoir le paiement par carte via un acquéreur partenaire du CMI, le paiement à la livraison ou le virement. L’activation dépend de l’éligibilité de l’entreprise, du contrat marchand et de la compatibilité technique du prestataire.'
+  },
+  {
+    question: 'Pouvez-vous configurer la livraison et le paiement à la livraison ?',
+    answer: 'Oui, si ces fonctions sont prévues au devis. Les zones, tarifs, seuils, délais affichés, statuts et règles du paiement à la livraison sont configurés à partir de vos accords avec les transporteurs et de votre organisation.'
+  },
+  {
+    question: 'Pourrai-je gérer moi-même les produits et les commandes ?',
+    answer: 'Oui. Une interface d’administration et une prise en main peuvent être incluses pour permettre à votre équipe de gérer le catalogue, les stocks et les commandes. Le niveau de formation et de support est précisé dans l’offre.'
+  },
+  {
+    question: 'La boutique peut-elle être proposée en français, arabe et anglais ?',
+    answer: 'Oui, une boutique multilingue peut être prévue. Le devis précise les langues, la saisie ou la traduction des contenus, le sens d’affichage de l’arabe et les responsabilités de validation.'
+  },
+  {
+    question: 'Le référencement Google est-il inclus ?',
+    answer: 'Un socle SEO technique est prévu dans le périmètre annoncé : architecture indexable, métadonnées, canonicals, sitemap et performance. La production continue de contenus, les liens externes et le suivi SEO font l’objet d’un accompagnement distinct. Aucune position Google ne peut être garantie.'
+  },
+  {
+    question: 'Proposez-vous la maintenance ou la migration d’une boutique existante ?',
+    answer: 'Oui, selon l’état de la solution et les accès disponibles. La maintenance, les sauvegardes, les mises à jour, la reprise du catalogue et les redirections d’une migration sont évaluées séparément afin de protéger les données et le référencement existant.'
   }
 ];
 
 const schemaData = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "@id": `${canonical}#service`,
-  "name": pageTitle,
-  "description": pageDescription,
-  "url": canonical,
-  "provider": {
-    "@id": "https://www.creationsitewebpro.com/#localbusiness"
-  },
-  "areaServed": {
-    "@type": "City",
-    "name": "Casablanca"
-  },
-  "serviceType": "Création de boutique e-commerce"
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: pageTitle,
+      description: pageDescription,
+      inLanguage: 'fr-MA',
+      dateModified: '2026-07-29',
+      isPartOf: {
+        '@id': 'https://www.creationsitewebpro.com/#website'
+      },
+      mainEntity: {
+        '@id': `${canonical}#service`
+      }
+    },
+    {
+      '@type': 'Service',
+      '@id': `${canonical}#service`,
+      name: 'Création de site e-commerce à Casablanca',
+      alternateName: 'Création de boutique en ligne à Casablanca',
+      description: pageDescription,
+      url: canonical,
+      serviceType: 'Conception et développement de boutique e-commerce',
+      provider: {
+        '@id': 'https://www.creationsitewebpro.com/#localbusiness',
+        name: 'CreationSiteWebPro',
+        url: 'https://www.creationsitewebpro.com/'
+      },
+      areaServed: [
+        {
+          '@type': 'City',
+          name: 'Casablanca'
+        },
+        {
+          '@type': 'Country',
+          name: 'Maroc'
+        }
+      ],
+      // Prix en MAD structurés : la boutique est le service au prix de départ le
+      // plus élevé et le plus cité (H-3 de l'audit GEO).
+      offers: buildOffers(['site-ecommerce'], '/creation-site-web-casablanca-prix'),
+      audience: {
+        '@type': 'BusinessAudience',
+        audienceType: 'Commerçants, marques et PME'
+      }
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer
+        }
+      }))
+    }
+  ]
 };
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical={canonical}>
+<Layout title={pageTitle} description={pageDescription} canonical={canonical} breadcrumbs={schemaBreadcrumbs}>
   <JsonLd data={schemaData} />
-  
-  <div class="e-commerce-casablanca">
-    <Breadcrumbs items={breadcrumbItems} />
-    <h1>{pageTitle}</h1>
-    <p class="intro">{pageDescription}</p>
 
-    <section class="hero">
-      <OptimizedImage 
-        src="/images/e-commerce-casablanca-hero.jpg" 
-        alt="Création de site e-commerce à Casablanca" 
-        width={600} 
-        height={300} 
-        loading="eager"
-        fetchpriority="high"
-        sizes="(max-width: 800px) 100vw, 600px"
-      />
+  <div class="commerce-page">
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <section class="commerce-hero" aria-labelledby="commerce-title">
+      <div class="commerce-hero__content">
+        <p class="eyebrow">Agence web intervenant à Casablanca</p>
+        <h1 id="commerce-title">Création de site e-commerce à Casablanca</h1>
+        <p class="commerce-hero__lead">
+          Une boutique en ligne pensée pour vendre au Maroc : catalogue clair, commande mobile,
+          paiement et livraison cadrés, administration simple et base SEO propre.
+        </p>
+
+        <ul class="commerce-hero__proofs" aria-label="Repères de l’offre">
+          <li><strong>Dès 15 000 MAD</strong></li>
+          <li>Devis détaillé</li>
+          <li>Formation définie au projet</li>
+        </ul>
+
+        <div class="commerce-hero__actions">
+          <CTAButton href="/contact?projet=e-commerce#contact-form" text="Demander un devis e-commerce" />
+          <a class="secondary-button" href="#prix">Voir le prix et le périmètre</a>
+        </div>
+
+        <p class="commerce-hero__note">
+          Le tarif, les taxes applicables, le calendrier et les services tiers sont confirmés après étude du catalogue et des opérations.
+        </p>
+      </div>
+
+      <figure class="commerce-hero__visual">
+        <OptimizedImage
+          src="/images/e-commerce-casablanca-hero.jpg"
+          alt="Projet de création de boutique e-commerce à Casablanca"
+          className="commerce-hero__image"
+          width={800}
+          height={1200}
+          loading="eager"
+          fetchpriority="high"
+          sizes="(max-width: 820px) 100vw, 430px"
+        />
+        <figcaption>Site marchand responsive, de la fiche produit au suivi de commande.</figcaption>
+      </figure>
     </section>
 
-    <section class="features">
-      <h2>Fonctionnalités Clés de Nos Sites E-commerce</h2>
-      <div class="feature-grid">
-        {features.map((feature) => (
-          <div class="feature-card">
-            <Icon name={feature.icon} />
-            <h3>{feature.title}</h3>
-            <p>{feature.description}</p>
-          </div>
+    <section class="direct-answer" aria-labelledby="direct-answer-title">
+      <p class="section-kicker">Réponse directe</p>
+      <h2 id="direct-answer-title">Que comprend la création d’une boutique en ligne à Casablanca ?</h2>
+      <p>
+        Nous transformons vos règles commerciales en un parcours d’achat utilisable sur mobile et administrable
+        par votre équipe. Le projet relie le catalogue, les commandes, les moyens de paiement, la livraison,
+        les emails clients et les pages nécessaires au référencement. Le périmètre exact est écrit dans le devis :
+        une fonctionnalité ou un abonnement externe n’est jamais supposé inclus.
+      </p>
+    </section>
+
+    <section aria-labelledby="included-title">
+      <div class="section-heading">
+        <p class="section-kicker">Livrables</p>
+        <h2 id="included-title">Les fonctions essentielles de votre site marchand</h2>
+        <p>Chaque fonction est retenue selon son utilité pour vos clients et votre organisation, pas pour allonger une liste.</p>
+      </div>
+
+      <div class="card-grid card-grid--three">
+        {deliverables.map((item) => (
+          <article class="info-card">
+            <span class="info-card__icon" aria-hidden="true"><Icon name={item.icon} /></span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </article>
         ))}
       </div>
     </section>
 
-    <section class="why-choose-us">
-      <h2>Pourquoi Choisir CreationSiteWebPro pour Votre E-commerce à Casablanca?</h2>
-      <ul>
-        <li>Expertise locale du marché casablancais et marocain</li>
-        <li>Solutions sur mesure adaptées à votre secteur d'activité</li>
-        <li>Intégration des moyens de paiement prévus dans le devis</li>
-        <li>Administration et accompagnement définis selon le projet</li>
-        <li>Optimisation pour le référencement local à Casablanca</li>
-      </ul>
+    <section class="morocco-section" aria-labelledby="morocco-title">
+      <div class="section-heading">
+        <p class="section-kicker">Exploitation au Maroc</p>
+        <h2 id="morocco-title">Paiement et livraison adaptés au marché marocain</h2>
+        <p>
+          Une boutique n’est réellement prête que lorsque le parcours affiché correspond à vos contrats,
+          à vos zones desservies et à la façon dont votre équipe traite les commandes.
+        </p>
+      </div>
+
+      <div class="operations-grid">
+        <article>
+          <h3>Paiement par carte</h3>
+          <p>
+            L’intégration peut passer par un
+            <a href="https://www.cmi.co.ma/fr/acquereurs-partenaires-du-cmi" target="_blank" rel="noopener noreferrer">
+              acquéreur partenaire du CMI
+            </a>,
+            sous réserve de l’éligibilité de l’entreprise, de l’ouverture du compte marchand et de la compatibilité
+            technique. L’activation n’est donc pas présentée comme automatique.
+          </p>
+        </article>
+        <article>
+          <h3>Paiement à la livraison</h3>
+          <p>
+            Les règles de confirmation, les statuts et les informations transmises au transporteur sont cadrés
+            afin de limiter les erreurs et de rendre le suivi compréhensible pour le client.
+          </p>
+        </article>
+        <article>
+          <h3>Zones et frais de livraison</h3>
+          <p>
+            Casablanca, grandes villes ou couverture nationale : les frais, seuils, délais indicatifs et exceptions
+            reposent sur vos accords logistiques. Le site ne promet pas un délai que l’opérationnel ne peut pas tenir.
+          </p>
+        </article>
+        <article>
+          <h3>Français, arabe ou anglais</h3>
+          <p>
+            Les langues, devises affichées et contenus sont définis dès le cadrage. Pour l’arabe, le sens de lecture,
+            les composants et les validations de contenu sont testés dans le périmètre convenu.
+          </p>
+        </article>
+      </div>
     </section>
 
-    <section class="process">
-      <h2>Notre Processus de Création E-commerce</h2>
-      <ol>
-        <li>Analyse de vos besoins et de votre marché cible à Casablanca</li>
-        <li>Conception d'une interface utilisateur intuitive et attrayante</li>
-        <li>Développement de fonctionnalités e-commerce avancées</li>
-        <li>Tests approfondis et optimisation des performances</li>
-        <li>Formation à l'utilisation de votre nouvelle boutique en ligne</li>
-        <li>Lancement et modalités de support convenues</li>
+    <section aria-labelledby="platform-title">
+      <div class="section-heading">
+        <p class="section-kicker">Choix technique</p>
+        <h2 id="platform-title">Shopify, WooCommerce, PrestaShop ou sur mesure ?</h2>
+        <p>
+          La bonne plateforme est celle que votre équipe peut exploiter et financer dans la durée.
+          Nous comparons le catalogue, les intégrations, la maintenance, les abonnements et les services disponibles au Maroc.
+        </p>
+      </div>
+
+      <div class="card-grid card-grid--three">
+        {platformOptions.map((option) => (
+          <article class="platform-card">
+            <h3>{option.title}</h3>
+            <p>{option.description}</p>
+          </article>
+        ))}
+      </div>
+      <p class="notice">
+        La plateforme et les extensions ne sont retenues qu’après vérification de leur compatibilité avec le projet.
+        Les licences, commissions et abonnements tiers sont indiqués séparément lorsqu’ils s’appliquent.
+      </p>
+    </section>
+
+    <section class="price-section" id="prix" aria-labelledby="price-title">
+      <div class="price-section__intro">
+        <p class="section-kicker">Budget transparent</p>
+        <h2 id="price-title">Prix d’un site e-commerce à Casablanca : dès 15 000 MAD</h2>
+        <p>
+          Ce prix de départ sert de repère pour une boutique professionnelle. Après le cadrage, vous recevez
+          une proposition qui sépare les livrables, les options, le calendrier, les taxes applicables
+          et les éventuels coûts de services tiers.
+        </p>
+        <a href="/creation-site-web-casablanca-prix">Comparer tous nos tarifs de création web <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="price-factors">
+        <h3>Ce qui fait varier le devis</h3>
+        <ul>
+          <li>nombre de produits, catégories et variantes ;</li>
+          <li>préparation, import ou migration des données ;</li>
+          <li>design, langues et contenus à produire ;</li>
+          <li>paiement, transporteurs et règles commerciales ;</li>
+          <li>connexions à un ERP, CRM, logiciel de stock ou API ;</li>
+          <li>maintenance, hébergement et accompagnement après lancement.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="method-title">
+      <div class="section-heading">
+        <p class="section-kicker">Méthode</p>
+        <h2 id="method-title">Un processus de création vérifiable à chaque étape</h2>
+        <p>Les validations intermédiaires réduisent les surprises au moment d’ouvrir la boutique au public.</p>
+      </div>
+
+      <ol class="process-list">
+        {processSteps.map((step) => (
+          <li>
+            <div>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          </li>
+        ))}
       </ol>
     </section>
 
-    <section class="cta">
-      <h2>Prêt à Lancer Votre E-commerce à Casablanca?</h2>
-      <p>Contactez-nous dès aujourd'hui pour un devis personnalisé et propulsez votre entreprise dans l'ère du commerce en ligne!</p>
-      <CTAButton text="Demander un devis" href="/contact" />
+    <section class="seo-section" aria-labelledby="seo-title">
+      <div>
+        <p class="section-kicker">Visibilité organique</p>
+        <h2 id="seo-title">Un socle SEO conçu pour les catégories et les produits</h2>
+        <p>
+          Le référencement d’un e-commerce commence par une arborescence compréhensible, des URL stables,
+          des pages rapides et des contenus qui répondent à une intention réelle. Selon la solution retenue,
+          nous préparons les métadonnées, les canonicals, le sitemap, les redirections et les données structurées utiles.
+        </p>
+        <p>
+          Ce socle facilite l’exploration, mais il ne remplace ni une stratégie éditoriale ni l’acquisition de notoriété.
+          Découvrez notre <a href="/services/referencement-seo-casablanca">accompagnement SEO à Casablanca</a>
+          pour le suivi après mise en ligne.
+        </p>
+      </div>
+      <aside>
+        <h3>Avant de demander un devis</h3>
+        <ul>
+          <li>préparez vos catégories, produits, prix et variantes ;</li>
+          <li>identifiez qui fournit les photos et les textes ;</li>
+          <li>listez vos modes de paiement et transporteurs ;</li>
+          <li>définissez les zones, retours et règles commerciales ;</li>
+          <li>nommez les personnes qui géreront la boutique.</li>
+        </ul>
+        <a href="/blog/guide-ecommerce-maroc-site-web-performant">Lire le guide e-commerce au Maroc <span aria-hidden="true">→</span></a>
+      </aside>
     </section>
 
-    <section class="faq">
-      <h2>Questions Fréquentes sur la Création d'E-commerce à Casablanca</h2>
-      <dl>
-        {faqItems.map((item) => (
-          <Fragment>
-            <dt>{item.question}</dt>
-            <dd>{item.answer}</dd>
-          </Fragment>
-        ))}
-      </dl>
+    <section class="compliance-section" aria-labelledby="compliance-title">
+      <div class="section-heading">
+        <p class="section-kicker">Confiance et conformité</p>
+        <h2 id="compliance-title">Préparer les informations légales et les données clients</h2>
+      </div>
+      <p>
+        La vente à distance suppose des informations précontractuelles claires, tandis que les formulaires,
+        comptes et outils de mesure peuvent entraîner le traitement de données personnelles. Le projet peut intégrer les emplacements,
+        choix de consentement et mesures techniques convenus en s’appuyant sur les repères du
+        <a href="https://mcinet.gov.ma/fr/content/protection-consommateur/droits-garantis-aux-consommateurs" target="_blank" rel="noopener noreferrer">
+          ministère de l’Industrie et du Commerce
+        </a>
+        et le
+        <a href="https://www.cndp.ma/wp-content/uploads/2023/01/CNDP-guide-conformite-sites-web-fr.pdf" target="_blank" rel="noopener noreferrer">
+          guide de conformité des sites web de la CNDP
+        </a>.
+        Les textes, déclarations et obligations propres à votre activité restent à valider par votre entreprise
+        et, si nécessaire, par un conseil juridique.
+      </p>
+      <p class="updated-at">
+        Repères externes vérifiés le <time datetime="2026-07-29">29 juillet 2026</time>.
+      </p>
     </section>
+
+    <section class="local-section" aria-labelledby="local-title">
+      <div>
+        <p class="section-kicker">Accompagnement local</p>
+        <h2 id="local-title">Une agence web à Casablanca pour cadrer votre boutique</h2>
+        <p>
+          CreationSiteWebPro accompagne les commerçants, marques et PME de Casablanca et du Maroc.
+          Vous échangez sur le catalogue, les opérations et les priorités avant toute recommandation technique.
+        </p>
+      </div>
+      <div class="local-section__links">
+        <a href="/portfolio-realisations-web-casablanca-maroc">Consulter nos réalisations web</a>
+        <a href="/a-propos-agence-web-casablanca">Découvrir l’agence</a>
+      </div>
+    </section>
+
+    <section class="faq-section" aria-labelledby="faq-title">
+      <div class="section-heading">
+        <p class="section-kicker">Questions fréquentes</p>
+        <h2 id="faq-title">Création de site e-commerce à Casablanca</h2>
+      </div>
+
+      <div class="faq-list">
+        {faqItems.map((item) => (
+          <details>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <aside class="final-cta" aria-labelledby="final-cta-title">
+      <p class="eyebrow">Votre projet, votre périmètre</p>
+      <h2 id="final-cta-title">Recevez un devis pour votre boutique en ligne</h2>
+      <p>
+        Indiquez votre nombre de produits, vos modes de paiement, vos zones de livraison et la date de lancement souhaitée.
+        Nous vous répondrons avec les prochaines étapes.
+      </p>
+      <CTAButton href="/contact?projet=e-commerce#contact-form" text="Présenter mon projet e-commerce" />
+    </aside>
   </div>
-  <JsonLd data={{
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqItems.map((item) => ({
-      "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.answer
-      }
-    }))
-  }} />
 </Layout>
 
 <style>
-  .e-commerce-casablanca {
-    max-width: 1200px;
+  .commerce-page {
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 2rem;
-    margin-top: 0;
+    padding: 2rem 1.25rem 5rem;
   }
 
-  h1 {
-    font-size: 2.5rem;
-    color: var(--color-primary);
-    text-align: center;
-    margin-bottom: 1rem;
+  .commerce-page section {
+    padding: 4.5rem 0;
   }
 
-  .intro {
+  .commerce-page h2 {
+    font-size: clamp(1.8rem, 3.4vw, 2.65rem);
+    line-height: 1.2;
+  }
+
+  .commerce-page h3 {
     font-size: 1.2rem;
-    text-align: center;
+  }
+
+  .eyebrow,
+  .section-kicker {
+    margin-bottom: .65rem;
+    color: #b45309;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .commerce-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(320px, .75fr);
+    gap: 3rem;
+    align-items: center;
+    margin-top: 1.25rem;
+    padding: clamp(2rem, 5vw, 4rem) !important;
+    border-radius: 1.5rem;
+    background:
+      radial-gradient(circle at 90% 15%, rgba(245, 158, 11, .2), transparent 28%),
+      linear-gradient(140deg, #073b4c 0%, #0b5269 55%, #062b3a 100%);
+    box-shadow: 0 24px 60px rgba(7, 59, 76, .16);
+  }
+
+  .commerce-hero .eyebrow {
+    color: #fcd34d;
+  }
+
+  .commerce-hero h1 {
+    max-width: 720px;
+    margin-bottom: 1.25rem;
+    color: #fff;
+    font-size: clamp(2.25rem, 5.4vw, 4.15rem);
+    line-height: 1.04;
+    letter-spacing: -.04em;
+  }
+
+  .commerce-hero__lead {
+    max-width: 700px;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, .92);
+    font-size: clamp(1.05rem, 2vw, 1.24rem);
+  }
+
+  .commerce-hero__proofs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .7rem;
+    margin: 0 0 1.75rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .commerce-hero__proofs li {
+    padding: .55rem .8rem;
+    border: 1px solid rgba(255, 255, 255, .24);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .1);
+    color: #fff;
+    font-size: .88rem;
+  }
+
+  .commerce-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+    align-items: center;
+  }
+
+  .commerce-hero__actions :global(.cta-button) {
+    background: #f59e0b;
+    color: #111827;
+  }
+
+  .secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: .75rem 1.15rem;
+    border: 1px solid rgba(255, 255, 255, .5);
+    border-radius: .5rem;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .secondary-button:hover {
+    border-color: #fff;
+    color: #fff;
+    background: rgba(255, 255, 255, .08);
+  }
+
+  .commerce-hero__note {
+    margin: 1rem 0 0;
+    color: rgba(255, 255, 255, .72);
+    font-size: .82rem;
+  }
+
+  .commerce-hero__visual {
+    position: relative;
+    min-height: 430px;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 1.1rem;
+    background: #dbeafe;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .25);
+  }
+
+  .commerce-hero__visual :global(.commerce-hero__image) {
+    width: 100%;
+    height: 100%;
+    min-height: 430px;
+    max-height: 540px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+  }
+
+  .commerce-hero__visual figcaption {
+    position: absolute;
+    right: .8rem;
+    bottom: .8rem;
+    left: .8rem;
+    padding: .7rem .8rem;
+    border-radius: .55rem;
+    background: rgba(6, 43, 58, .9);
+    color: #fff;
+    font-size: .82rem;
+    line-height: 1.45;
+  }
+
+  .section-heading {
+    max-width: 780px;
     margin-bottom: 2rem;
   }
 
-  .hero {
-    margin-bottom: 3rem;
+  .section-heading > p:last-child {
+    font-size: 1.05rem;
   }
 
-  .feature-grid {
+  .direct-answer {
+    max-width: 960px;
+    margin: 3rem auto 0;
+    padding: 2.25rem !important;
+    border-left: 5px solid #f59e0b;
+    border-radius: 0 1rem 1rem 0;
+    background: #f8fafc;
+  }
+
+  .direct-answer p:last-child {
+    margin-bottom: 0;
+    font-size: 1.08rem;
+  }
+
+  .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 1.25rem;
   }
 
-  .feature-card {
-    background-color: #f5f5f5;
+  .card-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .info-card,
+  .platform-card,
+  .operations-grid article {
     padding: 1.5rem;
-    border-radius: 8px;
+    border: 1px solid #dbe4ea;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 10px 28px rgba(7, 59, 76, .06);
+  }
+
+  .info-card p,
+  .platform-card p,
+  .operations-grid article p {
+    margin-bottom: 0;
+  }
+
+  .info-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 1rem;
+    border-radius: .75rem;
+    background: #e9f3f7;
+    color: #0b5269;
+  }
+
+  .info-card__icon :global(.icon) {
+    width: 25px;
+    height: 25px;
+  }
+
+  .morocco-section {
+    margin-inline: -1.25rem;
+    padding-inline: 1.25rem !important;
+    background: linear-gradient(180deg, #f5fafc, #fff);
+  }
+
+  .operations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .operations-grid a,
+  .price-section a,
+  .seo-section a {
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .platform-card {
+    border-top: 4px solid #118ab2;
+  }
+
+  .notice {
+    margin: 1.5rem 0 0;
+    padding: 1rem 1.15rem;
+    border-radius: .75rem;
+    background: #fff7ed;
+    color: #7c2d12;
+    font-size: .92rem;
+  }
+
+  .price-section {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 2.5rem;
+    align-items: start;
+    padding: clamp(2rem, 5vw, 3.25rem) !important;
+    border-radius: 1.25rem;
+    background: #073b4c;
+  }
+
+  .price-section h2,
+  .price-section h3 {
+    color: #fff;
+  }
+
+  .price-section p,
+  .price-section li {
+    color: rgba(255, 255, 255, .88);
+  }
+
+  .price-section .section-kicker {
+    color: #fcd34d;
+  }
+
+  .price-section a {
+    color: #fcd34d;
+  }
+
+  .price-factors {
+    padding: 1.6rem;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, .08);
+  }
+
+  .price-factors ul,
+  .seo-section ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .price-factors li,
+  .seo-section li {
+    margin-bottom: .55rem;
+  }
+
+  .process-list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    counter-reset: process;
+    list-style: none;
+  }
+
+  .process-list li {
+    position: relative;
+    padding: 3.5rem 1.15rem 1.25rem;
+    border-radius: .9rem;
+    background: #f4f8fa;
+    counter-increment: process;
+  }
+
+  .process-list li::before {
+    content: counter(process, decimal-leading-zero);
+    position: absolute;
+    top: 1rem;
+    left: 1.15rem;
+    color: #0b5269;
+    font-size: 1.35rem;
+    font-weight: 800;
+  }
+
+  .process-list h3 {
+    font-size: 1.05rem;
+  }
+
+  .process-list p {
+    margin-bottom: 0;
+    font-size: .9rem;
+  }
+
+  .seo-section {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .seo-section aside {
+    padding: 1.75rem;
+    border-radius: 1rem;
+    background: #eef6f8;
+  }
+
+  .compliance-section {
+    padding: 2rem !important;
+    border: 1px solid #dbe4ea;
+    border-radius: 1rem;
+  }
+
+  .compliance-section .section-heading {
+    margin-bottom: 1rem;
+  }
+
+  .compliance-section a {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .updated-at {
+    margin-bottom: 0;
+    color: #52606d;
+    font-size: .84rem;
+  }
+
+  .local-section {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .local-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .local-section__links {
+    display: grid;
+    gap: .75rem;
+    min-width: 260px;
+  }
+
+  .local-section__links a {
+    padding: .85rem 1rem;
+    border: 1px solid #b8cbd4;
+    border-radius: .6rem;
+    color: #073b4c;
+    font-weight: 700;
     text-align: center;
   }
 
-  .why-choose-us ul, .process ol {
-    padding-left: 1.5rem;
+  .faq-list {
+    display: grid;
+    gap: .8rem;
+    max-width: 920px;
   }
 
-  .cta {
-    background-color: var(--color-primary);
-    color: white;
-    padding: 3rem;
-    border-radius: 8px;
+  .faq-list details {
+    border: 1px solid #dbe4ea;
+    border-radius: .75rem;
+    background: #fff;
+  }
+
+  .faq-list summary {
+    padding: 1.1rem 3rem 1.1rem 1.2rem;
+    color: #073b4c;
+    font-weight: 750;
+    cursor: pointer;
+  }
+
+  .faq-list details p {
+    margin: 0;
+    padding: 0 1.2rem 1.2rem;
+  }
+
+  .final-cta {
+    padding: clamp(2rem, 5vw, 3.5rem);
+    border-radius: 1.25rem;
+    background: linear-gradient(135deg, #073b4c, #0b5269);
     text-align: center;
-    margin: 3rem 0;
   }
 
-  .faq dt {
-    font-weight: bold;
-    margin-top: 1.5rem;
+  .final-cta h2 {
+    color: #fff;
   }
 
-  .faq dd {
-    margin-left: 0;
-    margin-top: 0.5rem;
+  .final-cta p:not(.eyebrow) {
+    max-width: 720px;
+    margin-right: auto;
+    margin-left: auto;
+    color: rgba(255, 255, 255, .88);
   }
 
-  @media (max-width: 768px) {
-    .e-commerce-casablanca {
-      padding: 1rem;
-    }
+  .final-cta .eyebrow {
+    color: #fcd34d;
+  }
 
-    h1 {
-      font-size: 2rem;
-    }
+  .final-cta :global(.cta-button) {
+    background: #f59e0b;
+    color: #111827;
+  }
 
-    .feature-grid {
+  .commerce-hero :global(a:focus-visible),
+  .price-section :global(a:focus-visible),
+  .final-cta :global(a:focus-visible) {
+    outline: 3px solid #fff;
+    outline-offset: 4px;
+    box-shadow: 0 0 0 6px #b45309;
+  }
+
+  @media (max-width: 980px) {
+    .commerce-hero,
+    .price-section,
+    .seo-section {
       grid-template-columns: 1fr;
+    }
+
+    .commerce-hero__visual {
+      min-height: 340px;
+      max-height: 480px;
+    }
+
+    .commerce-hero__visual :global(.commerce-hero__image) {
+      min-height: 340px;
+      max-height: 480px;
+    }
+
+    .process-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 760px) {
+    .commerce-page {
+      padding-inline: 1rem;
+    }
+
+    .commerce-page section {
+      padding: 3.25rem 0;
+    }
+
+    .commerce-hero {
+      gap: 2rem;
+      padding: 2rem 1.25rem !important;
+    }
+
+    .commerce-hero__actions {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .commerce-hero__actions :global(.cta-button),
+    .secondary-button {
+      width: 100%;
+      text-align: center;
+    }
+
+    .card-grid--three,
+    .operations-grid,
+    .process-list,
+    .local-section {
+      grid-template-columns: 1fr;
+    }
+
+    .direct-answer,
+    .compliance-section {
+      padding: 1.5rem !important;
+    }
+
+    .local-section__links {
+      min-width: 0;
     }
   }
 </style>

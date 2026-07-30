@@ -8,24 +8,27 @@ Site officiel : https://www.creationsitewebpro.com/
 
 - [Création de site web à Casablanca](https://www.creationsitewebpro.com/creation-site-web-casablanca) : présentation du service principal.
 - [Création de site web au Maroc](https://www.creationsitewebpro.com/creation-site-web-maroc) : accompagnement à l’échelle nationale.
-- [E-commerce à Casablanca](https://www.creationsitewebpro.com/services/e-commerce-casablanca) : conception de boutiques en ligne.
+- [Création de site e-commerce à Casablanca](https://www.creationsitewebpro.com/services/e-commerce-casablanca) : boutique en ligne dès 15 000 MAD, taxes précisées au devis, avec catalogue, commandes, paiement, livraison, administration et socle SEO.
 - [Applications web sur mesure](https://www.creationsitewebpro.com/services/creation-application-web) : portails clients, outils métier et plateformes accessibles depuis un navigateur.
 - [Référencement SEO à Casablanca](https://www.creationsitewebpro.com/services/referencement-seo-casablanca) : audit et optimisation du référencement.
-- [Offres et tarifs](https://www.creationsitewebpro.com/creation-site-web-casablanca-prix) : source à consulter pour les offres actuelles.
+- [Offres et tarifs](https://www.creationsitewebpro.com/creation-site-web-casablanca-prix) : site vitrine dès 7 500 MAD (2 à 3 semaines), e-commerce dès 15 000 MAD (4 à 6 semaines), application web sur devis. Source à consulter pour les offres actuelles.
+- [Agence, freelance ou no-code au Maroc](https://www.creationsitewebpro.com/agence-web-vs-freelance-vs-no-code-maroc) : comparatif des trois options sur le budget, le délai, la maintenance et la réversibilité.
 - [Réalisations](https://www.creationsitewebpro.com/portfolio-realisations-web-casablanca-maroc) : présentation des projets publiés.
 - [Équipe et auteurs](https://www.creationsitewebpro.com/a-propos-agence-web-casablanca) : profils des membres de l’équipe.
 - [FAQ](https://www.creationsitewebpro.com/faq-creation-site-web-maroc) : réponses aux questions fréquentes.
 - [Contact](https://www.creationsitewebpro.com/contact) : coordonnées et formulaire de demande.
+- [Mentions légales](https://www.creationsitewebpro.com/mentions-legales) : éditeur, directeur de publication et hébergeur.
+- [Conditions générales de vente](https://www.creationsitewebpro.com/conditions-generales-de-vente) : devis, règlement, livraison, propriété et réversibilité.
 
 ## Guides éditoriaux
 
-- [Prix d’un site web à Casablanca : repères 2026](https://www.creationsitewebpro.com/blog/prix-creation-site-web-casablanca-2024) — Mouhcine Talbi.
+- [Prix d’un site web à Casablanca : repères 2026](https://www.creationsitewebpro.com/blog/prix-creation-site-web-casablanca) — Mouhcine Talbi.
 - [E-commerce au Maroc : bonnes pratiques 2026](https://www.creationsitewebpro.com/blog/guide-ecommerce-maroc-site-web-performant) — Safae Abed.
-- [Créer un site web performant à Casablanca en 2026](https://www.creationsitewebpro.com/blog/guide-creation-site-web-casablanca-2024) — Mouhcine Talbi.
-- [SEO et recherche vocale pour les sites marocains](https://www.creationsitewebpro.com/blog/strategies-seo-sites-web-marocains-2024) — Zakaria Boussnini.
-- [Digitaliser une entreprise marocaine en 2026](https://www.creationsitewebpro.com/blog/guide-digitalisation-entreprise-marocaine-2024) — Ikram Talbi.
-- [Tendances web design 2026 au Maroc](https://www.creationsitewebpro.com/blog/tendances-web-design-maroc-2024) — Mouhcine Talbi.
-- [Concevoir des webpages modernes en 2026](https://www.creationsitewebpro.com/blog/webpages-modernes-creation-site-web-2024) — Mouhcine Talbi.
+- [Créer un site web performant à Casablanca en 2026](https://www.creationsitewebpro.com/blog/guide-creation-site-web-casablanca) — Mouhcine Talbi.
+- [SEO et recherche vocale pour les sites marocains](https://www.creationsitewebpro.com/blog/strategies-seo-sites-web-marocains) — Zakaria Boussnini.
+- [Digitaliser une entreprise marocaine en 2026](https://www.creationsitewebpro.com/blog/guide-digitalisation-entreprise-marocaine) — Ikram Talbi.
+- [Tendances web design 2026 au Maroc](https://www.creationsitewebpro.com/blog/tendances-web-design-maroc) — Mouhcine Talbi.
+- [Concevoir des webpages modernes en 2026](https://www.creationsitewebpro.com/blog/webpages-modernes-creation-site-web) — Mouhcine Talbi.
 - [Index du blog](https://www.creationsitewebpro.com/blog) : catalogue éditorial complet.
 - [Flux RSS du blog](https://www.creationsitewebpro.com/rss.xml) : titres, auteurs et dates de publication.
 
@@ -42,8 +45,11 @@ Site officiel : https://www.creationsitewebpro.com/
 
 ## Notes
 
-- Les prix et délais dépendent du cahier des charges. La page des offres et un devis écrit sont les sources à privilégier.
+- Prix de départ publics : site vitrine 7 500 MAD, site e-commerce 15 000 MAD, application web sur devis. Ces montants sont hors taxes applicables et hors coûts externes (domaine, hébergement, licences), précisés au devis.
+- Délais indicatifs : 2 à 3 semaines pour un site vitrine, 4 à 6 semaines pour un site e-commerce, à compter de la réception des contenus du client.
+- Aucun avis client public n’existe à ce jour : le site ne publie ni note moyenne ni témoignage, et aucune donnée de ce type ne doit lui être attribuée.
 - Aucun classement dans un moteur de recherche ou une réponse d’intelligence artificielle ne peut être garanti.
+- L’encaissement par carte bancaire au Maroc dépend d’un contrat marchand auprès d’un acquéreur partenaire du CMI : l’agence prépare le dossier technique mais ne garantit pas l’éligibilité bancaire.
 - Le contenu HTML canonique prévaut sur ce résumé.
 - Pour les conditions de reproduction, consulter https://www.creationsitewebpro.com/mentions-legales
 - Répertoire éditorial étendu : https://www.creationsitewebpro.com/llms-full.txt

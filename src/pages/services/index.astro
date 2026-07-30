@@ -3,6 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import JsonLd from '../../components/JsonLd.astro';
 
+const schemaBreadcrumbs = [{ name: 'Services' }];
+
 const canonical = 'https://www.creationsitewebpro.com/services';
 const title = 'Services web à Casablanca et au Maroc';
 const description = 'Création de sites vitrines, boutiques e-commerce, applications web et accompagnement SEO pour les entreprises de Casablanca et du Maroc.';
@@ -11,22 +13,26 @@ const services = [
   {
     title: 'Création de site web',
     description: 'Un site vitrine responsive, rapide et administrable, conçu autour de vos objectifs commerciaux.',
-    href: '/creation-site-web-casablanca'
+    href: '/creation-site-web-casablanca',
+    linkLabel: 'Découvrir la création de site web'
   },
   {
     title: 'Site e-commerce',
     description: 'Une boutique en ligne adaptée au marché marocain, à votre catalogue et à vos modes de livraison et de paiement.',
-    href: '/services/e-commerce-casablanca'
+    href: '/services/e-commerce-casablanca',
+    linkLabel: 'Création de site e-commerce à Casablanca'
   },
   {
     title: 'Référencement SEO',
     description: 'Audit technique, contenu utile, SEO local et suivi mesurable de votre visibilité organique.',
-    href: '/services/referencement-seo-casablanca'
+    href: '/services/referencement-seo-casablanca',
+    linkLabel: 'Découvrir le référencement SEO'
   },
   {
     title: 'Application web',
     description: 'Des outils métier sur mesure : espace client, portail interne, automatisation ou plateforme web.',
-    href: '/services/creation-application-web'
+    href: '/services/creation-application-web',
+    linkLabel: 'Découvrir les applications web'
   }
 ];
 
@@ -43,7 +49,7 @@ const serviceSchema = {
 };
 ---
 
-<Layout title={title} description={description} canonical={canonical}>
+<Layout title={title} description={description} canonical={canonical} breadcrumbs={schemaBreadcrumbs}>
   <JsonLd data={serviceSchema} />
   <div class="services-page">
     <Breadcrumbs items={[{ name: 'Accueil', url: '/' }, { name: 'Services' }]} />
@@ -61,7 +67,7 @@ const serviceSchema = {
           <article class="service-card">
             <h3>{service.title}</h3>
             <p>{service.description}</p>
-            <a href={service.href}>Découvrir ce service <span aria-hidden="true">→</span></a>
+            <a href={service.href}>{service.linkLabel} <span aria-hidden="true">→</span></a>
           </article>
         ))}
       </div>

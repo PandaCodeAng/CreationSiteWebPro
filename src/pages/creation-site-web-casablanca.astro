@@ -3,12 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import JsonLd from '../components/JsonLd.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { napInfo } from '../data/business';
+import { napInfo, LOCAL_BUSINESS_ID, buildOffers } from '../data/business';
 
 const breadcrumbItems = [
   { name: 'Accueil', url: '/' },
   { name: 'Création site web Casablanca' }
 ];
+
+const schemaBreadcrumbs = [{ name: 'Création site web Casablanca' }];
 
 const pageTitle = "Création Site Web Casablanca | Agence Web Maroc";
 const pageDescription = "Création de sites web professionnels à Casablanca : site vitrine dès 7 500 MAD, e-commerce dès 15 000 MAD et projets sur mesure. Devis gratuit.";
@@ -60,18 +62,21 @@ const pageSchema = {
   "name": pageTitle,
   "description": pageDescription,
   "url": "https://www.creationsitewebpro.com/creation-site-web-casablanca",
-  "provider": {
-    "@id": "https://www.creationsitewebpro.com/#localbusiness"
-  },
+  "provider": { "@id": LOCAL_BUSINESS_ID },
   "areaServed": {
     "@type": "City",
     "name": "Casablanca"
-  }
+  },
+  "serviceType": "Conception et développement de sites web",
+  // Prix en MAD structurés : les tarifs étaient le contenu le plus citable du
+  // site mais n'existaient qu'en texte libre (H-3 de l'audit GEO).
+  "offers": buildOffers(['site-vitrine', 'site-ecommerce'], '/creation-site-web-casablanca-prix')
 };
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": "https://www.creationsitewebpro.com/creation-site-web-casablanca#faq",
   "mainEntity": faqs.map((faq) => ({
     "@type": "Question",
     "name": faq.question,
@@ -83,7 +88,12 @@ const faqSchema = {
 };
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/creation-site-web-casablanca">
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonical="https://www.creationsitewebpro.com/creation-site-web-casablanca"
+  breadcrumbs={schemaBreadcrumbs}
+>
   <JsonLd data={pageSchema} />
   <JsonLd data={faqSchema} />
   <div class="creation-site-web-casablanca">
@@ -159,7 +169,7 @@ const faqSchema = {
       </p>
       <ul>
         <li>Conception de sites web vitrines professionnels à Casablanca.</li>
-        <li>Développement de plateformes e-commerce performantes pour vendre en ligne au Maroc.</li>
+        <li>Développement de <a href="/services/e-commerce-casablanca">sites e-commerce à Casablanca</a> pour vendre en ligne au Maroc.</li>
         <li>Création d'applications web sur mesure pour répondre à des besoins spécifiques.</li>
         <li>Socle SEO technique et optimisation des informations locales utiles.</li>
         <li>Refonte de sites existants pour améliorer leur design et leurs performances.</li>

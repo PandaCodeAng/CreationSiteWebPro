@@ -1,0 +1,267 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { generateTimeTag } from '../../utils/dates';
+import { createArticleSchema, getArticleBySlug, getAuthorProfile, getArticleBreadcrumbs } from './_articles';
+
+const article = getArticleBySlug('guide-digitalisation-entreprise-marocaine');
+const { title, description, publishDate, modifiedDate, author, readingTime } = article;
+const authorProfile = getAuthorProfile(author);
+const schema = createArticleSchema(article);
+const schemaBreadcrumbs = getArticleBreadcrumbs(article);
+---
+
+<Layout title={title} description={description} canonical={article.url}
+  breadcrumbs={schemaBreadcrumbs}
+>
+  <JsonLd data={schema} />
+  <article itemscope itemtype="https://schema.org/BlogPosting" class="blog-post">
+    <header>
+      <h1 itemprop="headline">{title}</h1>
+      <p class="post-meta">
+        Publié le <Fragment set:html={generateTimeTag(publishDate)} />
+        | Mis à jour le <Fragment set:html={generateTimeTag(modifiedDate)} />
+        | Par <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <a href={authorProfile.url} itemprop="url"><span itemprop="name">{author}</span></a>
+        </span>
+        | Temps de lecture : {readingTime}
+      </p>
+    </header>
+
+    <div itemprop="articleBody">
+      <p class="lead-paragraph">Digitaliser une entreprise ne consiste pas à empiler des outils. La démarche doit résoudre un problème métier identifiable : mieux présenter l'offre, centraliser l'information, réduire les saisies manuelles ou faciliter la relation client.</p>
+
+      <div class="key-takeaways">
+        <h2>Ce qu'il faut retenir</h2>
+        <ul>
+          <li><strong>Digitaliser n'est pas acheter des outils</strong>, c'est supprimer une double saisie, un délai ou une dépendance à une seule personne.</li>
+          <li><strong>Commencez par un seul processus</strong>, celui qui vous coûte le plus de temps chaque semaine. Un chantier réussi finance le suivant.</li>
+          <li><strong>Trois phases suffisent</strong> : présence en ligne, centralisation de l'information, automatisation. Dans cet ordre.</li>
+          <li><strong>Vous devenez responsable de traitement</strong> dès que vous collectez des données clients, au sens de la loi 09-08 contrôlée par la CNDP.</li>
+        </ul>
+      </div>
+
+      <p class="author-note">
+        Mon travail consiste à traduire un besoin métier en spécifications. Ce que je
+        constate le plus souvent en analysant l'existant d'une PME marocaine, c'est que
+        le problème n'est pas l'absence d'outil : c'est que la même information est
+        ressaisie trois fois, dans trois endroits différents, par trois personnes. Ce
+        gaspillage se mesure, et c'est par là qu'il faut commencer.
+      </p>
+
+      <h2>1. Commencer par un diagnostic</h2>
+      <p>Cartographiez les étapes importantes de l'activité, de la première demande client jusqu'au suivi après-vente. Repérez les informations saisies plusieurs fois, les documents difficiles à retrouver et les tâches qui dépendent d'une seule personne.</p>
+
+      <h2>2. Fixer des objectifs mesurables</h2>
+      <p>Un projet est plus facile à piloter lorsque son résultat attendu est explicite. Il peut s'agir, par exemple, de réduire les erreurs de saisie, d'accélérer le traitement des demandes ou de disposer d'un historique client centralisé.</p>
+
+      <h2>3. Avancer par étapes</h2>
+      <ol>
+        <li><strong>Prioriser un processus :</strong> choisissez un besoin utile et suffisamment limité pour être testé.</li>
+        <li><strong>Définir les données :</strong> précisez les informations collectées, leur source et les personnes autorisées à les consulter.</li>
+        <li><strong>Choisir l'outil :</strong> comparez les fonctions, les possibilités d'export, le support et les coûts récurrents.</li>
+        <li><strong>Tester avec les utilisateurs :</strong> vérifiez le parcours sur des cas réels avant le déploiement général.</li>
+        <li><strong>Former l'équipe :</strong> documentez les tâches courantes et désignez un responsable interne.</li>
+        <li><strong>Mesurer puis ajuster :</strong> suivez quelques indicateurs liés à l'objectif initial.</li>
+      </ol>
+
+      <h2>4. Construire une présence en ligne cohérente</h2>
+      <p>Le site web constitue une source d'information contrôlée par l'entreprise. Il doit expliquer l'offre, fournir des coordonnées exactes et orienter vers les bons canaux de contact. Les réseaux sociaux ou les messageries peuvent le compléter, mais ne remplacent pas nécessairement les pages de référence.</p>
+
+      <h2>5. Adapter le parcours aux clients</h2>
+      <p>Les langues, les moyens de contact, les modes de paiement et les options de livraison doivent être choisis à partir des besoins de la clientèle visée et des capacités réelles de l'entreprise. Chaque option ajoutée doit être testée et expliquée clairement.</p>
+
+      <h2>6. Protéger les données et les accès</h2>
+      <ul>
+        <li>Accordez à chaque utilisateur uniquement les droits nécessaires.</li>
+        <li>Activez l'authentification renforcée lorsqu'elle est disponible.</li>
+        <li>Prévoyez des sauvegardes et vérifiez la procédure de restauration.</li>
+        <li>Documentez le départ d'un collaborateur et la révocation de ses accès.</li>
+      </ul>
+
+      <h2>7. Vérifier les aides au moment du projet</h2>
+      <p>Les programmes d'accompagnement et leurs critères peuvent évoluer. Avant d'intégrer une aide au budget, consultez les informations publiées par l'organisme concerné et obtenez une confirmation écrite de l'éligibilité et des dépenses prises en charge.</p>
+
+      <h2>Une feuille de route en trois phases</h2>
+      <p>
+        La séquence compte autant que le contenu. Automatiser un processus mal défini
+        revient à industrialiser un désordre. Voici l'ordre que je recommande, avec ce
+        qu'on peut raisonnablement attendre de chaque phase.
+      </p>
+      <div class="table-scroll">
+        <table class="article-table">
+          <caption>Séquence de digitalisation d'une PME, du plus simple au plus engageant</caption>
+          <thead>
+            <tr>
+              <th scope="col">Phase</th>
+              <th scope="col">Objet</th>
+              <th scope="col">Ce que ça règle</th>
+              <th scope="col">Prérequis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1. Être trouvable</th>
+              <td>Site vitrine, fiche Google Business Profile, coordonnées cohérentes</td>
+              <td>Les prospects vous trouvent et vous contactent sans passer par un intermédiaire</td>
+              <td>Contenus, NAP exact, mentions légales</td>
+            </tr>
+            <tr>
+              <th scope="row">2. Centraliser</th>
+              <td>Fichier client unique, historique des échanges, documents partagés</td>
+              <td>L'information ne dépend plus d'une boîte mail personnelle</td>
+              <td>Une règle de nommage et un responsable désigné</td>
+            </tr>
+            <tr>
+              <th scope="row">3. Automatiser</th>
+              <td>Devis, facturation, relances, portail client, outil métier</td>
+              <td>Les saisies répétitives et les oublis de relance disparaissent</td>
+              <td>Un processus stable et écrit à automatiser</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Beaucoup d'entreprises veulent commencer par la phase 3, parce que c'est la plus
+        visible. C'est aussi la plus coûteuse et la plus risquée si les phases 1 et 2 ne
+        sont pas en place. Un <a href="/services/creation-application-web">outil métier sur mesure</a>
+        se justifie quand le processus qu'il porte est déjà maîtrisé manuellement.
+      </p>
+
+      <h2>Chiffrer le gain avant de chiffrer la dépense</h2>
+      <p>
+        Un projet de digitalisation se défend en interne avec un calcul simple, que
+        n'importe quel dirigeant peut faire lui-même. Prenez une tâche répétitive :
+        combien de fois par semaine, combien de minutes à chaque fois, par combien de
+        personnes ? Le produit de ces trois nombres donne le temps annuel consommé.
+        Comparez-le au coût de l'outil, et la décision devient factuelle plutôt
+        qu'intuitive.
+      </p>
+      <p>
+        Ce calcul a un avantage secondaire : il vous dit <em>quel</em> processus
+        digitaliser en premier. Ce n'est pas toujours celui qui agace le plus. C'est
+        celui dont le produit est le plus élevé.
+      </p>
+
+      <h2>Ce que la loi 09-08 change pour vous</h2>
+      <p>
+        Dès qu'un formulaire, un fichier client ou un outil de facturation contient des
+        données personnelles, vous entrez dans le champ de la loi 09-08 relative à la
+        protection des personnes physiques à l'égard du traitement des données à
+        caractère personnel. L'autorité compétente est la
+        <a href="https://www.dgssi.gov.ma/" rel="noopener nofollow" target="_blank">CNDP</a>.
+      </p>
+      <p>
+        Trois réflexes pratiques : ne collectez que ce dont vous avez besoin pour exécuter
+        la prestation, dites clairement à quoi servent les données dans une politique de
+        confidentialité accessible, et sachez qui, dans l'entreprise, peut répondre à une
+        demande d'accès ou de suppression. Le prestataire technique vous fournit les
+        moyens ; la responsabilité du traitement reste la vôtre.
+      </p>
+      <p>
+        Sur le volet sécurité, la
+        <a href="https://www.dgssi.gov.ma/" rel="noopener nofollow" target="_blank">DGSSI</a>
+        publie des recommandations générales de sécurité des systèmes d'information
+        utiles à consulter avant d'ouvrir un accès distant à un outil interne.
+      </p>
+
+      <h2>Les cinq erreurs que je vois le plus souvent</h2>
+      <ol class="checklist">
+        <li><strong>Digitaliser un processus que personne ne sait décrire.</strong> Si deux collaborateurs racontent l'étape différemment, il faut la trancher avant de la coder.</li>
+        <li><strong>Multiplier les outils sans les relier.</strong> Trois logiciels qui ne se parlent pas créent trois sources de vérité, donc plus de travail qu'avant.</li>
+        <li><strong>Oublier la reprise des données existantes.</strong> Un nouvel outil vide est un outil que personne n'utilise. La migration est un poste de projet, pas un détail.</li>
+        <li><strong>Négliger la formation.</strong> Une heure de prise en main évite des mois de contournement par tableur.</li>
+        <li><strong>Ne pas prévoir la sortie.</strong> Avant de signer, demandez comment récupérer vos données si vous quittez la solution.</li>
+      </ol>
+
+      <div class="sources-box">
+        <h2>Sources</h2>
+        <ul>
+          <li><a href="https://www.dgssi.gov.ma/" rel="noopener nofollow" target="_blank">DGSSI</a> — recommandations de sécurité des systèmes d'information.</li>
+          <li><a href="https://www.anrt.ma/" rel="noopener nofollow" target="_blank">ANRT</a> — observatoire des usages Internet et mobile au Maroc.</li>
+          <li><a href="https://www.hcp.ma/" rel="noopener nofollow" target="_blank">Haut-Commissariat au Plan</a> — statistiques structurelles sur les entreprises marocaines.</li>
+        </ul>
+        <p>
+          Cet article propose une méthode de priorisation. Il ne cite aucun taux
+          d'équipement ni gain de productivité moyen : ces valeurs dépendent du secteur
+          et nous ne publions pas de statistique que nous n'avons pas mesurée.
+        </p>
+      </div>
+
+      <h2>En résumé</h2>
+      <p>Une digitalisation durable est progressive, documentée et portée par les personnes qui utiliseront les outils. Un premier cadrage permet de distinguer les besoins prioritaires des fonctions qui peuvent attendre.</p>
+    </div>
+
+    <footer>
+      <h3>Cadrer la digitalisation de votre entreprise</h3>
+      <p>Décrivez votre processus actuel et le résultat recherché pour identifier une première étape réaliste.</p>
+      <a href="/contact" class="cta-button">Demander une consultation</a>
+    </footer>
+  </article>
+</Layout>
+
+<style>
+  .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    margin-top: 0;
+  }
+
+  h1 {
+    color: var(--color-primary);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    color: var(--color-secondary);
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  p, ul, ol {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  ul, ol {
+    padding-left: 1.5rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .blog-post {
+      padding: 1rem;
+      margin-top: 0;
+    }
+  }
+</style>

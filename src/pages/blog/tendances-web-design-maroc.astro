@@ -1,0 +1,310 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { generateTimeTag } from '../../utils/dates';
+import { createArticleSchema, getArticleBySlug, getAuthorProfile, getArticleBreadcrumbs } from './_articles';
+
+const article = getArticleBySlug('tendances-web-design-maroc');
+const { title, description, publishDate, modifiedDate, author, readingTime } = article;
+const authorProfile = getAuthorProfile(author);
+const schema = createArticleSchema(article);
+const schemaBreadcrumbs = getArticleBreadcrumbs(article);
+---
+
+<Layout title={title} description={description} canonical={article.url}
+  breadcrumbs={schemaBreadcrumbs}
+>
+  <JsonLd data={schema} />
+  <article itemscope itemtype="https://schema.org/BlogPosting" class="blog-post">
+    <header>
+      <h1 itemprop="headline">{title}</h1>
+      <p class="post-meta">
+        Publié le <Fragment set:html={generateTimeTag(publishDate)} />
+        | Mis à jour le <Fragment set:html={generateTimeTag(modifiedDate)} />
+        | Par <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <a href={authorProfile.url} itemprop="url"><span itemprop="name">{author}</span></a>
+        </span>
+        | Temps de lecture : {readingTime}
+      </p>
+    </header>
+
+    <div itemprop="articleBody">
+      <p class="lead-paragraph">Salut ! Si vous suivez le milieu du digital à Casablanca, vous avez sans doute vu évoluer les pratiques de web design. Voici dix approches à évaluer en 2026 selon votre public, votre contenu et les objectifs de votre projet.</p>
+
+      <div class="key-takeaways">
+        <h2>Ce qu'il faut retenir</h2>
+        <ul>
+          <li><strong>Une tendance n'est pas un objectif.</strong> Chacune des dix approches ci-dessous ne se justifie que si elle sert un contenu ou un public précis.</li>
+          <li><strong>Le coût caché du design, c'est la performance.</strong> Animations, polices personnalisées et grands visuels se paient en secondes de chargement, donc en visiteurs perdus.</li>
+          <li><strong>L'accessibilité n'est pas une contrainte esthétique</strong> : un contraste de 4,5:1 sur le texte courant est le minimum de la norme WCAG 2.2 niveau AA.</li>
+          <li><strong>Le test décisif se fait sur mobile</strong>, connexion bridée, en plein soleil. Pas sur un écran 27 pouces au bureau.</li>
+        </ul>
+      </div>
+
+      <p class="author-note">
+        Je vais être direct : sur les dix tendances qui suivent, j'en déconseille
+        régulièrement la moitié à mes clients. Non parce qu'elles sont mauvaises, mais
+        parce qu'elles coûtent plus qu'elles ne rapportent sur un site de PME. J'ai
+        donc indiqué pour chacune ce qu'elle coûte réellement, et dans quel cas elle
+        se justifie.
+      </p>
+
+      <h2>1. Une interface sobre et hiérarchisée</h2>
+      <p>Une mise en page épurée peut faciliter la lecture lorsque les titres, les espacements et les actions principales sont clairement hiérarchisés. Les références visuelles marocaines peuvent enrichir l'identité de marque si elles restent cohérentes et lisibles.</p>
+
+      <h2>2. Des animations fonctionnelles</h2>
+      <p>Une animation peut confirmer une action, expliquer une transition ou attirer l'attention sur une information. Elle doit rester légère, pouvoir être réduite selon les préférences de l'utilisateur et ne pas bloquer la navigation.</p>
+
+      <h2>3. Un mode sombre lorsque l'usage le justifie</h2>
+      <p>Le mode sombre peut être pertinent pour une application consultée longtemps ou dans des environnements variés. Il demande une palette dédiée et des tests de contraste ; inverser simplement les couleurs ne suffit pas.</p>
+
+      <h2>4. Une typographie multilingue cohérente</h2>
+      <p>Un site en français et en arabe doit utiliser des polices lisibles dans les deux systèmes d'écriture. Il faut également vérifier le sens de lecture, les chiffres, les formulaires et l'alignement des composants.</p>
+
+      <h2>5. La visualisation enrichie des produits</h2>
+      <p>Des vues détaillées, des vidéos ou, pour certains catalogues, une visualisation en réalité augmentée peuvent aider à comprendre un produit. Leur intérêt doit être évalué face au coût de production, au poids des ressources et aux appareils compatibles.</p>
+
+      <h2>6. Des contenus adaptés aux questions</h2>
+      <p>Des titres précis et des réponses courtes facilitent la consultation, y compris lorsque la recherche initiale a été formulée à la voix. La langue et le vocabulaire doivent correspondre au public réel, sans répétition artificielle de mots-clés.</p>
+
+      <h2>7. Le récit visuel au défilement</h2>
+      <p>Le scrollytelling peut présenter une histoire, un processus ou une réalisation. Il convient surtout aux contenus éditoriaux et doit conserver une structure lisible lorsque les animations ne se chargent pas.</p>
+
+      <h2>8. L'accessibilité intégrée au design</h2>
+      <p>Contrastes, navigation au clavier, libellés de formulaire et textes alternatifs doivent être prévus dès les maquettes. L'accessibilité améliore l'usage pour de nombreux publics, mais ne doit pas être présentée comme une garantie de référencement.</p>
+
+      <h2>9. Une conception plus légère</h2>
+      <p>Réduire le poids des images, limiter les ressources inutiles et choisir une architecture simple peut améliorer la performance et diminuer les transferts de données. Les bénéfices environnementaux doivent être évalués sur l'ensemble du service, pas déduits d'un seul indicateur.</p>
+
+      <h2>10. Des passerelles maîtrisées vers les canaux sociaux</h2>
+      <p>Les liens vers les réseaux sociaux ou une messagerie peuvent compléter le parcours. Ils doivent correspondre à des comptes actifs, être clairement nommés et ne pas détourner inutilement l'utilisateur de l'action principale.</p>
+
+      <h2>Ce que chaque tendance coûte réellement</h2>
+      <p>
+        Voici mon arbitrage habituel. La colonne « coût » ne parle pas d'honoraires mais
+        de ce que l'approche prélève sur la performance, l'accessibilité ou la
+        maintenance.
+      </p>
+      <div class="table-scroll">
+        <table class="article-table">
+          <caption>Arbitrage entre bénéfice et coût technique, par approche de design</caption>
+          <thead>
+            <tr>
+              <th scope="col">Approche</th>
+              <th scope="col">Coût technique principal</th>
+              <th scope="col">Se justifie quand</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Interface sobre</th>
+              <td>Aucun, gain net</td>
+              <td>Toujours. C'est la seule de la liste sans contrepartie.</td>
+            </tr>
+            <tr>
+              <th scope="row">Animations</th>
+              <td>Réactivité (INP), consommation batterie</td>
+              <td>Elles confirment une action ou expliquent une transition</td>
+            </tr>
+            <tr>
+              <th scope="row">Vidéo en fond d'écran</th>
+              <td>Fort impact sur le LCP et les données mobiles</td>
+              <td>Rarement. Une image bien choisie suffit presque toujours.</td>
+            </tr>
+            <tr>
+              <th scope="row">Polices personnalisées</th>
+              <td>Requêtes réseau supplémentaires, décalage visuel</td>
+              <td>L'identité de marque en dépend réellement</td>
+            </tr>
+            <tr>
+              <th scope="row">Mode sombre</th>
+              <td>Double maintenance du design system</td>
+              <td>Application consultée longuement, souvent le soir</td>
+            </tr>
+            <tr>
+              <th scope="row">Grands visuels plein écran</th>
+              <td>Poids des images, LCP</td>
+              <td>Le visuel <em>est</em> le produit : tourisme, restauration, mode</td>
+            </tr>
+            <tr>
+              <th scope="row">Défilement narratif</th>
+              <td>Complexité, accessibilité clavier</td>
+              <td>Une histoire linéaire à raconter, pas un catalogue</td>
+            </tr>
+            <tr>
+              <th scope="row">Illustrations sur mesure</th>
+              <td>Budget de production, poids si mal exportées</td>
+              <td>Le sujet est abstrait et difficile à photographier</td>
+            </tr>
+            <tr>
+              <th scope="row">Motifs d'inspiration marocaine</th>
+              <td>Lisibilité si utilisés en fond de texte</td>
+              <td>En touches, sur des zones sans contenu textuel</td>
+            </tr>
+            <tr>
+              <th scope="row">Composants réutilisables</th>
+              <td>Effort initial de conception</td>
+              <td>Le site dépassera dix pages ou vivra plusieurs années</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Les trois seuils que le design ne doit pas franchir</h2>
+      <p>
+        Un design se juge aussi à ce qu'il n'abîme pas. Google publie des seuils chiffrés
+        pour ses Core Web Vitals, documentés sur
+        <a href="https://web.dev/articles/vitals" rel="noopener nofollow" target="_blank">web.dev</a>,
+        et ce sont eux qui tranchent quand une idée visuelle et la performance
+        s'opposent.
+      </p>
+      <ol class="checklist">
+        <li><strong>LCP ≤ 2,5 s</strong> — l'élément visuel principal doit s'afficher en moins de deux secondes et demie. C'est ce seuil qui condamne les vidéos de fond d'écran sur connexion mobile.</li>
+        <li><strong>INP ≤ 200 ms</strong> — une interaction doit répondre en moins d'un cinquième de seconde. Les animations lourdes au défilement sont les premières responsables d'un dépassement.</li>
+        <li><strong>CLS ≤ 0,1</strong> — rien ne doit sauter pendant le chargement. Se corrige en déclarant <code>width</code> et <code>height</code> sur chaque image et en réservant la place des polices.</li>
+      </ol>
+
+      <h2>Accessibilité : le minimum non négociable</h2>
+      <p>
+        Les règles d'accessibilité ne relèvent pas du goût. Les
+        <a href="https://www.w3.org/WAI/standards-guidelines/wcag/" rel="noopener nofollow" target="_blank">WCAG du W3C</a>
+        fixent des valeurs mesurables, vérifiables avec n'importe quel outil de contraste.
+        Voici celles qui reviennent le plus souvent en défaut sur les sites que
+        j'audite.
+      </p>
+      <div class="table-scroll">
+        <table class="article-table">
+          <caption>Critères WCAG 2.2 niveau AA les plus fréquemment manqués</caption>
+          <thead>
+            <tr>
+              <th scope="col">Critère</th>
+              <th scope="col">Valeur minimale</th>
+              <th scope="col">Erreur courante</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Contraste du texte courant</th>
+              <td>4,5:1</td>
+              <td>Gris clair sur blanc, très répandu</td>
+            </tr>
+            <tr>
+              <th scope="row">Contraste des grands titres</th>
+              <td>3:1</td>
+              <td>Texte blanc sur photo claire, sans voile</td>
+            </tr>
+            <tr>
+              <th scope="row">Zones tactiles</th>
+              <td>24 × 24 px minimum</td>
+              <td>Icônes de réseaux sociaux trop rapprochées</td>
+            </tr>
+            <tr>
+              <th scope="row">Focus visible au clavier</th>
+              <td>Toujours perceptible</td>
+              <td>Contour de focus supprimé en CSS pour « faire propre »</td>
+            </tr>
+            <tr>
+              <th scope="row">Alternative textuelle</th>
+              <td>Sur toute image porteuse de sens</td>
+              <td><code>alt</code> vide sur un bouton en image</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Ces contraintes améliorent le site pour tout le monde, pas seulement pour les
+        personnes en situation de handicap. Un contraste correct sert d'abord à celui qui
+        consulte son téléphone en plein soleil à Casablanca — c'est-à-dire à une grande
+        partie de vos visiteurs.
+      </p>
+
+      <div class="sources-box">
+        <h2>Sources</h2>
+        <ul>
+          <li><a href="https://www.w3.org/WAI/standards-guidelines/wcag/" rel="noopener nofollow" target="_blank">W3C — Web Content Accessibility Guidelines</a> — critères et niveaux de conformité.</li>
+          <li><a href="https://web.dev/articles/vitals" rel="noopener nofollow" target="_blank">web.dev — Core Web Vitals</a> — seuils de performance perçue.</li>
+          <li><a href="https://www.anrt.ma/" rel="noopener nofollow" target="_blank">ANRT</a> — usages Internet et mobile au Maroc.</li>
+        </ul>
+        <p>
+          Les arbitrages présentés reflètent notre pratique sur des projets de PME. Ils
+          ne constituent pas un classement de tendances établi par mesure statistique.
+        </p>
+      </div>
+
+      <h2>Comment choisir parmi ces approches ?</h2>
+      <p>Ces pistes ne sont pas des recettes universelles. Retenez celles qui répondent à un besoin utilisateur, peuvent être maintenues et restent compatibles avec les contraintes de contenu, de budget et de performance du projet.</p>
+    </div>
+
+    <footer>
+      <h3>Concevoir une interface adaptée à votre projet</h3>
+      <p>Nous pouvons cadrer les usages, les contenus et les contraintes techniques avant de définir la direction visuelle.</p>
+      <a href="/contact" class="cta-button">Demander un devis personnalisé</a>
+    </footer>
+  </article>
+</Layout>
+
+<style>
+  .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    margin-top: 0;
+  }
+
+  h1 {
+    color: var(--color-primary);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    color: var(--color-secondary);
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  p, ul {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .blog-post {
+      padding: 1rem;
+      margin-top: 0;
+    }
+  }
+</style>

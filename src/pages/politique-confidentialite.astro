@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import { napInfo } from '../data/business';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
+const schemaBreadcrumbs = [{ name: 'Politique de confidentialité' }];
+
 const pageTitle = "Politique de Confidentialité - CreationSiteWebPro";
 const pageDescription = "Découvrez notre politique de confidentialité et comment nous protégeons vos données personnelles.";
 
@@ -12,7 +14,7 @@ const breadcrumbItems = [
 ];
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/politique-confidentialite">
+<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/politique-confidentialite" breadcrumbs={schemaBreadcrumbs}>
   <div class="privacy-page">
     <Breadcrumbs items={breadcrumbItems} />
     

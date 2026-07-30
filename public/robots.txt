@@ -1,9 +1,18 @@
 # robots.txt
+
+# Déclaration de préférence d'usage du contenu (contentsignals.org, M-3 de l'audit GEO).
+# search   : indexation et liens autorisés.
+# ai-input : réutilisation comme source citée dans une réponse générée, autorisée.
+# ai-train : entraînement de modèles, non autorisé.
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
 User-agent: *
 Allow: /
 
 Disallow: /admin/
 Disallow: /private/
+Disallow: /merci
+Disallow: /recherche
 
 # Crawlers IA majeurs — accès explicitement autorisé
 User-agent: GPTBot
@@ -18,13 +27,31 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
 Allow: /
 
 User-agent: Google-Extended
 Allow: /
 
 User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: cohere-ai
 Allow: /
 
 Sitemap: https://www.creationsitewebpro.com/sitemap.xml

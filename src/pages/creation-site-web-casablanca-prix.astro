@@ -4,6 +4,13 @@ import CTAButton from '../components/CTAButton.astro';
 import PricingTable from '../components/PricingTable.astro';
 import JsonLd from '../components/JsonLd.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import {
+  LOCAL_BUSINESS_ID,
+  WEBSITE_ID,
+  buildAggregateOffer,
+  pricingTiers,
+  priceValidUntil
+} from '../data/business';
 
 const pageTitle = "Prix Création Site Web Casablanca 2026 | Devis Gratuit";
 const pageDescription = "Combien coûte un site web à Casablanca ? Tarifs indicatifs 2026 : site vitrine dès 7 500 MAD, e-commerce dès 15 000 MAD et application web sur devis.";
@@ -14,43 +21,67 @@ const breadcrumbItems = [
   { name: 'Prix Création Site Web Casablanca' }
 ];
 
+const schemaBreadcrumbs = [{ name: 'Prix Création Site Web Casablanca' }];
+
 const faqItems = [
   {
     question: "Quel est le prix d'un site vitrine à Casablanca ?",
-    answer: "Un site vitrine professionnel à Casablanca est proposé à partir de 7 500 MAD. Le prix final dépend notamment du nombre de pages, des contenus, des langues et des fonctionnalités définies dans le devis."
+    answer: "Un site vitrine professionnel à Casablanca coûte entre 7 500 MAD et 15 000 MAD selon le nombre de pages et les fonctionnalités. Nos packs incluent design sur mesure, optimisation SEO et hébergement la première année."
   },
   {
     question: "Combien coûte un site e-commerce à Casablanca ?",
-    answer: "La création d'une boutique en ligne à Casablanca est proposée à partir de 15 000 MAD. Le prix final dépend du catalogue, des règles de livraison, des moyens de paiement et des intégrations nécessaires."
+    answer: "La création d'une boutique en ligne à Casablanca est proposée à partir de 15 000 MAD. Le prix final dépend du nombre de produits, des intégrations de paiement (CMI, PayPal, virement) et des fonctionnalités avancées."
   },
   {
     question: "Le prix inclut-il le référencement SEO ?",
-    answer: "Oui, tous nos packs incluent une optimisation SEO de base (balises, performance et compatibilité mobile). Un accompagnement SEO continu et mesurable est disponible en option, sans promesse de position."
+    answer: "Oui, chaque site livré inclut le SEO technique de base : indexation, balises title et description, structure de titres, données structurées et optimisation des temps de chargement. Un accompagnement SEO continu est proposé séparément, sur devis. Aucune position dans les résultats Google ne peut être garantie."
   },
   {
     question: "Combien de temps pour créer un site web à Casablanca ?",
-    answer: "Le calendrier dépend du périmètre, des contenus, des intégrations et des validations. Une date de livraison prévisionnelle est indiquée dans le devis avant le démarrage."
+    answer: "Un site vitrine est livré en 2 à 3 semaines, un site e-commerce en 4 à 6 semaines. Un projet sur mesure (application web, portail métier) est planifié au cadrage. Ces délais courent à partir de la réception de vos contenus : textes, photos et, pour une boutique, le catalogue produits."
   },
   {
     question: "Proposez-vous des facilités de paiement ?",
-    answer: "L'échéancier et les modalités de paiement sont précisés dans la proposition commerciale. Des étapes de règlement peuvent être étudiées selon le projet."
+    answer: "Oui. Le règlement est échelonné : un acompte au démarrage du projet, puis le solde à la livraison. Le nombre d'échéances et les montants exacts figurent sur le devis et dans les conditions générales de vente."
   }
 ];
 
+// L'entité LocalBusiness complète est injectée par Layout.astro : on la référence
+// ici par son `@id` au lieu de la redéclarer partiellement.
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "WebPage",
+  "@id": `${pageCanonical}#webpage`,
   "name": pageTitle,
   "description": pageDescription,
   "url": pageCanonical,
-  "provider": {
-    "@id": "https://www.creationsitewebpro.com/#localbusiness"
-  }
+  "isPartOf": { "@id": WEBSITE_ID },
+  "about": { "@id": LOCAL_BUSINESS_ID },
+  "inLanguage": "fr-MA"
+};
+
+// `AggregateOffer` en MAD : les tarifs n'existaient qu'en texte libre dans les
+// réponses FAQ, alors que ce sont les passages les plus cités du site (H-3).
+const pricingSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${pageCanonical}#pricing-service`,
+  "name": "Prix Création Site Web Casablanca 2026",
+  "description": "Site vitrine à partir de 7 500 MAD, site e-commerce à partir de 15 000 MAD, application web sur devis. Taxes applicables et coûts externes précisés au devis.",
+  "serviceType": "Création de site web",
+  "provider": { "@id": LOCAL_BUSINESS_ID },
+  "areaServed": [
+    { "@type": "City", "name": "Casablanca" },
+    { "@type": "Country", "name": "Maroc" }
+  ],
+  "offers": buildAggregateOffer('/creation-site-web-casablanca-prix')
 };
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": `${pageCanonical}#faq`,
+  "isPartOf": { "@id": `${pageCanonical}#webpage` },
   "mainEntity": faqItems.map(faq => ({
     "@type": "Question",
     "name": faq.question,
@@ -62,11 +93,17 @@ const faqSchema = {
 };
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical={pageCanonical}>
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={pageCanonical}
+  breadcrumbs={schemaBreadcrumbs}
+>
   <JsonLd data={schemaData} />
+  <JsonLd data={pricingSchema} />
   <JsonLd data={faqSchema} />
 
-  <div class="prix-page">
+  <main class="prix-page">
     <Breadcrumbs items={breadcrumbItems} />
 
     <section class="prix-hero">
@@ -74,35 +111,74 @@ const faqSchema = {
         <h1>Prix Création Site Web à Casablanca</h1>
         <p class="prix-hero__subtitle">Des tarifs transparents, sans surprise — adaptés aux entreprises marocaines</p>
         <div class="prix-hero__badges">
-          <span class="badge">✓ Devis détaillé</span>
-          <span class="badge">✓ Tarifs de départ en MAD</span>
-          <span class="badge">✓ Planning défini au devis</span>
+          <span class="badge">✓ Devis gratuit</span>
+          <span class="badge">✓ Règlement échelonné</span>
+          <span class="badge">✓ Périmètre et délais écrits</span>
         </div>
       </div>
     </section>
 
     <PricingTable
       title="Nos tarifs création site web Casablanca"
-      subtitle="Des offres de départ et un devis adapté au périmètre réel du projet"
+      subtitle="Site vitrine dès 7 500 MAD, e-commerce dès 15 000 MAD, projets sur mesure sur devis"
     />
+
+    <section class="prix-tableau container">
+      <h2>Tarifs 2026 en un tableau</h2>
+      <p>
+        Trois paliers, leur prix de départ en dirhams, le délai indicatif et le périmètre associé.
+        Les taxes applicables et les coûts externes éventuels (nom de domaine, hébergement, licences)
+        sont précisés au devis.
+      </p>
+
+      <div class="table-scroll">
+        <table class="prix-table">
+          <caption>Prix de départ des offres CreationSiteWebPro à Casablanca, valables jusqu'au 30 juin 2027</caption>
+          <thead>
+            <tr>
+              <th scope="col">Type de projet</th>
+              <th scope="col">Prix de départ</th>
+              <th scope="col">Délai indicatif</th>
+              <th scope="col">Périmètre inclus</th>
+              <th scope="col">Adapté si vous voulez</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pricingTiers.map((tier) => (
+              <tr>
+                <th scope="row">{tier.name}</th>
+                <td>{tier.priceLabel}</td>
+                <td>{tier.deliveryTime}</td>
+                <td>{tier.scope}</td>
+                <td>{tier.bestFor}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="prix-table__note">
+        Tarifs indicatifs de départ exprimés en dirhams marocains (MAD), valables jusqu'au {priceValidUntil.split('-').reverse().join('/')}.
+        Le devis final dépend du périmètre, des contenus fournis, des intégrations et du calendrier validés avec vous.
+      </p>
+    </section>
 
     <section class="prix-comparatif container">
       <h2>Combien coûte vraiment un site web à Casablanca en 2026 ?</h2>
       <p>
-        Le budget varie selon le type de site, le volume de contenu, les fonctionnalités et les intégrations.
-        Voici nos repères de départ pour préparer votre demande de devis.
+        Les prix de création de site web à Casablanca varient considérablement selon l'agence et le type de projet.
+        Voici les fourchettes que nous pratiquons, du palier d'entrée au projet le plus large, pour vous aider à budgéter.
       </p>
 
       <div class="prix-grid">
         <div class="prix-card">
           <h3>Site Vitrine</h3>
-          <div class="prix-range">À partir de 7 500 MAD</div>
+          <div class="prix-range">{pricingTiers[0].rangeLabel}</div>
           <ul>
-            <li>Pages et contenus définis au devis</li>
+            <li>4 à 8 pages</li>
             <li>Design responsive mobile</li>
             <li>Formulaire de contact</li>
             <li>Optimisation SEO de base</li>
-            <li>Planning défini au devis</li>
+            <li>Livraison 2 à 3 semaines</li>
           </ul>
           <CTAButton href="/contact" text="Demander un devis" />
         </div>
@@ -110,26 +186,26 @@ const faqSchema = {
         <div class="prix-card prix-card--featured">
           <span class="prix-card__badge">Le plus demandé</span>
           <h3>Site E-commerce</h3>
-          <div class="prix-range">À partir de 15 000 MAD</div>
+          <div class="prix-range">{pricingTiers[1].rangeLabel}</div>
           <ul>
-            <li>Catalogue défini selon le projet</li>
-            <li>Moyens de paiement prévus au devis</li>
+            <li>Catalogue, variantes et stocks</li>
+            <li>Paiement carte (via acquéreur CMI), à la livraison ou virement</li>
             <li>Gestion des commandes</li>
-            <li>Socle SEO pour catégories et produits</li>
-            <li>Planning défini au devis</li>
+            <li>Socle SEO des catégories et produits</li>
+            <li>Livraison 4 à 6 semaines</li>
           </ul>
           <CTAButton href="/contact" text="Demander un devis" />
         </div>
 
         <div class="prix-card">
           <h3>Application Web</h3>
-          <div class="prix-range">Sur devis</div>
+          <div class="prix-range">{pricingTiers[2].rangeLabel}</div>
           <ul>
             <li>Fonctionnalités sur mesure</li>
             <li>Espace membres / dashboard</li>
             <li>Intégrations API</li>
-            <li>Modèle de données adapté au besoin</li>
-            <li>Planning défini après cadrage</li>
+            <li>Base de données métier</li>
+            <li>Calendrier défini au cadrage</li>
           </ul>
           <CTAButton href="/contact" text="Demander un devis" />
         </div>
@@ -139,45 +215,45 @@ const faqSchema = {
     <section class="prix-inclus container">
       <h2>Ce qui est inclus dans nos prix à Casablanca</h2>
       <p>
-        La proposition commerciale précise les éléments inclus pour éviter toute ambiguïté.
-        Le périmètre peut notamment couvrir les éléments suivants :
+        Les prix affichés correspondent au périmètre décrit ci-dessous. Voici ce que chaque projet
+        inclut systématiquement :
       </p>
       <div class="inclus-grid">
         <div class="inclus-item">
           <strong>Design sur mesure</strong>
-          <p>Interface adaptée à votre identité visuelle et au périmètre validé.</p>
+          <p>Maquettes uniques adaptées à votre identité visuelle. Aucun template générique.</p>
         </div>
         <div class="inclus-item">
           <strong>Responsive mobile</strong>
-          <p>Votre site est conçu et testé pour les smartphones, tablettes et ordinateurs.</p>
+          <p>Affichage vérifié sur smartphone, tablette et ordinateur. Au Maroc, l'accès à Internet est très majoritairement mobile : l'<a href="https://www.anrt.ma/" rel="noopener nofollow" target="_blank">ANRT</a> publie chaque trimestre le tableau de bord du parc et des usages.</p>
         </div>
         <div class="inclus-item">
           <strong>SEO technique</strong>
           <p>Balises optimisées, vitesse de chargement, sitemap, données structurées — la base pour être trouvé sur Google.</p>
         </div>
         <div class="inclus-item">
-          <strong>Hébergement et SSL</strong>
-          <p>La solution d'hébergement, sa durée et ses conditions sont précisées dans le devis.</p>
+          <strong>Hébergement 1 an</strong>
+          <p>Hébergement sécurisé inclus la première année. Certificat SSL (HTTPS) actif dès le lancement.</p>
         </div>
         <div class="inclus-item">
           <strong>Livraison testée</strong>
-          <p>Vérifications des parcours, formulaires et principaux affichages avant la mise en ligne.</p>
+          <p>Tests multi-navigateurs et multi-appareils avant mise en ligne, avec vérification des formulaires et des fonctions prévues au devis.</p>
         </div>
         <div class="inclus-item">
           <strong>Formation & support</strong>
-          <p>La prise en main et les modalités de support sont définies selon l'offre retenue.</p>
+          <p>Formation à la gestion de votre site et support technique 30 jours après livraison.</p>
         </div>
       </div>
     </section>
 
     <section class="prix-faq container">
       <h2>Questions fréquentes sur les prix de création de site web à Casablanca</h2>
-      <div class="faq-list">
+      <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
         {faqItems.map((faq) => (
-          <div class="faq-item">
-            <h3>{faq.question}</h3>
-            <div>
-              <p>{faq.answer}</p>
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3 itemprop="name">{faq.question}</h3>
+            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text">{faq.answer}</p>
             </div>
           </div>
         ))}
@@ -187,17 +263,17 @@ const faqSchema = {
     <section class="prix-cta container">
       <h2>Obtenez votre devis gratuit pour la création de votre site web à Casablanca</h2>
       <p>
-        Chaque projet est unique. Présentez-nous votre besoin pour recevoir un devis adapté
-        à votre activité, vos contenus et vos fonctionnalités.
+        Chaque projet est unique. Contactez-nous pour recevoir un devis personnalisé sous 24h,
+        adapté à votre secteur d'activité et à votre budget.
       </p>
-      <CTAButton href="/contact" text="Demander un devis" />
+      <CTAButton href="/contact" text="Devis gratuit en 24h" />
     </section>
-  </div>
+  </main>
 </Layout>
 
 <style>
   .prix-page {
-    margin-top: 0;
+    margin-top: 5rem;
   }
 
   .prix-hero {
@@ -240,6 +316,7 @@ const faqSchema = {
     padding: 0 1.5rem;
   }
 
+  .prix-tableau,
   .prix-comparatif,
   .prix-inclus,
   .prix-faq,
@@ -247,6 +324,7 @@ const faqSchema = {
     padding: 4rem 1.5rem;
   }
 
+  .prix-tableau h2,
   .prix-comparatif h2,
   .prix-inclus h2,
   .prix-faq h2,
@@ -254,6 +332,69 @@ const faqSchema = {
     color: var(--color-primary);
     font-size: clamp(1.5rem, 3vw, 2rem);
     margin-bottom: 1rem;
+  }
+
+  /* Le tableau défile dans son propre conteneur : la page ne doit jamais
+     défiler horizontalement sur mobile. */
+  .table-scroll {
+    overflow-x: auto;
+    margin-top: 2rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .prix-table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .prix-table caption {
+    caption-side: top;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #555;
+    padding-bottom: 0.75rem;
+  }
+
+  .prix-table th,
+  .prix-table td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e6e9f0;
+    vertical-align: top;
+  }
+
+  .prix-table thead th {
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .prix-table tbody th {
+    font-weight: 700;
+    color: var(--color-primary);
+    white-space: nowrap;
+  }
+
+  .prix-table tbody tr:last-child th,
+  .prix-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .prix-table tbody tr:nth-child(even) {
+    background: #f8f9fd;
+  }
+
+  .prix-table__note {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
   }
 
   .prix-grid {

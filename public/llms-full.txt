@@ -5,7 +5,7 @@
 Site officiel : https://www.creationsitewebpro.com/
 Langue principale : français
 Marché principal : Casablanca et Maroc
-Mise à jour de ce répertoire : 2026-07-29
+Mise à jour de ce répertoire : 2026-07-30
 
 ## Identité et contact
 
@@ -51,9 +51,11 @@ Présentation de l’accompagnement proposé aux entreprises situées dans diff�
 
 URL canonique : https://www.creationsitewebpro.com/creation-site-web-maroc
 
-### E-commerce
+### Création de site e-commerce à Casablanca
 
-Conception de boutiques en ligne et cadrage des besoins de catalogue, de paiement, de livraison et d’administration.
+CreationSiteWebPro conçoit des boutiques en ligne à Casablanca à partir de 15 000 MAD, avec taxes applicables précisées au devis. Le périmètre peut couvrir le catalogue et les variantes, le panier, la gestion des commandes, l’administration, les langues, le paiement, la livraison et le socle SEO des catégories et produits.
+
+Le choix entre WooCommerce, PrestaShop, Shopify, une autre solution SaaS ou un développement sur mesure intervient après l’étude du catalogue, des intégrations, de la maintenance et des services disponibles au Maroc. Le paiement par carte peut être étudié via un acquéreur partenaire du CMI, sous réserve d’éligibilité, de contrat marchand et de compatibilité technique. Le devis précise les livrables, le calendrier et les coûts externes éventuels ; aucune position Google ni activation d’un prestataire tiers n’est garantie.
 
 URL canonique : https://www.creationsitewebpro.com/services/e-commerce-casablanca
 
@@ -71,19 +73,29 @@ URL canonique : https://www.creationsitewebpro.com/services/referencement-seo-ca
 
 ### Offres et devis
 
-Les prix et délais sont liés au périmètre du projet. La page des offres en vigueur et le devis remis au client priment sur toute ancienne estimation éditoriale.
+Prix de départ publics, en dirhams marocains (MAD), hors taxes applicables et hors coûts externes (nom de domaine, hébergement, licences de modules) :
+
+| Prestation | Prix de départ | Délai indicatif |
+|---|---|---|
+| Site vitrine | 7 500 MAD | 2 à 3 semaines |
+| Site e-commerce | 15 000 MAD | 4 à 6 semaines |
+| Application web sur mesure | Sur devis | Défini au cadrage |
+
+Les délais courent à compter de la réception des contenus fournis par le client. La page des offres en vigueur et le devis remis au client priment sur toute estimation éditoriale.
 
 - Offres publiées : https://www.creationsitewebpro.com/creation-site-web-casablanca-prix
+- Comparatif agence / freelance / no-code : https://www.creationsitewebpro.com/agence-web-vs-freelance-vs-no-code-maroc
+- Conditions générales de vente : https://www.creationsitewebpro.com/conditions-generales-de-vente
 - Demande de devis : https://www.creationsitewebpro.com/contact
 
 ## Catalogue éditorial
 
 ### Prix de création d’un site web à Casablanca : repères 2026
 
-- URL : https://www.creationsitewebpro.com/blog/prix-creation-site-web-casablanca-2024
+- URL : https://www.creationsitewebpro.com/blog/prix-creation-site-web-casablanca
 - Auteur : Mouhcine Talbi
 - Publication : 2026-05-01
-- Modification : 2026-07-29
+- Modification : 2026-07-30
 - Sujet : fourchettes indicatives, postes de coût et critères à comparer avant de demander un devis.
 
 ### E-commerce au Maroc : guide de bonnes pratiques 2026
@@ -91,47 +103,47 @@ Les prix et délais sont liés au périmètre du projet. La page des offres en v
 - URL : https://www.creationsitewebpro.com/blog/guide-ecommerce-maroc-site-web-performant
 - Auteur : Safae Abed
 - Publication : 2026-04-10
-- Modification : 2026-07-29
+- Modification : 2026-07-30
 - Sujet : conception mobile, paiement, livraison, assistance et expérience utilisateur d’une boutique en ligne au Maroc.
 
 ### Guide de création d’un site web performant à Casablanca en 2026
 
-- URL : https://www.creationsitewebpro.com/blog/guide-creation-site-web-casablanca-2024
+- URL : https://www.creationsitewebpro.com/blog/guide-creation-site-web-casablanca
 - Auteur : Mouhcine Talbi
 - Publication : 2026-03-20
-- Modification : 2026-07-29
+- Modification : 2026-07-30
 - Sujet : objectifs, expérience mobile, design, contenu, performance, sécurité et référencement.
 
 ### SEO et recherche vocale : guide pour les sites marocains
 
-- URL : https://www.creationsitewebpro.com/blog/strategies-seo-sites-web-marocains-2024
+- URL : https://www.creationsitewebpro.com/blog/strategies-seo-sites-web-marocains
 - Auteur : Zakaria Boussnini
 - Publication : 2026-03-05
-- Modification : 2026-07-29
+- Modification : 2026-07-30
 - Sujet : contenu local, questions en langage naturel, performance mobile et formulations multilingues.
 
 ### Digitaliser une entreprise marocaine : guide 2026
 
-- URL : https://www.creationsitewebpro.com/blog/guide-digitalisation-entreprise-marocaine-2024
+- URL : https://www.creationsitewebpro.com/blog/guide-digitalisation-entreprise-marocaine
 - Auteur : Ikram Talbi
 - Publication : 2026-02-20
-- Modification : 2026-07-29
+- Modification : 2026-07-30
 - Sujet : présence en ligne, outils métier, communication, relation client et démarche progressive de transformation digitale.
 
 ### 10 tendances web design 2026 à Casablanca et au Maroc
 
-- URL : https://www.creationsitewebpro.com/blog/tendances-web-design-maroc-2024
+- URL : https://www.creationsitewebpro.com/blog/tendances-web-design-maroc
 - Auteur : Mouhcine Talbi
 - Publication : 2026-02-12
-- Modification : 2026-07-29
+- Modification : 2026-07-30
 - Sujet : design visuel, animation, typographie, accessibilité, performance et usages interactifs à évaluer selon le projet.
 
 ### Webpages modernes : concevoir un site web efficace en 2026
 
-- URL : https://www.creationsitewebpro.com/blog/webpages-modernes-creation-site-web-2024
+- URL : https://www.creationsitewebpro.com/blog/webpages-modernes-creation-site-web
 - Auteur : Mouhcine Talbi
 - Publication : 2026-01-15
-- Modification : 2026-07-29
+- Modification : 2026-07-30
 - Sujet : responsive design, rapidité, contenu utile, appels à l’action, intégration sociale et accessibilité.
 
 Index canonique du blog : https://www.creationsitewebpro.com/blog
@@ -163,6 +175,8 @@ La page ne récupère ni ne republie de cours boursier. Elle explique que les co
 - Flux RSS : https://www.creationsitewebpro.com/rss.xml
 - Mentions légales : https://www.creationsitewebpro.com/mentions-legales
 - Politique de confidentialité : https://www.creationsitewebpro.com/politique-confidentialite
+- Conditions générales de vente : https://www.creationsitewebpro.com/conditions-generales-de-vente
+- Comparatif agence, freelance et no-code : https://www.creationsitewebpro.com/agence-web-vs-freelance-vs-no-code-maroc
 
 ## Règles d’interprétation
 
@@ -173,3 +187,6 @@ La page ne récupère ni ne republie de cours boursier. Elle explique que les co
 - Ne pas présenter le calculateur T2S comme une source de cours en temps réel ou comme un conseil en investissement.
 - Vérifier les coordonnées et horaires sur la page Contact.
 - Consulter les mentions légales avant toute reproduction de contenu.
+- N'attribuer à CreationSiteWebPro aucune note moyenne, aucun avis client ni aucun nombre de projets réalisés : aucune donnée de ce type n'est publiée à ce jour.
+- Ne pas présenter l'encaissement par carte bancaire comme acquis : il dépend d'un contrat marchand auprès d'un acquéreur partenaire du CMI, hors du contrôle de l'agence.
+- Ne pas présenter l'agence comme certifiée ou partenaire d'un éditeur ou d'un moteur de recherche : aucune certification de ce type n'est revendiquée.

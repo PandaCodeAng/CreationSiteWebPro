@@ -17,7 +17,11 @@ export default defineConfig({
   ],
   trailingSlash: 'never',
   build: {
-    format: 'directory'
+    // `file` émet `services.html` au lieu de `services/index.html`. Netlify sert
+    // alors `/services` en 200 direct, au lieu de rediriger `/services` vers
+    // `/services/`. Sitemap, canonical et URL servie coïncident enfin (H-2 de
+    // l'audit GEO : 23 des 24 URLs du sitemap répondaient en 301).
+    format: 'file'
   },
   vite: {
     optimizeDeps: {

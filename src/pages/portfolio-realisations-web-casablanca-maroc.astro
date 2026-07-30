@@ -2,6 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import CTAButton from '../components/CTAButton.astro';
 import OptimizedImage from '../components/OptimizedImage.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { LOCAL_BUSINESS_ID, WEBSITE_ID } from '../data/business';
+
+const canonical = 'https://www.creationsitewebpro.com/portfolio-realisations-web-casablanca-maroc';
+const schemaBreadcrumbs = [{ name: 'Portfolio et réalisations' }];
 
 const pageTitle = "Portfolio | Réalisations au Maroc";
 const pageDescription = "Découvrez une sélection de sites web réalisés pour des activités de tourisme et de restauration, avec les livrables présentés pour chaque projet.";
@@ -21,7 +26,12 @@ const projects = [
     image: "/images/essaouira-spirit.jpg",
     tags: ["Tourisme", "Culture", "Design Immersif"],
     results: ["Valorisation des expériences locales", "Navigation visuelle", "Contenus adaptés à plusieurs audiences"],
-    url: "https://www.essaouiraspirit.ma/"
+    // H-4 de l'audit GEO : https://www.essaouiraspirit.ma/ échoue en TLS
+    // (SEC_E_WRONG_PRINCIPAL) puis renvoie 404. Le lien est retiré tant que le
+    // site n'est pas rétabli — un lien mort dans un portfolio d'agence web est
+    // la pire preuve possible. Remettre l'URL ici une fois le site réparé.
+    url: null,
+    unavailableNote: "Site en cours de refonte : lien temporairement indisponible."
   },
   {
     title: "Restaurant Le Cely - Gastronomie",
@@ -33,9 +43,46 @@ const projects = [
   }
 ];
 
+
+// Le portfolio est le seul endroit du site avec des preuves vérifiables : il doit
+// être balisé. Une réalisation dont le lien est cassé est listée sans 'url'
+// plutôt qu’avec une URL morte (H-4 de l’audit GEO).
+const portfolioSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${canonical}#portfolio`,
+  name: 'Réalisations web à Casablanca et au Maroc',
+  description: pageDescription,
+  url: canonical,
+  isPartOf: { '@id': WEBSITE_ID },
+  about: { '@id': LOCAL_BUSINESS_ID },
+  inLanguage: 'fr-MA',
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: projects.length,
+    itemListElement: projects.map((project, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'CreativeWork',
+        name: project.title,
+        description: project.description,
+        image: `https://www.creationsitewebpro.com${project.image}`,
+        creator: { '@id': LOCAL_BUSINESS_ID },
+        ...(project.url ? { url: project.url } : {})
+      }
+    }))
+  }
+};
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/portfolio-realisations-web-casablanca-maroc">
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={canonical}
+  breadcrumbs={schemaBreadcrumbs}
+>
+  <JsonLd data={portfolioSchema} />
   <div class="portfolio-page">
     <h1>{pageTitle}</h1>
     <p class="intro">{pageDescription}</p>
@@ -63,7 +110,9 @@ const projects = [
             <ul class="results">
               {project.results.map(result => <li>{result}</li>)}
             </ul>
-            <CTAButton text="Visiter le site" href={project.url} targetBlank={true} />
+            {project.url
+              ? <CTAButton text="Visiter le site" href={project.url} targetBlank={true} />
+              : <p class="project-unavailable">{project.unavailableNote}</p>}
           </div>
         </div>
       ))}

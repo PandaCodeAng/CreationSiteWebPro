@@ -1,5 +1,6 @@
 /* src/styles/global.css */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+/* Les polices Google sont chargées par un <link rel="stylesheet"> dans Layout.astro :
+   un @import ici retardait le rendu du texte d'un aller-retour réseau. */
 @import './responsive.css';
 @import './animations.css';
 
@@ -1015,36 +1016,45 @@ img {
 
 /* Media query for small screens */
 @media (max-width: 768px) {
-  .floating-whatsapp-btn {
-    right: 25px;
-    bottom: 95px;
-    width: 55px;
-    height: 55px;
+  .floating-call-btn {
+    right: 12px;
+    bottom: 12px;
+    width: 44px;
+    height: 44px;
   }
+
+  .floating-whatsapp-btn {
+    right: 12px;
+    bottom: 64px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .floating-call-icon,
   .floating-whatsapp-icon {
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
   }
 }
 
 /* Media query for very small screens */
 @media (max-width: 480px) {
   .floating-call-btn {
-    right: 20px;
-    bottom: 20px;
-    width: 50px;
-    height: 50px;
+    right: 10px;
+    bottom: 10px;
+    width: 44px;
+    height: 44px;
   }
   .floating-whatsapp-btn {
-    right: 20px;
-    bottom: 80px;
-    width: 50px;
-    height: 50px;
+    right: 10px;
+    bottom: 62px;
+    width: 44px;
+    height: 44px;
   }
   .floating-call-icon,
   .floating-whatsapp-icon {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -1157,4 +1167,141 @@ img {
     position: relative;
     z-index: 10;
   }
+}
+
+/* ==========================================================================
+   Composants éditoriaux partagés par les articles du blog.
+   Regroupés ici plutôt que dupliqués dans chaque .astro : les 7 articles
+   utilisent les mêmes encadrés, tableaux et listes de contrôle.
+   ========================================================================== */
+
+/* Encadré « l'essentiel » : premier bloc extractible d'un article, également
+   déclaré dans `speakable` du BlogPosting. */
+.key-takeaways {
+  background: #eff6ff;
+  border-left: 5px solid var(--color-primary);
+  border-radius: 8px;
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+}
+
+.key-takeaways h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+
+.key-takeaways ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.key-takeaways li {
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+}
+
+.key-takeaways li:last-child {
+  margin-bottom: 0;
+}
+
+/* Les tableaux d'article défilent dans leur propre conteneur : le corps de la
+   page ne doit jamais défiler horizontalement. */
+.table-scroll {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  background: #fff;
+  font-size: 0.95rem;
+}
+
+.article-table caption {
+  caption-side: top;
+  text-align: left;
+  font-size: 0.875rem;
+  color: #555;
+  padding-bottom: 0.6rem;
+}
+
+.article-table th,
+.article-table td {
+  padding: 0.7rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid #e6e9f0;
+  vertical-align: top;
+}
+
+.article-table thead th {
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.article-table tbody th {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.article-table tbody tr:nth-child(even) {
+  background: #f8f9fd;
+}
+
+.checklist {
+  padding-left: 1.35rem;
+}
+
+.checklist li {
+  margin-bottom: 0.7rem;
+  line-height: 1.65;
+}
+
+/* Bloc « sources » : rend visible le sourcing externe d'un article. */
+.sources-box {
+  background: #f8f9fa;
+  border: 1px solid #e2e6ee;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+}
+
+.sources-box h2,
+.sources-box h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  color: var(--color-primary);
+}
+
+.sources-box ul {
+  margin-bottom: 0;
+  padding-left: 1.25rem;
+}
+
+.sources-box li {
+  margin-bottom: 0.5rem;
+}
+
+.author-note {
+  font-style: italic;
+  color: #444;
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+}
+
+.project-unavailable {
+  font-size: 0.95rem;
+  color: #8a6d3b;
+  background: #fcf8e3;
+  border: 1px solid #faebcc;
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  margin-top: 0.5rem;
 }

@@ -1,0 +1,295 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { generateTimeTag } from '../../utils/dates';
+import { createArticleSchema, getArticleBySlug, getAuthorProfile, getArticleBreadcrumbs } from './_articles';
+
+const article = getArticleBySlug('webpages-modernes-creation-site-web');
+const { title, description, publishDate, modifiedDate, author, readingTime } = article;
+const authorProfile = getAuthorProfile(author);
+const schema = createArticleSchema(article);
+const schemaBreadcrumbs = getArticleBreadcrumbs(article);
+---
+
+<Layout title={title} description={description} canonical={article.url}
+  breadcrumbs={schemaBreadcrumbs}
+>
+  <JsonLd data={schema} />
+  <article itemscope itemtype="https://schema.org/BlogPosting" class="blog-post">
+    <header>
+      <h1 itemprop="headline">{title}</h1>
+      <p class="post-meta">
+        Publié le <Fragment set:html={generateTimeTag(publishDate)} />
+        | Mis à jour le <Fragment set:html={generateTimeTag(modifiedDate)} />
+        | Par <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <a href={authorProfile.url} itemprop="url"><span itemprop="name">{author}</span></a>
+        </span>
+        | Temps de lecture : {readingTime}
+      </p>
+    </header>
+
+    <div itemprop="articleBody">
+      <p class="lead-paragraph">Vous préparez un projet digital à Casablanca ? Parlons création de site web. Une présence en ligne doit être claire, rapide et utile pour répondre aux besoins du public visé.</p>
+
+      <div class="key-takeaways">
+        <h2>Ce qu'il faut retenir</h2>
+        <ul>
+          <li><strong>Une page = une intention.</strong> Si vous ne pouvez pas nommer l'action attendue du visiteur, la page n'est pas prête à être écrite.</li>
+          <li><strong>La réponse va en premier</strong>, les nuances ensuite. C'est vrai pour le lecteur pressé comme pour les moteurs qui citent des paragraphes.</li>
+          <li><strong>Le budget de performance se dépense une seule fois</strong> : une page rapide est une page où l'on a refusé quelque chose.</li>
+          <li><strong>Les seuils sont publics et mesurables</strong> : LCP ≤ 2,5 s, INP ≤ 200 ms, CLS ≤ 0,1. Vérifiables avec PageSpeed Insights sur n'importe quelle URL.</li>
+        </ul>
+      </div>
+
+      <p class="author-note">
+        Une remarque de développeur : la plupart des pages que je reprends ne sont pas
+        mal codées, elles sont indécises. Elles veulent présenter l'entreprise,
+        expliquer trois services, rassurer, et convertir — sur le même écran. Le
+        résultat ne fait bien aucune de ces choses. Trancher est le vrai travail de
+        conception.
+      </p>
+
+      <h2>Quel rôle une page web peut-elle remplir ?</h2>
+      <p>Une page doit répondre à un besoin défini plutôt que tenter de tout présenter. Selon le contexte, elle peut :</p>
+      <ul>
+        <li>expliquer une offre et ses conditions ;</li>
+        <li>présenter une entreprise et ses coordonnées ;</li>
+        <li>orienter vers une demande de devis, un achat ou un rendez-vous ;</li>
+        <li>documenter un sujet utile aux clients.</li>
+      </ul>
+      <p>Le site ne garantit ni visibilité ni demandes commerciales. Il fournit une base que le contenu, le référencement et les actions de communication peuvent développer dans le temps.</p>
+
+      <h2>Les fondations d'une page efficace</h2>
+      
+      <h3>1. Une mise en page adaptée aux écrans</h3>
+      <p>Votre site doit rester lisible et utilisable sur smartphone comme sur ordinateur. Testez les contenus, les menus, les formulaires et les boutons sur plusieurs tailles d'écran.</p>
+
+      <h3>2. Une performance mesurée</h3>
+      <p>Dimensionnez les images, chargez les ressources selon leur utilité et limitez les scripts tiers. Mesurez ensuite les pages importantes sur des appareils représentatifs plutôt que de supposer leur rapidité.</p>
+
+      <h3>3. Un contenu précis</h3>
+      <p>Présentez les services, les livrables, les conditions et les coordonnées avec un vocabulaire compris par le public visé. Les références locales doivent correspondre aux zones réellement desservies, sans ajouter des noms de quartiers uniquement pour le référencement.</p>
+
+      <h3>4. Des actions explicites</h3>
+      <p>Utilisez des libellés qui annoncent le résultat de l'action, comme « Demander un devis » ou « Voir les réalisations ». Les boutons doivent rester visibles et utilisables au clavier sans interrompre la lecture.</p>
+
+      <h3>5. Des canaux de contact cohérents</h3>
+      <p>Ne proposez que les canaux réellement suivis par l'équipe. Indiquez clairement quand utiliser le formulaire, le téléphone ou une messagerie et veillez à ce que les coordonnées restent à jour.</p>
+
+      <h2>Les principes à évaluer pour un site web en 2026</h2>
+      <ol>
+        <li><strong>Hiérarchie visuelle :</strong> les titres, espacements et contrastes doivent guider la lecture.</li>
+        <li><strong>Animations utiles :</strong> chaque mouvement doit informer sans gêner les utilisateurs qui préfèrent réduire les animations.</li>
+        <li><strong>Composants cohérents :</strong> boutons, formulaires et cartes doivent suivre les mêmes règles sur toutes les pages.</li>
+        <li><strong>Accessibilité :</strong> navigation au clavier, libellés, alternatives textuelles et contrastes doivent être vérifiés.</li>
+        <li><strong>Maintenance :</strong> le contenu doit pouvoir être mis à jour sans casser la structure de la page.</li>
+      </ol>
+
+      <h2>Le budget de performance : décider ce qu'on refuse</h2>
+      <p>
+        Une page rapide n'est pas une page optimisée après coup, c'est une page où l'on
+        a fixé un plafond avant de commencer. Voici les ordres de grandeur que nous
+        appliquons sur une page vitrine, et ce qu'ils impliquent concrètement.
+      </p>
+      <div class="table-scroll">
+        <table class="article-table">
+          <caption>Budget de performance indicatif pour une page vitrine</caption>
+          <thead>
+            <tr>
+              <th scope="col">Ressource</th>
+              <th scope="col">Plafond visé</th>
+              <th scope="col">Ce qu'on refuse pour y tenir</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Image principale</th>
+              <td>WebP, dimensionnée à l'affichage réel</td>
+              <td>Le visuel de 3 Mo redimensionné en CSS</td>
+            </tr>
+            <tr>
+              <th scope="row">Polices</th>
+              <td>2 familles, graisses utilisées uniquement</td>
+              <td>Six graisses « au cas où »</td>
+            </tr>
+            <tr>
+              <th scope="row">JavaScript</th>
+              <td>Le strict nécessaire, chargé en différé</td>
+              <td>Une librairie entière pour un carrousel</td>
+            </tr>
+            <tr>
+              <th scope="row">Scripts tiers</th>
+              <td>Mesure d'audience, consentement</td>
+              <td>Widgets sociaux, chats non utilisés</td>
+            </tr>
+            <tr>
+              <th scope="row">Vidéo</th>
+              <td>Aucune en lecture automatique</td>
+              <td>La vidéo de fond d'écran en page d'accueil</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Ces plafonds servent les seuils Core Web Vitals publiés par Google et documentés
+        sur <a href="https://web.dev/articles/vitals" rel="noopener nofollow" target="_blank">web.dev</a> :
+        affichage du contenu principal sous 2,5 secondes, réactivité sous 200
+        millisecondes, stabilité visuelle sous 0,1. Au Maroc, où la consultation est très
+        majoritairement mobile d'après les tableaux de bord de l'<a href="https://www.anrt.ma/" rel="noopener nofollow" target="_blank">ANRT</a>,
+        ils se mesurent sur réseau mobile et pas sur la fibre du bureau.
+      </p>
+
+      <h2>Structurer une page pour qu'elle soit citable</h2>
+      <p>
+        Les moteurs génèrent désormais des réponses plutôt que des listes de liens, et
+        ce qu'ils reprennent est un paragraphe, pas une page. Une page bien structurée
+        est donc une page dont chaque bloc se comprend isolément.
+      </p>
+      <ol class="checklist">
+        <li><strong>Un seul H1</strong>, qui nomme le sujet de la page en langage courant.</li>
+        <li><strong>Des H2 qui posent des questions réelles</strong>, celles que vos clients formulent au téléphone.</li>
+        <li><strong>Une réponse directe sous chaque titre</strong>, en deux phrases maximum, avant tout développement.</li>
+        <li><strong>Un chiffre, un délai ou un oui/non</strong> dans cette réponse dès que le sujet le permet.</li>
+        <li><strong>Un tableau plutôt qu'un paragraphe</strong> dès que l'information comporte trois dimensions ou plus.</li>
+        <li><strong>Des données structurées cohérentes</strong> avec ce qui est affiché : le balisage <a href="https://schema.org/" rel="noopener nofollow" target="_blank">schema.org</a> décrit la page, il ne la complète pas.</li>
+      </ol>
+
+      <h2>La checklist d'accessibilité minimale</h2>
+      <p>
+        Les <a href="https://www.w3.org/WAI/standards-guidelines/wcag/" rel="noopener nofollow" target="_blank">WCAG du W3C</a>
+        donnent des critères vérifiables. Cinq d'entre eux suffisent à éliminer la
+        majorité des problèmes réels sur une page vitrine.
+      </p>
+      <div class="table-scroll">
+        <table class="article-table">
+          <caption>Contrôles d'accessibilité à passer avant publication</caption>
+          <thead>
+            <tr>
+              <th scope="col">Contrôle</th>
+              <th scope="col">Comment le vérifier</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Contraste du texte ≥ 4,5:1</th>
+              <td>Outil de contraste du navigateur sur le texte courant</td>
+            </tr>
+            <tr>
+              <th scope="row">Navigation complète au clavier</th>
+              <td>Parcourir la page à la touche Tab, sans souris</td>
+            </tr>
+            <tr>
+              <th scope="row">Focus toujours visible</th>
+              <td>Vérifier qu'aucun <code>outline: none</code> ne traîne en CSS</td>
+            </tr>
+            <tr>
+              <th scope="row">Alternatives textuelles</th>
+              <td>Chaque image porteuse de sens a un <code>alt</code> descriptif</td>
+            </tr>
+            <tr>
+              <th scope="row">Formulaires étiquetés</th>
+              <td>Chaque champ a un <code>&lt;label&gt;</code> associé, pas seulement un texte d'exemple</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Un point souvent négligé : le texte d'exemple dans un champ (<em>placeholder</em>)
+        n'est pas une étiquette. Il disparaît dès la saisie, et il est ignoré par une
+        partie des lecteurs d'écran.
+      </p>
+
+      <div class="sources-box">
+        <h2>Sources</h2>
+        <ul>
+          <li><a href="https://web.dev/articles/vitals" rel="noopener nofollow" target="_blank">web.dev — Core Web Vitals</a> — indicateurs et seuils.</li>
+          <li><a href="https://www.w3.org/WAI/standards-guidelines/wcag/" rel="noopener nofollow" target="_blank">W3C — WCAG</a> — critères d'accessibilité.</li>
+          <li><a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide" rel="noopener nofollow" target="_blank">Google Search Central</a> — guide de démarrage du référencement.</li>
+          <li><a href="https://www.anrt.ma/" rel="noopener nofollow" target="_blank">ANRT</a> — usages Internet et mobile au Maroc.</li>
+        </ul>
+        <p>
+          Les plafonds de performance indiqués sont ceux que nous appliquons sur nos
+          projets. Ils ne constituent pas une norme sectorielle.
+        </p>
+      </div>
+
+      <h2>Vérifier la page avant publication</h2>
+      <p>Relisez les informations, testez les liens et les formulaires, puis contrôlez l'affichage sur mobile et ordinateur. Vérifiez aussi le titre de page, la description, l'adresse canonique et l'indexabilité lorsque la page doit apparaître dans les moteurs.</p>
+      
+      <p>Une webpage moderne en 2026 est avant tout compréhensible, robuste et maintenable. Les effets visuels ne doivent intervenir qu'après ces fondations.</p>
+    </div>
+    
+
+    <footer>
+      <h3>Préparer vos nouvelles pages web</h3>
+      <p>Nous pouvons définir la structure, les contenus et les exigences techniques de votre site à Casablanca ou au Maroc.</p>
+      <a href="/contact" class="cta-button">Demander un devis personnalisé</a>
+    </footer>
+  </article>
+</Layout>
+
+<style>
+  .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    margin-top: 0;
+  }
+
+  h1 {
+    color: var(--color-primary);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    color: var(--color-secondary);
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  p, ul, ol {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  ul, ol {
+    padding-left: 1.5rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .blog-post {
+      padding: 1rem;
+      margin-top: 0;
+    }
+  }
+</style>

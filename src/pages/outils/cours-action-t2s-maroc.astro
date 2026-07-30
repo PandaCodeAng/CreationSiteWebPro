@@ -3,6 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import JsonLd from '../../components/JsonLd.astro';
 
+const schemaBreadcrumbs = [{ name: 'Outils', item: '/outils/cours-action-t2s-maroc' }, { name: 'Calculateur action T2S' }];
+
 const canonical = 'https://www.creationsitewebpro.com/outils/cours-action-t2s-maroc';
 const title = 'Cours action T2S Maroc : calculateur de valeur';
 const description = 'Calculez la valeur et le rendement de vos actions T2S au Maroc à partir du cours observé, avec les données officielles de l’IPO.';
@@ -108,7 +110,7 @@ const structuredData = {
 };
 ---
 
-<Layout title={title} description={description} canonical={canonical}>
+<Layout title={title} description={description} canonical={canonical} breadcrumbs={schemaBreadcrumbs}>
   <JsonLd data={structuredData} />
 
   <div class="tool-page">

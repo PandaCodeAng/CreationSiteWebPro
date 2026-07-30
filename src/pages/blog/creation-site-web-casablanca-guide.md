@@ -77,4 +77,4 @@ Les tarifs varient selon plusieurs facteurs :
 
 La création d'un site web professionnel est un investissement important pour votre entreprise. Avec les bons choix et un partenaire fiable, votre présence en ligne deviendra un véritable atout pour votre développement.
 
-Pour aller plus loin, consultez le [guide principal de création de site web à Casablanca](/blog/guide-creation-site-web-casablanca-2024) ou [contactez-nous](/contact) pour discuter de votre projet.
+Pour aller plus loin, consultez le [guide principal de création de site web à Casablanca](/blog/guide-creation-site-web-casablanca) ou [contactez-nous](/contact) pour discuter de votre projet.

@@ -1,85 +1,142 @@
 ---
 // src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
-import { napInfo } from '../data/business';
 import JsonLd from '../components/JsonLd.astro';
 import SocialProof from '../components/SocialProof.astro';
 import CTAButton from '../components/CTAButton.astro';
 import Icon from '../components/Icon.astro';
-import PricingTable from '../components/PricingTable.astro';
 import OptimizedImage from '../components/OptimizedImage.astro';
+import PricingTable from '../components/PricingTable.astro';
+import { napInfo, LOCAL_BUSINESS_ID, WEBSITE_ID, buildAggregateOffer } from '../data/business';
 
-const homeSchema = {
-  "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "ProfessionalService"],
-  "@id": "https://www.creationsitewebpro.com/#localbusiness",
-  "name": "CreationSiteWebPro",
-  "image": "https://www.creationsitewebpro.com/images/logo.png",
-  "description": "Agence web basée à Casablanca, spécialisée dans la création de sites vitrines, e-commerce et solutions web sur mesure.",
-  "url": "https://www.creationsitewebpro.com",
-  "telephone": napInfo.phone.replace(/\s+/g, ''),
-  "email": napInfo.email,
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": napInfo.address.street,
-    "addressLocality": napInfo.address.city,
-    "postalCode": napInfo.address.postalCode,
-    "addressCountry": "MA"
+const canonical = 'https://www.creationsitewebpro.com/';
+
+// L'entité LocalBusiness complète est injectée par Layout.astro. Cette page
+// décrit seulement la page elle-même et l'offre chiffrée qu'elle présente.
+// Aucun `aggregateRating` ni `review` : il n'existe aucun avis client public à
+// ce jour, et en générer violerait les règles Google.
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${canonical}#webpage`,
+  name: 'Création Site Web Casablanca | CreationSiteWebPro',
+  description:
+    'Agence web à Casablanca : site vitrine dès 7 500 MAD, site e-commerce dès 15 000 MAD, applications web et référencement SEO. Devis détaillé en MAD.',
+  url: canonical,
+  isPartOf: { '@id': WEBSITE_ID },
+  about: { '@id': LOCAL_BUSINESS_ID },
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: 'https://www.creationsitewebpro.com/images/e-commerce-casablanca-hero.jpg'
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": napInfo.coordinates.latitude,
-    "longitude": napInfo.coordinates.longitude
-  },
-  "currenciesAccepted": "MAD",
-  "areaServed": [
-    { "@type": "City", "name": "Casablanca" },
-    { "@type": "Country", "name": "Maroc" }
+  inLanguage: 'fr-MA'
+};
+
+// Les tarifs sont le contenu le plus cité du site : ils doivent exister en
+// données structurées et pas seulement en texte libre (H-3 de l'audit GEO).
+const pricingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${canonical}#offre`,
+  name: 'Création de sites web professionnels à Casablanca',
+  description:
+    'Site vitrine à partir de 7 500 MAD, site e-commerce à partir de 15 000 MAD, applications web sur devis. Taxes et périmètre précisés au devis.',
+  serviceType: 'Création de site web',
+  provider: { '@id': LOCAL_BUSINESS_ID },
+  areaServed: [
+    { '@type': 'City', name: 'Casablanca' },
+    { '@type': 'Country', name: 'Maroc' }
   ],
-  "sameAs": [
-    "https://www.facebook.com/creationsitewebpro",
-    "https://www.linkedin.com/company/creationsitewebpro",
-    "https://www.instagram.com/creation_sitewebpro"
+  offers: buildAggregateOffer('/creation-site-web-casablanca-prix')
+};
+
+// Les réponses reprennent mot pour mot le texte visible et commencent par une
+// affirmation extractible : une IA à qui l'on demande « cette agence propose-t-elle
+// X ? » a besoin d'un oui/non chiffré, pas d'un renvoi au cadrage (audit GEO).
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${canonical}#faq`,
+  isPartOf: { '@id': `${canonical}#webpage` },
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: "Quel est le coût de création d'un site web à Casablanca ?",
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Un site vitrine professionnel démarre à 7 500 MAD et une boutique e-commerce standard à 15 000 MAD. Ces montants correspondent au périmètre décrit dans nos offres ; les taxes applicables et les coûts externes éventuels (nom de domaine, hébergement, licences) sont précisés au devis. Un projet sur mesure, comme une application web ou un portail métier, est chiffré après cadrage.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Combien de temps pour créer un site web à Casablanca ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Un site vitrine est livré en 2 à 3 semaines après validation de la maquette, un site e-commerce en 4 à 6 semaines. Ces délais courent à partir de la réception de vos contenus (textes, photos, catalogue) : c'est le poste qui décale le plus souvent un calendrier. Les étapes sont le cadrage, la conception graphique, le développement, les tests et la mise en ligne."
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Proposez-vous le référencement SEO à Casablanca ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Oui, chaque site livré inclut le SEO technique de base : indexation, balises title et description, structure de titres, données structurées et optimisation des temps de chargement. Une prestation de référencement continue (audit, contenus, suivi de positions) est proposée séparément, sur devis. Une première position ou une date précise ne peuvent pas être garanties : aucun prestataire ne contrôle l'algorithme de Google."
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Pourquoi choisir une agence locale à Casablanca ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Une agence basée à Casablanca permet trois choses concrètes : des réunions en présentiel à Ain Sebaa ou chez vous, une facturation en MAD sans frais de change, et des échanges en français comme en arabe. Sur un e-commerce, la proximité compte aussi pour le paiement (contrat marchand CMI) et la livraison, dont les règles diffèrent du marché européen."
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Est-ce que mes clients pourront payer en ligne ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Oui, nous intégrons le paiement par carte bancaire, le paiement à la livraison et le virement. Le paiement par carte passe au Maroc par un acquéreur partenaire du CMI : il suppose un contrat marchand à votre nom, sous réserve d'éligibilité. Nous préparons le dossier technique et l'intégration, mais l'activation relève de la banque et n'est pas garantie par l'agence."
+      }
+    }
   ]
 };
 ---
 
 <Layout 
   title="Création Site Web Casablanca | CreationSiteWebPro"
-  description="Agence web à Casablanca spécialisée en création de sites vitrines, e-commerce et solutions sur mesure. Tarifs clairs et devis gratuit."
-  canonical="https://www.creationsitewebpro.com/"
->
-  <JsonLd data={homeSchema} />
+  description="Agence web à Casablanca : site vitrine dès 7 500 MAD, e-commerce dès 15 000 MAD, applications web et SEO. Devis détaillé en MAD, sans position Google garantie."
+  canonical={canonical}>
+  <JsonLd data={pageSchema} />
+  <JsonLd data={pricingSchema} />
   <div class="home-page">
     <section class="hero" id="hero">
       <div class="hero__overlay"></div>
       <div class="container hero__container">
-        <div class="hero__content">
-          <div class="hero__title-wrapper">
+        <div class="hero__content">          <div class="hero__title-wrapper">
             <h1 class="hero__title">
               <span class="hero__title-highlight">Sites Web Professionnels</span>
               <span class="hero__title-second-line">à Casablanca</span>
             </h1>
           </div>
-          <h2 class="hero__subtitle">Transformez votre vision en une présence web remarquable</h2>
+          <h2 class="hero__subtitle">Site vitrine dès 7 500 MAD, e-commerce dès 15 000 MAD</h2>
           <p class="hero__text">
-            Notre agence digitale conçoit des sites web adaptés à vos objectifs, avec un design soigné, une base technique solide et un accompagnement local à Casablanca.
+            CreationSiteWebPro conçoit des sites web professionnels à Casablanca : site vitrine à partir de <strong>7 500 MAD</strong>, livré en 2 à 3 semaines, et boutique e-commerce à partir de <strong>15 000 MAD</strong>, livrée en 4 à 6 semaines. S'y ajoutent les applications web sur mesure et l'accompagnement SEO. Le devis détaille le périmètre, les livrables et le calendrier, en MAD.
           </p>
           <div class="hero__stats">
             <div class="hero__stat">
-              <span class="hero__stat-number">Sur mesure</span>
-              <span class="hero__stat-text">Design adapté à votre activité</span>
+              <span class="hero__stat-number">7 500 MAD</span>
+              <span class="hero__stat-text">Site vitrine, prix de départ</span>
             </div>
             <div class="hero__stat">
-              <span class="hero__stat-number">Clair</span>
-              <span class="hero__stat-text">Devis et livrables détaillés</span>
+              <span class="hero__stat-number">15 000 MAD</span>
+              <span class="hero__stat-text">E-commerce, prix de départ</span>
             </div>
             <div class="hero__stat">
-              <span class="hero__stat-number">Local</span>
-              <span class="hero__stat-text">Accompagnement à Casablanca</span>
+              <span class="hero__stat-number">2013</span>
+              <span class="hero__stat-text">Année de création de l'agence</span>
             </div>
-          </div>
-          <div class="hero__cta-container">
+          </div>          <div class="hero__cta-container">
             <CTAButton href="/contact" className="hero__cta primary-cta">
               Demandez votre devis gratuit
               <Icon name="arrow-right" className="hero__cta-icon" />
@@ -95,8 +152,8 @@ const homeSchema = {
         </div>
         <div class="hero__image-container">
           <OptimizedImage
-            src="/images/e-commerce-casablanca-hero.jpg" 
-            alt="Création site web à Casablanca" 
+            src="/images/e-commerce-casablanca-hero.jpg"
+            alt="Création site web à Casablanca"
             className="hero__image"
             width={600}
             height={450}
@@ -121,8 +178,8 @@ const homeSchema = {
         </div>
       </div>
     </section>
-    
-    <PricingTable 
+
+    <PricingTable
       title="Nos tarifs de départ"
       subtitle="Site vitrine dès 7 500 MAD, e-commerce dès 15 000 MAD et projets sur mesure sur devis"
     />
@@ -144,15 +201,18 @@ const homeSchema = {
             </div>
             <h3 class="service-card__title">Sites Vitrines</h3>
             <p class="service-card__description">
-              Présentez votre entreprise avec élégance grâce à un design sur mesure, responsive et optimisé SEO.
+              Présentez votre activité avec un design sur mesure et responsive. À partir de 7 500 MAD, livré en 2 à 3 semaines.
             </p>
             <ul class="service-card__features">
-              <li>Design personnalisé</li>
+              <li>4 pages clés incluses</li>
               <li>Responsive design</li>
-              <li>Optimisation SEO</li>
+              <li>Socle SEO technique</li>
             </ul>
             <div class="service-card__cta">
               <a href="/creation-site-web-casablanca" class="service-card__link">En savoir plus</a>
+            </div>
+            <div class="service-card__badge">
+              <span class="service-card__badge-text">Dès 7 500 MAD</span>
             </div>
           </div>
           
@@ -162,15 +222,18 @@ const homeSchema = {
             </div>
             <h3 class="service-card__title">E-commerce</h3>
             <p class="service-card__description">
-              Vendez en ligne avec une boutique performante, sécurisée et adaptée au marché marocain.
+              Vendez en ligne avec une boutique adaptée aux usages marocains. À partir de 15 000 MAD, livrée en 4 à 6 semaines.
             </p>
             <ul class="service-card__features">
-              <li>Paiement sécurisé</li>
-              <li>Gestion des stocks</li>
+              <li>Catalogue, panier et commandes</li>
+              <li>Moyens de paiement prévus au devis</li>
               <li>Mobile-first design</li>
             </ul>
             <div class="service-card__cta">
               <a href="/services/e-commerce-casablanca" class="service-card__link">En savoir plus</a>
+            </div>
+            <div class="service-card__badge service-card__badge--featured">
+              <span class="service-card__badge-text">Dès 15 000 MAD</span>
             </div>
           </div>
           
@@ -180,7 +243,7 @@ const homeSchema = {
             </div>
             <h3 class="service-card__title">Référencement SEO</h3>
             <p class="service-card__description">
-              Améliorez la visibilité organique de votre site avec une stratégie adaptée à votre marché et à vos objectifs.
+              Améliorez la visibilité organique de votre site avec une stratégie adaptée à votre marché. Aucune position Google n'est garantie.
             </p>
             <ul class="service-card__features">
               <li>Mots-clés stratégiques</li>
@@ -190,9 +253,12 @@ const homeSchema = {
             <div class="service-card__cta">
               <a href="/services/referencement-seo-casablanca" class="service-card__link">En savoir plus</a>
             </div>
+            <div class="service-card__badge">
+              <span class="service-card__badge-text">Sur devis</span>
+            </div>
           </div>
         </div>
-        
+
         <div class="services__more">
           <CTAButton href="/services" className="services__cta">
             Voir tous nos services
@@ -251,25 +317,27 @@ const homeSchema = {
             </p>
           </div>
         </div>
-        
+
         <div class="why-choose-us__stats">
           <div class="stat-item">
-            <div class="stat-item__number">Sur mesure</div>
-            <div class="stat-item__label">Périmètre adapté au projet</div>
+            <div class="stat-item__number">2013</div>
+            <div class="stat-item__label">Agence fondée à Casablanca</div>
           </div>
           <div class="stat-item">
-            <div class="stat-item__number">Local</div>
-            <div class="stat-item__label">Accompagnement à Casablanca</div>
+            <div class="stat-item__number">7 500 MAD</div>
+            <div class="stat-item__label">Site vitrine, prix de départ</div>
           </div>
           <div class="stat-item">
-            <div class="stat-item__number">Transparent</div>
-            <div class="stat-item__label">Tarifs et livrables détaillés</div>
+            <div class="stat-item__number">2 à 3 semaines</div>
+            <div class="stat-item__label">Délai indicatif d'un site vitrine</div>
           </div>
           <div class="stat-item">
-            <div class="stat-item__number">Suivi</div>
-            <div class="stat-item__label">Points d'avancement planifiés</div>
-          </div>        </div>
-      </div>    </section>
+            <div class="stat-item__number">MAD</div>
+            <div class="stat-item__label">Devis détaillé en dirhams</div>
+          </div>
+        </div>
+      </div>
+    </section>
     
     <section class="portfolio" id="portfolio">
       <div class="container">
@@ -302,28 +370,7 @@ const homeSchema = {
               </a>
             </div>
           </div>
-          
-          <div class="portfolio-item">
-            <div class="portfolio-item__image-container">
-              <OptimizedImage
-                src="/images/essaouira-spirit.jpg"
-                alt="Site web Essaouira Spirit"
-                className="portfolio-item__image"
-                width={400}
-                height={300}
-                sizes="(max-width: 800px) 100vw, 33vw"
-              />
-            </div>
-            <div class="portfolio-item__overlay">
-              <h3 class="portfolio-item__title">Essaouira Spirit</h3>
-              <p class="portfolio-item__category">Tourisme au Maroc</p>
-              <a href="/portfolio-realisations-web-casablanca-maroc" class="portfolio-item__link">
-                Voir le projet
-                <Icon name="arrow-right" className="portfolio-item__icon" />
-              </a>
-            </div>
-          </div>
-          
+
           <div class="portfolio-item">
             <div class="portfolio-item__image-container">
               <OptimizedImage
@@ -338,6 +385,27 @@ const homeSchema = {
             <div class="portfolio-item__overlay">
               <h3 class="portfolio-item__title">Restaurant Le Cely</h3>
               <p class="portfolio-item__category">Restauration</p>
+              <a href="/portfolio-realisations-web-casablanca-maroc" class="portfolio-item__link">
+                Voir le projet
+                <Icon name="arrow-right" className="portfolio-item__icon" />
+              </a>
+            </div>
+          </div>
+
+          <div class="portfolio-item">
+            <div class="portfolio-item__image-container">
+              <OptimizedImage
+                src="/images/essaouira-spirit.jpg"
+                alt="Site web Essaouira Spirit"
+                className="portfolio-item__image"
+                width={400}
+                height={300}
+                sizes="(max-width: 800px) 100vw, 33vw"
+              />
+            </div>
+            <div class="portfolio-item__overlay">
+              <h3 class="portfolio-item__title">Essaouira Spirit</h3>
+              <p class="portfolio-item__category">Tourisme au Maroc</p>
               <a href="/portfolio-realisations-web-casablanca-maroc" class="portfolio-item__link">
                 Voir le projet
                 <Icon name="arrow-right" className="portfolio-item__icon" />
@@ -375,8 +443,8 @@ const homeSchema = {
         </div>
         <div class="cta-section__image-container">
           <OptimizedImage
-            src="/images/seo-casablanca-hero.jpg" 
-            alt="Création site web professionnel à Casablanca" 
+            src="/images/seo-casablanca-hero.jpg"
+            alt="Création site web professionnel à Casablanca"
             className="cta-section__image"
             width={500}
             height={350}
@@ -401,21 +469,21 @@ const homeSchema = {
             <article class="testimonial-card">
               <h3 class="testimonial-card__name">Cadrage</h3>
               <p class="testimonial-card__text">
-                Nous définissons les objectifs, les utilisateurs, les contenus, les fonctionnalités et le calendrier du projet.
+                Nous définissons les objectifs, les utilisateurs, les contenus, les fonctionnalités et le calendrier du projet. Cette phase produit un périmètre écrit et un calendrier daté.
               </p>
             </article>
 
             <article class="testimonial-card">
               <h3 class="testimonial-card__name">Conception et développement</h3>
               <p class="testimonial-card__text">
-                Les maquettes, l'intégration et les fonctionnalités sont réalisées selon le périmètre validé dans le devis.
+                Les maquettes, l'intégration et les fonctionnalités sont réalisées selon le périmètre validé dans le devis, avec des points d'avancement planifiés.
               </p>
             </article>
 
             <article class="testimonial-card">
               <h3 class="testimonial-card__name">Tests et mise en ligne</h3>
               <p class="testimonial-card__text">
-                Nous vérifions l'affichage, les formulaires et les fonctions prévues avant la mise en production et la remise des accès.
+                Nous vérifions l'affichage, les formulaires et les fonctions prévues avant la mise en production, puis nous vous remettons les accès et la documentation.
               </p>
             </article>
           </div>
@@ -435,7 +503,8 @@ const homeSchema = {
         <p>Découvrez quelques exemples de sites internet créés pour des entreprises à Casablanca et au Maroc : vitrines, e-commerce, sites institutionnels…</p>
         <ul>
           <li><a href="/portfolio-realisations-web-casablanca-maroc">Voir notre portfolio complet</a></li>
-          <li><a href="/blog/guide-creation-site-web-casablanca-2024">Guide création site web Casablanca</a></li>
+          <li><a href="/blog/guide-creation-site-web-casablanca">Guide création site web Casablanca</a></li>
+          <li><a href="/agence-web-vs-freelance-vs-no-code-maroc">Agence, freelance ou no-code : le comparatif</a></li>
         </ul>
       </div>
     </section>
@@ -458,7 +527,7 @@ const homeSchema = {
             </button>
             <div class="faq-answer">
               <p>
-                Un site vitrine professionnel démarre à 7 500 MAD et un site e-commerce à 15 000 MAD. Le tarif final dépend des contenus, des fonctionnalités, des intégrations et du calendrier définis dans le devis.
+                Un site vitrine professionnel démarre à <strong>7 500 MAD</strong> et une boutique e-commerce standard à <strong>15 000 MAD</strong>. Ces montants correspondent au périmètre décrit dans nos offres ; les taxes applicables et les coûts externes éventuels (nom de domaine, hébergement, licences) sont précisés au devis. Un projet sur mesure, comme une application web ou un portail métier, est chiffré après cadrage.
               </p>
             </div>
           </div>
@@ -470,7 +539,7 @@ const homeSchema = {
             </button>
             <div class="faq-answer">
               <p>
-                Le calendrier dépend du périmètre, des contenus, des validations et des intégrations. Les étapes et la date de livraison prévisionnelle sont indiquées dans le devis avant le démarrage.
+                Un site vitrine est livré en <strong>2 à 3 semaines</strong> après validation de la maquette, un site e-commerce en <strong>4 à 6 semaines</strong>. Ces délais courent à partir de la réception de vos contenus (textes, photos, catalogue) : c'est le poste qui décale le plus souvent un calendrier. Les étapes sont le cadrage, la conception graphique, le développement, les tests et la mise en ligne.
               </p>
             </div>
           </div>
@@ -482,7 +551,7 @@ const homeSchema = {
             </button>
             <div class="faq-answer">
               <p>
-                Oui. Tous nos sites sont livrés avec un socle SEO technique et éditorial. Nous proposons aussi un accompagnement SEO continu pour améliorer votre visibilité, sans garantir une position déterminée dans les résultats de recherche.
+                <strong>Oui</strong>, chaque site livré inclut le SEO technique de base : indexation, balises title et description, structure de titres, données structurées et optimisation des temps de chargement. Une prestation de référencement continue (audit, contenus, suivi de positions) est proposée séparément, sur devis. Une première position ou une date précise ne peuvent pas être garanties : aucun prestataire ne contrôle l'algorithme de Google.
               </p>
             </div>
           </div>
@@ -494,7 +563,7 @@ const homeSchema = {
             </button>
             <div class="faq-answer">
               <p>
-                Une agence web locale facilite les échanges, les rendez-vous et la compréhension du contexte marocain. Nous proposons un suivi personnalisé et pouvons organiser des rencontres à Casablanca lorsque le projet le nécessite.
+                Une agence basée à Casablanca permet trois choses concrètes : des réunions en présentiel à Ain Sebaa ou chez vous, une facturation en MAD sans frais de change, et des échanges en français comme en arabe. Sur un e-commerce, la proximité compte aussi pour le paiement (contrat marchand CMI) et la livraison, dont les règles diffèrent du marché européen. Pour comparer objectivement, voyez notre <a href="/agence-web-vs-freelance-vs-no-code-maroc">comparatif agence, freelance et no-code</a>.
               </p>
             </div>
           </div>
@@ -506,7 +575,7 @@ const homeSchema = {
             </button>
             <div class="faq-answer">
               <p>
-                Le choix dépend des prestataires disponibles, de votre compte marchand et de vos besoins. Les moyens de paiement retenus et leurs conditions d'intégration sont confirmés pendant le cadrage.
+                <strong>Oui</strong>, nous intégrons le paiement par carte bancaire, le paiement à la livraison et le virement. Le paiement par carte passe au Maroc par un acquéreur partenaire du CMI : il suppose un contrat marchand à votre nom, sous réserve d'éligibilité. Nous préparons le dossier technique et l'intégration, mais l'activation relève de la banque et n'est pas garantie par l'agence.
               </p>
             </div>
           </div>
@@ -540,63 +609,14 @@ const homeSchema = {
           </div>
           <p class="final-cta__guarantee">
             <Icon name="check" className="final-cta__check-icon" />
-            <span>Devis détaillé avant le démarrage du projet</span>
+            <span>Devis détaillé en MAD, périmètre et délais écrits</span>
           </p>
         </div>
       </div>
     </section>
-    <JsonLd data={{
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Quel est le prix pour la création d’un site web à Casablanca ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Un site vitrine professionnel démarre à 7 500 MAD et un site e-commerce à 15 000 MAD. Le devis final dépend du périmètre, des contenus et des intégrations."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Combien de temps pour créer un site web à Casablanca ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Le calendrier dépend du périmètre, des contenus, des validations et des intégrations. Une date de livraison prévisionnelle est indiquée dans le devis."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Proposez-vous le référencement SEO à Casablanca ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Oui. Tous nos sites incluent un socle SEO technique et éditorial. Un accompagnement continu peut améliorer la visibilité, sans garantir une position déterminée."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Pourquoi choisir une agence locale à Casablanca ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Une agence locale connaît les spécificités du marché casablancais et vous accompagne avec un suivi personnalisé et réactif."
-          }
-        }
-      ]
-    }} />
+    <JsonLd data={faqSchema} />
     <SocialProof />
   </div>
-  <script is:inline>
-    document.addEventListener('DOMContentLoaded', function() {
-      const faqQuestions = document.querySelectorAll('.faq-question');
-
-      faqQuestions.forEach(question => {
-        question.addEventListener('click', () => {
-          const isExpanded = question.getAttribute('aria-expanded') === 'true';
-          question.setAttribute('aria-expanded', String(!isExpanded));
-        });
-      });
-    });
-  </script>
 </Layout>
 
 <style>
@@ -2040,3 +2060,17 @@ const homeSchema = {
     }
   }
 </style>
+
+<script is:inline>
+  // FAQ Accordion
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const isExpanded = question.getAttribute('aria-expanded') === 'true';
+        question.setAttribute('aria-expanded', !isExpanded);
+      });
+    });
+  });
+</script>

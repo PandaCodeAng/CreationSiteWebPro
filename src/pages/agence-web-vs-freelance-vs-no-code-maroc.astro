@@ -1,0 +1,411 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import JsonLd from '../components/JsonLd.astro';
+import CTAButton from '../components/CTAButton.astro';
+import { LOCAL_BUSINESS_ID, WEBSITE_ID, pricingTiers } from '../data/business';
+
+const canonical = 'https://www.creationsitewebpro.com/agence-web-vs-freelance-vs-no-code-maroc';
+const pageTitle = 'Agence, freelance ou no-code au Maroc : quel choix ?';
+const pageDescription = 'Comparatif honnête des trois façons de créer un site web au Maroc : budget, délai, maintenance, réversibilité et cas où chaque option est la bonne.';
+
+const breadcrumbItems = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Agence, freelance ou no-code' }
+];
+const schemaBreadcrumbs = [{ name: 'Agence, freelance ou no-code au Maroc' }];
+
+const criteria = [
+  {
+    label: 'Budget de départ',
+    agency: 'À partir de 7 500 MAD pour un site vitrine',
+    freelance: 'Souvent inférieur, très variable selon l’expérience',
+    nocode: 'Abonnement mensuel, souvent facturé en devises'
+  },
+  {
+    label: 'Délai typique',
+    agency: '2 à 3 semaines (vitrine), 4 à 6 semaines (e-commerce)',
+    freelance: 'Dépend de la charge en cours d’une seule personne',
+    nocode: 'Quelques jours si vous le faites vous-même'
+  },
+  {
+    label: 'Continuité en cas d’absence',
+    agency: 'Plusieurs intervenants, le projet ne s’arrête pas',
+    freelance: 'Risque réel : maladie, congés, changement d’activité',
+    nocode: 'Vous dépendez de l’éditeur, pas d’une personne'
+  },
+  {
+    label: 'Compétences couvertes',
+    agency: 'Design, développement, SEO, recette, contenu',
+    freelance: 'Généralement une ou deux de ces compétences',
+    nocode: 'Aucune : c’est vous qui les apportez'
+  },
+  {
+    label: 'Personnalisation',
+    agency: 'Élevée, jusqu’au développement sur mesure',
+    freelance: 'Élevée si la compétence est là',
+    nocode: 'Limitée par les gabarits de la plateforme'
+  },
+  {
+    label: 'Paiement en ligne (CMI)',
+    agency: 'Intégration prise en charge, dossier technique préparé',
+    freelance: 'Possible selon l’expérience du prestataire',
+    nocode: 'Dépend des passerelles disponibles au Maroc'
+  },
+  {
+    label: 'Coût récurrent',
+    agency: 'Hébergement, domaine, maintenance optionnelle',
+    freelance: 'Idem, mais support souvent moins formalisé',
+    nocode: 'Abonnement obligatoire à vie'
+  },
+  {
+    label: 'Réversibilité',
+    agency: 'Code, base de données et accès vous appartiennent',
+    freelance: 'Bonne, si le contrat le prévoit explicitement',
+    nocode: 'Faible : l’export ne restitue pas le site'
+  },
+  {
+    label: 'Responsabilité juridique',
+    agency: 'Contrat, CGV, facture, entité identifiable',
+    freelance: 'Variable selon le statut du prestataire',
+    nocode: 'Contrat avec un éditeur souvent étranger'
+  }
+];
+
+const scenarios = [
+  {
+    title: 'Choisissez le no-code si…',
+    points: [
+      'Vous validez une idée et vous acceptez de tout refaire ensuite.',
+      'Votre budget de départ est inférieur au prix d’un site vitrine.',
+      'Vous avez le temps et l’envie de construire les pages vous-même.',
+      'Votre activité ne dépend pas encore du site pour générer des demandes.'
+    ]
+  },
+  {
+    title: 'Choisissez un freelance si…',
+    points: [
+      'Votre besoin est ciblé : une refonte graphique, une correction, un module.',
+      'Vous savez déjà rédiger le cahier des charges et piloter le prestataire.',
+      'Vous acceptez le risque de discontinuité en cas d’indisponibilité.',
+      'Vous avez trouvé quelqu’un dont vous pouvez vérifier les réalisations.'
+    ]
+  },
+  {
+    title: 'Choisissez une agence si…',
+    points: [
+      'Le site est un canal commercial : une panne ou un retard vous coûte de l’argent.',
+      'Le projet couvre plusieurs métiers à la fois : design, développement, SEO, contenu.',
+      'Vous avez besoin d’un interlocuteur contractuellement engagé sur des délais.',
+      'Vous vendez en ligne et devez intégrer un paiement bancaire au Maroc.'
+    ]
+  }
+];
+
+const faqItems = [
+  {
+    question: 'Une agence est-elle toujours plus chère qu’un freelance ?',
+    answer: 'Non, pas toujours à périmètre égal. Un freelance affiche souvent un montant plus bas, mais qui couvre un périmètre plus étroit : la rédaction, la recette, l’optimisation de performance ou l’intégration du paiement sont fréquemment facturées à part ou absentes. Comparez les livrables ligne à ligne avant de comparer les totaux. Chez CreationSiteWebPro, un site vitrine démarre à 7 500 MAD, périmètre décrit au devis.'
+  },
+  {
+    question: 'Le no-code permet-il de vendre en ligne au Maroc ?',
+    answer: 'Oui, mais avec une réserve importante sur le paiement. Le paiement par carte bancaire au Maroc passe par un acquéreur partenaire du CMI, et toutes les plateformes no-code n’offrent pas de passerelle compatible. Vérifiez ce point précis avant de vous engager : le paiement à la livraison et le virement, eux, restent réalisables partout.'
+  },
+  {
+    question: 'Puis-je commencer en no-code et migrer vers un site sur mesure ?',
+    answer: 'Oui, et c’est une trajectoire fréquente. Prévoyez toutefois que la migration est une refonte, pas un transfert : l’export d’une plateforme no-code restitue en général les textes et les images, rarement la mise en page ou les fonctionnalités. Conservez vos contenus dans un format réutilisable et gardez le nom de domaine à votre nom dès le premier jour.'
+  },
+  {
+    question: 'Comment vérifier qu’un prestataire est sérieux ?',
+    answer: 'Quatre vérifications concrètes : demandez des réalisations en ligne et cliquez sur les liens, vérifiez que le devis détaille le périmètre et les livrables, exigez que le nom de domaine et les accès soient à votre nom, et méfiez-vous de toute promesse de première position sur Google. Aucun prestataire ne contrôle l’algorithme de classement.'
+  }
+];
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${canonical}#webpage`,
+  name: pageTitle,
+  description: pageDescription,
+  url: canonical,
+  isPartOf: { '@id': WEBSITE_ID },
+  about: { '@id': LOCAL_BUSINESS_ID },
+  inLanguage: 'fr-MA',
+  // Format comparatif : c'est un des formats les plus repris par Perplexity et
+  // ChatGPT, et il manquait entièrement au site (M-15 de l'audit GEO).
+  mainEntity: {
+    '@type': 'Table',
+    about: 'Comparaison entre agence web, freelance et plateforme no-code au Maroc'
+  }
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${canonical}#faq`,
+  isPartOf: { '@id': `${canonical}#webpage` },
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer
+    }
+  }))
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={canonical}
+  breadcrumbs={schemaBreadcrumbs}
+>
+  <JsonLd data={pageSchema} />
+  <JsonLd data={faqSchema} />
+
+  <div class="comparatif-page">
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <header class="comparatif-hero">
+      <h1>Agence web, freelance ou no-code : que choisir au Maroc ?</h1>
+      <p class="lead-paragraph">
+        Les trois options sont légitimes et aucune n'est meilleure dans l'absolu. Le
+        no-code convient pour valider une idée à faible budget, un freelance pour un
+        besoin ciblé, une agence quand le site est un canal commercial et que le projet
+        couvre plusieurs métiers. Ce comparatif détaille ce que chaque option coûte
+        réellement, en argent, en temps et en dépendance.
+      </p>
+      <p class="disclosure">
+        <strong>Transparence :</strong> nous sommes une agence web basée à Casablanca.
+        Nous avons donc un intérêt dans ce comparatif. C'est précisément pour cela que
+        nous avons écrit noir sur blanc les cas où une agence n'est pas le bon choix —
+        vous les trouverez plus bas.
+      </p>
+    </header>
+
+    <section class="key-takeaways" aria-labelledby="essentiel">
+      <h2 id="essentiel">Le comparatif en une phrase chacun</h2>
+      <ul>
+        <li><strong>No-code</strong> : le moins cher au départ, le plus contraignant à long terme. Vous louez un site, vous ne le possédez pas.</li>
+        <li><strong>Freelance</strong> : le meilleur rapport qualité-prix sur un besoin précis, à condition de savoir piloter et d'accepter le risque d'indisponibilité.</li>
+        <li><strong>Agence</strong> : le plus coûteux à l'entrée, le plus adapté quand plusieurs métiers doivent avancer ensemble et qu'un engagement contractuel est nécessaire.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="tableau-titre">
+      <h2 id="tableau-titre">Comparatif détaillé sur neuf critères</h2>
+      <div class="table-scroll">
+        <table class="article-table">
+          <caption>Agence web, freelance et no-code : comparaison pour un projet au Maroc, juillet 2026</caption>
+          <thead>
+            <tr>
+              <th scope="col">Critère</th>
+              <th scope="col">Agence web</th>
+              <th scope="col">Freelance</th>
+              <th scope="col">Plateforme no-code</th>
+            </tr>
+          </thead>
+          <tbody>
+            {criteria.map((row) => (
+              <tr>
+                <th scope="row">{row.label}</th>
+                <td>{row.agency}</td>
+                <td>{row.freelance}</td>
+                <td>{row.nocode}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="scenarios-titre">
+      <h2 id="scenarios-titre">Dans quel cas chaque option est la bonne</h2>
+      <div class="scenarios-grid">
+        {scenarios.map((scenario) => (
+          <article class="scenario-card">
+            <h3>{scenario.title}</h3>
+            <ul>
+              {scenario.points.map((point) => <li>{point}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="couts-titre">
+      <h2 id="couts-titre">Le coût total, pas le prix affiché</h2>
+      <p>
+        L'erreur la plus fréquente consiste à comparer un prix de création à un
+        abonnement mensuel. Sur trois ans, un abonnement no-code de 300 MAD par mois
+        représente 10 800 MAD, sans que vous possédiez le site à la fin. À l'inverse, un
+        site développé une fois se paie au départ, puis ne coûte plus que l'hébergement,
+        le domaine et la maintenance que vous choisissez.
+      </p>
+      <p>
+        Faites le calcul sur votre horizon réel. Si vous savez que le site vivra cinq
+        ans, comparez cinq ans de coûts, pas la première facture. Nos paliers de départ
+        sont publiés sur la <a href="/creation-site-web-casablanca-prix">page tarifs</a> :
+        {' '}{pricingTiers[0].priceLabel.toLowerCase()} pour un site vitrine,
+        {' '}{pricingTiers[1].priceLabel.toLowerCase()} pour une boutique.
+      </p>
+      <div class="warning-box">
+        <h3>Le critère que personne ne regarde : la réversibilité</h3>
+        <p>
+          Posez systématiquement cette question, quelle que soit l'option retenue :
+          « si je pars, qu'est-ce que j'emporte ? » Le nom de domaine, les contenus, la
+          base de données et les accès doivent être à votre nom. C'est le seul garde-fou
+          réellement efficace contre la dépendance à un prestataire ou à un éditeur.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="faq-titre">
+      <h2 id="faq-titre">Questions fréquentes</h2>
+      <div class="faq-list">
+        {faqItems.map((item) => (
+          <details>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="comparatif-cta">
+      <h2>Vous hésitez encore ?</h2>
+      <p>
+        Présentez-nous votre projet. Si une agence n'est pas la bonne réponse pour vous,
+        nous vous le dirons — c'est plus utile pour tout le monde qu'un devis inadapté.
+      </p>
+      <CTAButton href="/contact" className="cta-button">Décrire mon projet</CTAButton>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .comparatif-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  .comparatif-hero {
+    margin: 2rem 0 3rem;
+  }
+
+  .comparatif-hero h1 {
+    color: var(--color-primary);
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+
+  .lead-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .disclosure {
+    background: #fffbea;
+    border: 1px solid #f5e3a3;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  section {
+    margin-bottom: 3.5rem;
+  }
+
+  section h2 {
+    color: var(--color-primary);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin-bottom: 1rem;
+  }
+
+  .scenarios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .scenario-card {
+    background: #fff;
+    border: 1px solid rgba(7, 59, 76, 0.14);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+
+  .scenario-card h3 {
+    color: var(--color-secondary);
+    font-size: 1.15rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .scenario-card ul {
+    padding-left: 1.1rem;
+    margin: 0;
+  }
+
+  .scenario-card li {
+    margin-bottom: 0.6rem;
+    line-height: 1.55;
+  }
+
+  .warning-box {
+    background: #f8f9fa;
+    border-left: 5px solid var(--color-accent);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .warning-box h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+  }
+
+  .faq-list {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  details {
+    border: 1px solid rgba(7, 59, 76, 0.14);
+    border-radius: 8px;
+    padding: 1.1rem 1.3rem;
+    background: #fff;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  details p {
+    margin-top: 0.85rem;
+    margin-bottom: 0;
+    line-height: 1.65;
+  }
+
+  .comparatif-cta {
+    background: linear-gradient(135deg, #eff6ff, #e0f2fe);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .comparatif-cta h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  @media (max-width: 640px) {
+    .comparatif-page {
+      padding: 1rem 1rem 3rem;
+    }
+  }
+</style>

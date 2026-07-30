@@ -4,6 +4,8 @@ import JsonLd from '../../components/JsonLd.astro';
 import { generateTimeTag } from '../../utils/dates';
 import { articles, BLOG_URL, createBlogSchema, getAuthorProfile } from './_articles';
 
+const schemaBreadcrumbs = [{ name: 'Blog' }];
+
 const pageTitle = "Blog Création Site Web & SEO au Maroc | CreationSiteWebPro";
 const pageDescription = "Guides pratiques sur la création de sites web, le e-commerce et le SEO à Casablanca et au Maroc : budget, conception, contenu et performance.";
 
@@ -49,7 +51,8 @@ const blogCategories = [
 const schema = createBlogSchema(pageTitle, pageDescription);
 ---
 
-<Layout 
+<Layout
+  breadcrumbs={schemaBreadcrumbs} 
   title={pageTitle}
   description={pageDescription}
   canonical={BLOG_URL}

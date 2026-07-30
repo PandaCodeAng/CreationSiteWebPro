@@ -3,7 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import JsonLd from '../components/JsonLd.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { napInfo } from '../data/business';
+import { napInfo, LOCAL_BUSINESS_ID, WEBSITE_ID } from '../data/business';
+
+const schemaBreadcrumbs = [{ name: 'Contact' }];
 
 const breadcrumbItems = [
   { name: 'Accueil', url: '/' },
@@ -49,33 +51,28 @@ const faqs = [
   }
 ];
 
+// B-4 de l'audit GEO : ce bloc dupliquait un LocalBusiness divergent de celui de
+// l'accueil. L'entité complète est désormais injectée par Layout.astro sur chaque
+// page ; on la référence ici par son identifiant.
 const contactSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
+  "@id": "https://www.creationsitewebpro.com/contact#webpage",
   "name": pageTitle,
   "description": pageDescription,
-  "mainEntity": {
-    "@type": "LocalBusiness",
-    "name": napInfo.name,
-    "telephone": napInfo.phone.replace(/\s+/g, ''),
-    "email": napInfo.email,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": napInfo.address.street,
-      "addressLocality": napInfo.address.city,
-      "postalCode": napInfo.address.postalCode,
-      "addressCountry": "MA"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": napInfo.coordinates.latitude,
-      "longitude": napInfo.coordinates.longitude
-    }
-  }
+  "url": "https://www.creationsitewebpro.com/contact",
+  "isPartOf": { "@id": WEBSITE_ID },
+  "inLanguage": "fr-MA",
+  "mainEntity": { "@id": LOCAL_BUSINESS_ID }
 };
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/contact">
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonical="https://www.creationsitewebpro.com/contact"
+  breadcrumbs={schemaBreadcrumbs}
+>
   <JsonLd data={contactSchema} />
   <div class="contact-page">
     <Breadcrumbs items={breadcrumbItems} />
@@ -191,6 +188,16 @@ const contactSchema = {
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.querySelector<HTMLFormElement>('#contact-form');
       const status = document.querySelector<HTMLElement>('#form-status');
+      const projectType = form?.querySelector<HTMLSelectElement>('#projectType');
+      const requestedProject = new URLSearchParams(window.location.search).get('projet');
+
+      if (
+        projectType
+        && requestedProject
+        && Array.from(projectType.options).some((option) => option.value === requestedProject)
+      ) {
+        projectType.value = requestedProject;
+      }
 
       form?.addEventListener('submit', async (event) => {
         event.preventDefault();

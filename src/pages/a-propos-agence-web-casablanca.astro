@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import JsonLd from '../components/JsonLd.astro';
 import OptimizedImage from '../components/OptimizedImage.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { teamMembers as teamProfiles } from '../data/business';
 
 const pageTitle = "À Propos | Votre Partenaire Digital à Casablanca Maroc";
 const pageDescription = "Découvrez l'équipe de CreationSiteWebPro et ses domaines d'intervention en création de sites web et applications sur mesure à Casablanca.";
@@ -13,6 +14,11 @@ const breadcrumbItems = [
   { name: 'Accueil', url: '/' },
   { name: 'À Propos' }
 ];
+const schemaBreadcrumbs = [{ name: 'À propos de l’agence' }];
+
+// `knowsAbout` et `sameAs` viennent de src/data/business.ts, source unique partagée
+// avec les schémas d'auteur des articles (M-4 de l'audit GEO).
+const profileBySlug = new Map(teamProfiles.map((member) => [member.slug, member]));
 const teamMembers = [
   {
     id: "mouhcine-talbi",
@@ -107,13 +113,28 @@ const aboutSchema = {
         "@id": organizationId,
         "name": "CreationSiteWebPro",
         "url": siteUrl
-      }
+      },
+      // Rattachement explicite à l'agence, dont le profil LinkedIn est déclaré une
+      // seule fois dans le `sameAs` du LocalBusiness. Le `sameAs` d'une Person est
+      // réservé aux URLs qui désignent cette personne, jamais l'entreprise.
+      "affiliation": { "@id": organizationId },
+      ...(profileBySlug.get(member.id)?.knowsAbout?.length
+        ? { "knowsAbout": [...profileBySlug.get(member.id)!.knowsAbout] }
+        : {}),
+      ...(profileBySlug.get(member.id)?.sameAs?.length
+        ? { "sameAs": [...profileBySlug.get(member.id)!.sameAs] }
+        : {})
     }))
   ]
 };
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical="https://www.creationsitewebpro.com/a-propos-agence-web-casablanca">
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonical="https://www.creationsitewebpro.com/a-propos-agence-web-casablanca"
+  breadcrumbs={schemaBreadcrumbs}
+>
   <JsonLd data={aboutSchema} />
   <div class="about-page">
     <Breadcrumbs items={breadcrumbItems} />

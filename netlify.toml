@@ -30,7 +30,53 @@
 
 [[redirects]]
   from = "/blog/creation-site-web-casablanca-guide"
-  to = "/blog/guide-creation-site-web-casablanca-2024"
+  to = "/blog/guide-creation-site-web-casablanca"
+  status = 301
+  force = true
+
+# Doublon de la page d'accueil : /index.html répondait 200 sans être canonicalisé
+# (M-11 de l'audit GEO).
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+# Slugs d'articles débarrassés de leur suffixe d'année : les URLs portaient
+# « 2024 » alors que titres et contenus annoncent 2026 (H-1 de l'audit GEO).
+[[redirects]]
+  from = "/blog/prix-creation-site-web-casablanca-2024"
+  to = "/blog/prix-creation-site-web-casablanca"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/guide-creation-site-web-casablanca-2024"
+  to = "/blog/guide-creation-site-web-casablanca"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/strategies-seo-sites-web-marocains-2024"
+  to = "/blog/strategies-seo-sites-web-marocains"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/guide-digitalisation-entreprise-marocaine-2024"
+  to = "/blog/guide-digitalisation-entreprise-marocaine"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/tendances-web-design-maroc-2024"
+  to = "/blog/tendances-web-design-maroc"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/webpages-modernes-creation-site-web-2024"
+  to = "/blog/webpages-modernes-creation-site-web"
   status = 301
   force = true
 
@@ -60,11 +106,27 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Les images de /images ne sont pas hashées : on ne peut donc pas les marquer
+# `immutable`, mais `max-age=0, must-revalidate` (défaut constaté en B-6 de
+# l'audit GEO) forçait une revalidation à chaque vue. Un cache d'un mois avec
+# revalidation en arrière-plan évite les allers-retours sans figer les visuels.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/icons/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
 [build.processing]
   skip_processing = false
 
 [build.processing.html]
-  pretty_urls = true
+  # Désactivé : combiné à `build.format: 'file'`, `pretty_urls` réintroduirait des
+  # redirections sur les URLs déclarées dans le sitemap (H-2 de l'audit GEO).
+  pretty_urls = false
 
 [build.processing.css]
   bundle = true
